@@ -1,0 +1,25 @@
+version: "3.4"
+services:
+  deemix:
+    image: registry.gitlab.com/bockiii/deemix-docker
+    container_name: deemix
+    restart: unless-stopped
+    volumes:
+      - /storage/Music/:/downloads
+      - .config/deemix:/config
+    environment:
+      - PUID
+      - PGID
+      - UMASK_SET=022
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    restart: unless-stopped
+    environment:
+      - ND_SCANSCHEDULE=1h
+      - ND_LOGLEVEL=info
+      - ND_SESSIONTIMEOUT=24h
+      - ND_BASEURL=/navidrome
+    volumes:
+      - .data/navidrome:/data
+      - /storage/Music:/music:ro

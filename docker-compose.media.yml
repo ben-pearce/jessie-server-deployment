@@ -1,0 +1,89 @@
+version: "3.4"
+services:
+  transmission:
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - OPENVPN_PROVIDER=PIA
+      - OPENVPN_CONFIG=uk_london
+      - OPENVPN_USERNAME=p6886301
+      - OPENVPN_PASSWORD=OV8RMBWTTt0DGaMG
+      - LOCAL_NETWORK=192.168.0.0/16
+      - TRANSMISSION_SPEED_LIMIT_UP=10
+      - TRANSMISSION_SPEED_LIMIT_UP_ENABLED=true
+    volumes:
+      - .data/transmission:/data/transmission-home
+      - /storage/Downloads/completed:/data/completed
+      - /storage/Downloads/incomplete:/data/incomplete
+      - /storage/Downloads/watch:/data/watch
+    image: haugene/transmission-openvpn
+    container_name: transmission
+    restart: unless-stopped
+  sonarr:
+    image: ghcr.io/linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    volumes:
+      - .data/sonarr:/config
+      - .config/sonarr/config.xml:/config/config.xml
+      - /storage/Shows:/tv
+      - /storage2/Shows:/tv2
+      - /storage/Downloads/completed:/downloads
+    restart: unless-stopped
+  radarr:
+    image: ghcr.io/linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    volumes:
+      - .data/radarr:/config
+      - .config/radarr/config.xml:/config/config.xml
+      - /storage/Movies:/movies
+      - /storage2/Movies:/movies2
+      - /storage/Downloads/completed:/downloads
+    restart: unless-stopped
+  jackett:
+    image: ghcr.io/linuxserver/jackett
+    container_name: jackett
+    environment:
+      - PUID
+      - PGID
+      - TZ
+      - AUTO_UPDATE=true
+    volumes:
+      - .data/jackett:/config
+      - .config/jackett/ServerConfig.json:/config/Jackett/ServerConfig.json
+      - /storage/Downloads/completed:/downloads
+    restart: unless-stopped
+  plex:
+    image: ghcr.io/linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID
+      - PGID
+      - VERSION=latest
+    volumes:
+      - .data/plex:/config
+      - /storage/Shows:/tv
+      - /storage/Movies:/movies
+      - /storage/Music:/music
+      - /storage2/Shows:/tv2
+      - /storage2/Movies:/movies2
+    restart: unless-stopped
+  freshrss:
+    image: ghcr.io/linuxserver/freshrss
+    container_name: freshrss
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    volumes:
+      - .config/freshrss/config.php:/config/www/freshrss/data/config.php:ro
+      - .data/freshrss:/config
+    restart: unless-stopped

@@ -1,0 +1,65 @@
+version: "3.4"
+services:
+  web:
+    image: nginx
+    container_name: nginx
+    volumes:
+     - ./sites:/etc/nginx/templates
+     - ./sites/include/:/etc/nginx/include
+     - /etc/letsencrypt/live/${HOST}/fullchain.pem:/etc/ssl/fullchain.pem
+     - /etc/letsencrypt/live/${HOST}/privkey.pem:/etc/ssl/privkey.key
+    ports:
+     - 443:443
+     - 80:80
+    environment:
+     - NGINX_HOST=${HOST}
+    restart: unless-stopped
+  wireguard:
+    image: ghcr.io/linuxserver/wireguard
+    container_name: wireguard
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - PUID
+      - PGID
+      - TZ
+      - PEERS=1
+    volumes:
+      - .data/wireguard:/config:ro
+      - /lib/modules:/lib/modules
+    extra_hosts:
+      - ${HOST}:172.17.0.1
+    ports:
+      - 51672:51820/udp
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    restart: unless-stopped
+  wgui:
+    image: ngoduykhanh/wireguard-ui:latest
+    container_name: wgui
+    environment:
+      - SESSION_SECRET=BLTfKU5YE4mHSGrDRvdGsR5EvrJoszQMuJcJmwFg2bMVgabNTY
+    volumes:
+      - .data/wgui:/app/db
+      - .data/wireguard:/etc/wireguard
+    depends_on:
+      - "wireguard"
+    restart: unless-stopped
+  wgmonitor:
+    image: kking124/wireguard-monitor
+    container_name: wgmonitor
+    security_opt:
+      - seccomp:unconfined
+    tmpfs:
+      - /tmp
+      - /run
+      - /run/lock
+    volumes:
+      - .data/wireguard:/etc/wireguard:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - "wgui"
+    tty: true
+    restart: unless-stopped

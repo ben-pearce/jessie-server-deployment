@@ -1,0 +1,33 @@
+version: "3.4"
+services:
+  mail:
+    image: iredmail/mariadb:stable
+    container_name: iredmail
+    hostname: mail.${HOST}
+    user: root
+    environment:
+      - HOSTNAME=mail.${HOST}
+      - FIRST_MAIL_DOMAIN=${HOST}
+      - FIRST_MAIL_DOMAIN_ADMIN_PASSWORD
+      - MLMMJADMIN_API_TOKEN
+      - ROUNDCUBE_DES_KEY
+      - MAIL_THE_TIP_FILE=NO
+    volumes:
+      - .data/mail/backup:/var/vmail/backup
+      - .data/mail/mailboxes:/var/vmail/vmail1
+      - .data/mail/mlmmj:/var/vmail/mlmmj
+      - .data/mail/mlmmj-archive:/var/vmail/mlmmj-archive
+      - .data/mail/imapsieve_copy:/var/vmail/imapsieve_copy
+      - .data/mail/custom:/opt/iredmail/custom
+      - .data/mail/ssl:/opt/iredmail/ssl
+      - .data/mail/mysql:/var/lib/mysql
+      - .data/mail/clamav:/var/lib/clamav
+      - .data/mail/sa_rules:/var/lib/spamassassin
+      - .data/mail/postfix_queue:/var/spool/postfix
+    ports:
+      - "143:143"
+      - "993:993"
+      - "25:25"
+      - "465:465"
+      - "587:587"
+    restart: unless-stopped

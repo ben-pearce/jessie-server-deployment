@@ -1,0 +1,18 @@
+version: "3.4"
+services:
+  homer:
+    image: b4bz/homer:latest
+    volumes:
+      - ./.config/homer:/www/assets
+    environment:
+      - UID=${PUID}
+      - GID=${GUID}
+    container_name: homer
+    restart: unless-stopped
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - .data/portainer:/data
+    restart: unless-stopped

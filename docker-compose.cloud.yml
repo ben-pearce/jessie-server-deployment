@@ -1,0 +1,8 @@
+version: "3.4"
+services:
+  vault:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    volumes:
+      - .data/vaultwarden:/data
+    restart: unless-stopped

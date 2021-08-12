@@ -1,0 +1,13 @@
+version: "3.4"
+services:
+  alltube:
+    image: rudloff/alltube
+    container_name: alltube
+    restart: unless-stopped
+  huginn:
+    image: huginn/huginn
+    user: "${PUID}"
+    container_name: huginn
+    volumes:
+      - .data/huginn/data:/var/lib/mysql
+    restart: unless-stopped
