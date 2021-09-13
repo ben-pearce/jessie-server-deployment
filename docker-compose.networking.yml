@@ -10,9 +10,26 @@ services:
      - /etc/letsencrypt/live/${HOST}/privkey.pem:/etc/ssl/privkey.key
     ports:
      - 443:443
-     - 80:80
+      - 80:80
     environment:
-     - NGINX_HOST=${HOST}
+      - NGINX_HOST=${HOST}
+    depends_on: 
+      - "wireguard"
+      - "wgui"
+      - "wgmonitor"
+      - "vaultwarden"
+      - "iredmail"
+      - "homer"
+      - "portainer"
+      - "transmission"
+      - "sonarr"
+      - "radarr"
+      - "jackett"
+      - "plex"
+      - "freshrss"
+      - "deemix"
+      - "navidrome"
+      - "syncthing"
     restart: unless-stopped
   wireguard:
     image: ghcr.io/linuxserver/wireguard
