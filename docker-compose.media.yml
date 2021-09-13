@@ -24,7 +24,7 @@ services:
     container_name: sonarr
     environment:
       - PUID
-      - PGID
+      - GUID
       - TZ
     volumes:
       - .data/sonarr:/config
@@ -38,7 +38,7 @@ services:
     container_name: radarr
     environment:
       - PUID
-      - PGID
+      - GUID
       - TZ
     volumes:
       - .data/radarr:/config
@@ -52,7 +52,7 @@ services:
     container_name: jackett
     environment:
       - PUID
-      - PGID
+      - GUID
       - TZ
       - AUTO_UPDATE=true
     volumes:
@@ -66,7 +66,7 @@ services:
     network_mode: host
     environment:
       - PUID
-      - PGID
+      - GUID
       - VERSION=latest
     volumes:
       - .data/plex:/config
@@ -81,7 +81,7 @@ services:
     container_name: freshrss
     environment:
       - PUID
-      - PGID
+      - GUID
       - TZ
     volumes:
       - .config/freshrss/config.php:/config/www/freshrss/data/config.php:ro

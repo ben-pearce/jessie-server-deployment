@@ -9,7 +9,7 @@ services:
       - .config/deemix:/config
     environment:
       - PUID
-      - PGID
+      - GUID
       - UMASK_SET=022
   navidrome:
     image: deluan/navidrome:latest
