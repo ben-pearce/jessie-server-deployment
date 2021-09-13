@@ -97,7 +97,7 @@ services:
       - name: "Syncthing"
         logo: "assets/tools/syncthing.png"
         subtitle: "Workspace Syncing"
-        url: "https://benpearce.io/cloud/"
+        url: "https://benpearce.io/syncthing/"
         target: "_blank"
       - name: "Bitwarden"
         logo: "assets/tools/bitwarden.png"
