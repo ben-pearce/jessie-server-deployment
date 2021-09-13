@@ -4,8 +4,8 @@ services:
     image: nginx
     container_name: nginx
     volumes:
-      - ./sites:/etc/nginx/templates
-      - ./sites/include/:/etc/nginx/include
+      - .config/nginx/templates:/etc/nginx/templates
+      - .config/nginx/include:/etc/nginx/include
       - /etc/letsencrypt/live/${HOST}/fullchain.pem:/etc/ssl/fullchain.pem
       - /etc/letsencrypt/live/${HOST}/privkey.pem:/etc/ssl/privkey.key
     ports:
