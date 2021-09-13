@@ -4,12 +4,12 @@ services:
     image: nginx
     container_name: nginx
     volumes:
-     - ./sites:/etc/nginx/templates
-     - ./sites/include/:/etc/nginx/include
-     - /etc/letsencrypt/live/${HOST}/fullchain.pem:/etc/ssl/fullchain.pem
-     - /etc/letsencrypt/live/${HOST}/privkey.pem:/etc/ssl/privkey.key
+      - ./sites:/etc/nginx/templates
+      - ./sites/include/:/etc/nginx/include
+      - /etc/letsencrypt/live/${HOST}/fullchain.pem:/etc/ssl/fullchain.pem
+      - /etc/letsencrypt/live/${HOST}/privkey.pem:/etc/ssl/privkey.key
     ports:
-     - 443:443
+      - 443:443
       - 80:80
     environment:
       - NGINX_HOST=${HOST}
@@ -79,4 +79,22 @@ services:
     depends_on:
       - "wgui"
     tty: true
+    restart: unless-stopped
+  rclone:
+    image: rclone/rclone:latest
+    container_name: rclone
+    user: root
+    volumes:
+      - .data/rclone:/config/rclone
+      - .data:/data:ro
+      - /etc/passwd:/etc/passwd:ro
+      - /etc/group:/etc/group:ro
+    devices:
+      - /dev/fuse:rwm
+    cap_add:
+      - SYS_ADMIN
+    privileged: true
+    security_opt:
+      - apparmor:unconfined
+    command: "sync -L /data secret:"
     restart: unless-stopped
