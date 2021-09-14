@@ -85,7 +85,7 @@ services:
     container_name: rclone
     user: root
     volumes:
-      - .data/rclone:/config/rclone
+      - .config/rclone:/config/rclone
       - .data:/data:ro
       - /etc/passwd:/etc/passwd:ro
       - /etc/group:/etc/group:ro
