@@ -1,24 +1,18 @@
 version: "3.4"
 services:
   transmission:
-    cap_add:
-      - NET_ADMIN
-    environment:
-      - OPENVPN_PROVIDER=PIA
-      - OPENVPN_CONFIG
-      - OPENVPN_USERNAME
-      - OPENVPN_PASSWORD
-      - LOCAL_NETWORK=192.168.0.0/16
-      - TRANSMISSION_SPEED_LIMIT_UP=10
-      - TRANSMISSION_SPEED_LIMIT_UP_ENABLED=true
-    volumes:
-      - .data/transmission:/data/transmission-home
-      - /storage/Downloads/completed:/data/completed
-      - /storage/Downloads/incomplete:/data/incomplete
-      - /storage/Downloads/watch:/data/watch
-    image: haugene/transmission-openvpn
+    image: lscr.io/linuxserver/transmission
     container_name: transmission
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    volumes:
+      - .data/transmission:/config
+      - /storage/Downloads:/downloads
+      - /storage/Downloads/watch:/watch
     restart: unless-stopped
+    network_mode: service:tunnel
   sonarr:
     image: ghcr.io/linuxserver/sonarr
     container_name: sonarr
@@ -60,6 +54,7 @@ services:
       - .config/jackett/ServerConfig.json:/config/Jackett/ServerConfig.json
       - /storage/Downloads/completed:/downloads
     restart: unless-stopped
+    network_mode: service:tunnel
   plex:
     image: ghcr.io/linuxserver/plex
     container_name: plex
