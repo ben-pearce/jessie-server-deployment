@@ -80,3 +80,18 @@ services:
       - "wgui"
     tty: true
     restart: unless-stopped
+  unifi_controller:
+    image: ghcr.io/linuxserver/unifi-controller
+    container_name: unifi_controller
+    environment:
+      - PUID     
+      - PGID     
+      - MEM_LIMIT=1024M
+      - MEM_STARTUP=1024M
+    volumes:
+      - .data/unifi:/config
+    ports:
+      - 3478:3478/udp
+      - 10001:10001/udp
+      - 8080:8080
+    restart: unless-stopped

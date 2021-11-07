@@ -86,6 +86,11 @@ services:
         subtitle: "Fast And Modern VPN"
         url: "https://wg.benpearce.io/"
         target: "_blank"
+      - name: "Unifi Controller"
+        logo: "assets/homer-icons/png/unifi.png"
+        subtitle: "Wireless Network Management"
+        url: "https://unifi.benpearce.io"
+        target: "_blank"
   - name: "Cloud"
     icon: "fas fa-cloud"
     items:
