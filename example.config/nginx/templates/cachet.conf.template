@@ -1,5 +1,5 @@
 upstream cachet {
-    server 172.17.0.1:9090;
+    server cachet:8000;
 }
 
 server {
