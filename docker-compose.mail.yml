@@ -1,6 +1,6 @@
 version: "3.4"
 services:
-  mail:
+  iredmail:
     image: iredmail/mariadb:stable
     container_name: iredmail
     hostname: mail.${HOST}
