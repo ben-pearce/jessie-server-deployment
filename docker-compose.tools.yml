@@ -11,3 +11,7 @@ services:
     volumes:
       - .data/huginn/data:/var/lib/mysql
     restart: unless-stopped
+  cyberchef:
+    image: mpepping/cyberchef
+    container_name: cyberchef
+    restart: unless-stopped

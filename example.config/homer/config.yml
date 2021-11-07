@@ -142,3 +142,8 @@ services:
         subtitle: "Automated Tasks"
         url: "https://huginn.benpearce.io/"
         target: "_blank"
+      - name: "Cyberchef"
+        logo: "assets/homer-icons/png/cyberchef.png"
+        subtitle: "Cyber Swiss Army Knife"
+        url: "https://benpearce.io/cyberchef/"
+        target: "_blank"
