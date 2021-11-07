@@ -1,5 +1,5 @@
 upstream unifi-controller {
-    server unifi-controller:8443;
+    server unifi_controller:8443;
 }
 
 server {
