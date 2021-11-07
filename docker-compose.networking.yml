@@ -80,21 +80,3 @@ services:
       - "wgui"
     tty: true
     restart: unless-stopped
-  rclone:
-    image: rclone/rclone:latest
-    container_name: rclone
-    user: root
-    volumes:
-      - .config/rclone:/config/rclone
-      - .data:/data:ro
-      - /etc/passwd:/etc/passwd:ro
-      - /etc/group:/etc/group:ro
-    devices:
-      - /dev/fuse:rwm
-    cap_add:
-      - SYS_ADMIN
-    privileged: true
-    security_opt:
-      - apparmor:unconfined
-    command: "sync -L /data secret:"
-    restart: unless-stopped
