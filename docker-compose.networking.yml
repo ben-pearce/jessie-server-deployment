@@ -1,6 +1,6 @@
 version: "3.4"
 services:
-  web:
+  nginx:
     image: nginx
     container_name: nginx
     volumes:
