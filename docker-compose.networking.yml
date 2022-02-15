@@ -12,9 +12,18 @@ services:
       - 443:443
       - 80:80
     environment:
-      - NGINX_HOST=${HOST}
+      - HOST
+      - DEEMIX_HOST
+      - PORTAINER_HOST
+      - BITWARDEN_HOST
       - FIREFLY_HOST
       - FIREFLY_DATA_HOST
+      - GATUS_HOST
+      - HUGINN_HOST
+      - JELLYFIN_HOST
+      - MAIL_HOST
+      - UNIFI_HOST
+      - WIREGUARD_HOST
     depends_on: 
       - "wireguard"
       - "wgui"

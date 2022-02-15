@@ -85,9 +85,18 @@ The `.env` file stores environment variables to make starting the containers eas
 
 | **Variable** | **Description** | **Example** |
 |---|---|---|
-| `HOST` | The main host for web-based services.<sup>3</sup> | `example.com` |
+| `HOST` | The main host for web-based services. | `example.com` |
+| `DEEMIX_HOST` | Deemix hostname. | `deemix.example.com` |
+| `PORTAINER_HOST` | Portainer hostname. | `docker.example.com` |
+| `BITWARDEN_HOST` | Bitwarden hostname. | `bitwarden.example.com` |
 | `FIREFLY_HOST` | Firefly hostname. | `firefly.example.com` |
 | `FIREFLY_DATA_HOST` | Firefly data importer hostname. | `fidi.example.com` |
+| `GATUS_HOST` | Gatus hostname. | `status.example.com` |
+| `HUGINN_HOST` | Huginn hostname. | `huginn.example.com` |
+| `JELLYFIN_HOST` | Jellyfin hostname. | `jellyfin.example.com` |
+| `MAIL_HOST` | Mail hostname. | `mail.example.com` |
+| `UNIFI_HOST` | Unifi hostname. | `unifi.example.com` |
+| `WIREGUARD_HOST` | Wireguard hostname. | `wg.example.com` |
 | `PUID` | System user ID to run containers as. | 1000 |
 | `GUID` | System group ID to run containers as. | 1000 |
 | `TZ` | Timezone for all containers. | `Europe/London` |

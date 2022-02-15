@@ -6,7 +6,7 @@ server {
     listen 443 ssl http2;
     listen [::]:443 ssl http2;
 
-    server_name huginn.${NGINX_HOST};
+    server_name ${HUGINN_HOST};
     ssl_certificate /etc/ssl/fullchain.pem;
     ssl_certificate_key /etc/ssl/privkey.key;
     ssl_session_tickets off;
