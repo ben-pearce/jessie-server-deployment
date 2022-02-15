@@ -7,6 +7,7 @@ This repository holds my docker compose files and configuration files for servic
 Due to the number of services being deployed, I have categorized them and created a docker compose file for each category. These docker compose files are aggregated together by a script which allows you to treat all of them as if they were a single file.
 
 - [☁️ Cloud](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.cloud.yml)
+- [👨‍💻 Development](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.dev.yml)
 - [📨 Mail](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.mail.yml)
 - [💼 Management](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.management.yml)
 - [📺 Media](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml)
@@ -43,6 +44,7 @@ Due to the number of services being deployed, I have categorized them and create
 | [alltube](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.tools.yml#L3) | Web GUI for youtube-dl. |  | [GitHub](https://github.com/Rudloff/alltube) |
 | [huginn](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.tools.yml#L7) | Build agents that perform automated tasks for you online. |  | [GitHub](https://github.com/huginn/huginn) |
 | [cyberchef](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.tools.yml#L14) | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
+| [postgres](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.dev.yml#L3) | The world's most advanced open source database |  | [Docker Hub](https://hub.docker.com/_/postgres) |
 
 <sup>1</sup>Assumes mass storage available, mounted at `/storage` on the host.
 
@@ -90,6 +92,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `FIRST_MAIL_DOMAIN_ADMIN_PASSWORD` | Password for `postmaster` mail inbox. | `password123!` |
 | `MLMMJADMIN_API_TOKEN` | Unique key, use `openssl rand -base64 32`. | `ePbfRkaXNZMU...` |
 | `ROUNDCUBE_DES_KEY` | Unique key, use `openssl rand -base64 32`. | `ePbfRkaXNZMU...` |
+| `POSTGRES_PASSWORD` | Postgres database password. | `password123!` |
 | `APP_KEY` | Laravel app key, use `echo "base64:$(openssl rand -base64 32)"`. | `base64:...` |
 
 <sup>3</sup>Note that you need to also point DNS records for sub-domains since some containers' web GUI cannot operate without their own domain.

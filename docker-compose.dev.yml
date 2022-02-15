@@ -1,0 +1,10 @@
+version: "3.4"
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD
+    volumes:
+      - .data/postgres:/var/lib/postgresql/data
+    restart: unless-stopped
