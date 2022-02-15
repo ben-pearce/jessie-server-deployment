@@ -3,7 +3,7 @@ services:
   homer:
     image: b4bz/homer:latest
     volumes:
-      - ./.config/homer:/www/assets
+      - .config/homer:/www/assets
     environment:
       - UID=${PUID}
       - GID=${GUID}
