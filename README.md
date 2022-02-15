@@ -105,7 +105,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `POSTGRES_PASSWORD` | Postgres database password. | `password123!` |
 | `APP_KEY` | Laravel app key, use `echo "base64:$(openssl rand -base64 32)"`. | `base64:...` |
 
-<sup>3</sup>Note that you need to also point DNS records for sub-domains since some containers' web GUI cannot operate without their own domain.
+
 | `NORDIGEN_ID` | Nordigen [API ID](https://ob.helpscoutdocs.com/article/132-token-handling-via-api). | `12abc34d...` |
 | `NORDIGEN_KEY` | Nordigen [API key](https://ob.helpscoutdocs.com/article/132-token-handling-via-api). | `ePbfRkaXNZMU...` |
 | `FIREFLY_III_ACCESS_TOKEN` | [Firefly access token](https://docs.firefly-iii.org/csv/install/configure/#client-id-or-personal-access-token). | `ePbfRkaXNZMU...` |
