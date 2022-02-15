@@ -50,7 +50,6 @@ services:
     volumes:
       - .data/jackett:/config
       - .config/jackett/ServerConfig.json:/config/Jackett/ServerConfig.json
-      - /storage/Downloads/completed:/downloads
     restart: unless-stopped
     network_mode: service:tunnel
   jellyfin:
