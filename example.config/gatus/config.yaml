@@ -1,0 +1,99 @@
+storage:
+  type: postgres
+  path: "postgres://postgres:<postgres_password>@postgres:5432/gatus?sslmode=disable"
+
+alerting:
+  telegram: 
+    token: "<telegram_token>"
+    id: "<telegram_id>"
+
+endpoints:
+  - name: jellyfin
+    group: media
+    url: "https://jellyfin"
+    interval: 5m
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: telegram
+        enabled: true
+        send-on-resolved: true
+  - name: sonarr
+    group: media
+    url: "https://sonarr"
+    interval: 5m
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: telegram
+        enabled: true
+        send-on-resolved: true
+  - name: radarr
+    group: media
+    url: "https://radarr"
+    interval: 5m
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: telegram
+        enabled: true
+        send-on-resolved: true
+  - name: freshrss
+    group: media
+    url: "https://rss"
+    interval: 5m
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: telegram
+        enabled: true
+        send-on-resolved: true
+  - name: navidrome
+    group: media
+    url: "https://navidrome"
+    interval: 5m
+    conditions:
+      - "[STATUS] == 200"
+    alerts:
+      - type: telegram
+        enabled: true
+        send-on-resolved: true
+
+  - name: mail-incoming
+    group: networking
+    url: "starttls://mail:587"
+    interval: 30m
+    client:
+      insecure: true
+      timeout: 5s
+    conditions:
+      - "[CONNECTED] == true"
+      - "[CERTIFICATE_EXPIRATION] > 48h"
+    alerts:
+      - type: telegram
+        enabled: true
+        send-on-resolved: true
+  - name: mail-outgoing
+    group: networking
+    url: "tcp://mail:465"
+    interval: 30m
+    client:
+      timeout: 5s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: telegram
+        enabled: true
+        send-on-resolved: true
+  - name: unify-controller
+    group: networking
+    url: "tcp://unifi:8080"
+    interval: 10m
+    client:
+      timeout: 5s
+    conditions:
+      - "[CONNECTED] == true"
+    alerts:
+      - type: telegram
+        enabled: true
+        send-on-resolved: true

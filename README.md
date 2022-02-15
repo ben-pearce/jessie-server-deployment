@@ -38,12 +38,11 @@ Due to the number of services being deployed, I have categorized them and create
 | [wireguard-ui](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.networking.yml#L73) | A web user interface to manage WireGuard. |  | [GitHub](https://github.com/ngoduykhanh/wireguard-ui) |
 | [wg-monitor](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.networking.yml#L84) | Monitor `wg0.conf` and restart a docker container on the same host if the monitored file changes. |  | [Docker Hub](https://hub.docker.com/r/kking124/wireguard-monitor) |
 | [unifi-controller](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.networking.yml#L101) | Wireless network management. |  |  |
-| [cachet](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.status.yml#L12) | The Open Source Status Page System. |  | [GitHub](https://github.com/CachetHQ/Cachet) |
-| [cachet-url-monitor](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.status.yml#L31) | Automated monitoring for cachet. |  | [GitHub](https://github.com/mtakaki/cachet-url-monitor) |
 | [alltube](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.tools.yml#L3) | Web GUI for youtube-dl. |  | [GitHub](https://github.com/Rudloff/alltube) |
 | [huginn](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.tools.yml#L7) | Build agents that perform automated tasks for you online. |  | [GitHub](https://github.com/huginn/huginn) |
 | [cyberchef](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.tools.yml#L14) | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
 | [jellyfin](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L55) | The Free Software Media System |  | [GitHub](https://github.com/jellyfin/jellyfin) |
+| [gatus](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.status.yml#L3) | Automated service health dashboard |  | [GitHub](https://github.com/TwiN/gatus) |
 | [postgres](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.dev.yml#L3) | The world's most advanced open source database |  | [Docker Hub](https://hub.docker.com/_/postgres) |
 
 <sup>1</sup>Assumes mass storage available, mounted at `/storage` on the host.
