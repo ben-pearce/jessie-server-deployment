@@ -22,3 +22,31 @@ services:
       - 22000:22000/udp
       - 21027:21027/udp
     restart: unless-stopped
+  firefly:
+    image: fireflyiii/core:latest
+    container_name: firefly
+    environment:
+      - APP_KEY
+      - APP_URL=https://${FIREFLY_HOST}/
+      - TRUSTED_PROXIES=**
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_CONNECTION=pgsql
+      - DB_DATABASE=postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - .data/firefly/upload:/var/www/html/storage/upload
+    restart: unless-stopped
+    depends_on:
+      - postgres
+  fidi:
+    image: fireflyiii/data-importer:latest
+    container_name: fidi
+    environment:
+      - FIREFLY_III_ACCESS_TOKEN
+      - FIREFLY_III_URL=http://firefly:8080
+      - VANITY_URL=https://${FIREFLY_HOST}
+      - NORDIGEN_ID
+      - NORDIGEN_KEY
+      - TRUSTED_PROXIES=**

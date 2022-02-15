@@ -86,6 +86,8 @@ The `.env` file stores environment variables to make starting the containers eas
 | **Variable** | **Description** | **Example** |
 |---|---|---|
 | `HOST` | The main host for web-based services.<sup>3</sup> | `example.com` |
+| `FIREFLY_HOST` | Firefly hostname. | `firefly.example.com` |
+| `FIREFLY_DATA_HOST` | Firefly data importer hostname. | `fidi.example.com` |
 | `PUID` | System user ID to run containers as. | 1000 |
 | `GUID` | System group ID to run containers as. | 1000 |
 | `TZ` | Timezone for all containers. | `Europe/London` |
@@ -96,6 +98,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `APP_KEY` | Laravel app key, use `echo "base64:$(openssl rand -base64 32)"`. | `base64:...` |
 
 <sup>3</sup>Note that you need to also point DNS records for sub-domains since some containers' web GUI cannot operate without their own domain.
+| `FIREFLY_III_ACCESS_TOKEN` | [Firefly access token](https://docs.firefly-iii.org/csv/install/configure/#client-id-or-personal-access-token). | `ePbfRkaXNZMU...` |
 
 ## Ideas 
 
@@ -107,7 +110,6 @@ I don't have any kind of project road map or plan for this, since I generally ju
 - [Tautulli](https://hub.docker.com/r/linuxserver/tautulli) - Python based web application for monitoring, analytics and notifications for Plex Media Server.
 - [Bazarr](https://hub.docker.com/r/linuxserver/bazarr) - Manage and download subtitles based on your requirements.
 - [Home Assistant](https://hub.docker.com/r/homeassistant/home-assistant) - Open source home automation that puts local control and privacy first.
-- [Firefly](https://hub.docker.com/r/fireflyiii/core) - A free and open source personal finance manager.
 - [Minio](https://hub.docker.com/r/minio/minio/) - High Performance Object Storage.
 - [Gitlab](https://hub.docker.com/r/gitlab/gitlab-ce) - GitLab Community Edition.
 - [Guacamole](https://hub.docker.com/r/guacamole/guacamole) - Clientless remote desktop gateway.

@@ -13,6 +13,8 @@ services:
       - 80:80
     environment:
       - NGINX_HOST=${HOST}
+      - FIREFLY_HOST
+      - FIREFLY_DATA_HOST
     depends_on: 
       - "wireguard"
       - "wgui"
@@ -30,6 +32,7 @@ services:
       - "deemix"
       - "navidrome"
       - "syncthing"
+      - firefly
     restart: unless-stopped
   wireguard:
     image: ghcr.io/linuxserver/wireguard
