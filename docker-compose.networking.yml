@@ -25,22 +25,26 @@ services:
       - UNIFI_HOST
       - WIREGUARD_HOST
     depends_on: 
-      - "wireguard"
-      - "wgui"
-      - "wgmonitor"
-      - "vaultwarden"
-      - "iredmail"
-      - "homer"
-      - "portainer"
-      - "transmission"
-      - "sonarr"
-      - "radarr"
-      - "jackett"
-      - "plex"
-      - "freshrss"
-      - "deemix"
-      - "navidrome"
-      - "syncthing"
+      - wireguard
+      - wgui
+      - wgmonitor
+      - vaultwarden
+      - iredmail
+      - homer
+      - portainer
+      - transmission
+      - sonarr
+      - radarr
+      - jackett
+      - jellyfin
+      - freshrss
+      - deemix
+      - navidrome
+      - syncthing
+      - gatus
+      - cyberchef
+      - huginn
+      - alltube
       - firefly
     restart: unless-stopped
   wireguard:
@@ -91,7 +95,7 @@ services:
       - .data/wgui:/app/db
       - .data/wireguard:/etc/wireguard
     depends_on:
-      - "wireguard"
+      - wireguard
     restart: unless-stopped
   wgmonitor:
     image: kking124/wireguard-monitor
@@ -107,7 +111,7 @@ services:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
-      - "wgui"
+      - wgui
     tty: true
     restart: unless-stopped
   unifi_controller:
