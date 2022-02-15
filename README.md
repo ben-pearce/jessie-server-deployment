@@ -115,10 +115,7 @@ The `.env` file stores environment variables to make starting the containers eas
 
 I don't have any kind of project road map or plan for this, since I generally just tinker with & improve things in my free time. I do have a to-do list with services I would like to include, but this list is not exhaustive, and I frequently add things which are not on the list or remove items from the list I no longer think are worthwhile.
 
-- [SyncLounge](https://hub.docker.com/r/linuxserver/synclounge) - Watch Plex in sync with your friends/family.
 - [netboot.xyz](https://hub.docker.com/r/linuxserver/netbootxyz) - Boot various operating system installers or utilities from one place.
-- [NowShowing](https://hub.docker.com/r/ninthwalker/nowshowing) - A summary of new media that has recently been added to Plex.
-- [Tautulli](https://hub.docker.com/r/linuxserver/tautulli) - Python based web application for monitoring, analytics and notifications for Plex Media Server.
 - [Bazarr](https://hub.docker.com/r/linuxserver/bazarr) - Manage and download subtitles based on your requirements.
 - [Home Assistant](https://hub.docker.com/r/homeassistant/home-assistant) - Open source home automation that puts local control and privacy first.
 - [Minio](https://hub.docker.com/r/minio/minio/) - High Performance Object Storage.
