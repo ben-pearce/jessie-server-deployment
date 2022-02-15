@@ -107,6 +107,7 @@ The `.env` file stores environment variables to make starting the containers eas
 
 <sup>3</sup>Note that you need to also point DNS records for sub-domains since some containers' web GUI cannot operate without their own domain.
 | `FIREFLY_III_ACCESS_TOKEN` | [Firefly access token](https://docs.firefly-iii.org/csv/install/configure/#client-id-or-personal-access-token). | `ePbfRkaXNZMU...` |
+| `SESSION_SECRET` | Unique key, use `openssl rand -base64 32`. | `ePbfRkaXNZMU...` |
 
 ## Ideas 
 

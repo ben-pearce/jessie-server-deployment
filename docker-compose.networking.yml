@@ -86,7 +86,7 @@ services:
     image: ngoduykhanh/wireguard-ui:latest
     container_name: wgui
     environment:
-      - SESSION_SECRET=BLTfKU5YE4mHSGrDRvdGsR5EvrJoszQMuJcJmwFg2bMVgabNTY
+      - SESSION_SECRET
     volumes:
       - .data/wgui:/app/db
       - .data/wireguard:/etc/wireguard
