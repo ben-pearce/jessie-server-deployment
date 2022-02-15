@@ -55,21 +55,22 @@ services:
       - /storage/Downloads/completed:/downloads
     restart: unless-stopped
     network_mode: service:tunnel
-  plex:
-    image: ghcr.io/linuxserver/plex
-    container_name: plex
+  jellyfin:
+    image: lscr.io/linuxserver/jellyfin
+    container_name: jellyfin
     network_mode: host
     environment:
       - PUID
       - GUID
       - VERSION=latest
+      - JELLYFIN_PublishedServerUrl=192.168.1.2
     volumes:
-      - .data/plex:/config
+      - .data/jellyfin:/config
       - /storage/Shows:/tv
       - /storage/Movies:/movies
       - /storage/Music:/music
-      - /storage2/Shows:/tv2
-      - /storage2/Movies:/movies2
+    devices:
+      - /dev/dri:/dev/dri
     restart: unless-stopped
   freshrss:
     image: ghcr.io/linuxserver/freshrss

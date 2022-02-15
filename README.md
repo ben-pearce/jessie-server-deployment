@@ -29,8 +29,7 @@ Due to the number of services being deployed, I have categorized them and create
 | [sonarr](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L16)<sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
 | [radarr](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L30)<sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
 | [jackett](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L44)<sup>2</sup> | Tracker Aggregator. |  | [GitHub](https://github.com/Jackett/Jackett) |
-| [plex](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L58)<sup>1</sup> | Media-server with support for many devices. |  | [Website](https://www.plex.tv/) |
-| [freshrss](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L74) | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
+| [freshrss](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L72) | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
 | [deemix](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.music.yml#L3)<sup>1</sup> | Barebone deezer downloader. |  | [Website](https://deemix.app/), [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
 | [navidrome](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.music.yml#L14)<sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
 | [nginx](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.networking.yml#L3) | High Performance Load Balancer, Web Server, & Reverse Proxy | `443`, `80` | [Website](https://www.nginx.com/) |
@@ -44,6 +43,7 @@ Due to the number of services being deployed, I have categorized them and create
 | [alltube](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.tools.yml#L3) | Web GUI for youtube-dl. |  | [GitHub](https://github.com/Rudloff/alltube) |
 | [huginn](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.tools.yml#L7) | Build agents that perform automated tasks for you online. |  | [GitHub](https://github.com/huginn/huginn) |
 | [cyberchef](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.tools.yml#L14) | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
+| [jellyfin](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L55) | The Free Software Media System |  | [GitHub](https://github.com/jellyfin/jellyfin) |
 | [postgres](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.dev.yml#L3) | The world's most advanced open source database |  | [Docker Hub](https://hub.docker.com/_/postgres) |
 
 <sup>1</sup>Assumes mass storage available, mounted at `/storage` on the host.

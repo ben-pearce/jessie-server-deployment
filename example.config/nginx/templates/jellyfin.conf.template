@@ -1,0 +1,28 @@
+upstream jellyfin {
+    server 172.17.0.1:8096;
+}
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+
+    server_name ${JELLYFIN_HOST};
+    ssl_certificate /etc/ssl/fullchain.pem;
+    ssl_certificate_key /etc/ssl/privkey.key;
+    ssl_session_tickets off;
+
+    location / {
+        client_max_body_size 100M;
+        proxy_pass http://jellyfin/;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Host $http_host;
+        proxy_set_header Host $server_addr;
+        proxy_set_header Referer $server_addr;
+        proxy_set_header Origin $server_addr;
+        proxy_redirect off;
+        proxy_buffering off;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}
