@@ -147,3 +147,17 @@ services:
         subtitle: "Cyber Swiss Army Knife"
         url: "https://benpearce.io/cyberchef/"
         target: "_blank"
+
+  - name: "Monitoring"
+    icon: "fas fa-chart-area"
+    items:
+      - name: "Zabbix"
+        logo: "assets/dashboard-icons/png/zabbix.png"
+        subtitle: "Open Source Monitoring Solution"
+        url: "https://zabbix.benpearce.io"
+        target: "_blank"
+      - name: "Gatus"
+        logo: "assets/dashboard-icons/svg/gatus.svg"
+        subtitle: "Automated Service Health Dashboard"
+        url: "https://status.benpearce.io"
+        target: "_blank"

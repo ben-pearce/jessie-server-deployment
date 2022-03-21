@@ -44,6 +44,8 @@ Due to the number of services being deployed, I have categorized them and create
 | [jellyfin](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L55) | The Free Software Media System |  | [GitHub](https://github.com/jellyfin/jellyfin) |
 | [gatus](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.status.yml#L3) | Automated service health dashboard |  | [GitHub](https://github.com/TwiN/gatus) |
 | [postgres](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.dev.yml#L3) | The world's most advanced open source database |  | [Docker Hub](https://hub.docker.com/_/postgres) |
+| zabbix-web | Zabbix web frontend |  |  |
+| zabbix-server | Open Source Monitoring Solution | `10051` |  |
 
 <sup>1</sup>Assumes mass storage available, mounted at `/storage` on the host.
 
@@ -96,6 +98,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `MAIL_HOST` | Mail hostname. | `mail.example.com` |
 | `UNIFI_HOST` | Unifi hostname. | `unifi.example.com` |
 | `WIREGUARD_HOST` | Wireguard hostname. | `wg.example.com` |
+| `ZABBIX_HOST` | Zabbix hostname. | `zabbix.example.com` |
 | `PUID` | System user ID to run containers as. | 1000 |
 | `GUID` | System group ID to run containers as. | 1000 |
 | `TZ` | Timezone for all containers. | `Europe/London` |

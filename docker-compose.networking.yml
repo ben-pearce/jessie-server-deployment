@@ -24,6 +24,7 @@ services:
       - MAIL_HOST
       - UNIFI_HOST
       - WIREGUARD_HOST
+      - ZABBIX_HOST
     depends_on: 
       - wireguard
       - wgui
@@ -46,6 +47,7 @@ services:
       - huginn
       - alltube
       - firefly
+      - zabbix-web
     restart: unless-stopped
   wireguard:
     image: ghcr.io/linuxserver/wireguard
