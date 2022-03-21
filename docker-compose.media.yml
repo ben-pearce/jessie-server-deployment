@@ -9,8 +9,8 @@ services:
       - TZ
     volumes:
       - .data/transmission:/config
-      - ${MEDIA_URL}/downloads:/downloads
-      - ${MEDIA_URL}/downloads/watch:/watch
+      - ${MEDIA_DIR}/downloads:/downloads
+      - ${MEDIA_DIR}/downloads/watch:/watch
     restart: unless-stopped
     network_mode: service:tunnel
   sonarr:
@@ -23,8 +23,8 @@ services:
     volumes:
       - .data/sonarr:/config
       - .config/sonarr/config.xml:/config/config.xml
-      - ${MEDIA_URL}/shows:/tv
-      - ${MEDIA_URL}/downloads/completed:/downloads
+      - ${MEDIA_DIR}/shows:/tv
+      - ${MEDIA_DIR}/downloads/completed:/downloads
     restart: unless-stopped
   radarr:
     image: ghcr.io/linuxserver/radarr
@@ -36,8 +36,8 @@ services:
     volumes:
       - .data/radarr:/config
       - .config/radarr/config.xml:/config/config.xml
-      - ${MEDIA_URL}/movies:/movies
-      - ${MEDIA_URL}/downloads/completed:/downloads
+      - ${MEDIA_DIR}/movies:/movies
+      - ${MEDIA_DIR}/downloads/completed:/downloads
     restart: unless-stopped
   jackett:
     image: ghcr.io/linuxserver/jackett
@@ -63,9 +63,9 @@ services:
       - JELLYFIN_PublishedServerUrl=192.168.1.2
     volumes:
       - .data/jellyfin:/config
-      - ${MEDIA_URL}/shows:/tv
-      - ${MEDIA_URL}/movies:/movies
-      - ${MEDIA_URL}/music:/music
+      - ${MEDIA_DIR}/shows:/tv
+      - ${MEDIA_DIR}/movies:/movies
+      - ${MEDIA_DIR}/music:/music
     devices:
       - /dev/dri:/dev/dri
     restart: unless-stopped

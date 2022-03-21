@@ -5,7 +5,7 @@ services:
     container_name: deemix
     restart: unless-stopped
     volumes:
-      - ${MEDIA_URL}/music/:/downloads
+      - ${MEDIA_DIR}/music/:/downloads
       - .config/deemix:/config
     environment:
       - PUID
@@ -22,4 +22,4 @@ services:
       - ND_BASEURL=/navidrome
     volumes:
       - .data/navidrome:/data
-      - ${MEDIA_URL}/music:/music:ro
+      - ${MEDIA_DIR}/music:/music:ro
