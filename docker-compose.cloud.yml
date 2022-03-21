@@ -15,7 +15,7 @@ services:
       - TZ
     volumes:
       - .data/syncthing:/config
-      - /storage:/storage
+      - ${MEDIA_URL}:/storage
       - /home:/user
     ports:
       - 22000:22000/tcp
