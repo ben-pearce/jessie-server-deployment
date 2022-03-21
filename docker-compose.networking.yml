@@ -25,6 +25,7 @@ services:
       - UNIFI_HOST
       - WIREGUARD_HOST
       - ZABBIX_HOST
+      - HOPPSCOTCH_HOST
     depends_on: 
       - wireguard
       - wgui
@@ -48,6 +49,7 @@ services:
       - alltube
       - firefly
       - zabbix-web
+      - hoppscotch
     restart: unless-stopped
   wireguard:
     image: ghcr.io/linuxserver/wireguard

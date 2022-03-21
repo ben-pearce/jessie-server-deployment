@@ -99,6 +99,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `UNIFI_HOST` | Unifi hostname. | `unifi.example.com` |
 | `WIREGUARD_HOST` | Wireguard hostname. | `wg.example.com` |
 | `ZABBIX_HOST` | Zabbix hostname. | `zabbix.example.com` |
+| `HOPPSCOTCH_HOST` | Zabbix hostname. | `hoppscotch.example.com` |
 | `PUID` | System user ID to run containers as. | 1000 |
 | `GUID` | System group ID to run containers as. | 1000 |
 | `TZ` | Timezone for all containers. | `Europe/London` |

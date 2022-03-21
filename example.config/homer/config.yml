@@ -147,7 +147,14 @@ services:
         subtitle: "Cyber Swiss Army Knife"
         url: "https://benpearce.io/cyberchef/"
         target: "_blank"
-
+  - name: "DevOps"
+    icon: "fas fa-code-branch"
+    items: 
+      - name: "Hoppscotch"
+        logo: "assets/dashboard-icons/png/zabbix.png"
+        subtitle: "API Development Ecosystem"
+        url: "https://hoppscotch.benpearce.io"
+        target: "_blank"
   - name: "Monitoring"
     icon: "fas fa-chart-area"
     items:

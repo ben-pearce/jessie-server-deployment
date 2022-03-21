@@ -8,3 +8,6 @@ services:
     volumes:
       - .data/postgres:/var/lib/postgresql/data
     restart: unless-stopped
+  hoppscotch:
+    image: hoppscotch/hoppscotch:latest
+    container_name: hoppscotch
