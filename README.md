@@ -44,10 +44,13 @@ Due to the number of services being deployed, I have categorized them and create
 | [jellyfin](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L55) | The Free Software Media System |  | [GitHub](https://github.com/jellyfin/jellyfin) |
 | [gatus](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.status.yml#L3) | Automated service health dashboard |  | [GitHub](https://github.com/TwiN/gatus) |
 | [postgres](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.dev.yml#L3) | The world's most advanced open source database |  | [Docker Hub](https://hub.docker.com/_/postgres) |
-| zabbix-web | Zabbix web frontend |  |  |
-| zabbix-server | Open Source Monitoring Solution | `10051` |  |
+| [zabbix-web](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.status.yml#L23) | Zabbix web frontend |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql) |
+| [zabbix-server](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.status.yml#L32) | Open Source Monitoring Solution | `10051` | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-server-pgsql) |
+| [firefly](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.cloud.yml#L25) | Personal Finance Manager |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/core) |
+| [fidi](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.cloud.yml#L43) | Tool to import data into Firefly III. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/data-importer) |
+| [hoppscotch](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.dev.yml#L11) | API Development Ecosystem |  | [GitHub](https://github.com/hoppscotch/hoppscotch) |
 
-<sup>1</sup>Assumes mass storage available, mounted at `/storage` on the host.
+<sup>1</sup>Assumes mass storage available, mounted at `MEDIA_DIR` on the host.
 
 <sup>2</sup>All traffic is routed via wireguard VPN client container.
 
@@ -112,6 +115,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `NORDIGEN_KEY` | Nordigen [API key](https://ob.helpscoutdocs.com/article/132-token-handling-via-api). | `ePbfRkaXNZMU...` |
 | `FIREFLY_III_ACCESS_TOKEN` | [Firefly access token](https://docs.firefly-iii.org/csv/install/configure/#client-id-or-personal-access-token). | `ePbfRkaXNZMU...` |
 | `SESSION_SECRET` | Unique key, use `openssl rand -base64 32`. | `ePbfRkaXNZMU...` |
+| `MEDIA_DIR` | Location of media storage on host. | `/storage` |
 
 ## Ideas 
 
