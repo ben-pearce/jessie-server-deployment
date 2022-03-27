@@ -151,7 +151,7 @@ services:
     icon: "fas fa-code-branch"
     items: 
       - name: "Hoppscotch"
-        logo: "assets/dashboard-icons/png/zabbix.png"
+        logo: "assets/dashboard-icons/png/hoppscotch.png"
         subtitle: "API Development Ecosystem"
         url: "https://hoppscotch.benpearce.io"
         target: "_blank"
