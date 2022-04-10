@@ -35,6 +35,13 @@ services:
       - DB_DATABASE=postgres
       - DB_USERNAME=postgres
       - DB_PASSWORD=${POSTGRES_PASSWORD}
+      - MAIL_MAILER
+      - MAIL_HOST
+      - MAIL_PORT
+      - MAIL_FROM
+      - MAIL_USERNAME
+      - MAIL_PASSWORD
+      - MAIL_ENCRYPTION
     volumes:
       - .data/firefly/upload:/var/www/html/storage/upload
     restart: unless-stopped
