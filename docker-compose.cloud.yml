@@ -57,3 +57,6 @@ services:
       - NORDIGEN_ID
       - NORDIGEN_KEY
       - TRUSTED_PROXIES=**
+      - IMPORT_DIR_WHITELIST=/import
+    volumes:
+      - .config/fidi:/import
