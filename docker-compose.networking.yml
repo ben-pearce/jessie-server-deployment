@@ -21,7 +21,7 @@ services:
       - GATUS_HOST
       - HUGINN_HOST
       - JELLYFIN_HOST
-      - MAIL_HOST
+      - IREDMAIL_HOST
       - UNIFI_HOST
       - WIREGUARD_HOST
       - ZABBIX_HOST

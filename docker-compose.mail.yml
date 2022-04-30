@@ -3,10 +3,10 @@ services:
   iredmail:
     image: iredmail/mariadb:stable
     container_name: iredmail
-    hostname: ${MAIL_HOST}
+    hostname: ${IREDMAIL_HOST}
     user: root
     environment:
-      - HOSTNAME=${MAIL_HOST}
+      - HOSTNAME=${IREDMAIL_HOST}
       - FIRST_MAIL_DOMAIN=${HOST}
       - FIRST_MAIL_DOMAIN_ADMIN_PASSWORD
       - MLMMJADMIN_API_TOKEN

@@ -98,7 +98,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `GATUS_HOST` | Gatus hostname. | `status.example.com` |
 | `HUGINN_HOST` | Huginn hostname. | `huginn.example.com` |
 | `JELLYFIN_HOST` | Jellyfin hostname. | `jellyfin.example.com` |
-| `MAIL_HOST` | Mail hostname. | `mail.example.com` |
+| `IREDMAIL_HOST` | Mail hostname. | `mail.example.com` |
 | `UNIFI_HOST` | Unifi hostname. | `unifi.example.com` |
 | `WIREGUARD_HOST` | Wireguard hostname. | `wg.example.com` |
 | `ZABBIX_HOST` | Zabbix hostname. | `zabbix.example.com` |
