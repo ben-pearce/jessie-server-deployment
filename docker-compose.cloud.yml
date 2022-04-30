@@ -58,5 +58,6 @@ services:
       - NORDIGEN_KEY
       - TRUSTED_PROXIES=**
       - IMPORT_DIR_WHITELIST=/import
+    restart: unless-stopped
     volumes:
       - .config/fidi:/import

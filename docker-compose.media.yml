@@ -11,8 +11,8 @@ services:
       - .data/transmission:/config
       - ${MEDIA_DIR}/downloads:/downloads
       - ${MEDIA_DIR}/downloads/watch:/watch
-    restart: unless-stopped
     network_mode: service:tunnel
+    restart: unless-stopped
   sonarr:
     image: ghcr.io/linuxserver/sonarr
     container_name: sonarr

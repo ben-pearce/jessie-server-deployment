@@ -29,6 +29,7 @@ services:
       - POSTGRES_PASSWORD
     ports:
       - 10051:10051
+    restart: unless-stopped
   zabbix-web:
     image: zabbix/zabbix-web-nginx-pgsql:alpine-latest
     container_name: zabbix-web
@@ -40,3 +41,4 @@ services:
       - ZBX_SERVER_HOST=zabbix-server
     depends_on:
       - zabbix-server
+    restart: unless-stopped
