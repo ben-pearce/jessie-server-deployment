@@ -61,3 +61,14 @@ services:
     restart: unless-stopped
     volumes:
       - .config/fidi:/import
+  fsib:
+    image: ghcr.io/ben-pearce/firefly-screenshot-bot:main
+    container_name: fsib
+    environment: 
+      - FIREFLY_BASE_URL=http://firefly:8080
+      - FIREFLY_TOKEN=${FIREFLY_III_ACCESS_TOKEN}
+      - TELEGRAM_TOKEN
+      - TELEGRAM_ALLOWED_USERS
+    volumes:
+      - .config/fsib:/storage
+    restart: unless-stopped
