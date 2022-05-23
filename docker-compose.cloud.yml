@@ -1,5 +1,38 @@
 version: "3.4"
 services:
+  openldap:
+    image: bitnami/openldap:2
+    container_name: openldap
+    ports:
+      - 1636:1636
+    environment:
+      - LDAP_ROOT
+      - LDAP_ADMIN_USERNAME
+      - LDAP_ADMIN_PASSWORD
+      - LDAP_USERS
+      - LDAP_PASSWORDS
+      - LDAP_ENABLE_TLS=yes
+      - LDAP_TLS_CERT_FILE=/etc/ssl/cert.pem
+      - LDAP_TLS_KEY_FILE=/etc/ssl/privkey.key
+      - LDAP_TLS_CA_FILE=/etc/ssl/fullchain.pem
+    volumes:
+      - ${DATA_DIR}/openldap:/bitnami/openldap
+      - ${SSL_CA_PATH}:/etc/ssl/fullchain.pem
+      - ${SSL_KEY_PATH}:/etc/ssl/privkey.key
+      - ${SSL_CERT_PATH}:/etc/ssl/cert.pem
+  authelia:
+    image: authelia/authelia
+    container_name: authelia
+    extra_hosts:
+      - "${HOST}:172.17.0.1"
+      - "${IREDMAIL_HOST}:172.17.0.1"
+    volumes:
+      - ${CONFIG_DIR}/authelia:/config
+    depends_on: 
+      - openldap
+      - postgres
+      - iredmail
+    restart: unless-stopped
   vaultwarden:
     image: vaultwarden/server:latest
     container_name: vaultwarden

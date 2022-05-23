@@ -6,6 +6,7 @@ services:
     volumes:
       - .config/nginx/templates:/etc/nginx/templates
       - .config/nginx/include:/etc/nginx/include
+      - .config/nginx/ext:/etc/nginx/ext
       - /etc/letsencrypt/live/${HOST}/fullchain.pem:/etc/ssl/fullchain.pem
       - /etc/letsencrypt/live/${HOST}/privkey.pem:/etc/ssl/privkey.key
     ports:
@@ -26,6 +27,7 @@ services:
       - WIREGUARD_HOST
       - ZABBIX_HOST
       - HOPPSCOTCH_HOST
+      - AUTHELIA_HOST
     depends_on: 
       - wireguard
       - wgui
@@ -50,6 +52,7 @@ services:
       - firefly
       - zabbix-web
       - hoppscotch
+      - authelia
     restart: unless-stopped
   wireguard:
     image: ghcr.io/linuxserver/wireguard
