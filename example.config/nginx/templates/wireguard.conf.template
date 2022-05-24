@@ -3,20 +3,11 @@ upstream wireguard {
 }
 
 server {
-    listen 443 ssl http2;
-    listen [::]:443 ssl http2;
-
     server_name ${WIREGUARD_HOST};
-    ssl_certificate /etc/ssl/fullchain.pem;
-    ssl_certificate_key /etc/ssl/privkey.key;
-    ssl_session_tickets off;
+    include /etc/nginx/ext/ssl.conf;
 
     location / {
         proxy_pass http://wireguard/;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-Host $http_host;
-        proxy_redirect off;
+        include /etc/nginx/ext/proxy.conf;
     }
 }
