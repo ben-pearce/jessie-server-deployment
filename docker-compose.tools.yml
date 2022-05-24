@@ -9,7 +9,7 @@ services:
     user: "${PUID}"
     container_name: huginn
     volumes:
-      - .data/huginn/data:/var/lib/mysql
+      - ${DATA_DIR}/huginn/data:/var/lib/mysql
     restart: unless-stopped
   cyberchef:
     image: mpepping/cyberchef

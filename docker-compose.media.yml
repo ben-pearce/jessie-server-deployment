@@ -8,7 +8,7 @@ services:
       - PGID
       - TZ
     volumes:
-      - .data/transmission:/config
+      - ${DATA_DIR}/transmission:/config
       - ${MEDIA_DIR}/downloads:/downloads
       - ${MEDIA_DIR}/downloads/watch:/watch
     network_mode: service:tunnel
@@ -21,8 +21,8 @@ services:
       - GUID
       - TZ
     volumes:
-      - .data/sonarr:/config
-      - .config/sonarr/config.xml:/config/config.xml
+      - ${DATA_DIR}/sonarr:/config
+      - ${CONFIG_DIR}/sonarr/config.xml:/config/config.xml
       - ${MEDIA_DIR}/shows:/tv
       - ${MEDIA_DIR}/downloads/completed:/downloads
     restart: unless-stopped
@@ -34,8 +34,8 @@ services:
       - GUID
       - TZ
     volumes:
-      - .data/radarr:/config
-      - .config/radarr/config.xml:/config/config.xml
+      - ${DATA_DIR}/radarr:/config
+      - ${CONFIG_DIR}/radarr/config.xml:/config/config.xml
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/downloads/completed:/downloads
     restart: unless-stopped
@@ -48,8 +48,8 @@ services:
       - TZ
       - AUTO_UPDATE=true
     volumes:
-      - .data/jackett:/config
-      - .config/jackett/ServerConfig.json:/config/Jackett/ServerConfig.json
+      - ${DATA_DIR}/jackett:/config
+      - ${CONFIG_DIR}/jackett/ServerConfig.json:/config/Jackett/ServerConfig.json
     restart: unless-stopped
     network_mode: service:tunnel
   jellyfin:
@@ -62,7 +62,7 @@ services:
       - VERSION=latest
       - JELLYFIN_PublishedServerUrl=192.168.1.2
     volumes:
-      - .data/jellyfin:/config
+      - ${DATA_DIR}/jellyfin:/config
       - ${MEDIA_DIR}/shows:/tv
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/music:/music
@@ -77,6 +77,6 @@ services:
       - GUID
       - TZ
     volumes:
-      - .config/freshrss/config.php:/config/www/freshrss/data/config.php:ro
-      - .data/freshrss:/config
+      - ${CONFIG_DIR}/freshrss/config.php:/config/www/freshrss/data/config.php:ro
+      - ${DATA_DIR}/freshrss:/config
     restart: unless-stopped

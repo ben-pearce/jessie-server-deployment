@@ -18,7 +18,7 @@ services:
       - "${UNIFI_HOST}:172.17.0.1"
       - "${WIREGUARD_HOST}:172.17.0.1"
     volumes: 
-      - .config/gatus/config.yaml:/config/config.yaml
+      - ${CONFIG_DIR}/gatus/config.yaml:/config/config.yaml
     restart: unless-stopped
   zabbix-server:
     image: zabbix/zabbix-server-pgsql:alpine-latest

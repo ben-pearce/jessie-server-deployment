@@ -6,7 +6,7 @@ services:
     restart: unless-stopped
     volumes:
       - ${MEDIA_DIR}/music/:/downloads
-      - .config/deemix:/config
+      - ${CONFIG_DIR}/deemix:/config
     environment:
       - PUID
       - GUID
@@ -21,5 +21,5 @@ services:
       - ND_SESSIONTIMEOUT=24h
       - ND_BASEURL=/navidrome
     volumes:
-      - .data/navidrome:/data
+      - ${DATA_DIR}/navidrome:/data
       - ${MEDIA_DIR}/music:/music:ro

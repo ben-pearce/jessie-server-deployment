@@ -3,7 +3,7 @@ services:
   homer:
     image: b4bz/homer:latest
     volumes:
-      - .config/homer:/www/assets
+      - ${CONFIG_DIR}/homer:/www/assets
     environment:
       - UID=${PUID}
       - GID=${GUID}
@@ -14,5 +14,5 @@ services:
     container_name: portainer
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - .data/portainer:/data
+      - ${DATA_DIR}/portainer:/data
     restart: unless-stopped

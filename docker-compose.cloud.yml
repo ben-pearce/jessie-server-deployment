@@ -37,7 +37,7 @@ services:
     image: vaultwarden/server:latest
     container_name: vaultwarden
     volumes:
-      - .data/vaultwarden:/data
+      - ${DATA_DIR}/vaultwarden:/data
     restart: unless-stopped
   syncthing:
     image: ghcr.io/linuxserver/syncthing
@@ -47,7 +47,7 @@ services:
       - PGID
       - TZ
     volumes:
-      - .data/syncthing:/config
+      - ${DATA_DIR}/syncthing:/config
       - ${MEDIA_DIR}:/storage
       - /home:/user
     ports:
@@ -68,20 +68,22 @@ services:
       - DB_DATABASE=postgres
       - DB_USERNAME=postgres
       - DB_PASSWORD=${POSTGRES_PASSWORD}
-      - MAIL_MAILER
-      - MAIL_HOST
-      - MAIL_PORT
-      - MAIL_FROM
-      - MAIL_USERNAME
-      - MAIL_PASSWORD
-      - MAIL_ENCRYPTION
+      - MAIL_MAILER=smtp
+      - MAIL_HOST=${IREDMAIL_HOST}
+      - MAIL_PORT=465
+      - MAIL_FROM=${POSTMASTER_ADDRESS}
+      - MAIL_USERNAME=${POSTMASTER_ADDRESS}
+      - MAIL_PASSWORD=${POSTMASTER_PASSWORD}
+      - MAIL_ENCRYPTION=ssl
+    extra_hosts:
+      - "${IREDMAIL_HOST}:172.17.0.1"
     volumes:
-      - .data/firefly/upload:/var/www/html/storage/upload
+      - ${DATA_DIR}/firefly/upload:/var/www/html/storage/upload
     restart: unless-stopped
     depends_on:
       - postgres
   fidi:
-    image: fireflyiii/data-importer:latest
+    image: fireflyiii/data-importer:develop
     container_name: fidi
     environment:
       - FIREFLY_III_ACCESS_TOKEN
@@ -93,7 +95,7 @@ services:
       - IMPORT_DIR_WHITELIST=/import
     restart: unless-stopped
     volumes:
-      - .config/fidi:/import
+      - ${CONFIG_DIR}/fidi:/import
   fsib:
     image: ghcr.io/ben-pearce/firefly-screenshot-bot:main
     container_name: fsib
@@ -103,5 +105,5 @@ services:
       - TELEGRAM_TOKEN
       - TELEGRAM_ALLOWED_USERS
     volumes:
-      - .config/fsib:/storage
+      - ${CONFIG_DIR}/fsib:/storage
     restart: unless-stopped
