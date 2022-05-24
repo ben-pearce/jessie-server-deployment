@@ -26,6 +26,7 @@ services:
       - ${DATA_DIR}/mail/postfix_queue:/var/spool/postfix
       - ${SSL_KEY_PATH}:/opt/iredmail/ssl/key.pem
       - ${SSL_CA_PATH}:/opt/iredmail/ssl/cert.pem
+      - ${SSL_CA_PATH}:/opt/iredmail/ssl/combined.pem
     ports:
       - "143:143"
       - "993:993"
