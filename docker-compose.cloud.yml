@@ -20,6 +20,7 @@ services:
       - ${SSL_CA_PATH}:/etc/ssl/fullchain.pem
       - ${SSL_KEY_PATH}:/etc/ssl/privkey.key
       - ${SSL_CERT_PATH}:/etc/ssl/cert.pem
+    restart: unless-stopped
   authelia:
     image: authelia/authelia
     container_name: authelia
