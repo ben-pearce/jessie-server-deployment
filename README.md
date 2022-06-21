@@ -134,6 +134,13 @@ I don't have any kind of project road map or plan for this, since I generally ju
 - [Grafana](https://hub.docker.com/r/grafana/grafana) - Open source analytics & monitoring solution
 - [Prometheus](https://hub.docker.com/r/prom/prometheus) - Prometheus is a systems and service monitoring system.
 - [Netdata](https://hub.docker.com/r/netdata/netdata) - Distributed, real-time, performance and health monitoring for systems and applications.
+- [Nginx Proxy Manager](https://nginxproxymanager.com/) - Expose your services easily and securely.
+- [Uptime Kuma](https://github.com/louislam/uptime-kuma) - Self-hosted monitoring tool like "Uptime Robot".
+- [CryptPad](https://cryptpad.fr/) - Collaboration suite end-to-end encrypted and open-source.
+- [SICKRAGE](https://www.sickrage.ca/) - Automatic video library manager for TV shows.
+- [horahora](https://github.com/horahoradev/horahora) - Self-hosted media server which continuously archives videos from other sites using yt-dlp.
+- [mailcow](https://mailcow.email/) - The mailserver suite.
+- [paperless-ngx](https://github.com/paperless-ngx/paperless-ngx) - A community-supported supercharged version of paperless: scan, index and archive all your physical documents.
 
 ## Contributions
 
