@@ -56,6 +56,20 @@ services:
       - 22000:22000/udp
       - 21027:21027/udp
     restart: unless-stopped
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    volumes:
+      - ${CONFIG_DIR}/duplicati:/config
+      - ${MEDIA_DIR}/backups:/storage
+      - ${CONFIG_DIR}:/source/container-configs
+      - ${DATA_DIR}:/source/container-data
+      - ${MEDIA_DIR}:/source/storage
+    restart: unless-stopped
   firefly:
     image: fireflyiii/core:latest
     container_name: firefly

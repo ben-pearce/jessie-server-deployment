@@ -147,6 +147,11 @@ services:
         subtitle: "Cyber Swiss Army Knife"
         url: "https://benpearce.io/cyberchef/"
         target: "_blank"
+      - name: "Duplicati"
+        logo: "assets/dashboard-icons/png/duplicati.png"
+        subtitle: "Open Source Backup Client"
+        url: "https://duplicati.benpearce.io"
+        target: "_blank"
   - name: "DevOps"
     icon: "fas fa-code-branch"
     items: 
