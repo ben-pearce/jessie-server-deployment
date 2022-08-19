@@ -29,31 +29,11 @@ services:
       - ZABBIX_HOST
       - HOPPSCOTCH_HOST
       - AUTHELIA_HOST
-    depends_on: 
-      - wireguard
-      - wgui
-      - wgmonitor
-      - vaultwarden
-      - iredmail
-      - homer
-      - portainer
-      - transmission
-      - sonarr
-      - radarr
-      - jackett
-      - jellyfin
-      - freshrss
-      - deemix
-      - navidrome
-      - syncthing
-      - gatus
-      - cyberchef
-      - huginn
-      - alltube
-      - firefly
-      - zabbix-web
-      - hoppscotch
-      - authelia
+      - DUPLICATI_HOST
+      - PIHOLE_HOST
+      - GITLAB_HOST
+      - INVIDIOUS_HOST
+      - FRESHRSS_HOST
     restart: unless-stopped
   wireguard:
     image: weejewel/wg-easy

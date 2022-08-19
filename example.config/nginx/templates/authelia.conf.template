@@ -10,8 +10,9 @@ server {
     server_name ${AUTHELIA_HOST};
     include /etc/nginx/ext/ssl.conf;
 
-    location / {
-        proxy_pass http://authelia;
+    location ~ ^/(.*)$ {
+        set $upstream http://authelia/$1$is_args$args;
+        proxy_pass $upstream;
         include /etc/nginx/ext/proxy.conf;
     }
 }

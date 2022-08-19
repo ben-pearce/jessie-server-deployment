@@ -6,8 +6,9 @@ server {
     server_name ${IREDMAIL_HOST};
     include /etc/nginx/ext/ssl.conf;
 
-    location / {
-        proxy_pass https://mail;
+    location ~ ^/(.*)$ {
+        set $upstream https://mail/$1$is_args$args;
+        proxy_pass $upstream;
         include /etc/nginx/ext/proxy.conf;
         proxy_set_header X-Forwarded-Proto https;
         proxy_set_header X-Forwarded-Port 443;
