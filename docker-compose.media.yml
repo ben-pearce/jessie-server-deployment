@@ -63,6 +63,18 @@ services:
       - ${CONFIG_DIR}/prowlarr:/config
     restart: unless-stopped
     network_mode: service:tunnel
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    volumes:
+      - ${CONFIG_DIR}/bazarr:/config
+      - ${MEDIA_DIR}/shows:/tv
+      - ${MEDIA_DIR}/movies:/movies
+    restart: unless-stopped
   jellyfin:
     image: lscr.io/linuxserver/jellyfin
     container_name: jellyfin
