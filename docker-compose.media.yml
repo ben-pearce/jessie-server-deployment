@@ -13,6 +13,19 @@ services:
       - ${MEDIA_DIR}/downloads/watch:/watch
     network_mode: service:tunnel
     restart: unless-stopped
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    volumes:
+      - ${DATA_DIR}/sabnzbd:/config
+      - ${MEDIA_DIR}/downloads:/downloads
+      - ${MEDIA_DIR}/downloads/incomplete:/incomplete-downloads
+    network_mode: service:tunnel
+    restart: unless-stopped
   sonarr:
     image: ghcr.io/linuxserver/sonarr
     container_name: sonarr
