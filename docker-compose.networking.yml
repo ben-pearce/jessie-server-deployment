@@ -108,3 +108,18 @@ services:
       - 10001:10001/udp
       - 8080:8080
     restart: unless-stopped
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - ${DNS_ADDRESS}:53:53/tcp
+      - ${DNS_ADDRESS}:53:53/udp
+    environment:
+      - TZ
+      - WEBPASSWORD=${PIHOLE_PASSWORD}
+    volumes:
+      - '${DATA_DIR}/pihole/hole:/etc/pihole'
+      - '${DATA_DIR}/pihole/dnsmasq.d:/etc/dnsmasq.d'    
+    cap_add:
+      - NET_ADMIN   
+    restart: unless-stopped
