@@ -5,6 +5,8 @@ services:
     container_name: alltube
     volumes:
       - ${CONFIG_DIR}/alltube:/var/www/html/config
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
   invidious:
     image: quay.io/invidious/invidious:latest
@@ -33,8 +35,12 @@ services:
     container_name: huginn
     volumes:
       - ${DATA_DIR}/huginn/data:/var/lib/mysql
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
   cyberchef:
     image: mpepping/cyberchef
     container_name: cyberchef
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped

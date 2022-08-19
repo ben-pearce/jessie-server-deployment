@@ -11,6 +11,8 @@ services:
       - PUID
       - GUID
       - UMASK_SET=022
+    labels:
+      - com.centurylinklabs.watchtower.enable
   navidrome:
     image: deluan/navidrome:latest
     container_name: navidrome
@@ -23,3 +25,5 @@ services:
     volumes:
       - ${DATA_DIR}/navidrome:/data
       - ${MEDIA_DIR}/music:/music:ro
+    labels:
+      - com.centurylinklabs.watchtower.enable

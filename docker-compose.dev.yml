@@ -11,4 +11,6 @@ services:
   hoppscotch:
     image: hoppscotch/hoppscotch:latest
     container_name: hoppscotch
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped

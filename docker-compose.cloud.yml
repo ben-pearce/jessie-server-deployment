@@ -34,6 +34,8 @@ services:
       - postgres
       - iredmail
     restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable
   vaultwarden:
     image: vaultwarden/server:latest
     container_name: vaultwarden
@@ -65,6 +67,8 @@ services:
       - 22000:22000/tcp
       - 22000:22000/udp
       - 21027:21027/udp
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
   duplicati:
     image: lscr.io/linuxserver/duplicati:latest
@@ -79,6 +83,8 @@ services:
       - ${CONFIG_DIR}:/source/container-configs
       - ${DATA_DIR}:/source/container-data
       - ${MEDIA_DIR}:/source/storage
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
   firefly:
     image: fireflyiii/core:latest
@@ -104,6 +110,8 @@ services:
       - "${IREDMAIL_HOST}:172.17.0.1"
     volumes:
       - ${DATA_DIR}/firefly/upload:/var/www/html/storage/upload
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
     depends_on:
       - postgres
@@ -118,6 +126,8 @@ services:
       - NORDIGEN_KEY
       - TRUSTED_PROXIES=**
       - IMPORT_DIR_WHITELIST=/import
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/fidi:/import
@@ -131,4 +141,6 @@ services:
       - TELEGRAM_ALLOWED_USERS
     volumes:
       - ${CONFIG_DIR}/fsib:/storage
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped

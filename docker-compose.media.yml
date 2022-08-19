@@ -12,6 +12,8 @@ services:
       - ${MEDIA_DIR}/downloads:/downloads
       - ${MEDIA_DIR}/downloads/watch:/watch
     network_mode: service:tunnel
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:latest
@@ -25,6 +27,8 @@ services:
       - ${MEDIA_DIR}/downloads:/downloads
       - ${MEDIA_DIR}/downloads/incomplete:/incomplete-downloads
     network_mode: service:tunnel
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
   sonarr:
     image: ghcr.io/linuxserver/sonarr
@@ -38,6 +42,8 @@ services:
       - ${CONFIG_DIR}/sonarr/config.xml:/config/config.xml
       - ${MEDIA_DIR}/shows:/tv
       - ${MEDIA_DIR}/downloads/completed:/downloads
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
   radarr:
     image: ghcr.io/linuxserver/radarr
@@ -51,6 +57,8 @@ services:
       - ${CONFIG_DIR}/radarr/config.xml:/config/config.xml
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/downloads/completed:/downloads
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:develop
@@ -61,6 +69,8 @@ services:
       - TZ
     volumes:
       - ${CONFIG_DIR}/prowlarr:/config
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
     network_mode: service:tunnel
   bazarr:
@@ -89,8 +99,8 @@ services:
       - ${MEDIA_DIR}/shows:/tv
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/music:/music
-    devices:
-      - /dev/dri:/dev/dri
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
   freshrss:
     image: ghcr.io/linuxserver/freshrss
@@ -102,4 +112,6 @@ services:
     volumes:
       - ${CONFIG_DIR}/freshrss/config.php:/config/www/freshrss/data/config.php:ro
       - ${DATA_DIR}/freshrss:/config
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
