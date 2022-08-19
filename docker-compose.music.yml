@@ -1,29 +1,30 @@
-version: "3.4"
+---
 services:
   deemix:
-    image: registry.gitlab.com/bockiii/deemix-docker
     container_name: deemix
-    restart: unless-stopped
-    volumes:
-      - ${MEDIA_DIR}/music/:/downloads
-      - ${CONFIG_DIR}/deemix:/config
     environment:
       - PUID
       - GUID
       - UMASK_SET=022
+    image: registry.gitlab.com/bockiii/deemix-docker
     labels:
       - com.centurylinklabs.watchtower.enable
-  navidrome:
-    image: deluan/navidrome:latest
-    container_name: navidrome
     restart: unless-stopped
+    volumes:
+      - ${MEDIA_DIR}/music/:/downloads
+      - ${CONFIG_DIR}/deemix:/config
+  navidrome:
+    container_name: navidrome
     environment:
       - ND_SCANSCHEDULE=1h
       - ND_LOGLEVEL=info
       - ND_SESSIONTIMEOUT=24h
       - ND_BASEURL=/navidrome
+    image: deluan/navidrome:latest
+    labels:
+      - com.centurylinklabs.watchtower.enable
+    restart: unless-stopped
     volumes:
       - ${DATA_DIR}/navidrome:/data
       - ${MEDIA_DIR}/music:/music:ro
-    labels:
-      - com.centurylinklabs.watchtower.enable
+version: '3.4'

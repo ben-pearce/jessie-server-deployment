@@ -1,18 +1,7 @@
-version: "3.4"
+---
 services:
   nginx:
-    image: nginx
     container_name: nginx
-    volumes:
-      - ${CONFIG_DIR}/nginx/templates:/etc/nginx/templates
-      - ${CONFIG_DIR}/nginx/include:/etc/nginx/include
-      - ${CONFIG_DIR}/nginx/ext:/etc/nginx/ext
-      - ${SSL_CA_PATH}:/etc/ssl/fullchain.pem
-      - ${SSL_KEY_PATH}:/etc/ssl/privkey.key
-      - ${MEDIA_DIR}/downloads:/downloads
-    ports:
-      - 443:443
-      - 80:80
     environment:
       - HOST
       - DEEMIX_HOST
@@ -34,77 +23,89 @@ services:
       - GITLAB_HOST
       - INVIDIOUS_HOST
       - FRESHRSS_HOST
+    image: nginx
+    ports:
+      - '443:443'
+      - '80:80'
     restart: unless-stopped
-  wireguard:
-    image: weejewel/wg-easy
-    container_name: wireguard
+    volumes:
+      - ${CONFIG_DIR}/nginx/templates:/etc/nginx/templates
+      - ${CONFIG_DIR}/nginx/include:/etc/nginx/include
+      - ${CONFIG_DIR}/nginx/ext:/etc/nginx/ext
+      - ${SSL_CA_PATH}:/etc/ssl/fullchain.pem
+      - ${SSL_KEY_PATH}:/etc/ssl/privkey.key
+      - ${MEDIA_DIR}/downloads:/downloads
+  pihole:
+    cap_add:
+      - NET_ADMIN
+    container_name: pihole
+    environment:
+      - TZ
+      - WEBPASSWORD=${PIHOLE_PASSWORD}
+    image: pihole/pihole:latest
+    ports:
+      - ${DNS_ADDRESS}:53:53/tcp
+      - ${DNS_ADDRESS}:53:53/udp
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/pihole/hole:/etc/pihole
+      - ${DATA_DIR}/pihole/dnsmasq.d:/etc/dnsmasq.d
+  tunnel:
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
+    container_name: tunnel
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    extra_hosts:
+      - ${HOST}:172.18.0.1
+    image: ghcr.io/linuxserver/wireguard
+    restart: unless-stopped
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+    volumes:
+      - ${CONFIG_DIR}/wireguard:/config:ro
+      - /lib/modules:/lib/modules
+  unifi_controller:
+    container_name: unifi_controller
+    environment:
+      - PUID
+      - PGID
+      - MEM_LIMIT=1024M
+      - MEM_STARTUP=1024M
+    image: ghcr.io/linuxserver/unifi-controller
+    labels:
+      - com.centurylinklabs.watchtower.enable
+    ports:
+      - 3478:3478/udp
+      - 10001:10001/udp
+      - '8080:8080'
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/unifi:/config
+  wireguard:
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    container_name: wireguard
     environment:
       - PUID
       - PGID
       - WG_HOST=${HOST}
       - WG_PORT=${WG_PORT}
     extra_hosts:
-      - "${HOST}:172.17.0.1"
-    volumes:
-      - ${DATA_DIR}/wireguard:/etc/wireguard
+      - ${HOST}:172.17.0.1
+    image: weejewel/wg-easy
+    labels:
+      - com.centurylinklabs.watchtower.enable
     ports:
       - ${WG_PORT}:51820/udp
+    restart: unless-stopped
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
       - net.ipv4.ip_forward=1
-    labels:
-      - com.centurylinklabs.watchtower.enable
-    restart: unless-stopped
-  tunnel:
-    image: ghcr.io/linuxserver/wireguard
-    container_name: tunnel
-    cap_add:
-      - NET_ADMIN
-      - SYS_MODULE
-    environment:
-      - PUID
-      - PGID
-      - TZ
     volumes:
-      - ${CONFIG_DIR}/wireguard:/config:ro
-      - /lib/modules:/lib/modules
-    extra_hosts:
-      - "${HOST}:172.18.0.1"
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
-    restart: unless-stopped
-  unifi_controller:
-    image: ghcr.io/linuxserver/unifi-controller
-    container_name: unifi_controller
-    environment:
-      - PUID     
-      - PGID     
-      - MEM_LIMIT=1024M
-      - MEM_STARTUP=1024M
-    volumes:
-      - ${DATA_DIR}/unifi:/config
-    ports:
-      - 3478:3478/udp
-      - 10001:10001/udp
-      - 8080:8080
-    labels:
-      - com.centurylinklabs.watchtower.enable
-    restart: unless-stopped
-  pihole:
-    container_name: pihole
-    image: pihole/pihole:latest
-    ports:
-      - ${DNS_ADDRESS}:53:53/tcp
-      - ${DNS_ADDRESS}:53:53/udp
-    environment:
-      - TZ
-      - WEBPASSWORD=${PIHOLE_PASSWORD}
-    volumes:
-      - '${DATA_DIR}/pihole/hole:/etc/pihole'
-      - '${DATA_DIR}/pihole/dnsmasq.d:/etc/dnsmasq.d'    
-    cap_add:
-      - NET_ADMIN   
-    restart: unless-stopped
+      - ${DATA_DIR}/wireguard:/etc/wireguard
+version: '3.4'

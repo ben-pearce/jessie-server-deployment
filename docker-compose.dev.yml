@@ -1,16 +1,17 @@
-version: "3.4"
+---
 services:
-  postgres:
-    image: postgres
-    container_name: postgres
-    environment:
-      - POSTGRES_PASSWORD
-    volumes:
-      - ${DATA_DIR}/postgres:/var/lib/postgresql/data
-    restart: unless-stopped
   hoppscotch:
-    image: hoppscotch/hoppscotch:latest
     container_name: hoppscotch
+    image: hoppscotch/hoppscotch:latest
     labels:
       - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
+  postgres:
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD
+    image: postgres
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/postgres:/var/lib/postgresql/data
+version: '3.4'

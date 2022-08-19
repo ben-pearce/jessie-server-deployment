@@ -1,94 +1,56 @@
-version: "3.4"
+---
 services:
-  openldap:
-    image: bitnami/openldap:2
-    container_name: openldap
-    ports:
-      - 1636:1636
-    environment:
-      - LDAP_ROOT
-      - LDAP_ADMIN_USERNAME
-      - LDAP_ADMIN_PASSWORD
-      - LDAP_USERS
-      - LDAP_PASSWORDS
-      - LDAP_ENABLE_TLS=yes
-      - LDAP_TLS_CERT_FILE=/etc/ssl/cert.pem
-      - LDAP_TLS_KEY_FILE=/etc/ssl/privkey.key
-      - LDAP_TLS_CA_FILE=/etc/ssl/fullchain.pem
-    volumes:
-      - ${DATA_DIR}/openldap:/bitnami/openldap
-      - ${SSL_CA_PATH}:/etc/ssl/fullchain.pem
-      - ${SSL_KEY_PATH}:/etc/ssl/privkey.key
-      - ${SSL_CERT_PATH}:/etc/ssl/cert.pem
-    restart: unless-stopped
   authelia:
-    image: authelia/authelia
     container_name: authelia
-    extra_hosts:
-      - "${HOST}:172.17.0.1"
-      - "${IREDMAIL_HOST}:172.17.0.1"
-    volumes:
-      - ${CONFIG_DIR}/authelia:/config
-    depends_on: 
+    depends_on:
       - openldap
       - postgres
       - iredmail
-    restart: unless-stopped
-    labels:
-      - com.centurylinklabs.watchtower.enable
-  vaultwarden:
-    image: vaultwarden/server:latest
-    container_name: vaultwarden
-    environment:
-      - SMTP_HOST=${IREDMAIL_HOST}
-      - SMTP_FROM=${POSTMASTER_ADDRESS}
-      - SMTP_PORT=587
-      - SMTP_SECURITY=starttls
-      - SMTP_USERNAME=${POSTMASTER_ADDRESS}
-      - SMTP_PASSWORD=${POSTMASTER_PASSWORD}
-    volumes:
-      - ${DATA_DIR}/vaultwarden:/data
     extra_hosts:
-      - "${HOST}:172.17.0.1"
-      - "${IREDMAIL_HOST}:172.17.0.1"
-    restart: unless-stopped
-  syncthing:
-    image: ghcr.io/linuxserver/syncthing
-    container_name: syncthing
-    environment:
-      - PUID
-      - PGID
-      - TZ
-    volumes:
-      - ${DATA_DIR}/syncthing:/config
-      - ${MEDIA_DIR}:/storage
-      - /home:/user
-    ports:
-      - 22000:22000/tcp
-      - 22000:22000/udp
-      - 21027:21027/udp
+      - ${HOST}:172.17.0.1
+      - ${IREDMAIL_HOST}:172.17.0.1
+    image: authelia/authelia
     labels:
       - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
+    volumes:
+      - ${CONFIG_DIR}/authelia:/config
   duplicati:
-    image: lscr.io/linuxserver/duplicati:latest
     container_name: duplicati
     environment:
       - PUID
       - PGID
       - TZ
+    image: lscr.io/linuxserver/duplicati:latest
+    labels:
+      - com.centurylinklabs.watchtower.enable
+    restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/duplicati:/config
       - ${MEDIA_DIR}/backups:/storage
       - ${CONFIG_DIR}:/source/container-configs
       - ${DATA_DIR}:/source/container-data
       - ${MEDIA_DIR}:/source/storage
+  fidi:
+    container_name: fidi
+    environment:
+      - FIREFLY_III_ACCESS_TOKEN
+      - FIREFLY_III_URL=http://firefly:8080
+      - VANITY_URL=https://${FIREFLY_HOST}
+      - NORDIGEN_ID
+      - NORDIGEN_KEY
+      - TRUSTED_PROXIES=**
+      - IMPORT_DIR_WHITELIST=/import
+    image: fireflyiii/data-importer:develop
     labels:
       - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
+    volumes:
+      - ${CONFIG_DIR}/fidi:/import
   firefly:
-    image: fireflyiii/core:latest
     container_name: firefly
+    depends_on:
+      - postgres
     environment:
       - APP_KEY
       - APP_URL=https://${FIREFLY_HOST}/
@@ -107,40 +69,79 @@ services:
       - MAIL_PASSWORD=${POSTMASTER_PASSWORD}
       - MAIL_ENCRYPTION=ssl
     extra_hosts:
-      - "${IREDMAIL_HOST}:172.17.0.1"
+      - ${IREDMAIL_HOST}:172.17.0.1
+    image: fireflyiii/core:latest
+    labels:
+      - com.centurylinklabs.watchtower.enable
+    restart: unless-stopped
     volumes:
       - ${DATA_DIR}/firefly/upload:/var/www/html/storage/upload
-    labels:
-      - com.centurylinklabs.watchtower.enable
-    restart: unless-stopped
-    depends_on:
-      - postgres
-  fidi:
-    image: fireflyiii/data-importer:develop
-    container_name: fidi
-    environment:
-      - FIREFLY_III_ACCESS_TOKEN
-      - FIREFLY_III_URL=http://firefly:8080
-      - VANITY_URL=https://${FIREFLY_HOST}
-      - NORDIGEN_ID
-      - NORDIGEN_KEY
-      - TRUSTED_PROXIES=**
-      - IMPORT_DIR_WHITELIST=/import
-    labels:
-      - com.centurylinklabs.watchtower.enable
-    restart: unless-stopped
-    volumes:
-      - ${CONFIG_DIR}/fidi:/import
   fsib:
-    image: ghcr.io/ben-pearce/firefly-screenshot-bot:main
     container_name: fsib
-    environment: 
+    environment:
       - FIREFLY_BASE_URL=http://firefly:8080
       - FIREFLY_TOKEN=${FIREFLY_III_ACCESS_TOKEN}
       - TELEGRAM_TOKEN
       - TELEGRAM_ALLOWED_USERS
-    volumes:
-      - ${CONFIG_DIR}/fsib:/storage
+    image: ghcr.io/ben-pearce/firefly-screenshot-bot:main
     labels:
       - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
+    volumes:
+      - ${CONFIG_DIR}/fsib:/storage
+  openldap:
+    container_name: openldap
+    environment:
+      - LDAP_ROOT
+      - LDAP_ADMIN_USERNAME
+      - LDAP_ADMIN_PASSWORD
+      - LDAP_USERS
+      - LDAP_PASSWORDS
+      - LDAP_ENABLE_TLS=yes
+      - LDAP_TLS_CERT_FILE=/etc/ssl/cert.pem
+      - LDAP_TLS_KEY_FILE=/etc/ssl/privkey.key
+      - LDAP_TLS_CA_FILE=/etc/ssl/fullchain.pem
+    image: bitnami/openldap:2
+    ports:
+      - '1636:1636'
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/openldap:/bitnami/openldap
+      - ${SSL_CA_PATH}:/etc/ssl/fullchain.pem
+      - ${SSL_KEY_PATH}:/etc/ssl/privkey.key
+      - ${SSL_CERT_PATH}:/etc/ssl/cert.pem
+  syncthing:
+    container_name: syncthing
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    image: ghcr.io/linuxserver/syncthing
+    labels:
+      - com.centurylinklabs.watchtower.enable
+    ports:
+      - 22000:22000/tcp
+      - 22000:22000/udp
+      - 21027:21027/udp
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/syncthing:/config
+      - ${MEDIA_DIR}:/storage
+      - /home:/user
+  vaultwarden:
+    container_name: vaultwarden
+    environment:
+      - SMTP_HOST=${IREDMAIL_HOST}
+      - SMTP_FROM=${POSTMASTER_ADDRESS}
+      - SMTP_PORT=587
+      - SMTP_SECURITY=starttls
+      - SMTP_USERNAME=${POSTMASTER_ADDRESS}
+      - SMTP_PASSWORD=${POSTMASTER_PASSWORD}
+    extra_hosts:
+      - ${HOST}:172.17.0.1
+      - ${IREDMAIL_HOST}:172.17.0.1
+    image: vaultwarden/server:latest
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/vaultwarden:/data
+version: '3.4'

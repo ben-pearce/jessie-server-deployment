@@ -1,31 +1,32 @@
-version: "3.4"
+---
 services:
   homer:
-    image: b4bz/homer:latest
-    volumes:
-      - ${CONFIG_DIR}/homer:/www/assets
+    container_name: homer
     environment:
       - UID=${PUID}
       - GID=${GUID}
-    container_name: homer
-    restart: unless-stopped
+    image: b4bz/homer:latest
     labels:
       - com.centurylinklabs.watchtower.enable
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG_DIR}/homer:/www/assets
   portainer:
-    image: portainer/portainer-ce
     container_name: portainer
+    image: portainer/portainer-ce
+    labels:
+      - com.centurylinklabs.watchtower.enable
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ${DATA_DIR}/portainer:/data
-    restart: unless-stopped
-    labels:
-      - com.centurylinklabs.watchtower.enable
   watchtower:
-    image: containrrr/watchtower
     container_name: watchtower
     environment:
       - WATCHTOWER_LABEL_ENABLE
       - WATCHTOWER_CLEANUP
+    image: containrrr/watchtower
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    restart: unless-stopped
+version: '3.4'

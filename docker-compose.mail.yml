@@ -1,10 +1,7 @@
-version: "3.4"
+---
 services:
   iredmail:
-    image: iredmail/mariadb:stable
     container_name: iredmail
-    hostname: ${IREDMAIL_HOST}
-    user: root
     environment:
       - HOSTNAME=${IREDMAIL_HOST}
       - FIRST_MAIL_DOMAIN=${HOST}
@@ -12,6 +9,18 @@ services:
       - MLMMJADMIN_API_TOKEN
       - ROUNDCUBE_DES_KEY
       - MAIL_THE_TIP_FILE=NO
+    hostname: ${IREDMAIL_HOST}
+    image: iredmail/mariadb:stable
+    labels:
+      - com.centurylinklabs.watchtower.enable
+    ports:
+      - '143:143'
+      - '993:993'
+      - '25:25'
+      - '465:465'
+      - '587:587'
+    restart: unless-stopped
+    user: root
     volumes:
       - ${DATA_DIR}/mail/backup:/var/vmail/backup
       - ${DATA_DIR}/mail/mailboxes:/var/vmail/vmail1
@@ -27,12 +36,4 @@ services:
       - ${SSL_KEY_PATH}:/opt/iredmail/ssl/key.pem
       - ${SSL_CA_PATH}:/opt/iredmail/ssl/cert.pem
       - ${SSL_CA_PATH}:/opt/iredmail/ssl/combined.pem
-    ports:
-      - "143:143"
-      - "993:993"
-      - "25:25"
-      - "465:465"
-      - "587:587"
-    labels:
-      - com.centurylinklabs.watchtower.enable
-    restart: unless-stopped
+version: '3.4'

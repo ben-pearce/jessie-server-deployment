@@ -1,17 +1,32 @@
-version: "3.4"
+---
 services:
   alltube:
-    image: rudloff/alltube
     container_name: alltube
-    volumes:
-      - ${CONFIG_DIR}/alltube:/var/www/html/config
+    image: rudloff/alltube
     labels:
       - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
-  invidious:
-    image: quay.io/invidious/invidious:latest
-    container_name: invidious
+    volumes:
+      - ${CONFIG_DIR}/alltube:/var/www/html/config
+  cyberchef:
+    container_name: cyberchef
+    image: mpepping/cyberchef
+    labels:
+      - com.centurylinklabs.watchtower.enable
     restart: unless-stopped
+  huginn:
+    container_name: huginn
+    image: huginn/huginn
+    labels:
+      - com.centurylinklabs.watchtower.enable
+    restart: unless-stopped
+    user: ${PUID}
+    volumes:
+      - ${DATA_DIR}/huginn/data:/var/lib/mysql
+  invidious:
+    container_name: invidious
+    depends_on:
+      - postgres
     environment:
       INVIDIOUS_CONFIG: |
         db:
@@ -23,24 +38,10 @@ services:
         check_tables: true
         domain: invidious.benpearce.io
     healthcheck:
-      test: wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/comments/jNQXAC9IVRw || exit 1
       interval: 30s
-      timeout: 5s
       retries: 2
-    depends_on:
-      - postgres
-  huginn:
-    image: huginn/huginn
-    user: "${PUID}"
-    container_name: huginn
-    volumes:
-      - ${DATA_DIR}/huginn/data:/var/lib/mysql
-    labels:
-      - com.centurylinklabs.watchtower.enable
+      test: wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/comments/jNQXAC9IVRw || exit 1
+      timeout: 5s
+    image: quay.io/invidious/invidious:latest
     restart: unless-stopped
-  cyberchef:
-    image: mpepping/cyberchef
-    container_name: cyberchef
-    labels:
-      - com.centurylinklabs.watchtower.enable
-    restart: unless-stopped
+version: '3.4'
