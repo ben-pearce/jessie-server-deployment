@@ -9,6 +9,7 @@ services:
       - ${CONFIG_DIR}/nginx/ext:/etc/nginx/ext
       - ${SSL_CA_PATH}:/etc/ssl/fullchain.pem
       - ${SSL_KEY_PATH}:/etc/ssl/privkey.key
+      - ${MEDIA_DIR}/downloads:/downloads
     ports:
       - 443:443
       - 80:80
