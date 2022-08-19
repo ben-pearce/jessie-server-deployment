@@ -3,6 +3,8 @@ services:
   alltube:
     image: rudloff/alltube
     container_name: alltube
+    volumes:
+      - ${CONFIG_DIR}/alltube:/var/www/html/config
     restart: unless-stopped
   invidious:
     image: quay.io/invidious/invidious:latest
