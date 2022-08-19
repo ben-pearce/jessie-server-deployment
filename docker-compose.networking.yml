@@ -23,6 +23,7 @@ services:
       - GITLAB_HOST
       - INVIDIOUS_HOST
       - FRESHRSS_HOST
+      - UPTIME_KUMA_HOST
     image: nginx
     ports:
       - '443:443'
