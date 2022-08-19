@@ -52,17 +52,15 @@ services:
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/downloads/completed:/downloads
     restart: unless-stopped
-  jackett:
-    image: ghcr.io/linuxserver/jackett
-    container_name: jackett
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:develop
+    container_name: prowlarr
     environment:
       - PUID
       - GUID
       - TZ
-      - AUTO_UPDATE=true
     volumes:
-      - ${DATA_DIR}/jackett:/config
-      - ${CONFIG_DIR}/jackett/ServerConfig.json:/config/Jackett/ServerConfig.json
+      - ${CONFIG_DIR}/prowlarr:/config
     restart: unless-stopped
     network_mode: service:tunnel
   jellyfin:
