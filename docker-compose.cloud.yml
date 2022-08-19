@@ -37,8 +37,18 @@ services:
   vaultwarden:
     image: vaultwarden/server:latest
     container_name: vaultwarden
+    environment:
+      - SMTP_HOST=${IREDMAIL_HOST}
+      - SMTP_FROM=${POSTMASTER_ADDRESS}
+      - SMTP_PORT=587
+      - SMTP_SECURITY=starttls
+      - SMTP_USERNAME=${POSTMASTER_ADDRESS}
+      - SMTP_PASSWORD=${POSTMASTER_PASSWORD}
     volumes:
       - ${DATA_DIR}/vaultwarden:/data
+    extra_hosts:
+      - "${HOST}:172.17.0.1"
+      - "${IREDMAIL_HOST}:172.17.0.1"
     restart: unless-stopped
   syncthing:
     image: ghcr.io/linuxserver/syncthing
