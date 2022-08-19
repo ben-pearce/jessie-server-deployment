@@ -1,25 +1,11 @@
 version: "3.4"
 services:
-  gatus:
-    image: twinproduction/gatus
-    container_name: gatus
-    extra_hosts:
-      - "${HOST}:172.17.0.1"
-      - "${CACHET_HOST}:172.17.0.1"
-      - "${DEEMIX_HOST}:172.17.0.1"
-      - "${PORTAINER_HOST}:172.17.0.1"
-      - "${BITWARDEN_HOST}:172.17.0.1"
-      - "${FIREFLY_HOST}:172.17.0.1"
-      - "${FIREFLY_DATA_HOST}:172.17.0.1"
-      - "${GATUS_HOST}:172.17.0.1"
-      - "${HUGINN_HOST}:172.17.0.1"
-      - "${JELLYFIN_HOST}:172.17.0.1"
-      - "${IREDMAIL_HOST}:172.17.0.1"
-      - "${UNIFI_HOST}:172.17.0.1"
-      - "${WIREGUARD_HOST}:172.17.0.1"
-    volumes: 
-      - ${CONFIG_DIR}/gatus/config.yaml:/config/config.yaml
-    restart: unless-stopped
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    volumes:
+      - ${DATA_DIR}/uptime-kuma:/app/data
+    restart: always
   zabbix-server:
     image: zabbix/zabbix-server-pgsql:alpine-latest
     container_name: zabbix-server
