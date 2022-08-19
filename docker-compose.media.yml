@@ -83,7 +83,7 @@ services:
       - PUID
       - GUID
       - VERSION=latest
-      - JELLYFIN_PublishedServerUrl=192.168.1.2
+      - JELLYFIN_PublishedServerUrl=${JELLYFIN_HOST}
     volumes:
       - ${DATA_DIR}/jellyfin:/config
       - ${MEDIA_DIR}/shows:/tv
