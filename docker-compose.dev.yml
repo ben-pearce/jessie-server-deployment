@@ -14,4 +14,5 @@ services:
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/postgres:/var/lib/postgresql/data
+      - ${DATA_DIR}/pg_backups:/backups
 version: '3.4'
