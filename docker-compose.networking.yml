@@ -78,7 +78,7 @@ services:
       - MEM_STARTUP=1024M
     image: ghcr.io/linuxserver/unifi-controller
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     ports:
       - 3478:3478/udp
       - 10001:10001/udp
@@ -100,7 +100,7 @@ services:
       - ${HOST}:172.17.0.1
     image: weejewel/wg-easy
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     ports:
       - ${WG_PORT}:51820/udp
     restart: unless-stopped

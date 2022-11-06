@@ -8,7 +8,7 @@ services:
       - ${HOST}:172.17.0.1
     image: authelia/authelia
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/authelia:/config
@@ -20,7 +20,7 @@ services:
       - TZ
     image: lscr.io/linuxserver/duplicati:latest
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/duplicati:/config
@@ -40,7 +40,7 @@ services:
       - IMPORT_DIR_WHITELIST=/import
     image: fireflyiii/data-importer:develop
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/fidi:/import
@@ -69,7 +69,7 @@ services:
       - ${IREDMAIL_HOST}:172.17.0.1
     image: fireflyiii/core:latest
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/firefly/upload:/var/www/html/storage/upload
@@ -82,7 +82,7 @@ services:
       - TELEGRAM_ALLOWED_USERS
     image: ghcr.io/ben-pearce/firefly-screenshot-bot:main
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/fsib:/storage
@@ -94,7 +94,7 @@ services:
       - TZ
     image: ghcr.io/linuxserver/syncthing
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     ports:
       - 22000:22000/tcp
       - 22000:22000/udp

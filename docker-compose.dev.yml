@@ -4,7 +4,7 @@ services:
     container_name: hoppscotch
     image: hoppscotch/hoppscotch:latest
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
   postgres:
     container_name: postgres

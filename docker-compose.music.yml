@@ -8,7 +8,7 @@ services:
       - UMASK_SET=022
     image: registry.gitlab.com/bockiii/deemix-docker
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
     volumes:
       - ${MEDIA_DIR}/music/:/downloads
@@ -22,7 +22,7 @@ services:
       - ND_BASEURL=/navidrome
     image: deluan/navidrome:latest
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/navidrome:/data

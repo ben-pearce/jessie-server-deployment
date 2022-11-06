@@ -4,7 +4,7 @@ services:
     container_name: alltube
     image: rudloff/alltube
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/alltube:/var/www/html/config
@@ -12,13 +12,13 @@ services:
     container_name: cyberchef
     image: mpepping/cyberchef
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
   huginn:
     container_name: huginn
     image: huginn/huginn
     labels:
-      - com.centurylinklabs.watchtower.enable
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
     user: ${PUID}
     volumes:
@@ -43,5 +43,7 @@ services:
       test: wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/comments/jNQXAC9IVRw || exit 1
       timeout: 5s
     image: quay.io/invidious/invidious:latest
+    labels:
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
 version: '3.4'
