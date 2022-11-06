@@ -52,7 +52,7 @@ if __name__ == '__main__':
 
                     container_rows.append(container_template.format(
                         name,
-                        f'home-server-deployment/blob/main/{file_name}#L{line_no}',
+                        f'{file_name}#L{line_no}',
                         f'<sup>{tags}</sup>' if tags else '', 
                         labels.get('readme.description', ''),
                         ', '.join(map(
