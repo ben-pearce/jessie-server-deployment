@@ -7,6 +7,11 @@ services:
       - PGID
       - TZ
     image: lscr.io/linuxserver/bazarr:latest
+    labels:
+      traefik.enable: true
+      traefik.http.routers.bazarr.entrypoints: https
+      traefik.http.routers.bazarr.rule: PathPrefix(`/bazarr{regex:$$|/.*}`)
+      traefik.http.routers.bazarr.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/bazarr:/config
@@ -21,6 +26,10 @@ services:
     image: ghcr.io/linuxserver/freshrss
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.freshrss.entrypoints: https
+      traefik.http.routers.freshrss.rule: Host(`${FRESHRSS_HOST}`)
+      traefik.http.routers.freshrss.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/freshrss/config.php:/config/www/freshrss/data/config.php:ro
@@ -35,6 +44,11 @@ services:
     image: lscr.io/linuxserver/jellyfin
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.jellyfin.entrypoints: https
+      traefik.http.routers.jellyfin.rule: Host(`${JELLYFIN_HOST}`)
+      traefik.http.routers.jellyfin.tls.certresolver: resolver
+      traefik.http.services.jellyfin.loadbalancer.server.port: 8096
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/jellyfin:/config
@@ -50,6 +64,11 @@ services:
     image: lscr.io/linuxserver/prowlarr:develop
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.prowlarr.entrypoints: https
+      traefik.http.routers.prowlarr.rule: PathPrefix(`/prowlarr{regex:$$|/.*}`)
+      traefik.http.routers.prowlarr.tls.certresolver: resolver
+      traefik.http.services.prowlarr.loadbalancer.server.port: 9696
     network_mode: service:tunnel
     restart: unless-stopped
     volumes:
@@ -63,6 +82,10 @@ services:
     image: ghcr.io/linuxserver/radarr
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.radarr.entrypoints: https
+      traefik.http.routers.radarr.rule: PathPrefix(`/radarr{regex:$$|/.*}`)
+      traefik.http.routers.radarr.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/radarr:/config
@@ -78,6 +101,11 @@ services:
     image: lscr.io/linuxserver/sabnzbd:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.sabnzbd.entrypoints: https
+      traefik.http.routers.sabnzbd.rule: PathPrefix(`/sabnzbd{regex:$$|/.*}`)
+      traefik.http.routers.sabnzbd.tls.certresolver: resolver
+      traefik.http.services.sabnzbd.loadbalancer.server.port: 8080
     network_mode: service:tunnel
     restart: unless-stopped
     volumes:
@@ -93,6 +121,10 @@ services:
     image: ghcr.io/linuxserver/sonarr
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.sonarr.entrypoints: https
+      traefik.http.routers.sonarr.rule: PathPrefix(`/sonarr{regex:$$|/.*}`)
+      traefik.http.routers.sonarr.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/sonarr:/config
@@ -108,6 +140,11 @@ services:
     image: lscr.io/linuxserver/transmission
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.transmission.entrypoints: https
+      traefik.http.routers.transmission.rule: PathPrefix(`/transmission{regex:$$|/.*}`)
+      traefik.http.routers.transmission.tls.certresolver: resolver
+      traefik.http.services.transmission.loadbalancer.server.port: 9091
     network_mode: service:tunnel
     restart: unless-stopped
     volumes:

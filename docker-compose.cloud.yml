@@ -9,6 +9,15 @@ services:
     image: authelia/authelia
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://login.${HOST}/
+      traefik.http.middlewares.authelia.forwardauth.authresponseheaders: Remote-User, Remote-Groups
+      traefik.http.middlewares.authelia.forwardauth.trustforwardheader: true
+      traefik.http.routers.authelia.entrypoints: https
+      traefik.http.routers.authelia.rule: Host(`login.${HOST}`)
+      traefik.http.routers.authelia.service: authelia-svc
+      traefik.http.routers.authelia.tls.certresolver: resolver
+      traefik.http.services.authelia-svc.loadbalancer.server.port: 9091
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/authelia:/config
@@ -21,6 +30,10 @@ services:
     image: lscr.io/linuxserver/duplicati:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.duplicati.entrypoints: https
+      traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
+      traefik.http.routers.duplicati.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/duplicati:/config
@@ -41,6 +54,10 @@ services:
     image: fireflyiii/data-importer:develop
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.fidi.entrypoints: https
+      traefik.http.routers.fidi.rule: Host(`${FIREFLY_DATA_HOST}`)
+      traefik.http.routers.fidi.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/fidi:/import
@@ -70,6 +87,10 @@ services:
     image: fireflyiii/core:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.firefly.entrypoints: https
+      traefik.http.routers.firefly.rule: Host(`${FIREFLY_HOST}`)
+      traefik.http.routers.firefly.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/firefly/upload:/var/www/html/storage/upload
@@ -95,6 +116,13 @@ services:
     image: ghcr.io/linuxserver/syncthing
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.middlewares.syncthingStripper.stripprefix.prefixes: /syncthing
+      traefik.http.routers.syncthing.entrypoints: https
+      traefik.http.routers.syncthing.middlewares: syncthingStripper
+      traefik.http.routers.syncthing.rule: PathPrefix(`/syncthing{regex:$$|/.*}`)
+      traefik.http.routers.syncthing.tls.certresolver: resolver
+      traefik.http.services.syncthing.loadbalancer.server.port: 8384
     ports:
       - 22000:22000/tcp
       - 22000:22000/udp
@@ -117,6 +145,11 @@ services:
       - ${HOST}:172.17.0.1
       - ${IREDMAIL_HOST}:172.17.0.1
     image: vaultwarden/server:latest
+    labels:
+      traefik.enable: true
+      traefik.http.routers.vaultwarden.entrypoints: https
+      traefik.http.routers.vaultwarden.rule: Host(`${BITWARDEN_HOST}`)
+      traefik.http.routers.vaultwarden.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/vaultwarden:/data

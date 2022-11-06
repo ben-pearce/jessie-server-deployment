@@ -5,6 +5,12 @@ services:
     image: hoppscotch/hoppscotch:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.hoppscotch.entrypoints: https
+      traefik.http.routers.hoppscotch.middlewares: authelia
+      traefik.http.routers.hoppscotch.rule: Host(`${HOPPSCOTCH_HOST}`)
+      traefik.http.routers.hoppscotch.tls.certresolver: resolver
+      traefik.http.services.hoppscotch.loadbalancer.server.port: 3000
     restart: unless-stopped
   postgres:
     container_name: postgres

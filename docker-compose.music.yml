@@ -9,6 +9,10 @@ services:
     image: registry.gitlab.com/bockiii/deemix-docker
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.deemix.entrypoints: https
+      traefik.http.routers.deemix.rule: Host(`${DEEMIX_HOST}`)
+      traefik.http.routers.deemix.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${MEDIA_DIR}/music/:/downloads
@@ -23,6 +27,10 @@ services:
     image: deluan/navidrome:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.navidrome.entrypoints: https
+      traefik.http.routers.navidrome.rule: PathPrefix(`/navidrome{regex:$$|/.*}`)
+      traefik.http.routers.navidrome.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/navidrome:/data

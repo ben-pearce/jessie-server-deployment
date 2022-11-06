@@ -8,6 +8,10 @@ services:
     image: b4bz/homer:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.homer.entrypoints: https
+      traefik.http.routers.homer.rule: Host(`${HOST}`)
+      traefik.http.routers.homer.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/homer:/www/assets
@@ -16,6 +20,11 @@ services:
     image: portainer/portainer-ce
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.portainer.entrypoints: https
+      traefik.http.routers.portainer.rule: Host(`${PORTAINER_HOST}`)
+      traefik.http.routers.portainer.tls.certresolver: resolver
+      traefik.http.services.portainer.loadbalancer.server.port: 9000
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

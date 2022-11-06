@@ -5,6 +5,13 @@ services:
     image: rudloff/alltube
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.middlewares.alltubeHeaders.headers.customrequestheaders.X-Forwarded-Path: /alltube
+      traefik.http.middlewares.alltubeStripper.stripprefix.prefixes: /alltube
+      traefik.http.routers.alltube.entrypoints: https
+      traefik.http.routers.alltube.middlewares: alltubeHeaders, alltubeStripper
+      traefik.http.routers.alltube.rule: PathPrefix(`/alltube{regex:$$|/.*}`)
+      traefik.http.routers.alltube.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/alltube:/var/www/html/config
@@ -13,12 +20,23 @@ services:
     image: mpepping/cyberchef
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.middlewares.cyberchefStripper.stripprefix.prefixes: /cyberchef
+      traefik.http.routers.cyberchef.entrypoints: https
+      traefik.http.routers.cyberchef.middlewares: cyberchefStripper
+      traefik.http.routers.cyberchef.rule: PathPrefix(`/cyberchef{regex:$$|/.*}`)
+      traefik.http.routers.cyberchef.tls.certresolver: resolver
+      traefik.http.services.cyberchef.loadbalancer.server.port: 8000
     restart: unless-stopped
   huginn:
     container_name: huginn
     image: huginn/huginn
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.huginn.entrypoints: https
+      traefik.http.routers.huginn.rule: Host(`${HUGINN_HOST}`)
+      traefik.http.routers.huginn.tls.certresolver: resolver
     restart: unless-stopped
     user: ${PUID}
     volumes:
@@ -36,7 +54,7 @@ services:
           host: postgres
           port: 5432
         check_tables: true
-        domain: invidious.benpearce.io
+        domain: ${INVIDIOUS_HOST}
     healthcheck:
       interval: 30s
       retries: 2
@@ -45,5 +63,9 @@ services:
     image: quay.io/invidious/invidious:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.invidious.entrypoints: https
+      traefik.http.routers.invidious.rule: Host(`${INVIDIOUS_HOST}`)
+      traefik.http.routers.invidious.tls.certresolver: resolver
     restart: unless-stopped
 version: '3.4'

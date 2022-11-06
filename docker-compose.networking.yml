@@ -1,36 +1,46 @@
 ---
 services:
-  nginx:
-    container_name: nginx
+  traefik:
+    command:
+      - '--global.sendAnonymousUsage=true'
+      - '--api.insecure=true'
+      - '--api.dashboard=true'
+      - '--providers.docker=true'
+      - '--providers.docker.exposedbydefault=false'
+      - '--entrypoints.http.address=:80'
+      - '--entrypoints.http.http.redirections.entrypoint.to=https'
+      - '--entrypoints.http.http.redirections.entrypoint.scheme=https'
+      - '--entrypoints.https.address=:443'
+      - '--entrypoints.https.http.tls=true'
+      - '--entrypoints.https.http.tls.certResolver=letsencrypt'
+      - '--entrypoints.https.http.tls.domains[0].main=${HOST}'
+      - '--entrypoints.https.http.tls.domains[0].sans=*.${HOST}'
+      - '--certificatesresolvers.resolver.acme.dnschallenge=true'
+      - '--certificatesresolvers.resolver.acme.dnschallenge.provider=cloudflare'
+      - '--certificatesresolvers.resolver.acme.email=${ACME_EMAIL}'
+      - '--certificatesresolvers.resolver.acme.storage=/letsencrypt/acme.json'
+      - '--serversTransport.insecureSkipVerify=true'
+    container_name: traefik
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
     environment:
-      - HOST
-      - DEEMIX_HOST
-      - PORTAINER_HOST
-      - BITWARDEN_HOST
-      - FIREFLY_HOST
-      - FIREFLY_DATA_HOST
-      - GATUS_HOST
-      - HUGINN_HOST
-      - JELLYFIN_HOST
-      - IREDMAIL_HOST
-      - UNIFI_HOST
-      - WIREGUARD_HOST
-      - ZABBIX_HOST
-      - HOPPSCOTCH_HOST
-      - AUTHELIA_HOST
-      - DUPLICATI_HOST
-      - PIHOLE_HOST
-      - GITLAB_HOST
-      - INVIDIOUS_HOST
-      - FRESHRSS_HOST
-      - UPTIME_KUMA_HOST
-    image: nginx
+      - CF_ZONE_API_TOKEN
+      - CF_DNS_API_TOKEN
+    hostname: traefik
+    image: traefik:v2.9
+    labels:
+      traefik.enable: true
+      traefik.http.routers.api.entrypoints: https
+      traefik.http.routers.api.rule: Host(`${TRAEFIK_HOST}`)
+      traefik.http.routers.api.tls.certresolver: resolver
+      traefik.http.services.traefik.loadbalancer.server.port: 8080
     ports:
       - '443:443'
       - '80:80'
     volumes:
-      - ${DATA_DIR}/pihole/hole:/etc/pihole
-      - ${DATA_DIR}/pihole/dnsmasq.d:/etc/dnsmasq.d
+      - ${DATA_DIR}/letsencrypt:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock:ro
   tunnel:
     cap_add:
       - NET_ADMIN
@@ -67,6 +77,12 @@ services:
     image: ghcr.io/linuxserver/unifi-controller
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.unifi.entrypoints: https
+      traefik.http.routers.unifi.rule: Host(`${UNIFI_HOST}`)
+      traefik.http.routers.unifi.tls.certresolver: resolver
+      traefik.http.services.unifi-controller.loadbalancer.server.port: 8443
+      traefik.http.services.unifi-controller.loadbalancer.server.scheme: https
     ports:
       - 3478:3478/udp
       - 10001:10001/udp
@@ -89,6 +105,11 @@ services:
     image: weejewel/wg-easy
     labels:
       com.centurylinklabs.watchtower.enable: true
+      traefik.enable: true
+      traefik.http.routers.wireguard.entrypoints: https
+      traefik.http.routers.wireguard.rule: Host(`${WIREGUARD_HOST}`)
+      traefik.http.routers.wireguard.tls.certresolver: resolver
+      traefik.http.services.wireguard.loadbalancer.server.port: 51821
     ports:
       - ${WG_PORT}:51820/udp
     restart: unless-stopped
