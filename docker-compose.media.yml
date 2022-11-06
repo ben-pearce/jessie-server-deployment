@@ -8,6 +8,10 @@ services:
       - TZ
     image: lscr.io/linuxserver/bazarr:latest
     labels:
+      readme.description: Manage and download subtitles based on your requirements.
+      readme.links.docker: https://hub.docker.com/r/linuxserver/bazarr
+      readme.links.github: https://github.com/morpheus65535/bazarr
+      readme.links.web: https://www.bazarr.media/
       traefik.enable: true
       traefik.http.routers.bazarr.entrypoints: https
       traefik.http.routers.bazarr.rule: PathPrefix(`/bazarr{regex:$$|/.*}`)
@@ -26,6 +30,8 @@ services:
     image: ghcr.io/linuxserver/freshrss
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Self-hosted RSS feed aggregator.
+      readme.links.github: https://github.com/FreshRSS/FreshRSS
       traefik.enable: true
       traefik.http.routers.freshrss.entrypoints: https
       traefik.http.routers.freshrss.rule: Host(`${FRESHRSS_HOST}`)
@@ -44,6 +50,8 @@ services:
     image: lscr.io/linuxserver/jellyfin
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: The Free Software Media System.
+      readme.links.github: https://github.com/jellyfin/jellyfin
       traefik.enable: true
       traefik.http.routers.jellyfin.entrypoints: https
       traefik.http.routers.jellyfin.rule: Host(`${JELLYFIN_HOST}`)
@@ -64,6 +72,9 @@ services:
     image: lscr.io/linuxserver/prowlarr:develop
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: An indexer manager/proxy.
+      readme.links.github: https://github.com/Prowlarr/Prowlarr
+      readme.links.web: https://wiki.servarr.com/prowlarr
       traefik.enable: true
       traefik.http.routers.prowlarr.entrypoints: https
       traefik.http.routers.prowlarr.rule: PathPrefix(`/prowlarr{regex:$$|/.*}`)
@@ -82,6 +93,8 @@ services:
     image: ghcr.io/linuxserver/radarr
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: A fork of Sonarr to work with movies à la Couchpotato.
+      readme.links.github: https://github.com/Radarr/Radarr
       traefik.enable: true
       traefik.http.routers.radarr.entrypoints: https
       traefik.http.routers.radarr.rule: PathPrefix(`/radarr{regex:$$|/.*}`)
@@ -101,6 +114,10 @@ services:
     image: lscr.io/linuxserver/sabnzbd:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: The free and easy binary newsreader.
+      readme.links.docker: https://hub.docker.com/r/linuxserver/sabnzbd
+      readme.links.github: https://github.com/sabnzbd/sabnzbd
+      readme.links.web: https://sabnzbd.org/
       traefik.enable: true
       traefik.http.routers.sabnzbd.entrypoints: https
       traefik.http.routers.sabnzbd.rule: PathPrefix(`/sabnzbd{regex:$$|/.*}`)
@@ -121,6 +138,8 @@ services:
     image: ghcr.io/linuxserver/sonarr
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Smart PVR for newsgroup and bittorrent users.
+      readme.links.github: https://github.com/Sonarr/Sonarr
       traefik.enable: true
       traefik.http.routers.sonarr.entrypoints: https
       traefik.http.routers.sonarr.rule: PathPrefix(`/sonarr{regex:$$|/.*}`)
@@ -140,6 +159,8 @@ services:
     image: lscr.io/linuxserver/transmission
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Fast, easy, and free BitTorrent client.
+      readme.links.github: https://github.com/transmission/transmission
       traefik.enable: true
       traefik.http.routers.transmission.entrypoints: https
       traefik.http.routers.transmission.rule: PathPrefix(`/transmission{regex:$$|/.*}`)

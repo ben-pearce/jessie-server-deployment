@@ -9,6 +9,9 @@ services:
     image: registry.gitlab.com/bockiii/deemix-docker
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Barebone deezer downloader.
+      readme.links.gitlab: https://gitlab.com/Bockiii/deemix-docker
+      readme.links.website: https://deemix.app/
       traefik.enable: true
       traefik.http.routers.deemix.entrypoints: https
       traefik.http.routers.deemix.rule: Host(`${DEEMIX_HOST}`)
@@ -27,6 +30,8 @@ services:
     image: deluan/navidrome:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Modern Music Server and Streamer compatible with Subsonic/Airsonic.
+      readme.links.github: https://github.com/navidrome/navidrome
       traefik.enable: true
       traefik.http.routers.navidrome.entrypoints: https
       traefik.http.routers.navidrome.rule: PathPrefix(`/navidrome{regex:$$|/.*}`)

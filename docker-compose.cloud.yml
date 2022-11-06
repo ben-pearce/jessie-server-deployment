@@ -9,6 +9,9 @@ services:
     image: authelia/authelia
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: The Single Sign-On Multi-Factor portal for web apps.
+      readme.links.docker: https://hub.docker.com/r/authelia/authelia
+      readme.links.web: https://www.authelia.com/
       traefik.enable: true
       traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://${AUTHELIA_HOST}/
       traefik.http.middlewares.authelia.forwardauth.authresponseheaders: Remote-User, Remote-Groups
@@ -30,6 +33,9 @@ services:
     image: lscr.io/linuxserver/duplicati:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Open Source Backup Client.
+      readme.links.docker: https://hub.docker.com/r/linuxserver/duplicati
+      readme.links.web: https://www.duplicati.com/
       traefik.enable: true
       traefik.http.routers.duplicati.entrypoints: https
       traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
@@ -54,6 +60,8 @@ services:
     image: fireflyiii/data-importer:develop
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Firefly III Data Importer.
+      readme.links.docker: https://hub.docker.com/r/fireflyiii/data-importer
       traefik.enable: true
       traefik.http.routers.fidi.entrypoints: https
       traefik.http.routers.fidi.rule: Host(`${FIREFLY_DATA_HOST}`)
@@ -85,6 +93,9 @@ services:
     image: fireflyiii/core:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Personal Finance Manager.
+      readme.links.docker: https://hub.docker.com/r/fireflyiii/core
+      readme.links.web: https://www.firefly-iii.org/
       traefik.enable: true
       traefik.http.routers.firefly.entrypoints: https
       traefik.http.routers.firefly.rule: Host(`${FIREFLY_HOST}`)
@@ -102,6 +113,8 @@ services:
     image: ghcr.io/ben-pearce/firefly-screenshot-bot:main
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: FireflyIII Screenshot Import Bot.
+      readme.links.github: https://github.com/ben-pearce/firefly-screenshot-bot
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/fsib:/storage
@@ -114,6 +127,9 @@ services:
     image: ghcr.io/linuxserver/syncthing
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Open Source Continuous File Synchronization.
+      readme.links.github: https://github.com/syncthing/
+      readme.links.web: https://syncthing.net/
       traefik.enable: true
       traefik.http.middlewares.syncthingStripper.stripprefix.prefixes: /syncthing
       traefik.http.routers.syncthing.entrypoints: https
@@ -144,6 +160,8 @@ services:
       - ${HOST}:172.17.0.1
     image: vaultwarden/server:latest
     labels:
+      readme.description: Unofficial Bitwarden compatible server written in Rust.
+      readme.links.github: https://github.com/dani-garcia/vaultwarden
       traefik.enable: true
       traefik.http.routers.vaultwarden.entrypoints: https
       traefik.http.routers.vaultwarden.rule: Host(`${BITWARDEN_HOST}`)

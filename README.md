@@ -20,44 +20,47 @@ Due to the number of services being deployed, I have categorized them and create
 
 | **Name** | **Description** | **Ports** | **Links** |
 |---|---|---|---|
-| [vaultwarden](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.cloud.yml#L3) | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
-| [syncthing](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.cloud.yml#L9) | Open Source Continuous File Synchronization. | `22000`, `22000/udp`, `21027/udp` | [GitHub](https://github.com/syncthing/syncthing) |
-| [iredmail](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.mail.yml#L3) | Open Source Mail Server Solution. | `143`, `993`, `25`, `465`, `587` | [GitHub](https://github.com/iredmail/iRedMail) |
-| [homer](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.management.yml#L3) | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
-| [portainer](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.management.yml#L12) | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
-| [transmission](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L3)<sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
-| [sonarr](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L16)<sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
-| [radarr](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L30)<sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
-| [jackett](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L44)<sup>2</sup> | Tracker Aggregator. |  | [GitHub](https://github.com/Jackett/Jackett) |
-| [freshrss](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L72) | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
-| [deemix](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.music.yml#L3)<sup>1</sup> | Barebone deezer downloader. |  | [Website](https://deemix.app/), [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
-| [navidrome](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.music.yml#L14)<sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
-| [nginx](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.networking.yml#L3) | High Performance Load Balancer, Web Server, & Reverse Proxy | `443`, `80` | [Website](https://www.nginx.com/) |
-| [wireguard<sup>(server)</sup>](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.networking.yml#L34) | Fast, Modern, Secure VPN Tunnel | `51672/udp` | [Website](https://www.wireguard.com/) |
-| [wireguard<sup>(client)</sup>](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.networking.yml#L55) | Fast, Modern, Secure VPN Tunnel |  | [Website](https://www.wireguard.com/) |
-| [wireguard-ui](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.networking.yml#L73) | A web user interface to manage WireGuard. |  | [GitHub](https://github.com/ngoduykhanh/wireguard-ui) |
-| [wg-monitor](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.networking.yml#L84) | Monitor `wg0.conf` and restart a docker container on the same host if the monitored file changes. |  | [Docker Hub](https://hub.docker.com/r/kking124/wireguard-monitor) |
-| [unifi-controller](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.networking.yml#L101) | Wireless network management. |  |  |
-| [alltube](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.tools.yml#L3) | Web GUI for youtube-dl. |  | [GitHub](https://github.com/Rudloff/alltube) |
-| [huginn](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.tools.yml#L7) | Build agents that perform automated tasks for you online. |  | [GitHub](https://github.com/huginn/huginn) |
-| [cyberchef](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.tools.yml#L14) | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
-| [jellyfin](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.media.yml#L55) | The Free Software Media System |  | [GitHub](https://github.com/jellyfin/jellyfin) |
-| [gatus](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.status.yml#L3) | Automated service health dashboard |  | [GitHub](https://github.com/TwiN/gatus) |
-| [postgres](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.dev.yml#L3) | The world's most advanced open source database |  | [Docker Hub](https://hub.docker.com/_/postgres) |
-| [zabbix-web](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.status.yml#L23) | Zabbix web frontend |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql) |
-| [zabbix-server](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.status.yml#L32) | Open Source Monitoring Solution | `10051` | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-server-pgsql) |
-| [firefly](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.cloud.yml#L25) | Personal Finance Manager |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/core) |
-| [fidi](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.cloud.yml#L43) | Tool to import data into Firefly III. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/data-importer) |
-| [hoppscotch](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.dev.yml#L11) | API Development Ecosystem |  | [GitHub](https://github.com/hoppscotch/hoppscotch) |
+| [deemix](home-server-deployment/blob/main/./docker-compose.music.yml#L4) <sup>1</sup> | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
+| [navidrome](home-server-deployment/blob/main/./docker-compose.music.yml#L24) <sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
+| [homer](home-server-deployment/blob/main/./docker-compose.management.yml#L4)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
+| [portainer](home-server-deployment/blob/main/./docker-compose.management.yml#L21)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
+| [watchtower](home-server-deployment/blob/main/./docker-compose.management.yml#L37)  | A process for automating Docker container base image updates. |  | [GitHub](https://github.com/containrrr/watchtower), [Docker Hub](https://hub.docker.com/r/containrrr/watchtower) |
+| [traefik](home-server-deployment/blob/main/./docker-compose.networking.yml#L23)  | The Cloud Native Application Proxy. | `443:443`, `80:80` | [GitHub](https://github.com/traefik/traefik) |
+| [tunnel](home-server-deployment/blob/main/./docker-compose.networking.yml#L50)  | A Docker container for using WireGuard with PIA. |  | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
+| [unifi-controller](home-server-deployment/blob/main/./docker-compose.networking.yml#L76)  | Wireless network management. | `3478:3478/udp`, `10001:10001/udp`, `8080:8080` |  |
+| [wireguard](home-server-deployment/blob/main/./docker-compose.networking.yml#L103)  | Fast, Modern, Secure VPN Tunnel. | `${WG_PORT}:51820/udp` | [Website](https://www.wireguard.com/) |
+| [hoppscotch](home-server-deployment/blob/main/./docker-compose.dev.yml#L4)  | API Development Ecosystem. |  | [GitHub](https://github.com/hoppscotch/hoppscotch) |
+| [postgres](home-server-deployment/blob/main/./docker-compose.dev.yml#L18)  | The world's most advanced open source database. |  | [Docker Hub](https://hub.docker.com/_/postgres) |
+| [alltube](home-server-deployment/blob/main/./docker-compose.tools.yml#L4)  | Web GUI for youtube-dl. |  | [GitHub](https://github.com/Rudloff/alltube) |
+| [cyberchef](home-server-deployment/blob/main/./docker-compose.tools.yml#L21)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
+| [huginn](home-server-deployment/blob/main/./docker-compose.tools.yml#L36)  | Build agents that perform automated tasks for you online. |  | [GitHub](https://github.com/huginn/huginn) |
+| [invidious](home-server-deployment/blob/main/./docker-compose.tools.yml#L51)  | An open source alternative front-end to YouTube. |  | [GitHub](https://github.com/iv-org/invidious), [Website](https://invidious.io/) |
+| [uptime-kuma](home-server-deployment/blob/main/./docker-compose.status.yml#L4)  | Self-hosted monitoring tool like "Uptime Robot". |  | [GitHub](https://github.com/louislam/uptime-kuma) |
+| [zabbix-server](home-server-deployment/blob/main/./docker-compose.status.yml#L18)  | Open Source Monitoring Solution. | `10051:10051` | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-server-pgsql) |
+| [zabbix-web](home-server-deployment/blob/main/./docker-compose.status.yml#L32)  | Zabbix web frontend. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql) |
+| [authelia](home-server-deployment/blob/main/./docker-compose.cloud.yml#L4)  | The Single Sign-On Multi-Factor portal for web apps. |  | [Docker Hub](https://hub.docker.com/r/authelia/authelia), [Website](https://www.authelia.com/) |
+| [duplicati](home-server-deployment/blob/main/./docker-compose.cloud.yml#L28) <sup>1</sup> | Open Source Backup Client. |  | [Docker Hub](https://hub.docker.com/r/linuxserver/duplicati), [Website](https://www.duplicati.com/) |
+| [fidi](home-server-deployment/blob/main/./docker-compose.cloud.yml#L51)  | Firefly III Data Importer. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/data-importer) |
+| [firefly](home-server-deployment/blob/main/./docker-compose.cloud.yml#L73)  | Personal Finance Manager. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/core), [Website](https://www.firefly-iii.org/) |
+| [fsib](home-server-deployment/blob/main/./docker-compose.cloud.yml#L107)  | FireflyIII Screenshot Import Bot. |  | [GitHub](https://github.com/ben-pearce/firefly-screenshot-bot) |
+| [syncthing](home-server-deployment/blob/main/./docker-compose.cloud.yml#L122) <sup>1</sup> | Open Source Continuous File Synchronization. | `22000:22000/tcp`, `22000:22000/udp`, `21027:21027/udp` | [GitHub](https://github.com/syncthing/), [Website](https://syncthing.net/) |
+| [vaultwarden](home-server-deployment/blob/main/./docker-compose.cloud.yml#L150)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
+| [bazarr](home-server-deployment/blob/main/./docker-compose.media.yml#L4) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
+| [freshrss](home-server-deployment/blob/main/./docker-compose.media.yml#L25)  | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
+| [jellyfin](home-server-deployment/blob/main/./docker-compose.media.yml#L44) <sup>1</sup> | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
+| [prowlarr](home-server-deployment/blob/main/./docker-compose.media.yml#L67) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
+| [radarr](home-server-deployment/blob/main/./docker-compose.media.yml#L88) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
+| [sabnzbd](home-server-deployment/blob/main/./docker-compose.media.yml#L109) <sup>2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
+| [sonarr](home-server-deployment/blob/main/./docker-compose.media.yml#L133) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
+| [transmission](home-server-deployment/blob/main/./docker-compose.media.yml#L154) <sup>2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
 
-<sup>1</sup>Assumes mass storage available, mounted at `MEDIA_DIR` on the host.
+<sup>1</sup>Assumes mass storage available, mounted at MEDIA_DIR on the host.
 
-<sup>2</sup>All traffic is routed via wireguard VPN client container.
+<sup>2</sup>All traffic is routed via tunnel VPN client container.
 
 ## Prerequisites
-**Hardware**: I run this on my budget home server which is an x86 dual core system with hyper-threading & 16GB memory. Generally these services do not consume much CPU resources, I would recommend more than 8GB of memory since just starting all of the services in the current state consumes over 7gigs. I do have to turn off transcoding in Plex as my server is just not up to the task, I rely on direct play or streaming over VLC with UPnP if the app cannot handle it for any particular device. Storage requirement is about 9GB+ (according to Portainer) just for the images, downloading content via Deemix, Sonarr & Radarr will **obviously** require some kind of mass storage.
 
-**Sofware**: A linux-based operating system with [docker](https://docs.docker.com/engine/install/) & [docker-compose](https://docs.docker.com/compose/install/) installed.
+A linux-based operating system with [docker](https://docs.docker.com/engine/install/) installed.
 
 ## Installation
 
@@ -89,57 +92,66 @@ The `.env` file stores environment variables to make starting the containers eas
 
 | **Variable** | **Description** | **Example** |
 |---|---|---|
-| `HOST` | The main host for web-based services. | `example.com` |
+| `NORDIGEN_ID` | Nordigen [API ID](https://ob.helpscoutdocs.com/article/132-token-handling-via-api). | `12abc34d...` |
+| `NORDIGEN_KEY` | Nordigen [API key](https://ob.helpscoutdocs.com/article/132-token-handling-via-api). | `PbfRkaXNZMU...` |
+| `TELEGRAM_TOKEN` | Telegram bot token. | `1111111111:xxxxx...` |
+| `TELEGRAM_ALLOWED_USERS` | List of Telegram user IDs. | `1111111111` |
+| `PIA_USER` | Private Internet Access user. | `p128` |
+| `PIA_PASSWORD` | Private Internet Access password. |  |
+| `CF_ZONE_API_TOKEN` | CloudFlare Zone Read API token. |  |
+| `CF_DNS_API_TOKEN` | CloudFlare DNS Edit API token. |  |
+| `ACME_EMAIL` | Email for registering ACME certificates. | `renewals@example.com` |
+| `SMTP_HOST` | SMTP mail server host | `mail.example.com` |
+| `SMTP_USER` | SMTP username | `postmaster@example.com` |
+| `SMTP_PASSWORD` | SMTP password | `password123!` |
+| `HOST` | The main host for web-based services. | `ample.com` |
 | `DEEMIX_HOST` | Deemix hostname. | `deemix.example.com` |
 | `PORTAINER_HOST` | Portainer hostname. | `docker.example.com` |
 | `BITWARDEN_HOST` | Bitwarden hostname. | `bitwarden.example.com` |
 | `FIREFLY_HOST` | Firefly hostname. | `firefly.example.com` |
 | `FIREFLY_DATA_HOST` | Firefly data importer hostname. | `fidi.example.com` |
-| `GATUS_HOST` | Gatus hostname. | `status.example.com` |
+| `UPTIME_KUMA_HOST` | Uptime Kuma hostname. | `status.example.com` |
 | `HUGINN_HOST` | Huginn hostname. | `huginn.example.com` |
 | `JELLYFIN_HOST` | Jellyfin hostname. | `jellyfin.example.com` |
-| `IREDMAIL_HOST` | Mail hostname. | `mail.example.com` |
-| `UNIFI_HOST` | Unifi hostname. | `unifi.example.com` |
+| `UNIFI_HOST` | Unifi controller hostname. | `unifi.example.com` |
 | `WIREGUARD_HOST` | Wireguard hostname. | `wg.example.com` |
-| `ZABBIX_HOST` | Zabbix hostname. | `zabbix.example.com` |
-| `HOPPSCOTCH_HOST` | Zabbix hostname. | `hoppscotch.example.com` |
-| `PUID` | System user ID to run containers as. | 1000 |
-| `GUID` | System group ID to run containers as. | 1000 |
+| `ZABBIX_HOST` | Zabbix web hostname. | `zabbix.example.com` |
+| `HOPPSCOTCH_HOST` | Hoppscotch hostname. | `hoppscotch.example.com` |
+| `AUTHELIA_HOST` | Authelia hostname. | `login.example.com` |
+| `DUPLICATI_HOST` | Duplicati hostname. | `duplicati.example.com` |
+| `INVIDIOUS_HOST` | Invidious hostname. | `invidious.example.com` |
+| `FRESH_RSS` | FreshRSS hostname. | `freshrss.example.com` |
+| `TRAEFIK_HOST` | Traefik hostname. | `traefik.example.com` |
 | `TZ` | Timezone for all containers. | `Europe/London` |
-| `FIRST_MAIL_DOMAIN_ADMIN_PASSWORD` | Password for `postmaster` mail inbox. | `password123!` |
-| `MLMMJADMIN_API_TOKEN` | Unique key, use `openssl rand -base64 32`. | `ePbfRkaXNZMU...` |
-| `ROUNDCUBE_DES_KEY` | Unique key, use `openssl rand -base64 32`. | `ePbfRkaXNZMU...` |
-| `POSTGRES_PASSWORD` | Postgres database password. | `password123!` |
-| `APP_KEY` | Laravel app key, use `echo "base64:$(openssl rand -base64 32)"`. | `base64:...` |
-| `NORDIGEN_ID` | Nordigen [API ID](https://ob.helpscoutdocs.com/article/132-token-handling-via-api). | `12abc34d...` |
-| `NORDIGEN_KEY` | Nordigen [API key](https://ob.helpscoutdocs.com/article/132-token-handling-via-api). | `ePbfRkaXNZMU...` |
-| `FIREFLY_III_ACCESS_TOKEN` | [Firefly access token](https://docs.firefly-iii.org/csv/install/configure/#client-id-or-personal-access-token). | `ePbfRkaXNZMU...` |
-| `SESSION_SECRET` | Unique key, use `openssl rand -base64 32`. | `ePbfRkaXNZMU...` |
+| `PUID` | System user ID to run containers as. | `1000` |
+| `GUID` | System group ID to run containers as. | `1000` |
 | `MEDIA_DIR` | Location of media storage on host. | `/storage` |
+| `CONFIG_DIR` | Location of config storage on host. | `.config` |
+| `DATA_DIR` | Location of data storage on host. | `.data` |
+| `POSTGRES_PASSWORD` | Postgress database password | `password123!` |
+| `APP_KEY` | Laravel app key, use `echo "base64:$(openssl rand -base64 32)"`. | `base64:...` |
+| `FIREFLY_III_ACCESS_TOKEN` | [Firefly access token](https://docs.firefly-iii.org/csv/install/configure/#client-id-or-personal-access-token). | `PbfRkaXNZMU...` |
+| `SESSION_SECRET` | Unique key, use `openssl rand -base64 32`. | `PbfRkaXNZMU...` |
+| `JELLYFIN_ADDR` | Jellyfin discoverability address. | `10.0.0.1` |
+| `WG_PORT` | Wireguard exposed port | `51820` |
+
 
 ## Ideas 
 
 I don't have any kind of project road map or plan for this, since I generally just tinker with & improve things in my free time. I do have a to-do list with services I would like to include, but this list is not exhaustive, and I frequently add things which are not on the list or remove items from the list I no longer think are worthwhile.
 
 - [netboot.xyz](https://hub.docker.com/r/linuxserver/netbootxyz) - Boot various operating system installers or utilities from one place.
-- [Bazarr](https://hub.docker.com/r/linuxserver/bazarr) - Manage and download subtitles based on your requirements.
 - [Home Assistant](https://hub.docker.com/r/homeassistant/home-assistant) - Open source home automation that puts local control and privacy first.
 - [Minio](https://hub.docker.com/r/minio/minio/) - High Performance Object Storage.
-- [Gitlab](https://hub.docker.com/r/gitlab/gitlab-ce) - GitLab Community Edition.
 - [Guacamole](https://hub.docker.com/r/guacamole/guacamole) - Clientless remote desktop gateway.
-- [Hydra](https://hub.docker.com/r/linuxserver/hydra) - Meta search for NZB indexers.
-- [NZBGet](https://hub.docker.com/r/linuxserver/nzbget) - Usenet downloader.
 - [Glances](https://hub.docker.com/r/nicolargo/glances) - Cross-platform system monitoring tool.
 - [VSCode server](https://hub.docker.com/r/linuxserver/code-server) - VS Code running on a remote server.
 - [Grafana](https://hub.docker.com/r/grafana/grafana) - Open source analytics & monitoring solution
 - [Prometheus](https://hub.docker.com/r/prom/prometheus) - Prometheus is a systems and service monitoring system.
 - [Netdata](https://hub.docker.com/r/netdata/netdata) - Distributed, real-time, performance and health monitoring for systems and applications.
-- [Nginx Proxy Manager](https://nginxproxymanager.com/) - Expose your services easily and securely.
-- [Uptime Kuma](https://github.com/louislam/uptime-kuma) - Self-hosted monitoring tool like "Uptime Robot".
 - [CryptPad](https://cryptpad.fr/) - Collaboration suite end-to-end encrypted and open-source.
 - [SICKRAGE](https://www.sickrage.ca/) - Automatic video library manager for TV shows.
 - [horahora](https://github.com/horahoradev/horahora) - Self-hosted media server which continuously archives videos from other sites using yt-dlp.
-- [mailcow](https://mailcow.email/) - The mailserver suite.
 - [paperless-ngx](https://github.com/paperless-ngx/paperless-ngx) - A community-supported supercharged version of paperless: scan, index and archive all your physical documents.
 
 ## Contributions

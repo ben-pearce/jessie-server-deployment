@@ -5,6 +5,8 @@ services:
     image: louislam/uptime-kuma:1
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Self-hosted monitoring tool like "Uptime Robot".
+      readme.links.github: https://github.com/louislam/uptime-kuma
       traefik.enable: true
       traefik.http.routers.uptime-kuma.entrypoints: https
       traefik.http.routers.uptime-kuma.rule: Host(`${UPTIME_KUMA_HOST}`)
@@ -21,6 +23,8 @@ services:
     image: zabbix/zabbix-server-pgsql:alpine-latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Open Source Monitoring Solution.
+      readme.links.docker: https://hub.docker.com/r/zabbix/zabbix-server-pgsql
     ports:
       - '10051:10051'
     restart: unless-stopped
@@ -37,6 +41,8 @@ services:
     image: zabbix/zabbix-web-nginx-pgsql:alpine-latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Zabbix web frontend.
+      readme.links.docker: https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql
       traefik.enable: true
       traefik.http.routers.zabbix.entrypoints: https
       traefik.http.routers.zabbix.rule: Host(`${ZABBIX_HOST}`)

@@ -5,6 +5,8 @@ services:
     image: rudloff/alltube
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Web GUI for youtube-dl.
+      readme.links.github: https://github.com/Rudloff/alltube
       traefik.enable: true
       traefik.http.middlewares.alltubeHeaders.headers.customrequestheaders.X-Forwarded-Path: /alltube
       traefik.http.middlewares.alltubeStripper.stripprefix.prefixes: /alltube
@@ -20,6 +22,8 @@ services:
     image: mpepping/cyberchef
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis.
+      readme.links.github: https://github.com/gchq/CyberChef
       traefik.enable: true
       traefik.http.middlewares.cyberchefStripper.stripprefix.prefixes: /cyberchef
       traefik.http.routers.cyberchef.entrypoints: https
@@ -33,6 +37,8 @@ services:
     image: huginn/huginn
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: Build agents that perform automated tasks for you online.
+      readme.links.github: https://github.com/huginn/huginn
       traefik.enable: true
       traefik.http.routers.huginn.entrypoints: https
       traefik.http.routers.huginn.rule: Host(`${HUGINN_HOST}`)
@@ -63,6 +69,9 @@ services:
     image: quay.io/invidious/invidious:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: An open source alternative front-end to YouTube.
+      readme.links.github: https://github.com/iv-org/invidious
+      readme.links.web: https://invidious.io/
       traefik.enable: true
       traefik.http.routers.invidious.entrypoints: https
       traefik.http.routers.invidious.rule: Host(`${INVIDIOUS_HOST}`)

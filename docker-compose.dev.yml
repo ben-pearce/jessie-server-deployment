@@ -5,6 +5,8 @@ services:
     image: hoppscotch/hoppscotch:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
+      readme.description: API Development Ecosystem.
+      readme.links.github: https://github.com/hoppscotch/hoppscotch
       traefik.enable: true
       traefik.http.routers.hoppscotch.entrypoints: https
       traefik.http.routers.hoppscotch.middlewares: authelia
@@ -17,6 +19,9 @@ services:
     environment:
       - POSTGRES_PASSWORD
     image: postgres:14.5
+    labels:
+      readme.description: The world's most advanced open source database.
+      readme.links.docker: https://hub.docker.com/_/postgres
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/postgres:/var/lib/postgresql/data
