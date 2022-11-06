@@ -10,11 +10,11 @@ services:
     labels:
       com.centurylinklabs.watchtower.enable: true
       traefik.enable: true
-      traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://login.${HOST}/
+      traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://${AUTHELIA_HOST}/
       traefik.http.middlewares.authelia.forwardauth.authresponseheaders: Remote-User, Remote-Groups
       traefik.http.middlewares.authelia.forwardauth.trustforwardheader: true
       traefik.http.routers.authelia.entrypoints: https
-      traefik.http.routers.authelia.rule: Host(`login.${HOST}`)
+      traefik.http.routers.authelia.rule: Host(`${AUTHELIA_HOST}`)
       traefik.http.routers.authelia.service: authelia-svc
       traefik.http.routers.authelia.tls.certresolver: resolver
       traefik.http.services.authelia-svc.loadbalancer.server.port: 9091
