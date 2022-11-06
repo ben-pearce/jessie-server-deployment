@@ -3,12 +3,9 @@ services:
   authelia:
     container_name: authelia
     depends_on:
-      - openldap
       - postgres
-      - iredmail
     extra_hosts:
       - ${HOST}:172.17.0.1
-      - ${IREDMAIL_HOST}:172.17.0.1
     image: authelia/authelia
     labels:
       - com.centurylinklabs.watchtower.enable
@@ -89,27 +86,6 @@ services:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/fsib:/storage
-  openldap:
-    container_name: openldap
-    environment:
-      - LDAP_ROOT
-      - LDAP_ADMIN_USERNAME
-      - LDAP_ADMIN_PASSWORD
-      - LDAP_USERS
-      - LDAP_PASSWORDS
-      - LDAP_ENABLE_TLS=yes
-      - LDAP_TLS_CERT_FILE=/etc/ssl/cert.pem
-      - LDAP_TLS_KEY_FILE=/etc/ssl/privkey.key
-      - LDAP_TLS_CA_FILE=/etc/ssl/fullchain.pem
-    image: bitnami/openldap:2
-    ports:
-      - '1636:1636'
-    restart: unless-stopped
-    volumes:
-      - ${DATA_DIR}/openldap:/bitnami/openldap
-      - ${SSL_CA_PATH}:/etc/ssl/fullchain.pem
-      - ${SSL_KEY_PATH}:/etc/ssl/privkey.key
-      - ${SSL_CERT_PATH}:/etc/ssl/cert.pem
   syncthing:
     container_name: syncthing
     environment:
