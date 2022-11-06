@@ -76,14 +76,12 @@ services:
       - DB_USERNAME=postgres
       - DB_PASSWORD=${POSTGRES_PASSWORD}
       - MAIL_MAILER=smtp
-      - MAIL_HOST=${IREDMAIL_HOST}
+      - MAIL_HOST=${SMTP_HOST}
       - MAIL_PORT=465
-      - MAIL_FROM=${POSTMASTER_ADDRESS}
-      - MAIL_USERNAME=${POSTMASTER_ADDRESS}
-      - MAIL_PASSWORD=${POSTMASTER_PASSWORD}
+      - MAIL_FROM=${SMTP_USER}
+      - MAIL_USERNAME=${SMTP_USER}
+      - MAIL_PASSWORD=${SMTP_PASSWORD}
       - MAIL_ENCRYPTION=ssl
-    extra_hosts:
-      - ${IREDMAIL_HOST}:172.17.0.1
     image: fireflyiii/core:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
@@ -135,15 +133,15 @@ services:
   vaultwarden:
     container_name: vaultwarden
     environment:
-      - SMTP_HOST=${IREDMAIL_HOST}
-      - SMTP_FROM=${POSTMASTER_ADDRESS}
+      - SMTP_HOST
+      - SMTP_FROM=${SMTP_USER}
       - SMTP_PORT=587
       - SMTP_SECURITY=starttls
-      - SMTP_USERNAME=${POSTMASTER_ADDRESS}
-      - SMTP_PASSWORD=${POSTMASTER_PASSWORD}
+      - SMTP_USERNAME=${SMTP_USER}
+      - SMTP_PASSWORD
+      - DOMAIN=https://${BITWARDEN_HOST}
     extra_hosts:
       - ${HOST}:172.17.0.1
-      - ${IREDMAIL_HOST}:172.17.0.1
     image: vaultwarden/server:latest
     labels:
       traefik.enable: true
