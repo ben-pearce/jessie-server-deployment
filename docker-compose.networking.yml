@@ -57,20 +57,26 @@ services:
       - SYS_MODULE
     container_name: tunnel
     environment:
-      - PUID
-      - PGID
-      - TZ
+      - LOC=uk
+      - USER=${PIA_USER}
+      - PASS=${PIA_PASSWORD}
+      - EXIT_ON_FATAL=1
     extra_hosts:
       - ${HOST}:172.18.0.1
-    image: ghcr.io/linuxserver/wireguard
+    healthcheck:
+      interval: 30s
+      retries: 3
+      test: ping -c 1 1.1.1.1 || exit 1
+      timeout: 10s
+    image: thrnz/docker-wireguard-pia
     restart: unless-stopped
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.default.disable_ipv6=1
+      - net.ipv6.conf.all.disable_ipv6=1
+      - net.ipv6.conf.lo.disable_ipv6=1
     volumes:
-      - ${CONFIG_DIR}/wireguard:/config:ro
-      - /lib/modules:/lib/modules
-  unifi_controller:
-    container_name: unifi_controller
+      - ${DATA_DIR}/pia:/pia
     environment:
       - PUID
       - PGID
