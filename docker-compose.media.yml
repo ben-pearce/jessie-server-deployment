@@ -37,7 +37,7 @@ services:
       com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
     volumes:
-      - ${DATA_DIR}/jellyfin:/configP
+      - ${DATA_DIR}/jellyfin:/config
       - ${MEDIA_DIR}/shows:/tv
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/music:/music
