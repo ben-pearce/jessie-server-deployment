@@ -57,6 +57,8 @@ services:
       - net.ipv6.conf.lo.disable_ipv6=1
     volumes:
       - ${DATA_DIR}/pia:/pia
+  unifi-controller:
+    container_name: unifi-controller
     environment:
       - PUID
       - PGID
