@@ -28,26 +28,6 @@ services:
     ports:
       - '443:443'
       - '80:80'
-    restart: unless-stopped
-    volumes:
-      - ${CONFIG_DIR}/nginx/templates:/etc/nginx/templates
-      - ${CONFIG_DIR}/nginx/include:/etc/nginx/include
-      - ${CONFIG_DIR}/nginx/ext:/etc/nginx/ext
-      - ${SSL_CA_PATH}:/etc/ssl/fullchain.pem
-      - ${SSL_KEY_PATH}:/etc/ssl/privkey.key
-      - ${MEDIA_DIR}/downloads:/downloads
-  pihole:
-    cap_add:
-      - NET_ADMIN
-    container_name: pihole
-    environment:
-      - TZ
-      - WEBPASSWORD=${PIHOLE_PASSWORD}
-    image: pihole/pihole:latest
-    ports:
-      - ${DNS_ADDRESS}:53:53/tcp
-      - ${DNS_ADDRESS}:53:53/udp
-    restart: unless-stopped
     volumes:
       - ${DATA_DIR}/pihole/hole:/etc/pihole
       - ${DATA_DIR}/pihole/dnsmasq.d:/etc/dnsmasq.d
