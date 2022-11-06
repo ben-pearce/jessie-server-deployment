@@ -40,7 +40,7 @@ services:
       - PUID
       - GUID
       - VERSION=latest
-      - JELLYFIN_PublishedServerUrl=${JELLYFIN_HOST}
+      - JELLYFIN_PublishedServerUrl=${JELLYFIN_ADDR}
     image: lscr.io/linuxserver/jellyfin
     labels:
       com.centurylinklabs.watchtower.enable: true
