@@ -1,0 +1,29 @@
+name: readme
+
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+    branches: [ "main" ]
+
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate README
+        uses: actions/setup-python@v4 
+        with:
+          python-version: 'pypy3.9' 
+      - run: |
+          pip install pyyaml
+          python readme.py
+          git config --global user.name 'Ben Pearce'
+          git config --global user.email 'ben.pearce@sky.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git commit -am "docs: update README.md"
+          git push
