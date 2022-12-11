@@ -66,6 +66,9 @@ services:
       traefik.http.routers.fidi.entrypoints: https
       traefik.http.routers.fidi.rule: Host(`${FIREFLY_DATA_HOST}`)
       traefik.http.routers.fidi.tls.certresolver: resolver
+      ofelia.enabled: "true"
+      ofelia.job-exec.finance-import.schedule: "0 0 03 * * *"
+      ofelia.job-exec.finance-import.command: "/bin/sh -c 'for f in /import/*; do php artisan importer:import $$f; done'"
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/fidi:/import
