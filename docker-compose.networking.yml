@@ -54,8 +54,9 @@ services:
       - USER=${PIA_USER}
       - PASS=${PIA_PASSWORD}
       - EXIT_ON_FATAL=1
+      - LOCAL_NETWORK=172.17.0.0/24
     extra_hosts:
-      - ${HOST}:172.18.0.1
+      - ${HOST}:172.17.0.1
     healthcheck:
       interval: 30s
       retries: 3
