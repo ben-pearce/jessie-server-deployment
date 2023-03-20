@@ -117,7 +117,7 @@ services:
         url: "https://benpearce.io/syncthing/"
         target: "_blank"
       - name: "AdGuard"
-        logo: "assets/dashboard-icons/png/adguardhome.png"
+        logo: "assets/dashboard-icons/png/adguard-home.png"
         subtitle: "Network-wide Ad Blocking"
         url: "https://etch.benpearce.io/"
         target: "_blank"
