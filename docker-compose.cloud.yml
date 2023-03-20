@@ -2,6 +2,11 @@
 services:
   authelia:
     container_name: authelia
+    environment:
+      - AUTHELIA_JWT_SECRET_FILE
+      - AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE
+      - AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY_FILE
+      - AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE
     depends_on:
       - postgres
     extra_hosts:
@@ -24,6 +29,7 @@ services:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/authelia:/config
+      - ./.secrets/:/.secrets
   duplicati:
     container_name: duplicati
     environment:
