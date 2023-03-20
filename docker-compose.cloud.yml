@@ -43,10 +43,9 @@ services:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/duplicati:/config
-      - ${MEDIA_DIR}/backups:/storage
-      - ${CONFIG_DIR}:/source/container-configs
-      - ${DATA_DIR}:/source/container-data
-      - ${MEDIA_DIR}:/source/storage
+      - ${CONFIG_DIR}:/source/container-configs:ro
+      - ${DATA_DIR}:/source/container-data:ro
+      - /mnt:/mnt
   fidi:
     container_name: fidi
     environment:
@@ -147,7 +146,7 @@ services:
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/syncthing:/config
-      - ${MEDIA_DIR}:/storage
+      - /mnt:/storage
       - /home:/user
   vaultwarden:
     container_name: vaultwarden
