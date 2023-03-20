@@ -27,8 +27,8 @@ services:
   duplicati:
     container_name: duplicati
     environment:
-      - PUID
-      - PGID
+      - PUID=0
+      - PGID=0
       - TZ
     image: lscr.io/linuxserver/duplicati:latest
     labels:
