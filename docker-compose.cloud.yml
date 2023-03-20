@@ -56,7 +56,7 @@ services:
       - NORDIGEN_ID
       - NORDIGEN_KEY
       - TRUSTED_PROXIES=**
-      - IMPORT_DIR_WHITELIST=/import
+      - IMPORT_DIR_ALLOWLIST=/import
     image: fireflyiii/data-importer:develop
     labels:
       com.centurylinklabs.watchtower.enable: true
