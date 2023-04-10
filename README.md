@@ -37,9 +37,9 @@ Due to the number of services being deployed, I have categorized them and create
 | [deemix](./docker-compose.music.yml#L4) <sup>1</sup> | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
 | [navidrome](./docker-compose.music.yml#L25) <sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
 | [homer](./docker-compose.management.yml#L4)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
-| [ofelia](./docker-compose.management.yml#L23)  |  |  |  |
-| [portainer](./docker-compose.management.yml#L34)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
-| [watchtower](./docker-compose.management.yml#L52)  | A process for automating Docker container base image updates. |  | [GitHub](https://github.com/containrrr/watchtower), [Docker Hub](https://hub.docker.com/r/containrrr/watchtower) |
+| [ofelia](./docker-compose.management.yml#L23)  | Docker job scheduler. |  | [GitHub](https://github.com/mcuadros/ofelia) |
+| [portainer](./docker-compose.management.yml#L37)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
+| [watchtower](./docker-compose.management.yml#L55)  | A process for automating Docker container base image updates. |  | [GitHub](https://github.com/containrrr/watchtower), [Docker Hub](https://hub.docker.com/r/containrrr/watchtower) |
 | [alltube](./docker-compose.tools.yml#L4)  | Web GUI for youtube-dl. |  | [GitHub](https://github.com/Rudloff/alltube) |
 | [cyberchef](./docker-compose.tools.yml#L21)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
 | [huginn](./docker-compose.tools.yml#L36)  | Build agents that perform automated tasks for you online. |  | [GitHub](https://github.com/huginn/huginn) |
