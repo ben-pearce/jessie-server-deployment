@@ -162,4 +162,4 @@ I don't have any kind of project road map or plan for this, since I generally ju
 First of all, **thanks for your interest!** But due to this being a personal project of mine tailored to my own needs, I cannot accept pull requests on this repository. Please feel free to fork and tweak this project though, and if you wish you can also open an issue to make suggestions for improvement and showcase your own homelab setups based off of this repo!
 
 ## Credits
-- [NX211/homer-icons](https://github.com/NX211/homer-icons) - Repository used to grab the icons for the various services displayed on the homer dashboard.
+- [walkxcode/dashboard-icons](https://github.com/walkxcode/dashboard-icons) - Repository used to grab the icons for the various services displayed on the homer dashboard.
