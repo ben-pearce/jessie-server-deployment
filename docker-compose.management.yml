@@ -27,6 +27,9 @@ services:
     environment:
       - TZ
     image: mcuadros/ofelia:latest
+    labels:
+      readme.description: Docker job scheduler.
+      readme.links.github: https://github.com/mcuadros/ofelia
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
