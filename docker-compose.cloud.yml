@@ -7,8 +7,6 @@ services:
       - AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE
       - AUTHELIA_IDENTITY_PROVIDERS_OIDC_ISSUER_PRIVATE_KEY_FILE
       - AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE
-    depends_on:
-      - postgres
     extra_hosts:
       - ${HOST}:172.17.0.1
     image: authelia/authelia
@@ -19,7 +17,7 @@ services:
       readme.links.web: https://www.authelia.com/
       traefik.enable: true
       traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://${AUTHELIA_HOST}/
-      traefik.http.middlewares.authelia.forwardauth.authresponseheaders: Remote-User, Remote-Groups
+      traefik.http.middlewares.authelia.forwardauth.authresponseheaders: Remote-User, Remote-Groups, Remote-Email
       traefik.http.middlewares.authelia.forwardauth.trustforwardheader: true
       traefik.http.routers.authelia.entrypoints: https
       traefik.http.routers.authelia.rule: Host(`${AUTHELIA_HOST}`)
@@ -44,6 +42,7 @@ services:
       readme.links.web: https://www.duplicati.com/
       traefik.enable: true
       traefik.http.routers.duplicati.entrypoints: https
+      traefik.http.routers.duplicati.middlewares: authelia
       traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
       traefik.http.routers.duplicati.tls.certresolver: resolver
     restart: unless-stopped
@@ -69,6 +68,7 @@ services:
       readme.links.docker: https://hub.docker.com/r/fireflyiii/data-importer
       traefik.enable: true
       traefik.http.routers.fidi.entrypoints: https
+      traefik.http.routers.fidi.middlewares: authelia
       traefik.http.routers.fidi.rule: Host(`${FIREFLY_DATA_HOST}`)
       traefik.http.routers.fidi.tls.certresolver: resolver
       ofelia.enabled: "true"
@@ -98,6 +98,8 @@ services:
       - MAIL_USERNAME=${SMTP_USER}
       - MAIL_PASSWORD=${SMTP_PASSWORD}
       - MAIL_ENCRYPTION=ssl
+      - AUTHENTICATION_GUARD=remote_user_guard
+      - AUTHENTICATION_GUARD_HEADER=HTTP_REMOTE_EMAIL
     image: fireflyiii/core:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
@@ -106,6 +108,7 @@ services:
       readme.links.web: https://www.firefly-iii.org/
       traefik.enable: true
       traefik.http.routers.firefly.entrypoints: https
+      traefik.http.routers.firefly.middlewares: authelia
       traefik.http.routers.firefly.rule: Host(`${FIREFLY_HOST}`)
       traefik.http.routers.firefly.tls.certresolver: resolver
     restart: unless-stopped
@@ -141,7 +144,7 @@ services:
       traefik.enable: true
       traefik.http.middlewares.syncthingStripper.stripprefix.prefixes: /syncthing
       traefik.http.routers.syncthing.entrypoints: https
-      traefik.http.routers.syncthing.middlewares: syncthingStripper
+      traefik.http.routers.syncthing.middlewares: authelia,syncthingStripper
       traefik.http.routers.syncthing.rule: PathPrefix(`/syncthing{regex:$$|/.*}`)
       traefik.http.routers.syncthing.tls.certresolver: resolver
       traefik.http.services.syncthing.loadbalancer.server.port: 8384

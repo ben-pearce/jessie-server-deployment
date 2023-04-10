@@ -14,6 +14,7 @@ services:
       readme.links.web: https://www.bazarr.media/
       traefik.enable: true
       traefik.http.routers.bazarr.entrypoints: https
+      traefik.http.routers.bazarr.middlewares: authelia
       traefik.http.routers.bazarr.rule: PathPrefix(`/bazarr{regex:$$|/.*}`)
       traefik.http.routers.bazarr.tls.certresolver: resolver
     restart: unless-stopped
@@ -34,6 +35,7 @@ services:
       readme.links.github: https://github.com/FreshRSS/FreshRSS
       traefik.enable: true
       traefik.http.routers.freshrss.entrypoints: https
+      traefik.http.routers.freshrss.middlewares: authelia
       traefik.http.routers.freshrss.rule: Host(`${FRESHRSS_HOST}`)
       traefik.http.routers.freshrss.tls.certresolver: resolver
     restart: unless-stopped
@@ -77,6 +79,7 @@ services:
       readme.links.web: https://wiki.servarr.com/prowlarr
       traefik.enable: true
       traefik.http.routers.prowlarr.entrypoints: https
+      traefik.http.routers.prowlarr.middlewares: authelia
       traefik.http.routers.prowlarr.rule: PathPrefix(`/prowlarr{regex:$$|/.*}`)
       traefik.http.routers.prowlarr.tls.certresolver: resolver
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
@@ -97,6 +100,7 @@ services:
       readme.links.github: https://github.com/Radarr/Radarr
       traefik.enable: true
       traefik.http.routers.radarr.entrypoints: https
+      traefik.http.routers.radarr.middlewares: authelia
       traefik.http.routers.radarr.rule: PathPrefix(`/radarr{regex:$$|/.*}`)
       traefik.http.routers.radarr.tls.certresolver: resolver
     restart: unless-stopped
@@ -120,6 +124,7 @@ services:
       readme.links.web: https://sabnzbd.org/
       traefik.enable: true
       traefik.http.routers.sabnzbd.entrypoints: https
+      traefik.http.routers.sabnzbd.middlewares: authelia
       traefik.http.routers.sabnzbd.rule: PathPrefix(`/sabnzbd{regex:$$|/.*}`)
       traefik.http.routers.sabnzbd.tls.certresolver: resolver
       traefik.http.services.sabnzbd.loadbalancer.server.port: 8080
@@ -142,6 +147,7 @@ services:
       readme.links.github: https://github.com/Sonarr/Sonarr
       traefik.enable: true
       traefik.http.routers.sonarr.entrypoints: https
+      traefik.http.routers.sonarr.middlewares: authelia
       traefik.http.routers.sonarr.rule: PathPrefix(`/sonarr{regex:$$|/.*}`)
       traefik.http.routers.sonarr.tls.certresolver: resolver
     restart: unless-stopped
@@ -163,6 +169,7 @@ services:
       readme.links.github: https://github.com/transmission/transmission
       traefik.enable: true
       traefik.http.routers.transmission.entrypoints: https
+      traefik.http.routers.transmission.middlewares: authelia
       traefik.http.routers.transmission.rule: PathPrefix(`/transmission{regex:$$|/.*}`)
       traefik.http.routers.transmission.tls.certresolver: resolver
       traefik.http.services.transmission.loadbalancer.server.port: 9091

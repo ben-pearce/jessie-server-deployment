@@ -117,6 +117,7 @@ services:
       readme.links.web: https://www.wireguard.com/
       traefik.enable: true
       traefik.http.routers.wireguard.entrypoints: https
+      traefik.http.routers.wireguard.middlewares: authelia
       traefik.http.routers.wireguard.rule: Host(`${WIREGUARD_HOST}`)
       traefik.http.routers.wireguard.tls.certresolver: resolver
       traefik.http.services.wireguard.loadbalancer.server.port: 51821

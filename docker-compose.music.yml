@@ -14,6 +14,7 @@ services:
       readme.links.website: https://deemix.app/
       traefik.enable: true
       traefik.http.routers.deemix.entrypoints: https
+      traefik.http.routers.deemix.middlewares: authelia
       traefik.http.routers.deemix.rule: Host(`${DEEMIX_HOST}`)
       traefik.http.routers.deemix.tls.certresolver: resolver
     restart: unless-stopped
