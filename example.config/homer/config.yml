@@ -83,6 +83,11 @@ services:
         subtitle: "Indexer Manager"
         url: "https://benpearce.io/prowlarr/"
         target: "_blank"
+      - name: "TVHeadend"
+        logo: "assets/dashboard-icons/png/tvheadend.png"
+        subtitle: "TV Streaming Server"
+        url: "https://tvheadend.benpearce.io"
+        target: "_blank"
   - name: "Networking"
     icon: "fas fa-satellite"
     items:
