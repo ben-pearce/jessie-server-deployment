@@ -18,6 +18,18 @@ services:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/homer:/www/assets
+  ofelia:
+    command: daemon --docker
+    container_name: ofelia
+    depends_on:
+      - postgres
+      - fidi
+    environment:
+      - TZ
+    image: mcuadros/ofelia:latest
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
   portainer:
     container_name: portainer
     extra_hosts:
@@ -49,17 +61,4 @@ services:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-  ofelia:
-    container_name: ofelia
-    image: mcuadros/ofelia:latest
-    environment:
-      - TZ
-    depends_on:
-      - postgres
-      - fidi
-      - photoprism
-    command: daemon --docker
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
 version: '3.4'

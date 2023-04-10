@@ -27,12 +27,12 @@ services:
         zabbix
     image: postgres:14.5
     labels:
+      ofelia.enabled: 'true'
+      ofelia.job-exec.postgres-backup.command: /bin/sh -c 'for db in $$BACKUP_DBS; do pg_dump $$db > /backups/$$db.sql; done'
+      ofelia.job-exec.postgres-backup.schedule: 0 0 04 * * *
+      ofelia.job-exec.postgres-backup.user: postgres
       readme.description: The world's most advanced open source database.
       readme.links.docker: https://hub.docker.com/_/postgres
-      ofelia.enabled: "true"
-      ofelia.job-exec.postgres-backup.user: postgres
-      ofelia.job-exec.postgres-backup.schedule: "0 0 04 * * *"
-      ofelia.job-exec.postgres-backup.command: "/bin/sh -c 'for db in $$BACKUP_DBS; do pg_dump $$db > /backups/$$db.sql; done'"
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/postgres:/var/lib/postgresql/data

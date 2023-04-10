@@ -64,6 +64,9 @@ services:
     image: fireflyiii/data-importer:develop
     labels:
       com.centurylinklabs.watchtower.enable: true
+      ofelia.enabled: 'true'
+      ofelia.job-exec.finance-import.command: /bin/sh -c 'for f in /import/*; do php artisan importer:import $$f; done'
+      ofelia.job-exec.finance-import.schedule: 0 0 03 * * *
       readme.description: Firefly III Data Importer.
       readme.links.docker: https://hub.docker.com/r/fireflyiii/data-importer
       traefik.enable: true
@@ -71,9 +74,6 @@ services:
       traefik.http.routers.fidi.middlewares: authelia
       traefik.http.routers.fidi.rule: Host(`${FIREFLY_DATA_HOST}`)
       traefik.http.routers.fidi.tls.certresolver: resolver
-      ofelia.enabled: "true"
-      ofelia.job-exec.finance-import.schedule: "0 0 03 * * *"
-      ofelia.job-exec.finance-import.command: "/bin/sh -c 'for f in /import/*; do php artisan importer:import $$f; done'"
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/fidi:/import
