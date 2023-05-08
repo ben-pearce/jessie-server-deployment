@@ -44,5 +44,7 @@ services:
       traefik.http.routers.huginn.rule: Host(`${HUGINN_HOST}`)
       traefik.http.routers.huginn.tls.certresolver: resolver
     restart: unless-stopped
-      
+    secrets:
+      - huginn_postgres_password
+
 version: '3.4'

@@ -35,7 +35,7 @@ services:
     environment:
       - DB_SERVER_HOST=postgres
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD
+      - POSTGRES_PASSWORD_FILE=/run/secrets/zabbix_postgres_password
       - PHP_TZ=${TZ}
       - ZBX_SERVER_HOST=zabbix-server
     image: zabbix/zabbix-web-nginx-pgsql:alpine-latest
@@ -49,4 +49,6 @@ services:
       traefik.http.routers.zabbix.tls.certresolver: resolver
       traefik.http.services.zabbix.loadbalancer.server.port: 8080
     restart: unless-stopped
+    secrets:
+      - zabbix_postgres_password
 version: '3.4'

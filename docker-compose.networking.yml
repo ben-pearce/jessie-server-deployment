@@ -1,4 +1,13 @@
 ---
+secrets:
+  cloudflare_dns_api_token:
+    file: ./.secrets/cloudflare_dns_api_token
+  cloudflare_zone_api_token:
+    file: ./.secrets/cloudflare_zone_api_token
+  pia_password:
+    file: ./.secrets/pia_password
+  pia_username:
+    file: ./.secrets/pia_username
 services:
   traefik:
     command:
@@ -25,8 +34,8 @@ services:
       - 1.1.1.1
       - 1.0.0.1
     environment:
-      - CF_ZONE_API_TOKEN
-      - CF_DNS_API_TOKEN
+      - CF_ZONE_API_TOKEN=/run/secrets/cloudflare_dns_api_token
+      - CF_DNS_API_TOKEN=/run/secrets/cloudflare_zone_api_token
     hostname: traefik
     image: traefik:v2.9
     labels:
@@ -41,6 +50,9 @@ services:
       - '443:443'
       - '80:80'
     restart: unless-stopped
+    secrets:
+      - cloudflare_dns_api_token
+      - cloudflare_zone_api_token
     volumes:
       - ${DATA_DIR}/letsencrypt:/letsencrypt
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -51,8 +63,8 @@ services:
     container_name: tunnel
     environment:
       - LOC=uk
-      - USER=${PIA_USER}
-      - PASS=${PIA_PASSWORD}
+      - USER_FILE=/run/secrets/pia_username
+      - PASS_FILE=/run/secrets/pia_password
       - EXIT_ON_FATAL=1
       - LOCAL_NETWORK=172.17.0.0/24
     extra_hosts:
@@ -67,6 +79,9 @@ services:
       readme.description: A Docker container for using WireGuard with PIA.
       readme.links.docker: https://hub.docker.com/r/thrnz/docker-wireguard-pia
     restart: unless-stopped
+    secrets:
+      - pia_username
+      - pia_password
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
       - net.ipv6.conf.default.disable_ipv6=1
