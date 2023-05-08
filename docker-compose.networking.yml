@@ -26,7 +26,7 @@ services:
       - '--entrypoints.https.http.tls.domains[0].sans=*.${HOST}'
       - '--certificatesresolvers.resolver.acme.dnschallenge=true'
       - '--certificatesresolvers.resolver.acme.dnschallenge.provider=cloudflare'
-      - '--certificatesresolvers.resolver.acme.email=${ACME_EMAIL}'
+      - '--certificatesresolvers.resolver.acme.email=${ADMIN_MAIL}'
       - '--certificatesresolvers.resolver.acme.storage=/letsencrypt/acme.json'
       - '--serversTransport.insecureSkipVerify=true'
     container_name: traefik
