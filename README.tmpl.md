@@ -70,7 +70,6 @@ I don't have any kind of project road map or plan for this, since I generally ju
 - [CryptPad](https://cryptpad.fr/) - Collaboration suite end-to-end encrypted and open-source.
 - [SICKRAGE](https://www.sickrage.ca/) - Automatic video library manager for TV shows.
 - [horahora](https://github.com/horahoradev/horahora) - Self-hosted media server which continuously archives videos from other sites using yt-dlp.
-- [paperless-ngx](https://github.com/paperless-ngx/paperless-ngx) - A community-supported supercharged version of paperless: scan, index and archive all your physical documents.
 
 ## Contributions
 

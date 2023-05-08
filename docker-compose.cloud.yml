@@ -281,6 +281,43 @@ services:
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/vaultwarden:/data
+  paperless-ngx:
+    container_name: paperless-ngx
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    restart: unless-stopped
+    networks:
+      - paperless
+      - paperless-web
+    depends_on:
+      - paperless-postgres
+      - paperless-redis
+    secrets:
+      - paperless_postgres_password
+    labels:
+      readme.description: Document Management System.
+      readme.links.github: https://github.com/paperless-ngx/paperless-ngx
+      traefik.enable: true
+      traefik.http.routers.paperless-ngx.entrypoints: https
+      traefik.http.routers.paperless-ngx.middlewares: authelia
+      traefik.http.routers.paperless-ngx.rule: Host(`${PAPERLESS_HOST}`)
+      traefik.http.routers.paperless-ngx.tls.certresolver: resolver
+      traefik.http.services.paperless-ngx.loadbalancer.server.port: 8000
+      traefik.docker.network: paperless-web
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "-S", "--max-time", "2", "http://localhost:8000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    volumes:
+      - ${DATA_DIR}/paperless/data:/usr/src/paperless/data
+      - ${DATA_DIR}/paperless/media:/usr/src/paperless/media
+      - ${DATA_DIR}/paperless/export:/usr/src/paperless/export
+      - ${DATA_DIR}/paperless/consume:/usr/src/paperless/consume
+    environment:
+      PAPERLESS_URL: https://${PAPERLESS_HOST}
+      PAPERLESS_REDIS: redis://paperless-redis:6379
+      PAPERLESS_DBHOST: paperless-postgres
+      PAPERLESS_DBPASS_FILE: /run/secrets/paperless_postgres_password
 version: '3.4'
 
 secrets:

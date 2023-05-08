@@ -169,6 +169,11 @@ services:
         subtitle: "Single Sign-On Multi-Factor Portal"
         url: "https://login.benpearce.io"
         target: "_blank"
+      - name: "Paperless"
+        logo: "assets/dashboard-icons/png/paperless.png"
+        subtitle: Document Management System
+        url: "https://paperless.benpearce.io"
+        target: "_blank"
   - name: "Tools"
     icon: "fas fa-wrench"
     items:

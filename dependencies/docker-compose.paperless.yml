@@ -1,0 +1,38 @@
+---
+networks:
+  paperless:
+    name: paperless
+  paperless-web:
+    name: paperless-web
+secrets:
+  paperless_postgres_password:
+    file: ./.secrets/paperless_postgres_password
+services:
+  paperless-postgres:
+    container_name: paperless-postgres
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_PASSWORD_FILE: /run/secrets/paperless_postgres_password
+      POSTGRES_USER: paperless
+    image: postgres:14.5
+    labels:
+      ofelia.enabled: 'true'
+      ofelia.job-exec.paperless-postgres-backup.command: /bin/sh -c 'pg_dump -U paperless -d paperless > /backups/paperless.sql'
+      ofelia.job-exec.paperless-postgres-backup.schedule: 0 0 04 * * *
+      ofelia.job-exec.paperless-postgres-backup.user: postgres
+    networks:
+      - paperless
+    restart: unless-stopped
+    secrets:
+      - paperless_postgres_password
+    volumes:
+      - ${DATA_DIR}/postgres/paperless:/var/lib/postgresql/data
+  paperless-redis:
+    container_name: paperless-redis
+    image: redis:7
+    networks:
+      - paperless
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/redis/paperless:/data
+version: '3.4'
