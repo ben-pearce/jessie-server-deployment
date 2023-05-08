@@ -44,37 +44,5 @@ services:
       traefik.http.routers.huginn.rule: Host(`${HUGINN_HOST}`)
       traefik.http.routers.huginn.tls.certresolver: resolver
     restart: unless-stopped
-    user: ${PUID}
-    volumes:
-      - ${DATA_DIR}/huginn/data:/var/lib/mysql
-  invidious:
-    container_name: invidious
-    depends_on:
-      - postgres
-    environment:
-      INVIDIOUS_CONFIG: |
-        db:
-          dbname: invidious
-          user: postgres
-          password: ${POSTGRES_PASSWORD}
-          host: postgres
-          port: 5432
-        check_tables: true
-        domain: ${INVIDIOUS_HOST}
-    healthcheck:
-      interval: 30s
-      retries: 2
-      test: wget -nv --tries=1 --spider http://127.0.0.1:3000/api/v1/comments/jNQXAC9IVRw || exit 1
-      timeout: 5s
-    image: quay.io/invidious/invidious:latest
-    labels:
-      com.centurylinklabs.watchtower.enable: true
-      readme.description: An open source alternative front-end to YouTube.
-      readme.links.github: https://github.com/iv-org/invidious
-      readme.links.web: https://invidious.io/
-      traefik.enable: true
-      traefik.http.routers.invidious.entrypoints: https
-      traefik.http.routers.invidious.rule: Host(`${INVIDIOUS_HOST}`)
-      traefik.http.routers.invidious.tls.certresolver: resolver
-    restart: unless-stopped
+      
 version: '3.4'
