@@ -20,32 +20,6 @@ Due to the number of services being deployed, I have categorized them and create
 
 | **Name** | **Description** | **Ports** | **Links** |
 |---|---|---|---|
-| [traefik](./docker-compose.networking.yml#L23)  | The Cloud Native Application Proxy. | `443:443`, `80:80` | [GitHub](https://github.com/traefik/traefik) |
-| [tunnel](./docker-compose.networking.yml#L51)  | A Docker container for using WireGuard with PIA. |  | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
-| [unifi-controller](./docker-compose.networking.yml#L78)  | Wireless network management. | `3478:3478/udp`, `10001:10001/udp`, `8080:8080` |  |
-| [wireguard](./docker-compose.networking.yml#L105)  | Fast, Modern, Secure VPN Tunnel. | `${WG_PORT}:51820/udp` | [Website](https://www.wireguard.com/) |
-| [uptime-kuma](./docker-compose.status.yml#L4)  | Self-hosted monitoring tool like "Uptime Robot". |  | [GitHub](https://github.com/louislam/uptime-kuma) |
-| [zabbix-server](./docker-compose.status.yml#L18)  | Open Source Monitoring Solution. | `10051:10051` | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-server-pgsql) |
-| [zabbix-web](./docker-compose.status.yml#L32)  | Zabbix web frontend. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql) |
-| [authelia](./docker-compose.cloud.yml#L4)  | The Single Sign-On Multi-Factor portal for web apps. |  | [Docker Hub](https://hub.docker.com/r/authelia/authelia), [Website](https://www.authelia.com/) |
-| [duplicati](./docker-compose.cloud.yml#L32)  | Open Source Backup Client. |  | [Docker Hub](https://hub.docker.com/r/linuxserver/duplicati), [Website](https://www.duplicati.com/) |
-| [fidi](./docker-compose.cloud.yml#L55)  | Firefly III Data Importer. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/data-importer) |
-| [firefly](./docker-compose.cloud.yml#L81)  | Personal Finance Manager. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/core), [Website](https://www.firefly-iii.org/) |
-| [fsib](./docker-compose.cloud.yml#L118)  | FireflyIII Screenshot Import Bot. |  | [GitHub](https://github.com/ben-pearce/firefly-screenshot-bot) |
-| [syncthing](./docker-compose.cloud.yml#L133)  | Open Source Continuous File Synchronization. | `22000:22000/tcp`, `22000:22000/udp`, `21027:21027/udp` | [GitHub](https://github.com/syncthing/), [Website](https://syncthing.net/) |
-| [vaultwarden](./docker-compose.cloud.yml#L161)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
-| [deemix](./docker-compose.music.yml#L4) <sup>1</sup> | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
-| [navidrome](./docker-compose.music.yml#L25) <sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
-| [homer](./docker-compose.management.yml#L4)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
-| [ofelia](./docker-compose.management.yml#L23)  | Docker job scheduler. |  | [GitHub](https://github.com/mcuadros/ofelia) |
-| [portainer](./docker-compose.management.yml#L37)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
-| [watchtower](./docker-compose.management.yml#L55)  | A process for automating Docker container base image updates. |  | [GitHub](https://github.com/containrrr/watchtower), [Docker Hub](https://hub.docker.com/r/containrrr/watchtower) |
-| [alltube](./docker-compose.tools.yml#L4)  | Web GUI for youtube-dl. |  | [GitHub](https://github.com/Rudloff/alltube) |
-| [cyberchef](./docker-compose.tools.yml#L21)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
-| [huginn](./docker-compose.tools.yml#L36)  | Build agents that perform automated tasks for you online. |  | [GitHub](https://github.com/huginn/huginn) |
-| [invidious](./docker-compose.tools.yml#L51)  | An open source alternative front-end to YouTube. |  | [GitHub](https://github.com/iv-org/invidious), [Website](https://invidious.io/) |
-| [hoppscotch](./docker-compose.dev.yml#L4)  | API Development Ecosystem. |  | [GitHub](https://github.com/hoppscotch/hoppscotch) |
-| [postgres](./docker-compose.dev.yml#L18)  | The world's most advanced open source database. |  | [Docker Hub](https://hub.docker.com/_/postgres) |
 | [bazarr](./docker-compose.media.yml#L4) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [freshrss](./docker-compose.media.yml#L26)  | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
 | [jellyfin](./docker-compose.media.yml#L46) <sup>1</sup> | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
@@ -55,6 +29,33 @@ Due to the number of services being deployed, I have categorized them and create
 | [sonarr](./docker-compose.media.yml#L138) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
 | [transmission](./docker-compose.media.yml#L160) <sup>2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
 | [tvheadend](./docker-compose.media.yml#L183) <sup>1,2</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
+| [hoppscotch](./docker-compose.dev.yml#L7)  | API Development Ecosystem. |  | [GitHub](https://github.com/hoppscotch/hoppscotch) |
+| [pgadmin](./docker-compose.dev.yml#L21)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
+| [traefik](./docker-compose.networking.yml#L32)  | The Cloud Native Application Proxy. | `443:443`, `80:80` | [GitHub](https://github.com/traefik/traefik) |
+| [tunnel](./docker-compose.networking.yml#L73)  | A Docker container for using WireGuard with PIA. |  | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
+| [unifi-controller](./docker-compose.networking.yml#L103)  | Wireless network management. | `3478:3478/udp`, `10001:10001/udp`, `8080:8080` |  |
+| [wireguard](./docker-compose.networking.yml#L130)  | Fast, Modern, Secure VPN Tunnel. | `${WG_PORT}:51820/udp` | [Website](https://www.wireguard.com/) |
+| [uptime-kuma](./docker-compose.status.yml#L4)  | Self-hosted monitoring tool like "Uptime Robot". |  | [GitHub](https://github.com/louislam/uptime-kuma) |
+| [zabbix-web](./docker-compose.status.yml#L18)  | Zabbix web frontend. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql) |
+| [authelia](./docker-compose.cloud.yml#L4)  | The Single Sign-On Multi-Factor portal for web apps. |  | [Docker Hub](https://hub.docker.com/r/authelia/authelia), [Website](https://www.authelia.com/) |
+| [duplicati](./docker-compose.cloud.yml#L44)  | Open Source Backup Client. |  | [Docker Hub](https://hub.docker.com/r/linuxserver/duplicati), [Website](https://www.duplicati.com/) |
+| [fidi](./docker-compose.cloud.yml#L67)  | Firefly III Data Importer. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/data-importer) |
+| [firefly](./docker-compose.cloud.yml#L111)  | Personal Finance Manager. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/core), [Website](https://www.firefly-iii.org/) |
+| [fsib](./docker-compose.cloud.yml#L156)  | FireflyIII Screenshot Import Bot. |  | [GitHub](https://github.com/ben-pearce/firefly-screenshot-bot) |
+| [immich-proxy](./docker-compose.cloud.yml#L175)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
+| [nextcloud](./docker-compose.cloud.yml#L194)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
+| [syncthing](./docker-compose.cloud.yml#L232)  | Open Source Continuous File Synchronization. | `22000:22000/tcp`, `22000:22000/udp`, `21027:21027/udp` | [GitHub](https://github.com/syncthing/), [Website](https://syncthing.net/) |
+| [vaultwarden](./docker-compose.cloud.yml#L260)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
+| [paperless-ngx](./docker-compose.cloud.yml#L285)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
+| [homer](./docker-compose.management.yml#L4)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
+| [ofelia](./docker-compose.management.yml#L23)  | Docker job scheduler. |  | [GitHub](https://github.com/mcuadros/ofelia) |
+| [portainer](./docker-compose.management.yml#L34)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
+| [watchtower](./docker-compose.management.yml#L52)  | A process for automating Docker container base image updates. |  | [GitHub](https://github.com/containrrr/watchtower), [Docker Hub](https://hub.docker.com/r/containrrr/watchtower) |
+| [alltube](./docker-compose.tools.yml#L4)  | Web GUI for youtube-dl. |  | [GitHub](https://github.com/Rudloff/alltube) |
+| [cyberchef](./docker-compose.tools.yml#L21)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
+| [huginn](./docker-compose.tools.yml#L36)  | Build agents that perform automated tasks for you online. |  | [GitHub](https://github.com/huginn/huginn) |
+| [deemix](./docker-compose.music.yml#L4) <sup>1</sup> | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
+| [navidrome](./docker-compose.music.yml#L25) <sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
 
 <sup>1</sup>Assumes mass storage available, mounted at MEDIA_DIR on the host.
 
@@ -109,34 +110,27 @@ The `.env` file stores environment variables to make starting the containers eas
 | `HOPPSCOTCH_HOST` | Hoppscotch hostname. | `hoppscotch.example.com` |
 | `AUTHELIA_HOST` | Authelia hostname. | `login.example.com` |
 | `DUPLICATI_HOST` | Duplicati hostname. | `duplicati.example.com` |
-| `INVIDIOUS_HOST` | Invidious hostname. | `invidious.example.com` |
 | `FRESH_RSS` | FreshRSS hostname. | `freshrss.example.com` |
 | `TRAEFIK_HOST` | Traefik hostname. | `traefik.example.com` |
+| `NEXTCLOUD_HOST` | Nextcloud hostname. | `nextcloud.example.com` |
+| `PGADMIN_HOST` | pgadmin hostname. | `pg.example.com` |
+| `IMMICH_HOST` | immich hostname. | `immich.example.com` |
 | `TVHEADEND_HOST` | TVHeadend | `tvheadend.example.com` |
+| `PAPERLESS_HOST` | Paperless hostname. | `paperless.example.com` |
 | `TZ` | Timezone for all containers. | `Europe/London` |
 | `PUID` | System user ID to run containers as. | `1000` |
 | `GUID` | System group ID to run containers as. | `1000` |
-| `MEDIA_DIR` | Location of media storage on host. | `/storage` |
+| `MEDIA_DIR` | Location of media storage on host. | `/mnt/storage` |
 | `CONFIG_DIR` | Location of config storage on host. | `.config` |
 | `DATA_DIR` | Location of data storage on host. | `.data` |
-| `POSTGRES_PASSWORD` | Postgress database password | `password123!` |
-| `APP_KEY` | Laravel app key, use `echo "base64:$(openssl rand -base64 32)"`. | `base64:...` |
-| `FIREFLY_III_ACCESS_TOKEN` | [Firefly access token](https://docs.firefly-iii.org/csv/install/configure/#client-id-or-personal-access-token). | `PbfRkaXNZMU...` |
-| `SESSION_SECRET` | Unique key, use `openssl rand -base64 32`. | `PbfRkaXNZMU...` |
+| `CLOUD_DIR` | Location of cloud storage on house. | `/mnt/cloud` |
+| `ADMIN_EMAIL` | Administrative email address | `somebody@email.com` |
 | `JELLYFIN_ADDR` | Jellyfin discoverability address. | `10.0.0.1` |
 | `WG_PORT` | Wireguard exposed port | `51820` |
-| `NORDIGEN_ID` | Nordigen [API ID](https://ob.helpscoutdocs.com/article/132-token-handling-via-api). | `12abc34d...` |
-| `NORDIGEN_KEY` | Nordigen [API key](https://ob.helpscoutdocs.com/article/132-token-handling-via-api). | `PbfRkaXNZMU...` |
 | `TELEGRAM_TOKEN` | Telegram bot token. | `1111111111:xxxxx...` |
 | `TELEGRAM_ALLOWED_USERS` | List of Telegram user IDs. | `1111111111` |
-| `PIA_USER` | Private Internet Access user. | `p128` |
-| `PIA_PASSWORD` | Private Internet Access password. |  |
-| `CF_ZONE_API_TOKEN` | CloudFlare Zone Read API token. |  |
-| `CF_DNS_API_TOKEN` | CloudFlare DNS Edit API token. |  |
-| `ACME_EMAIL` | Email for registering ACME certificates. | `renewals@example.com` |
 | `SMTP_HOST` | SMTP mail server host | `mail.example.com` |
 | `SMTP_USER` | SMTP username | `postmaster@example.com` |
-| `SMTP_PASSWORD` | SMTP password | `password123!` |
 
 
 ## Ideas 
@@ -155,7 +149,6 @@ I don't have any kind of project road map or plan for this, since I generally ju
 - [CryptPad](https://cryptpad.fr/) - Collaboration suite end-to-end encrypted and open-source.
 - [SICKRAGE](https://www.sickrage.ca/) - Automatic video library manager for TV shows.
 - [horahora](https://github.com/horahoradev/horahora) - Self-hosted media server which continuously archives videos from other sites using yt-dlp.
-- [paperless-ngx](https://github.com/paperless-ngx/paperless-ngx) - A community-supported supercharged version of paperless: scan, index and archive all your physical documents.
 
 ## Contributions
 
