@@ -1,0 +1,122 @@
+---
+networks:
+  immich:
+    name: immich
+  immich-web:
+    name: immich-web
+secrets:
+  immich_postgres_password:
+    file: ./.secrets/immich_postgres_password
+services:
+  immich-machine-learning:
+    container_name: immich-machine-learning
+    depends_on:
+      - immich-redis
+      - immich-postgres
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOSTNAME=immich-redis
+      - DB_HOSTNAME=immich-postgres
+      - DB_USERNAME=immich
+      - DB_DATABASE_NAME=immich
+      - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
+    image: altran1502/immich-machine-learning:release
+    networks:
+      - immich
+    restart: unless-stopped
+    secrets:
+      - immich_postgres_password
+    volumes:
+      - ${DATA_DIR}/immich/upload:/usr/src/app/upload
+      - ${DATA_DIR}/immich/model-cache:/cache
+  immich-microservices:
+    container_name: immich-microservices
+    depends_on:
+      - immich-redis
+      - immich-postgres
+      - immich-typesense
+    entrypoint: [ "/bin/sh", "./start-microservices.sh" ]
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOSTNAME=immich-redis
+      - DB_HOSTNAME=immich-postgres
+      - DB_USERNAME=immich
+      - DB_DATABASE_NAME=immich
+      - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
+    image: altran1502/immich-server:release
+    networks:
+      - immich
+    restart: unless-stopped
+    secrets:
+      - immich_postgres_password
+    volumes:
+      - ${DATA_DIR}/immich/upload:/usr/src/app/upload
+  immich-postgres:
+    container_name: immich-postgres
+    environment:
+      POSTGRES_DB: immich
+      POSTGRES_PASSWORD_FILE: /run/secrets/immich_postgres_password
+      POSTGRES_USER: immich
+    image: postgres:14.5
+    labels:
+      ofelia.enabled: 'true'
+      ofelia.job-exec.immich-postgres-backup.command: /bin/sh -c 'pg_dump -U immich -d immich > /backups/immich.sql'
+      ofelia.job-exec.immich-postgres-backup.schedule: 0 0 04 * * *
+      ofelia.job-exec.immich-postgres-backup.user: postgres
+    networks:
+      - immich
+    restart: unless-stopped
+    secrets:
+      - immich_postgres_password
+    volumes:
+      - ${DATA_DIR}/postgres/immich:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/backups:/backups
+  immich-redis:
+    container_name: immich-redis
+    image: redis:6.2
+    networks:
+      - immich
+    restart: unless-stopped
+  immich-server:
+    container_name: immich-server
+    depends_on:
+      - immich-redis
+      - immich-postgres
+      - immich-typesense
+    entrypoint: [ "/bin/sh", "./start-server.sh" ]
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOSTNAME=immich-redis
+      - DB_HOSTNAME=immich-postgres
+      - DB_USERNAME=immich
+      - DB_DATABASE_NAME=immich
+      - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
+      - TYPESENSE_API_KEY=typesense
+      - TYPESENSE_URL=ha://W3sKCSJob3N0IjogImltbWljaC10eXBlc2Vuc2UiLAoJInBvcnQiOiAiODEwOCIsCgkicHJvdG9jb2wiOiAiaHR0cCIKfV0=
+    image: altran1502/immich-server:release
+    networks:
+      - immich
+    restart: unless-stopped
+    secrets:
+      - immich_postgres_password
+    volumes:
+      - ${DATA_DIR}/immich/upload:/usr/src/app/upload
+  immich-typesense:
+    container_name: immich-typesense
+    environment:
+      - TYPESENSE_API_KEY=typesense
+      - TYPESENSE_DATA_DIR=/data
+    image: typesense/typesense:0.24.0
+    networks:
+      - immich
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/immich/typesense:/data
+  immich-web:
+    container_name: immich-web
+    entrypoint: [ "/bin/sh", "./entrypoint.sh" ]
+    image: altran1502/immich-web:release
+    networks:
+      - immich
+    restart: unless-stopped
+version: '3.4'

@@ -171,6 +171,25 @@ services:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/fsib:/storage
+  immich-proxy:
+    container_name: immich-proxy
+    depends_on:
+      - immich-server
+    networks:
+      - immich
+      - immich-web
+    image: altran1502/immich-proxy:release
+    labels:
+      readme.description: Photo & Video Backup Solution
+      readme.links.github: https://github.com/immich-app/immich
+      readme.links.web: https://immich.app/
+      traefik.enable: true
+      traefik.http.routers.immich-proxy.entrypoints: https
+      traefik.http.routers.immich-proxy.rule: Host(`${IMMICH_HOST}`)
+      traefik.http.routers.immich-proxy.tls.certresolver: resolver
+      traefik.http.services.immich-proxy.loadbalancer.server.port: 8080
+      traefik.docker.network: immich-web
+    restart: unless-stopped
   syncthing:
     container_name: syncthing
     environment:

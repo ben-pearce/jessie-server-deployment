@@ -83,6 +83,11 @@ services:
         subtitle: "TV Streaming Server"
         url: "https://tvheadend.benpearce.io"
         target: "_blank"
+      - name: "Immich"
+        logo: "assets/dashboard-icons/png/immich.png"
+        subtitle: "Self-Hosted Photo And Video Backup"
+        url: "https://immich.benpearce.io"
+        target: "_blank"
   - name: "Networking"
     icon: "fas fa-satellite"
     items:
