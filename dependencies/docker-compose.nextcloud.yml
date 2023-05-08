@@ -1,0 +1,31 @@
+---
+networks:
+  nextcloud:
+    name: nextcloud
+  nextcloud-web:
+    name: nextcloud-web
+secrets:
+  nextcloud_postgres_password:
+    file: ./.secrets/nextcloud_postgres_password
+services:
+  nextcloud-postgres:
+    container_name: nextcloud-postgres
+    environment:
+      POSTGRES_DB: nextcloud
+      POSTGRES_PASSWORD_FILE: /run/secrets/nextcloud_postgres_password
+      POSTGRES_USER: nextcloud
+    image: postgres:14.5
+    labels:
+      ofelia.enabled: 'true'
+      ofelia.job-exec.nextcloud-postgres-backup.command: /bin/sh -c 'pg_dump -U nextcloud -d nextcloud > /backups/nextcloud.sql'
+      ofelia.job-exec.nextcloud-postgres-backup.schedule: 0 0 04 * * *
+      ofelia.job-exec.nextcloud-postgres-backup.user: postgres
+    networks:
+      - nextcloud
+    restart: unless-stopped
+    secrets:
+      - nextcloud_postgres_password
+    volumes:
+      - ${DATA_DIR}/postgres/nextcloud:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/backups:/backups
+version: '3.4'

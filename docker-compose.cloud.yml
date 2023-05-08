@@ -190,6 +190,44 @@ services:
       traefik.http.services.immich-proxy.loadbalancer.server.port: 8080
       traefik.docker.network: immich-web
     restart: unless-stopped
+  nextcloud:
+    container_name: nextcloud
+    depends_on:
+      - nextcloud-postgres
+    networks:
+      - nextcloud
+      - nextcloud-web
+    secrets:
+      - nextcloud_postgres_password
+      - smtp_password
+    environment:
+      - POSTGRES_DB=nextcloud
+      - POSTGRES_USER=nextcloud
+      - POSTGRES_PASSWORD_FILE=/run/secrets/nextcloud_postgres_password
+      - POSTGRES_HOST=nextcloud-postgres
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_SECURE=ssl
+      - SMTP_PORT=465
+      - SMTP_NAME=${SMTP_USER}
+      - SMTP_PASSWORD_FILE=/run/secrets/smtp_password
+      - MAIL_FROM=${SMTP_USER}
+    image: nextcloud
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Personal Cloud Storage
+      readme.links.docker: https://hub.docker.com/_/nextcloud
+      readme.links.web: https://nextcloud.com/
+      traefik.enable: true
+      traefik.http.routers.nextcloud.entrypoints: https
+      traefik.http.routers.nextcloud.rule: Host(`${NEXTCLOUD_HOST}`)
+      traefik.http.routers.nextcloud.tls.certresolver: resolver
+      traefik.docker.network: nextcloud-web
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/nextcloud/html:/var/www/html
+      - ${DATA_DIR}/nextcloud/apps:/var/www/html/custom_apps
+      - ${DATA_DIR}/nextcloud/data:/var/www/html/data
+      - ${CONFIG_DIR}/nextcloud:/var/www/html/config
   syncthing:
     container_name: syncthing
     environment:
