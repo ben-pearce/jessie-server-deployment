@@ -1,0 +1,39 @@
+---
+networks:
+  authelia:
+    name: authelia
+  authelia-web:
+    name: authelia-web
+secrets:
+  authelia_identity_providers_oidc_hmac_secret:
+    file: ./.secrets/authelia_identity_providers_oidc_hmac_secret
+  authelia_identity_providers_oidc_issuer_private_key:
+    file: ./.secrets/authelia_identity_providers_oidc_issuer_private_key
+  authelia_jwt_secret:
+    file: ./.secrets/authelia_jwt_secret
+  authelia_postgres_password:
+    file: ./.secrets/authelia_postgres_password
+  authelia_storage_encryption_key:
+    file: ./.secrets/authelia_storage_encryption_key
+services:
+  authelia-postgres:
+    container_name: authelia-postgres
+    environment:
+      POSTGRES_DB: authelia
+      POSTGRES_PASSWORD_FILE: /run/secrets/authelia_postgres_password
+      POSTGRES_USER: authelia
+    image: postgres:14.5
+    labels:
+      ofelia.enabled: 'true'
+      ofelia.job-exec.authelia-postgres-backup.command: /bin/sh -c 'pg_dump -U authelia -d authelia > /backups/authelia.sql'
+      ofelia.job-exec.authelia-postgres-backup.schedule: 0 0 04 * * *
+      ofelia.job-exec.authelia-postgres-backup.user: postgres
+    networks:
+      - authelia
+    restart: unless-stopped
+    secrets:
+      - authelia_postgres_password
+    volumes:
+      - ${DATA_DIR}/postgres/authelia:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/backups:/backups
+version: '3.4'

@@ -46,6 +46,16 @@ services:
       traefik.http.routers.api.rule: Host(`${TRAEFIK_HOST}`)
       traefik.http.routers.api.tls.certresolver: resolver
       traefik.http.services.traefik.loadbalancer.server.port: 8080
+    networks:
+      - default
+      - authelia-web
+      - paperless-web
+      - immich-web
+      - firefly-web
+      - zabbix-web
+      - huginn-web
+      - nextcloud-web
+      - pgadmin-web
     ports:
       - '443:443'
       - '80:80'

@@ -34,15 +34,27 @@ services:
     restart: unless-stopped
   huginn:
     container_name: huginn
-    image: huginn/huginn
+    depends_on:
+      - huginn-postgres
+    entrypoint: [ '/bin/sh', '-c', 'export DATABASE_PASSWORD=$(cat /var/run/secrets/huginn_postgres_password) ; /scripts/init' ]
+    environment:
+      DATABASE_ADAPTER: postgresql
+      DATABASE_HOST: huginn-postgres
+      DATABASE_NAME: huginn
+      DATABASE_USERNAME: huginn
+    image: ghcr.io/huginn/huginn-single-process
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Build agents that perform automated tasks for you online.
       readme.links.github: https://github.com/huginn/huginn
+      traefik.docker.network: huginn-web
       traefik.enable: true
       traefik.http.routers.huginn.entrypoints: https
       traefik.http.routers.huginn.rule: Host(`${HUGINN_HOST}`)
       traefik.http.routers.huginn.tls.certresolver: resolver
+    networks:
+      - huginn
+      - huginn-web
     restart: unless-stopped
     secrets:
       - huginn_postgres_password

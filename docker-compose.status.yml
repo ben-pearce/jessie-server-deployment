@@ -14,27 +14,14 @@ services:
     restart: always
     volumes:
       - ${DATA_DIR}/uptime-kuma:/app/data
-  zabbix-server:
-    container_name: zabbix-server
-    environment:
-      - DB_SERVER_HOST=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD
-    image: zabbix/zabbix-server-pgsql:alpine-latest
-    labels:
-      com.centurylinklabs.watchtower.enable: true
-      readme.description: Open Source Monitoring Solution.
-      readme.links.docker: https://hub.docker.com/r/zabbix/zabbix-server-pgsql
-    ports:
-      - '10051:10051'
-    restart: unless-stopped
   zabbix-web:
     container_name: zabbix-web
     depends_on:
+      - zabbix-postgres
       - zabbix-server
     environment:
-      - DB_SERVER_HOST=postgres
-      - POSTGRES_USER=postgres
+      - DB_SERVER_HOST=zabbix-postgres
+      - POSTGRES_USER=zabbix
       - POSTGRES_PASSWORD_FILE=/run/secrets/zabbix_postgres_password
       - PHP_TZ=${TZ}
       - ZBX_SERVER_HOST=zabbix-server
@@ -43,11 +30,15 @@ services:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Zabbix web frontend.
       readme.links.docker: https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql
+      traefik.docker.network: zabbix-web
       traefik.enable: true
       traefik.http.routers.zabbix.entrypoints: https
       traefik.http.routers.zabbix.rule: Host(`${ZABBIX_HOST}`)
       traefik.http.routers.zabbix.tls.certresolver: resolver
       traefik.http.services.zabbix.loadbalancer.server.port: 8080
+    networks:
+      - zabbix
+      - zabbix-web
     restart: unless-stopped
     secrets:
       - zabbix_postgres_password

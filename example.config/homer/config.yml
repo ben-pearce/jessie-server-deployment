@@ -223,3 +223,8 @@ services:
         subtitle: "A Fancy Monitoring Tool"
         url: "https://status.benpearce.io/dashboard"
         target: "_blank"
+      - name: "pgAdmin"
+        logo: "assets/dashboard-icons/png/pgadmin.png"
+        subtitle: "PostgreSQL Administration"
+        url: "https://pgadmin.benpearce.io"
+        target: "_blank"

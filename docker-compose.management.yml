@@ -21,9 +21,6 @@ services:
   ofelia:
     command: daemon --docker
     container_name: ofelia
-    depends_on:
-      - postgres
-      - fidi
     environment:
       - TZ
     image: mcuadros/ofelia:latest

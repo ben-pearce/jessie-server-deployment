@@ -1,0 +1,43 @@
+---
+networks:
+  huginn:
+    name: huginn
+  huginn-web:
+    name: huginn-web
+secrets:
+  huginn_postgres_password:
+    file: ./.secrets/huginn_postgres_password
+services:
+  huginn-postgres:
+    container_name: huginn-postgres
+    environment:
+      POSTGRES_DB: huginn
+      POSTGRES_PASSWORD_FILE: /run/secrets/huginn_postgres_password
+      POSTGRES_USER: huginn
+    image: postgres:14.5
+    labels:
+      ofelia.enabled: 'true'
+      ofelia.job-exec.huginn-postgres-backup.command: /bin/sh -c 'pg_dump -U huginn -d huginn > /backups/huginn.sql'
+      ofelia.job-exec.huginn-postgres-backup.schedule: 0 0 04 * * *
+      ofelia.job-exec.huginn-postgres-backup.user: postgres
+    networks:
+      - huginn
+    restart: unless-stopped
+    secrets:
+      - huginn_postgres_password
+    volumes:
+      - ${DATA_DIR}/postgres/huginn:/var/lib/postgresql/data
+  huginn-threaded:
+    container_name: huginn-threaded
+    entrypoint: [ '/bin/sh', '-c', 'export DATABASE_PASSWORD=$(cat /var/run/secrets/huginn_postgres_password) ; /scripts/init bin/threaded.rb' ]
+    environment:
+      DATABASE_ADAPTER: postgresql
+      DATABASE_HOST: huginn-postgres
+      DATABASE_NAME: huginn
+      DATABASE_USERNAME: huginn
+    image: ghcr.io/huginn/huginn-single-process
+    networks:
+      - huginn
+    secrets:
+      - huginn_postgres_password
+version: '3.4'

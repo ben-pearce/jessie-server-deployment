@@ -1,0 +1,39 @@
+---
+networks:
+  firefly:
+    name: firefly
+  firefly-web:
+    name: firefly-web
+secrets:
+  firefly_access_token:
+    file: ./.secrets/firefly_access_token
+  firefly_app_key:
+    file: ./.secrets/firefly_app_key
+  firefly_postgres_password:
+    file: ./.secrets/firefly_postgres_password
+  nordigen_id:
+    file: ./.secrets/nordigen_id
+  nordigen_key:
+    file: ./.secrets/nordigen_key
+services:
+  firefly-postgres:
+    container_name: firefly-postgres
+    environment:
+      POSTGRES_DB: firefly
+      POSTGRES_PASSWORD_FILE: /run/secrets/firefly_postgres_password
+      POSTGRES_USER: firefly
+    image: postgres:14.5
+    labels:
+      ofelia.enabled: 'true'
+      ofelia.job-exec.firefly-postgres-backup.command: /bin/sh -c 'pg_dump -U firefly -d firefly > /backups/firefly.sql'
+      ofelia.job-exec.firefly-postgres-backup.schedule: 0 0 04 * * *
+      ofelia.job-exec.firefly-postgres-backup.user: postgres
+    networks:
+      - firefly
+    restart: unless-stopped
+    secrets:
+      - firefly_postgres_password
+    volumes:
+      - ${DATA_DIR}/postgres/firefly:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/backups:/backups
+version: '3.4'
