@@ -78,7 +78,7 @@ services:
       - MAIL_HOST=${SMTP_HOST}
       - MAIL_PORT=465
       - MAIL_USERNAME=${SMTP_USER}
-      - MAIL_PASSWORD=/run/secrets/smtp_password
+      - MAIL_PASSWORD_FILE=/run/secrets/smtp_password
       - MAIL_ENCRYPTION=ssl
       - MAIL_FROM_ADDRESS=${SMTP_USER}
     image: fireflyiii/data-importer:develop
