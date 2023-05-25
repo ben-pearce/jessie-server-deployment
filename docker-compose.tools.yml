@@ -36,12 +36,26 @@ services:
     container_name: huginn
     depends_on:
       - huginn-postgres
-    entrypoint: [ '/bin/sh', '-c', 'export DATABASE_PASSWORD=$(cat /var/run/secrets/huginn_postgres_password) ; /scripts/init' ]
+    entrypoint: 
+      - /bin/sh 
+      - -c 
+      - >
+        export DATABASE_PASSWORD=$(cat /var/run/secrets/huginn_postgres_password) ; 
+        export SMTP_PASSWORD=$(cat /var/run/secrets/smtp_password) ; 
+        /scripts/init
     environment:
       DATABASE_ADAPTER: postgresql
       DATABASE_HOST: huginn-postgres
       DATABASE_NAME: huginn
       DATABASE_USERNAME: huginn
+      SMTP_DOMAIN: ${HOST}
+      SMTP_USER_NAME: ${SMTP_USER}
+      EMAIL_FROM_ADDRESS: ${SMTP_USER}
+      SMTP_SERVER: ${SMTP_HOST}
+      SMTP_PORT: 465
+      SMTP_AUTHENTICATION: plain
+      SMTP_ENABLE_STARTTLS_AUTO: false
+      SMTP_SSL: true
     image: ghcr.io/huginn/huginn-single-process
     labels:
       com.centurylinklabs.watchtower.enable: true
@@ -58,5 +72,6 @@ services:
     restart: unless-stopped
     secrets:
       - huginn_postgres_password
+      - smtp_password
 
 version: '3.4'
