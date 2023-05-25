@@ -199,5 +199,6 @@ services:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/tvheadend:/config
+      - ${CONFIG_DIR}/tvheadend/tv_grab_url_gz:/usr/bin/tv_grab_url_gz
       - ${MEDIA_DIR}/recordings:/recordings
 version: '3.4'
