@@ -178,7 +178,7 @@ services:
     networks:
       - immich
       - immich-web
-    image: altran1502/immich-proxy:release
+    image: ghcr.io/immich-app/immich-proxy:release
     labels:
       readme.description: Photo & Video Backup Solution
       readme.links.github: https://github.com/immich-app/immich

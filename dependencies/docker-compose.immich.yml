@@ -20,7 +20,7 @@ services:
       - DB_USERNAME=immich
       - DB_DATABASE_NAME=immich
       - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
-    image: altran1502/immich-machine-learning:release
+    image: ghcr.io/immich-app/immich-machine-learning:release
     networks:
       - immich
     restart: unless-stopped
@@ -43,7 +43,7 @@ services:
       - DB_USERNAME=immich
       - DB_DATABASE_NAME=immich
       - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
-    image: altran1502/immich-server:release
+    image: ghcr.io/immich-app/immich-server:release
     networks:
       - immich
     restart: unless-stopped
@@ -93,7 +93,7 @@ services:
       - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
       - TYPESENSE_API_KEY=typesense
       - TYPESENSE_URL=ha://W3sKCSJob3N0IjogImltbWljaC10eXBlc2Vuc2UiLAoJInBvcnQiOiAiODEwOCIsCgkicHJvdG9jb2wiOiAiaHR0cCIKfV0=
-    image: altran1502/immich-server:release
+    image: ghcr.io/immich-app/immich-server:release
     networks:
       - immich
     restart: unless-stopped
@@ -115,7 +115,7 @@ services:
   immich-web:
     container_name: immich-web
     entrypoint: [ "/bin/sh", "./entrypoint.sh" ]
-    image: altran1502/immich-web:release
+    image: ghcr.io/immich-app/immich-web:release
     networks:
       - immich
     restart: unless-stopped
