@@ -21,6 +21,8 @@ services:
       - DB_DATABASE_NAME=immich
       - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
     image: ghcr.io/immich-app/immich-machine-learning:release
+    labels:
+      com.centurylinklabs.watchtower.enable: true
     networks:
       - immich
     restart: unless-stopped
@@ -47,6 +49,8 @@ services:
       - TYPESENSE_API_KEY=typesense
       - TYPESENSE_URL=ha://W3sKCSJob3N0IjogImltbWljaC10eXBlc2Vuc2UiLAoJInBvcnQiOiAiODEwOCIsCgkicHJvdG9jb2wiOiAiaHR0cCIKfV0=
     image: ghcr.io/immich-app/immich-server:release
+    labels:
+      com.centurylinklabs.watchtower.enable: true
     networks:
       - immich
     restart: unless-stopped
@@ -98,6 +102,8 @@ services:
       - TYPESENSE_API_KEY=typesense
       - TYPESENSE_URL=ha://W3sKCSJob3N0IjogImltbWljaC10eXBlc2Vuc2UiLAoJInBvcnQiOiAiODEwOCIsCgkicHJvdG9jb2wiOiAiaHR0cCIKfV0=
     image: ghcr.io/immich-app/immich-server:release
+    labels:
+      com.centurylinklabs.watchtower.enable: true
     networks:
       - immich
     restart: unless-stopped
@@ -111,6 +117,8 @@ services:
       - TYPESENSE_API_KEY=typesense
       - TYPESENSE_DATA_DIR=/data
     image: typesense/typesense:0.24.0
+    labels:
+      com.centurylinklabs.watchtower.enable: true
     networks:
       - immich
     restart: unless-stopped
@@ -120,6 +128,8 @@ services:
     container_name: immich-web
     entrypoint: [ "/bin/sh", "./entrypoint.sh" ]
     image: ghcr.io/immich-app/immich-web:release
+    labels:
+      com.centurylinklabs.watchtower.enable: true
     networks:
       - immich
     restart: unless-stopped

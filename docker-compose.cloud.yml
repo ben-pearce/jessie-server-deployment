@@ -188,6 +188,7 @@ services:
       traefik.http.routers.immich-proxy.tls.certresolver: resolver
       traefik.http.services.immich-proxy.loadbalancer.server.port: 8080
       traefik.docker.network: immich-web
+      com.centurylinklabs.watchtower.enable: true
     restart: unless-stopped
   nextcloud:
     container_name: nextcloud
