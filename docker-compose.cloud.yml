@@ -39,7 +39,6 @@ services:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/authelia:/config
-      - ./.secrets/:/.secrets
   duplicati:
     container_name: duplicati
     environment:
