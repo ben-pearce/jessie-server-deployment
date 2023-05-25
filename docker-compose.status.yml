@@ -14,6 +14,7 @@ services:
     restart: always
     volumes:
       - ${DATA_DIR}/uptime-kuma:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock:ro
   zabbix-web:
     container_name: zabbix-web
     depends_on:
