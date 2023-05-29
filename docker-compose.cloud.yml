@@ -31,7 +31,6 @@ services:
       traefik.http.middlewares.authelia.forwardauth.trustforwardheader: true
       traefik.http.routers.authelia.entrypoints: https
       traefik.http.routers.authelia.rule: Host(`${AUTHELIA_HOST}`)
-      traefik.http.routers.authelia.tls.certresolver: resolver
       traefik.http.services.authelia.loadbalancer.server.port: 9091
       traefik.docker.network: authelia-web
     restart: unless-stopped
@@ -55,7 +54,6 @@ services:
       traefik.http.routers.duplicati.entrypoints: https
       traefik.http.routers.duplicati.middlewares: authelia
       traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
-      traefik.http.routers.duplicati.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/duplicati:/config
@@ -101,7 +99,6 @@ services:
       traefik.http.routers.fidi.entrypoints: https
       traefik.http.routers.fidi.middlewares: authelia
       traefik.http.routers.fidi.rule: Host(`${FIREFLY_DATA_HOST}`)
-      traefik.http.routers.fidi.tls.certresolver: resolver
       traefik.docker.network: firefly-web
     restart: unless-stopped
     volumes:
@@ -146,7 +143,6 @@ services:
       traefik.http.routers.firefly.entrypoints: https
       traefik.http.routers.firefly.middlewares: authelia
       traefik.http.routers.firefly.rule: Host(`${FIREFLY_HOST}`)
-      traefik.http.routers.firefly.tls.certresolver: resolver
       traefik.docker.network: firefly-web
     restart: unless-stopped
     volumes:
@@ -185,7 +181,6 @@ services:
       traefik.enable: true
       traefik.http.routers.immich-proxy.entrypoints: https
       traefik.http.routers.immich-proxy.rule: Host(`${IMMICH_HOST}`)
-      traefik.http.routers.immich-proxy.tls.certresolver: resolver
       traefik.http.services.immich-proxy.loadbalancer.server.port: 8080
       traefik.docker.network: immich-web
       com.centurylinklabs.watchtower.enable: true
@@ -220,7 +215,6 @@ services:
       traefik.enable: true
       traefik.http.routers.nextcloud.entrypoints: https
       traefik.http.routers.nextcloud.rule: Host(`${NEXTCLOUD_HOST}`)
-      traefik.http.routers.nextcloud.tls.certresolver: resolver
       traefik.docker.network: nextcloud-web
     restart: unless-stopped
     volumes:
@@ -277,7 +271,6 @@ services:
       traefik.enable: true
       traefik.http.routers.vaultwarden.entrypoints: https
       traefik.http.routers.vaultwarden.rule: Host(`${BITWARDEN_HOST}`)
-      traefik.http.routers.vaultwarden.tls.certresolver: resolver
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/vaultwarden:/data
@@ -300,7 +293,6 @@ services:
       traefik.http.routers.paperless-ngx.entrypoints: https
       traefik.http.routers.paperless-ngx.middlewares: authelia
       traefik.http.routers.paperless-ngx.rule: Host(`${PAPERLESS_HOST}`)
-      traefik.http.routers.paperless-ngx.tls.certresolver: resolver
       traefik.http.services.paperless-ngx.loadbalancer.server.port: 8000
       traefik.docker.network: paperless-web
     healthcheck:

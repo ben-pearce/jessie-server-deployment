@@ -74,7 +74,6 @@ services:
       traefik.enable: true
       traefik.http.routers.huginn.entrypoints: https
       traefik.http.routers.huginn.rule: Host(`${HUGINN_HOST}`)
-      traefik.http.routers.huginn.tls.certresolver: resolver
     networks:
       - huginn
       - huginn-web

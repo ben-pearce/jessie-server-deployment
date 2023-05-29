@@ -26,7 +26,7 @@ services:
       - '--entrypoints.http.http.redirections.entrypoint.scheme=https'
       - '--entrypoints.https.address=:443'
       - '--entrypoints.https.http.tls=true'
-      - '--entrypoints.https.http.tls.certResolver=letsencrypt'
+      - '--entrypoints.https.http.tls.certResolver=resolver'
       - '--entrypoints.https.http.tls.domains[0].main=${HOST}'
       - '--entrypoints.https.http.tls.domains[0].sans=*.${HOST}'
       - '--certificatesresolvers.resolver.acme.dnschallenge=true'
@@ -39,8 +39,8 @@ services:
       - 1.1.1.1
       - 1.0.0.1
     environment:
-      - CF_ZONE_API_TOKEN=/run/secrets/cloudflare_dns_api_token
-      - CF_DNS_API_TOKEN=/run/secrets/cloudflare_zone_api_token
+      - CF_ZONE_API_TOKEN_FILE=/run/secrets/cloudflare_zone_api_token
+      - CF_DNS_API_TOKEN_FILE=/run/secrets/cloudflare_dns_api_token
     hostname: traefik
     image: traefik:v2.9
     labels:
@@ -49,7 +49,6 @@ services:
       traefik.enable: true
       traefik.http.routers.api.entrypoints: https
       traefik.http.routers.api.rule: Host(`${TRAEFIK_HOST}`)
-      traefik.http.routers.api.tls.certresolver: resolver
       traefik.http.services.traefik.loadbalancer.server.port: 8080
     networks:
       alltube-web:
@@ -137,7 +136,6 @@ services:
       traefik.enable: true
       traefik.http.routers.unifi.entrypoints: https
       traefik.http.routers.unifi.rule: Host(`${UNIFI_HOST}`)
-      traefik.http.routers.unifi.tls.certresolver: resolver
       traefik.http.services.unifi-controller.loadbalancer.server.port: 8443
       traefik.http.services.unifi-controller.loadbalancer.server.scheme: https
     ports:
@@ -166,7 +164,6 @@ services:
       traefik.http.routers.wireguard.entrypoints: https
       traefik.http.routers.wireguard.middlewares: authelia
       traefik.http.routers.wireguard.rule: Host(`${WIREGUARD_HOST}`)
-      traefik.http.routers.wireguard.tls.certresolver: resolver
       traefik.http.services.wireguard.loadbalancer.server.port: 51821
     ports:
       - ${WG_PORT}:51820/udp

@@ -218,7 +218,6 @@ services:
       traefik.http.routers.tvheadend.entrypoints: https
       traefik.http.routers.tvheadend.middlewares: authelia
       traefik.http.routers.tvheadend.rule: Host(`${TVHEADEND_HOST}`)
-      traefik.http.routers.tvheadend.tls.certresolver: resolver
       traefik.http.services.tvheadend.loadbalancer.server.port: 9981
     network_mode: service:tunnel
     restart: unless-stopped

@@ -40,7 +40,6 @@ services:
       traefik.enable: true
       traefik.http.routers.zabbix.entrypoints: https
       traefik.http.routers.zabbix.rule: Host(`${ZABBIX_HOST}`)
-      traefik.http.routers.zabbix.tls.certresolver: resolver
       traefik.http.services.zabbix.loadbalancer.server.port: 8080
     networks:
       - zabbix
