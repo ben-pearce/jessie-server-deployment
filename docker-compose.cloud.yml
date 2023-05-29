@@ -1,4 +1,12 @@
 ---
+networks:
+  duplicati-web:
+    name: duplicati-web
+  vaultwarden-web:
+    name: vaultwarden-web
+secrets:
+  smtp_password:
+    file: ./.secrets/smtp_password
 services:
   authelia:
     container_name: authelia
@@ -10,21 +18,12 @@ services:
       - AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE=/run/secrets/authelia_postgres_password
       - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/smtp_password
     image: authelia/authelia
-    secrets:
-      - authelia_identity_providers_oidc_hmac_secret
-      - authelia_identity_providers_oidc_issuer_private_key
-      - authelia_jwt_secret
-      - authelia_storage_encryption_key
-      - authelia_postgres_password
-      - smtp_password
-    networks:
-      authelia:
-      authelia-web:
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: The Single Sign-On Multi-Factor portal for web apps.
       readme.links.docker: https://hub.docker.com/r/authelia/authelia
       readme.links.web: https://www.authelia.com/
+      traefik.docker.network: authelia-web
       traefik.enable: true
       traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://${AUTHELIA_HOST}/
       traefik.http.middlewares.authelia.forwardauth.authresponseheaders: Remote-User, Remote-Groups, Remote-Email
@@ -32,8 +31,17 @@ services:
       traefik.http.routers.authelia.entrypoints: https
       traefik.http.routers.authelia.rule: Host(`${AUTHELIA_HOST}`)
       traefik.http.services.authelia.loadbalancer.server.port: 9091
-      traefik.docker.network: authelia-web
+    networks:
+      authelia:
+      authelia-web:
     restart: unless-stopped
+    secrets:
+      - authelia_identity_providers_oidc_hmac_secret
+      - authelia_identity_providers_oidc_issuer_private_key
+      - authelia_jwt_secret
+      - authelia_storage_encryption_key
+      - authelia_postgres_password
+      - smtp_password
     volumes:
       - ${CONFIG_DIR}/authelia:/config
   duplicati:
@@ -43,8 +51,6 @@ services:
       - PGID=0
       - TZ
     image: lscr.io/linuxserver/duplicati:latest
-    networks:
-      duplicati-web:
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Open Source Backup Client.
@@ -54,6 +60,8 @@ services:
       traefik.http.routers.duplicati.entrypoints: https
       traefik.http.routers.duplicati.middlewares: authelia
       traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
+    networks:
+      duplicati-web:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/duplicati:/config
@@ -80,14 +88,6 @@ services:
       - MAIL_ENCRYPTION=ssl
       - MAIL_FROM_ADDRESS=${SMTP_USER}
     image: fireflyiii/data-importer:develop
-    networks:
-      firefly:
-      firefly-web:
-    secrets:
-      - firefly_access_token
-      - nordigen_id
-      - nordigen_key
-      - smtp_password
     labels:
       com.centurylinklabs.watchtower.enable: true
       ofelia.enabled: 'true'
@@ -95,25 +95,26 @@ services:
       ofelia.job-exec.finance-import.schedule: 0 0 03 * * *
       readme.description: Firefly III Data Importer.
       readme.links.docker: https://hub.docker.com/r/fireflyiii/data-importer
+      traefik.docker.network: firefly-web
       traefik.enable: true
       traefik.http.routers.fidi.entrypoints: https
       traefik.http.routers.fidi.middlewares: authelia
       traefik.http.routers.fidi.rule: Host(`${FIREFLY_DATA_HOST}`)
-      traefik.docker.network: firefly-web
+    networks:
+      firefly:
+      firefly-web:
     restart: unless-stopped
+    secrets:
+      - firefly_access_token
+      - nordigen_id
+      - nordigen_key
+      - smtp_password
     volumes:
       - ${CONFIG_DIR}/fidi:/import
   firefly:
     container_name: firefly
     depends_on:
       - firefly-postgres
-    networks:
-      firefly:
-      firefly-web:
-    secrets:
-      - firefly_postgres_password
-      - firefly_app_key
-      - smtp_password
     environment:
       - APP_KEY_FILE=/run/secrets/firefly_app_key
       - APP_URL=https://${FIREFLY_HOST}/
@@ -139,62 +140,63 @@ services:
       readme.description: Personal Finance Manager.
       readme.links.docker: https://hub.docker.com/r/fireflyiii/core
       readme.links.web: https://www.firefly-iii.org/
+      traefik.docker.network: firefly-web
       traefik.enable: true
       traefik.http.routers.firefly.entrypoints: https
       traefik.http.routers.firefly.middlewares: authelia
       traefik.http.routers.firefly.rule: Host(`${FIREFLY_HOST}`)
-      traefik.docker.network: firefly-web
+    networks:
+      firefly:
+      firefly-web:
     restart: unless-stopped
+    secrets:
+      - firefly_postgres_password
+      - firefly_app_key
+      - smtp_password
     volumes:
       - ${DATA_DIR}/firefly/upload:/var/www/html/storage/upload
   fsib:
     container_name: fsib
-    secrets:
-      - firefly_access_token
     environment:
       - FIREFLY_BASE_URL=http://firefly:8080
       - FIREFLY_TOKEN_FILE=/run/secrets/firefly_access_token
       - TELEGRAM_TOKEN
       - TELEGRAM_ALLOWED_USERS
     image: ghcr.io/ben-pearce/firefly-screenshot-bot:main
-    networks:
-      firefly:
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: FireflyIII Screenshot Import Bot.
       readme.links.github: https://github.com/ben-pearce/firefly-screenshot-bot
+    networks:
+      firefly:
     restart: unless-stopped
+    secrets:
+      - firefly_access_token
     volumes:
       - ${CONFIG_DIR}/fsib:/storage
   immich-proxy:
     container_name: immich-proxy
     depends_on:
       - immich-server
-    networks:
-      immich:
-      immich-web:
     image: ghcr.io/immich-app/immich-proxy:release
     labels:
+      com.centurylinklabs.watchtower.enable: true
       readme.description: Photo & Video Backup Solution
       readme.links.github: https://github.com/immich-app/immich
       readme.links.web: https://immich.app/
+      traefik.docker.network: immich-web
       traefik.enable: true
       traefik.http.routers.immich-proxy.entrypoints: https
       traefik.http.routers.immich-proxy.rule: Host(`${IMMICH_HOST}`)
       traefik.http.services.immich-proxy.loadbalancer.server.port: 8080
-      traefik.docker.network: immich-web
-      com.centurylinklabs.watchtower.enable: true
+    networks:
+      immich:
+      immich-web:
     restart: unless-stopped
   nextcloud:
     container_name: nextcloud
     depends_on:
       - nextcloud-postgres
-    networks:
-      nextcloud:
-      nextcloud-web:
-    secrets:
-      - nextcloud_postgres_password
-      - smtp_password
     environment:
       - POSTGRES_DB=nextcloud
       - POSTGRES_USER=nextcloud
@@ -212,16 +214,58 @@ services:
       readme.description: Personal Cloud Storage
       readme.links.docker: https://hub.docker.com/_/nextcloud
       readme.links.web: https://nextcloud.com/
+      traefik.docker.network: nextcloud-web
       traefik.enable: true
       traefik.http.routers.nextcloud.entrypoints: https
       traefik.http.routers.nextcloud.rule: Host(`${NEXTCLOUD_HOST}`)
-      traefik.docker.network: nextcloud-web
+    networks:
+      nextcloud:
+      nextcloud-web:
     restart: unless-stopped
+    secrets:
+      - nextcloud_postgres_password
+      - smtp_password
     volumes:
       - ${DATA_DIR}/nextcloud/html:/var/www/html
       - ${DATA_DIR}/nextcloud/apps:/var/www/html/custom_apps
       - ${DATA_DIR}/nextcloud/data:/var/www/html/data
       - ${CONFIG_DIR}/nextcloud:/var/www/html/config
+  paperless-ngx:
+    container_name: paperless-ngx
+    depends_on:
+      - paperless-postgres
+      - paperless-redis
+    environment:
+      PAPERLESS_DBHOST: paperless-postgres
+      PAPERLESS_DBPASS_FILE: /run/secrets/paperless_postgres_password
+      PAPERLESS_REDIS: redis://paperless-redis:6379
+      PAPERLESS_URL: https://${PAPERLESS_HOST}
+    healthcheck:
+      interval: 30s
+      retries: 5
+      test: ["CMD", "curl", "-fs", "-S", "--max-time", "2", "http://localhost:8000"]
+      timeout: 10s
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    labels:
+      readme.description: Document Management System.
+      readme.links.github: https://github.com/paperless-ngx/paperless-ngx
+      traefik.docker.network: paperless-web
+      traefik.enable: true
+      traefik.http.routers.paperless-ngx.entrypoints: https
+      traefik.http.routers.paperless-ngx.middlewares: authelia
+      traefik.http.routers.paperless-ngx.rule: Host(`${PAPERLESS_HOST}`)
+      traefik.http.services.paperless-ngx.loadbalancer.server.port: 8000
+    networks:
+      paperless:
+      paperless-web:
+    restart: unless-stopped
+    secrets:
+      - paperless_postgres_password
+    volumes:
+      - ${DATA_DIR}/paperless/data:/usr/src/paperless/data
+      - ${DATA_DIR}/paperless/media:/usr/src/paperless/media
+      - ${DATA_DIR}/paperless/export:/usr/src/paperless/export
+      - ${DATA_DIR}/paperless/consume:/usr/src/paperless/consume
   vaultwarden:
     container_name: vaultwarden
     environment:
@@ -232,64 +276,18 @@ services:
       - SMTP_USERNAME=${SMTP_USER}
       - SMTP_PASSWORD_FILE=/run/secrets/smtp_password
       - DOMAIN=https://${BITWARDEN_HOST}
-    secrets:
-      - smtp_password
     image: vaultwarden/server:latest
-    networks:
-      vaultwarden-web:
     labels:
       readme.description: Unofficial Bitwarden compatible server written in Rust.
       readme.links.github: https://github.com/dani-garcia/vaultwarden
       traefik.enable: true
       traefik.http.routers.vaultwarden.entrypoints: https
       traefik.http.routers.vaultwarden.rule: Host(`${BITWARDEN_HOST}`)
+    networks:
+      vaultwarden-web:
     restart: unless-stopped
+    secrets:
+      - smtp_password
     volumes:
       - ${DATA_DIR}/vaultwarden:/data
-  paperless-ngx:
-    container_name: paperless-ngx
-    image: ghcr.io/paperless-ngx/paperless-ngx:latest
-    restart: unless-stopped
-    networks:
-      paperless:
-      paperless-web:
-    depends_on:
-      - paperless-postgres
-      - paperless-redis
-    secrets:
-      - paperless_postgres_password
-    labels:
-      readme.description: Document Management System.
-      readme.links.github: https://github.com/paperless-ngx/paperless-ngx
-      traefik.enable: true
-      traefik.http.routers.paperless-ngx.entrypoints: https
-      traefik.http.routers.paperless-ngx.middlewares: authelia
-      traefik.http.routers.paperless-ngx.rule: Host(`${PAPERLESS_HOST}`)
-      traefik.http.services.paperless-ngx.loadbalancer.server.port: 8000
-      traefik.docker.network: paperless-web
-    healthcheck:
-      test: ["CMD", "curl", "-fs", "-S", "--max-time", "2", "http://localhost:8000"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-    volumes:
-      - ${DATA_DIR}/paperless/data:/usr/src/paperless/data
-      - ${DATA_DIR}/paperless/media:/usr/src/paperless/media
-      - ${DATA_DIR}/paperless/export:/usr/src/paperless/export
-      - ${DATA_DIR}/paperless/consume:/usr/src/paperless/consume
-    environment:
-      PAPERLESS_URL: https://${PAPERLESS_HOST}
-      PAPERLESS_REDIS: redis://paperless-redis:6379
-      PAPERLESS_DBHOST: paperless-postgres
-      PAPERLESS_DBPASS_FILE: /run/secrets/paperless_postgres_password
 version: '3.4'
-
-networks:
-  duplicati-web:
-    name: duplicati-web
-  vaultwarden-web:
-    name: vaultwarden-web
-
-secrets:
-  smtp_password:
-    file: ./.secrets/smtp_password
