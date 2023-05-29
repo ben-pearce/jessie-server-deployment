@@ -43,6 +43,7 @@ services:
       traefik.docker.network: navidrome-web
       traefik.enable: true
       traefik.http.routers.navidrome.entrypoints: https
+      traefik.http.routers.navidrome.rule: Host(`${NAVIDROME_HOST}`)
     networks:
       navidrome-web:
     restart: unless-stopped

@@ -14,10 +14,8 @@ services:
       readme.links.github: https://github.com/Rudloff/alltube
       traefik.docker.network: alltube-web
       traefik.enable: true
-      traefik.http.middlewares.alltubeHeaders.headers.customrequestheaders.X-Forwarded-Path: /alltube
-      traefik.http.middlewares.alltubeStripper.stripprefix.prefixes: /alltube
       traefik.http.routers.alltube.entrypoints: https
-      traefik.http.routers.alltube.middlewares: alltubeHeaders, alltubeStripper
+      traefik.http.routers.alltube.rule: Host(`${ALLTUBE_HOST}`)
     networks:
       alltube-web:
     restart: unless-stopped
@@ -32,11 +30,8 @@ services:
       readme.links.github: https://github.com/gchq/CyberChef
       traefik.docker.network: cyberchef-web
       traefik.enable: true
-      traefik.http.middlewares.cyberchefStripper.stripprefix.prefixes: /cyberchef
       traefik.http.routers.cyberchef.entrypoints: https
-      traefik.http.routers.cyberchef.middlewares: cyberchefStripper
-      traefik.http.routers.cyberchef.rule: PathPrefix(`/cyberchef{regex:$$|/.*}`)
-      traefik.http.routers.cyberchef.tls.certresolver: resolver
+      traefik.http.routers.cyberchef.rule: Host(`${CYBERCHEF_HOST}`)
       traefik.http.services.cyberchef.loadbalancer.server.port: 8000
     networks:
       cyberchef-web:

@@ -99,8 +99,7 @@ services:
       traefik.enable: true
       traefik.http.routers.prowlarr.entrypoints: https
       traefik.http.routers.prowlarr.middlewares: authelia
-      traefik.http.routers.prowlarr.rule: PathPrefix(`/prowlarr{regex:$$|/.*}`)
-      traefik.http.routers.prowlarr.tls.certresolver: resolver
+      traefik.http.routers.prowlarr.rule: Host(`${PROWLARR_HOST}`)
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
     network_mode: service:tunnel
     restart: unless-stopped
@@ -121,8 +120,10 @@ services:
       traefik.enable: true
       traefik.http.routers.radarr.entrypoints: https
       traefik.http.routers.radarr.middlewares: authelia
-      traefik.http.routers.radarr.rule: PathPrefix(`/radarr{regex:$$|/.*}`)
-      traefik.http.routers.radarr.tls.certresolver: resolver
+      traefik.http.routers.radarr.rule: Host(`${RADARR_HOST}`)
+    networks:
+      arr-web:
+      tunnel:
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/radarr:/config
@@ -146,8 +147,7 @@ services:
       traefik.enable: true
       traefik.http.routers.sabnzbd.entrypoints: https
       traefik.http.routers.sabnzbd.middlewares: authelia
-      traefik.http.routers.sabnzbd.rule: PathPrefix(`/sabnzbd{regex:$$|/.*}`)
-      traefik.http.routers.sabnzbd.tls.certresolver: resolver
+      traefik.http.routers.sabnzbd.rule: Host(`${SABNZBD_HOST}`)
       traefik.http.services.sabnzbd.loadbalancer.server.port: 8080
     network_mode: service:tunnel
     restart: unless-stopped
@@ -170,6 +170,7 @@ services:
       traefik.enable: true
       traefik.http.routers.sonarr.entrypoints: https
       traefik.http.routers.sonarr.middlewares: authelia
+      traefik.http.routers.sonarr.rule: Host(`${SONARR_HOST}`)
     networks:
       arr-web:
       tunnel:
@@ -194,8 +195,7 @@ services:
       traefik.enable: true
       traefik.http.routers.transmission.entrypoints: https
       traefik.http.routers.transmission.middlewares: authelia
-      traefik.http.routers.transmission.rule: PathPrefix(`/transmission{regex:$$|/.*}`)
-      traefik.http.routers.transmission.tls.certresolver: resolver
+      traefik.http.routers.transmission.rule: Host(`${TRANSMISSION_HOST}`)
       traefik.http.services.transmission.loadbalancer.server.port: 9091
     network_mode: service:tunnel
     restart: unless-stopped
