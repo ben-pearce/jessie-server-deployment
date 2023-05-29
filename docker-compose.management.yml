@@ -1,4 +1,9 @@
 ---
+networks:
+  homer-web:
+    name: homer-web
+  portainer-web:
+    name: portainer-web
 services:
   homer:
     container_name: homer
@@ -10,11 +15,13 @@ services:
       com.centurylinklabs.watchtower.enable: true
       readme.description: A very simple static homepage for your server.
       readme.links.github: https://github.com/bastienwirtz/homer
+      traefik.docker.network: homer-web
       traefik.enable: true
       traefik.http.routers.homer.entrypoints: https
       traefik.http.routers.homer.middlewares: authelia
       traefik.http.routers.homer.rule: Host(`${HOST}`)
-      traefik.http.routers.homer.tls.certresolver: resolver
+    networks:
+      homer-web:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/homer:/www/assets
@@ -32,18 +39,18 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
   portainer:
     container_name: portainer
-    extra_hosts:
-      - ${AUTHELIA_HOST}:172.17.0.1
     image: portainer/portainer-ce
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Universal management GUI for Docker.
       readme.links.github: https://github.com/portainer/portainer
+      traefik.docker.network: portainer-web
       traefik.enable: true
       traefik.http.routers.portainer.entrypoints: https
       traefik.http.routers.portainer.rule: Host(`${PORTAINER_HOST}`)
-      traefik.http.routers.portainer.tls.certresolver: resolver
       traefik.http.services.portainer.loadbalancer.server.port: 9000
+    networks:
+      portainer-web:
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

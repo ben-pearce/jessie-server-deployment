@@ -9,8 +9,6 @@ services:
       - AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE=/run/secrets/authelia_storage_encryption_key
       - AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE=/run/secrets/authelia_postgres_password
       - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/smtp_password
-    extra_hosts:
-      - ${HOST}:172.17.0.1
     image: authelia/authelia
     secrets:
       - authelia_identity_providers_oidc_hmac_secret
@@ -20,8 +18,8 @@ services:
       - authelia_postgres_password
       - smtp_password
     networks:
-      - authelia
-      - authelia-web
+      authelia:
+      authelia-web:
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: The Single Sign-On Multi-Factor portal for web apps.
@@ -46,6 +44,8 @@ services:
       - PGID=0
       - TZ
     image: lscr.io/linuxserver/duplicati:latest
+    networks:
+      duplicati-web:
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Open Source Backup Client.
@@ -83,8 +83,8 @@ services:
       - MAIL_FROM_ADDRESS=${SMTP_USER}
     image: fireflyiii/data-importer:develop
     networks:
-      - firefly
-      - firefly-web
+      firefly:
+      firefly-web:
     secrets:
       - firefly_access_token
       - nordigen_id
@@ -111,8 +111,8 @@ services:
     depends_on:
       - firefly-postgres
     networks:
-      - firefly
-      - firefly-web
+      firefly:
+      firefly-web:
     secrets:
       - firefly_postgres_password
       - firefly_app_key
@@ -162,7 +162,7 @@ services:
       - TELEGRAM_ALLOWED_USERS
     image: ghcr.io/ben-pearce/firefly-screenshot-bot:main
     networks:
-      - firefly
+      firefly:
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: FireflyIII Screenshot Import Bot.
@@ -175,8 +175,8 @@ services:
     depends_on:
       - immich-server
     networks:
-      - immich
-      - immich-web
+      immich:
+      immich-web:
     image: ghcr.io/immich-app/immich-proxy:release
     labels:
       readme.description: Photo & Video Backup Solution
@@ -195,8 +195,8 @@ services:
     depends_on:
       - nextcloud-postgres
     networks:
-      - nextcloud
-      - nextcloud-web
+      nextcloud:
+      nextcloud-web:
     secrets:
       - nextcloud_postgres_password
       - smtp_password
@@ -268,9 +268,9 @@ services:
       - DOMAIN=https://${BITWARDEN_HOST}
     secrets:
       - smtp_password
-    extra_hosts:
-      - ${HOST}:172.17.0.1
     image: vaultwarden/server:latest
+    networks:
+      vaultwarden-web:
     labels:
       readme.description: Unofficial Bitwarden compatible server written in Rust.
       readme.links.github: https://github.com/dani-garcia/vaultwarden
@@ -286,8 +286,8 @@ services:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     restart: unless-stopped
     networks:
-      - paperless
-      - paperless-web
+      paperless:
+      paperless-web:
     depends_on:
       - paperless-postgres
       - paperless-redis
@@ -319,6 +319,12 @@ services:
       PAPERLESS_DBHOST: paperless-postgres
       PAPERLESS_DBPASS_FILE: /run/secrets/paperless_postgres_password
 version: '3.4'
+
+networks:
+  duplicati-web:
+    name: duplicati-web
+  vaultwarden-web:
+    name: vaultwarden-web
 
 secrets:
   smtp_password:

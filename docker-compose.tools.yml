@@ -1,4 +1,9 @@
 ---
+networks:
+  alltube-web:
+    name: alltube-web
+  cyberchef-web:
+    name: cyberchef-web
 services:
   alltube:
     container_name: alltube
@@ -7,13 +12,14 @@ services:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Web GUI for youtube-dl.
       readme.links.github: https://github.com/Rudloff/alltube
+      traefik.docker.network: alltube-web
       traefik.enable: true
       traefik.http.middlewares.alltubeHeaders.headers.customrequestheaders.X-Forwarded-Path: /alltube
       traefik.http.middlewares.alltubeStripper.stripprefix.prefixes: /alltube
       traefik.http.routers.alltube.entrypoints: https
       traefik.http.routers.alltube.middlewares: alltubeHeaders, alltubeStripper
-      traefik.http.routers.alltube.rule: PathPrefix(`/alltube{regex:$$|/.*}`)
-      traefik.http.routers.alltube.tls.certresolver: resolver
+    networks:
+      alltube-web:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/alltube:/var/www/html/config
@@ -24,6 +30,7 @@ services:
       com.centurylinklabs.watchtower.enable: true
       readme.description: The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis.
       readme.links.github: https://github.com/gchq/CyberChef
+      traefik.docker.network: cyberchef-web
       traefik.enable: true
       traefik.http.middlewares.cyberchefStripper.stripprefix.prefixes: /cyberchef
       traefik.http.routers.cyberchef.entrypoints: https
@@ -31,6 +38,8 @@ services:
       traefik.http.routers.cyberchef.rule: PathPrefix(`/cyberchef{regex:$$|/.*}`)
       traefik.http.routers.cyberchef.tls.certresolver: resolver
       traefik.http.services.cyberchef.loadbalancer.server.port: 8000
+    networks:
+      cyberchef-web:
     restart: unless-stopped
   huginn:
     container_name: huginn
@@ -73,5 +82,4 @@ services:
     secrets:
       - huginn_postgres_password
       - smtp_password
-
 version: '3.4'

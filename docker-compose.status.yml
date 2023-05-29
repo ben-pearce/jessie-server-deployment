@@ -1,4 +1,7 @@
 ---
+networks:
+  uptime-kuma-web:
+    name: uptime-kuma-web
 services:
   uptime-kuma:
     container_name: uptime-kuma
@@ -7,10 +10,12 @@ services:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Self-hosted monitoring tool like "Uptime Robot".
       readme.links.github: https://github.com/louislam/uptime-kuma
+      traefik.docker.network: uptime-kuma-web
       traefik.enable: true
       traefik.http.routers.uptime-kuma.entrypoints: https
       traefik.http.routers.uptime-kuma.rule: Host(`${UPTIME_KUMA_HOST}`)
-      traefik.http.routers.uptime-kuma.tls.certresolver: resolver
+    networks:
+      uptime-kuma-web:
     restart: always
     volumes:
       - ${DATA_DIR}/uptime-kuma:/app/data

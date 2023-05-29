@@ -1,5 +1,7 @@
 ---
 networks:
+  hoppscotch-web:
+    name: hoppscotch-web
   pgadmin-web:
     name: pgadmin-web
 services:
@@ -10,20 +12,20 @@ services:
       com.centurylinklabs.watchtower.enable: true
       readme.description: API Development Ecosystem.
       readme.links.github: https://github.com/hoppscotch/hoppscotch
+      traefik.docker.network: hoppscotch-web
       traefik.enable: true
       traefik.http.routers.hoppscotch.entrypoints: https
       traefik.http.routers.hoppscotch.middlewares: authelia
       traefik.http.routers.hoppscotch.rule: Host(`${HOPPSCOTCH_HOST}`)
-      traefik.http.routers.hoppscotch.tls.certresolver: resolver
       traefik.http.services.hoppscotch.loadbalancer.server.port: 3000
+    networks:
+      hoppscotch-web:
     restart: unless-stopped
   pgadmin:
     container_name: pgadmin
     environment:
       - PGADMIN_DEFAULT_EMAIL=${ADMIN_MAIL}
       - PGADMIN_DEFAULT_PASSWORD=admin
-    extra_hosts:
-      - ${AUTHELIA_HOST}:10.10.0.1
     image: dpage/pgadmin4:latest
     labels:
       readme.description: Web based administration tool for the PostgreSQL database.
@@ -35,14 +37,14 @@ services:
       traefik.http.routers.pgadmin.tls.certresolver: resolver
       traefik.http.services.pgadmin.loadbalancer.server.port: 80
     networks:
-      - pgadmin-web
-      - firefly
-      - authelia
-      - huginn
-      - immich
-      - nextcloud
-      - paperless
-      - zabbix
+      authelia:
+      firefly:
+      huginn:
+      immich:
+      nextcloud:
+      paperless:
+      pgadmin-web:
+      zabbix:
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/pgadmin:/var/lib/pgadmin

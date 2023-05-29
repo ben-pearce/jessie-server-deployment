@@ -1,4 +1,9 @@
 ---
+networks:
+  tunnel:
+    name: tunnel
+  tunnel-web:
+    name: tunnel-web
 secrets:
   cloudflare_dns_api_token:
     file: ./.secrets/cloudflare_dns_api_token
@@ -47,15 +52,33 @@ services:
       traefik.http.routers.api.tls.certresolver: resolver
       traefik.http.services.traefik.loadbalancer.server.port: 8080
     networks:
-      - default
-      - authelia-web
-      - paperless-web
-      - immich-web
-      - firefly-web
-      - zabbix-web
-      - huginn-web
-      - nextcloud-web
-      - pgadmin-web
+      alltube-web:
+      arr-web:
+      authelia-web:
+      cyberchef-web:
+      deemix-web:
+      default:
+      duplicati-web:
+      firefly-web:
+      freshrss-web:
+      homer-web:
+      hoppscotch-web:
+      huginn-web:
+      immich-web:
+      jellyfin-web:
+      navidrome-web:
+      nextcloud-web:
+      paperless-web:
+      pgadmin-web:
+        aliases:
+          - ${AUTHELIA_HOST}
+      portainer-web:
+        aliases:
+          - ${AUTHELIA_HOST}
+      tunnel-web:
+      uptime-kuma-web:
+      vaultwarden-web:
+      zabbix-web:
     ports:
       - '443:443'
       - '80:80'
@@ -76,9 +99,7 @@ services:
       - USER_FILE=/run/secrets/pia_username
       - PASS_FILE=/run/secrets/pia_password
       - EXIT_ON_FATAL=1
-      - LOCAL_NETWORK=172.17.0.0/24
-    extra_hosts:
-      - ${HOST}:172.17.0.1
+      - LOCAL_NETWORK=10.10.0.0/16
     healthcheck:
       interval: 30s
       retries: 3
@@ -88,6 +109,9 @@ services:
     labels:
       readme.description: A Docker container for using WireGuard with PIA.
       readme.links.docker: https://hub.docker.com/r/thrnz/docker-wireguard-pia
+    networks:
+      - tunnel
+      - tunnel-web
     restart: unless-stopped
     secrets:
       - pia_username
@@ -133,8 +157,6 @@ services:
       - PGID
       - WG_HOST=${HOST}
       - WG_PORT=${WG_PORT}
-    extra_hosts:
-      - ${HOST}:172.17.0.1
     image: weejewel/wg-easy
     labels:
       com.centurylinklabs.watchtower.enable: true

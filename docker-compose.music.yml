@@ -1,4 +1,9 @@
 ---
+networks:
+  deemix-web:
+    name: deemix-web
+  navidrome-web:
+    name: navidrome-web
 services:
   deemix:
     container_name: deemix
@@ -12,11 +17,13 @@ services:
       readme.description: Barebone deezer downloader.
       readme.links.gitlab: https://gitlab.com/Bockiii/deemix-docker
       readme.links.website: https://deemix.app/
+      traefik.docker.network: deemix-web
       traefik.enable: true
       traefik.http.routers.deemix.entrypoints: https
       traefik.http.routers.deemix.middlewares: authelia
       traefik.http.routers.deemix.rule: Host(`${DEEMIX_HOST}`)
-      traefik.http.routers.deemix.tls.certresolver: resolver
+    networks:
+      deemix-web:
     restart: unless-stopped
     volumes:
       - ${MEDIA_DIR}/music/:/downloads
@@ -27,16 +34,17 @@ services:
       - ND_SCANSCHEDULE=1h
       - ND_LOGLEVEL=info
       - ND_SESSIONTIMEOUT=24h
-      - ND_BASEURL=/navidrome
+      - ND_BASEURL=/
     image: deluan/navidrome:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Modern Music Server and Streamer compatible with Subsonic/Airsonic.
       readme.links.github: https://github.com/navidrome/navidrome
+      traefik.docker.network: navidrome-web
       traefik.enable: true
       traefik.http.routers.navidrome.entrypoints: https
-      traefik.http.routers.navidrome.rule: PathPrefix(`/navidrome{regex:$$|/.*}`)
-      traefik.http.routers.navidrome.tls.certresolver: resolver
+    networks:
+      navidrome-web:
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/navidrome:/data
