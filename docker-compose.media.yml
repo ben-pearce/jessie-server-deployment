@@ -1,4 +1,13 @@
 ---
+networks:
+  arr-web:
+    name: arr-web
+  freshrss-web:
+    name: freshrss-web
+  jellyfin:
+    name: jellyfin
+  jellyfin-web:
+    name: jellyfin-web
 services:
   bazarr:
     container_name: bazarr
@@ -12,11 +21,13 @@ services:
       readme.links.docker: https://hub.docker.com/r/linuxserver/bazarr
       readme.links.github: https://github.com/morpheus65535/bazarr
       readme.links.web: https://www.bazarr.media/
+      traefik.docker.network: arr-web
       traefik.enable: true
       traefik.http.routers.bazarr.entrypoints: https
       traefik.http.routers.bazarr.middlewares: authelia
-      traefik.http.routers.bazarr.rule: PathPrefix(`/bazarr{regex:$$|/.*}`)
-      traefik.http.routers.bazarr.tls.certresolver: resolver
+      traefik.http.routers.bazarr.rule: Host(`${BAZARR_HOST}`)
+    networks:
+      arr-web:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/bazarr:/config
@@ -33,11 +44,13 @@ services:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Self-hosted RSS feed aggregator.
       readme.links.github: https://github.com/FreshRSS/FreshRSS
+      traefik.docker.network: freshrss-web
       traefik.enable: true
       traefik.http.routers.freshrss.entrypoints: https
       traefik.http.routers.freshrss.middlewares: authelia
       traefik.http.routers.freshrss.rule: Host(`${FRESHRSS_HOST}`)
-      traefik.http.routers.freshrss.tls.certresolver: resolver
+    networks:
+      freshrss-web:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/freshrss/config.php:/config/www/freshrss/data/config.php:ro
@@ -54,11 +67,16 @@ services:
       com.centurylinklabs.watchtower.enable: true
       readme.description: The Free Software Media System.
       readme.links.github: https://github.com/jellyfin/jellyfin
+      traefik.docker.network: jellyfin-web
       traefik.enable: true
       traefik.http.routers.jellyfin.entrypoints: https
       traefik.http.routers.jellyfin.rule: Host(`${JELLYFIN_HOST}`)
       traefik.http.routers.jellyfin.tls.certresolver: resolver
       traefik.http.services.jellyfin.loadbalancer.server.port: 8096
+    networks:
+      jellyfin:
+      jellyfin-web:
+      tunnel:
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/jellyfin:/config
@@ -77,6 +95,7 @@ services:
       readme.description: An indexer manager/proxy.
       readme.links.github: https://github.com/Prowlarr/Prowlarr
       readme.links.web: https://wiki.servarr.com/prowlarr
+      traefik.docker.network: tunnel-web
       traefik.enable: true
       traefik.http.routers.prowlarr.entrypoints: https
       traefik.http.routers.prowlarr.middlewares: authelia
@@ -98,6 +117,7 @@ services:
       com.centurylinklabs.watchtower.enable: true
       readme.description: A fork of Sonarr to work with movies à la Couchpotato.
       readme.links.github: https://github.com/Radarr/Radarr
+      traefik.docker.network: arr-web
       traefik.enable: true
       traefik.http.routers.radarr.entrypoints: https
       traefik.http.routers.radarr.middlewares: authelia
@@ -122,6 +142,7 @@ services:
       readme.links.docker: https://hub.docker.com/r/linuxserver/sabnzbd
       readme.links.github: https://github.com/sabnzbd/sabnzbd
       readme.links.web: https://sabnzbd.org/
+      traefik.docker.network: tunnel-web
       traefik.enable: true
       traefik.http.routers.sabnzbd.entrypoints: https
       traefik.http.routers.sabnzbd.middlewares: authelia
@@ -145,11 +166,13 @@ services:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Smart PVR for newsgroup and bittorrent users.
       readme.links.github: https://github.com/Sonarr/Sonarr
+      traefik.docker.network: arr-web
       traefik.enable: true
       traefik.http.routers.sonarr.entrypoints: https
       traefik.http.routers.sonarr.middlewares: authelia
-      traefik.http.routers.sonarr.rule: PathPrefix(`/sonarr{regex:$$|/.*}`)
-      traefik.http.routers.sonarr.tls.certresolver: resolver
+    networks:
+      arr-web:
+      tunnel:
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/sonarr:/config
@@ -167,6 +190,7 @@ services:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Fast, easy, and free BitTorrent client.
       readme.links.github: https://github.com/transmission/transmission
+      traefik.docker.network: tunnel-web
       traefik.enable: true
       traefik.http.routers.transmission.entrypoints: https
       traefik.http.routers.transmission.middlewares: authelia
@@ -189,6 +213,7 @@ services:
     labels:
       readme.description: TV Streaming Server.
       readme.links.web: https://tvheadend.org/
+      traefik.docker.network: tunnel-web
       traefik.enable: true
       traefik.http.routers.tvheadend.entrypoints: https
       traefik.http.routers.tvheadend.middlewares: authelia
