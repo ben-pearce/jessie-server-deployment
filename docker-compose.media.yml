@@ -89,7 +89,7 @@ services:
       - PUID
       - GUID
       - TZ
-    image: lscr.io/linuxserver/prowlarr:develop
+    image: lscr.io/linuxserver/prowlarr:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: An indexer manager/proxy.
