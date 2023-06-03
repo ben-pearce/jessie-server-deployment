@@ -27,6 +27,7 @@ services:
       - huginn_postgres_password
     volumes:
       - ${DATA_DIR}/postgres/huginn:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/backups:/backups
   huginn-threaded:
     container_name: huginn-threaded
     entrypoint: 

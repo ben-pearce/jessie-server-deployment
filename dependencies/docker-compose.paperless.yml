@@ -26,7 +26,8 @@ services:
     secrets:
       - paperless_postgres_password
     volumes:
-      - ${DATA_DIR}/postgres/paperless:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/paperless:/var/lib/postgresql/
+      - ${DATA_DIR}/postgres/backups:/backups
   paperless-redis:
     container_name: paperless-redis
     image: redis:7
