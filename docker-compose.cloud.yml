@@ -162,7 +162,7 @@ services:
       - FIREFLY_TOKEN_FILE=/run/secrets/firefly_access_token
       - TELEGRAM_TOKEN
       - TELEGRAM_ALLOWED_USERS
-    image: ghcr.io/ben-pearce/firefly-screenshot-bot:main
+    image: ghcr.io/ben-pearce/firefly-screenshot-bot:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: FireflyIII Screenshot Import Bot.
