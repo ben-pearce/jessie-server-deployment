@@ -257,7 +257,6 @@ services:
       traefik.docker.network: paperless-web
       traefik.enable: true
       traefik.http.routers.paperless-ngx.entrypoints: https
-      traefik.http.routers.paperless-ngx.middlewares: authelia
       traefik.http.routers.paperless-ngx.rule: Host(`${PAPERLESS_HOST}`)
       traefik.http.services.paperless-ngx.loadbalancer.server.port: 8000
     networks:
