@@ -28,7 +28,7 @@ Due to the number of services being deployed, I have categorized them and create
 | [immich-proxy](./docker-compose.cloud.yml#L178)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
 | [nextcloud](./docker-compose.cloud.yml#L197)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
 | [paperless-ngx](./docker-compose.cloud.yml#L234)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
-| [vaultwarden](./docker-compose.cloud.yml#L275)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
+| [vaultwarden](./docker-compose.cloud.yml#L274)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 | [alltube](./docker-compose.tools.yml#L9)  | Web GUI for youtube-dl. |  | [GitHub](https://github.com/Rudloff/alltube) |
 | [cyberchef](./docker-compose.tools.yml#L25)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
 | [huginn](./docker-compose.tools.yml#L40)  | Build agents that perform automated tasks for you online. |  | [GitHub](https://github.com/huginn/huginn) |
@@ -39,16 +39,16 @@ Due to the number of services being deployed, I have categorized them and create
 | [bazarr](./docker-compose.media.yml#L13) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [freshrss](./docker-compose.media.yml#L37)  | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
 | [jellyfin](./docker-compose.media.yml#L59) <sup>1</sup> | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
-| [prowlarr](./docker-compose.media.yml#L87) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
-| [radarr](./docker-compose.media.yml#L109) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
-| [sabnzbd](./docker-compose.media.yml#L134) <sup>2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
-| [sonarr](./docker-compose.media.yml#L159) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
-| [transmission](./docker-compose.media.yml#L184) <sup>2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
-| [tvheadend](./docker-compose.media.yml#L207) <sup>1,2</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
+| [prowlarr](./docker-compose.media.yml#L92) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
+| [radarr](./docker-compose.media.yml#L114) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
+| [sabnzbd](./docker-compose.media.yml#L139) <sup>2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
+| [sonarr](./docker-compose.media.yml#L164) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
+| [transmission](./docker-compose.media.yml#L189) <sup>2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
+| [tvheadend](./docker-compose.media.yml#L212) <sup>1,2</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
 | [traefik](./docker-compose.networking.yml#L37)  | The Cloud Native Application Proxy. | `443:443`, `80:80` | [GitHub](https://github.com/traefik/traefik) |
-| [tunnel](./docker-compose.networking.yml#L95)  | A Docker container for using WireGuard with PIA. |  | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
-| [unifi-controller](./docker-compose.networking.yml#L127)  | Wireless network management. | `3478:3478/udp`, `10001:10001/udp`, `8080:8080` |  |
-| [wireguard](./docker-compose.networking.yml#L153)  | Fast, Modern, Secure VPN Tunnel. | `${WG_PORT}:51820/udp` | [Website](https://www.wireguard.com/) |
+| [tunnel](./docker-compose.networking.yml#L95)  | A Docker container for using WireGuard with PIA. | `9981:9981/tcp`, `9982:9982/tcp` | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
+| [unifi-controller](./docker-compose.networking.yml#L130)  | Wireless network management. | `3478:3478/udp`, `10001:10001/udp`, `8080:8080` |  |
+| [wireguard](./docker-compose.networking.yml#L156)  | Fast, Modern, Secure VPN Tunnel. | `${WG_PORT}:51820/udp` | [Website](https://www.wireguard.com/) |
 | [hoppscotch](./docker-compose.dev.yml#L9)  | API Development Ecosystem. |  | [GitHub](https://github.com/hoppscotch/hoppscotch) |
 | [pgadmin](./docker-compose.dev.yml#L25)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
 | [uptime-kuma](./docker-compose.status.yml#L7)  | Self-hosted monitoring tool like "Uptime Robot". |  | [GitHub](https://github.com/louislam/uptime-kuma) |
@@ -138,6 +138,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `CLOUD_DIR` | Location of cloud storage on house. | `/mnt/cloud` |
 | `ADMIN_EMAIL` | Administrative email address | `somebody@email.com` |
 | `JELLYFIN_ADDR` | Jellyfin discoverability address. | `10.0.0.1` |
+| `LAN_SUBNET` | Local subnet | `10.0.0.0/24` |
 | `WG_PORT` | Wireguard exposed port | `51820` |
 | `WG_HOST` | Wireguard host | `wireguard.example.com` |
 
