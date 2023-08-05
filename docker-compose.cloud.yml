@@ -235,10 +235,15 @@ services:
     depends_on:
       - paperless-postgres
       - paperless-redis
+      - paperless-gotenberg
+      - paperless-tika
     environment:
       PAPERLESS_DBHOST: paperless-postgres
       PAPERLESS_DBPASS_FILE: /run/secrets/paperless_postgres_password
       PAPERLESS_REDIS: redis://paperless-redis:6379
+      PAPERLESS_TIKA_ENABLED: 1
+      PAPERLESS_TIKA_ENDPOINT: http://paperless-tika:9998
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenberg:3000
       PAPERLESS_URL: https://${PAPERLESS_HOST}
     healthcheck:
       interval: 30s
