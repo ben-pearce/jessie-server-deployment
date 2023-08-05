@@ -62,7 +62,7 @@ services:
       - GUID
       - VERSION=latest
       - JELLYFIN_PublishedServerUrl=${JELLYFIN_ADDR}
-    image: lscr.io/linuxserver/jellyfin
+    build: ./images/jellyfin
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: The Free Software Media System.
@@ -83,6 +83,11 @@ services:
       - ${MEDIA_DIR}/shows:/tv
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/music:/music
+      - ${CONFIG_DIR}/jellyfin/rffmpeg:/etc/rffmpeg
+      - type: tmpfs
+        target: /run/transcoding
+        tmpfs:
+          mode: 01777
   prowlarr:
     container_name: prowlarr
     environment:

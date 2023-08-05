@@ -1,0 +1,15 @@
+rffmpeg:
+    logging:
+        logfile: "/config/log/rffmpeg.log"
+
+    directories:
+      state: "/config/rffmpeg"
+      persist: "/run/transcoding"
+      owner: root
+
+    remote:
+        args:
+            - "-o"
+            - "StrictHostKeychecking=no"
+            - "-i"
+            - "/etc/rffmpeg/jellyfin-ffmpeg"

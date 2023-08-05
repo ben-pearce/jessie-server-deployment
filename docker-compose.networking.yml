@@ -98,7 +98,7 @@ services:
       - USER_FILE=/run/secrets/pia_username
       - PASS_FILE=/run/secrets/pia_password
       - EXIT_ON_FATAL=1
-      - LOCAL_NETWORK=10.10.0.0/16
+      - LOCAL_NETWORK=${LAN_SUBNET}
       - VPNDNS=0
     healthcheck:
       interval: 30s
@@ -112,6 +112,9 @@ services:
     networks:
       tunnel:
       tunnel-web:
+    ports:
+      - 9981:9981/tcp
+      - 9982:9982/tcp
     restart: unless-stopped
     secrets:
       - pia_username
