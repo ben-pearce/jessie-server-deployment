@@ -31,7 +31,7 @@ jobs:
       - name: Commit & push README
         run: |
           git config --global user.name 'Ben Pearce'
-          git config --global user.email 'ben.pearce@sky.com'
+          git config --global user.email 'me@benpearce.io'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
           git commit -am "docs: update README.md" || true
           git push
