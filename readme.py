@@ -31,7 +31,7 @@ env_rows = [
 env_template = '| {} | {} | {} |'
 
 if __name__ == '__main__':
-    for file_name in glob.glob('./docker-compose.*.yml'):
+    for file_name in sorted(glob.glob('./docker-compose.*.yml')):
         with open(file_name, 'r') as f:
             try:
                 compose = yaml.safe_load(f)
@@ -75,7 +75,7 @@ if __name__ == '__main__':
     containers = '\n'.join(container_rows) + '\n\n'
     containers += '\n\n'.join([f'<sup>{tag}</sup>{description}' for _, tag, description in notes])
 
-    for file_name in glob.glob('example.env/*.env'):
+    for file_name in sorted(glob.glob('example.env/*.env')):
         logger.info(f'processing variables in {file_name}')
         comment = str()
         example = str()
