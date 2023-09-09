@@ -10,6 +10,12 @@ secrets:
 services:
   zabbix-postgres:
     container_name: zabbix-postgres
+    command: |
+      -c fsync=off 
+      -c synchronous_commit=off 
+      -c full_page_writes=off 
+      -c max_wal_size=15GB 
+      -c checkpoint_timeout=15min
     environment:
       POSTGRES_DB: zabbix
       POSTGRES_PASSWORD_FILE: /run/secrets/zabbix_postgres_password
