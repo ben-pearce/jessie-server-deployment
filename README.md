@@ -24,11 +24,11 @@ Due to the number of services being deployed, I have categorized them and create
 | [duplicati](./docker-compose.cloud.yml#L48)  | Open Source Backup Client. |  | [Docker Hub](https://hub.docker.com/r/linuxserver/duplicati), [Website](https://www.duplicati.com/) |
 | [fidi](./docker-compose.cloud.yml#L72)  | Firefly III Data Importer. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/data-importer) |
 | [firefly](./docker-compose.cloud.yml#L115)  | Personal Finance Manager. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/core), [Website](https://www.firefly-iii.org/) |
-| [fsib](./docker-compose.cloud.yml#L159)  | FireflyIII Screenshot Import Bot. |  | [GitHub](https://github.com/ben-pearce/firefly-screenshot-bot) |
-| [immich-proxy](./docker-compose.cloud.yml#L178)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
-| [nextcloud](./docker-compose.cloud.yml#L197)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
-| [paperless-ngx](./docker-compose.cloud.yml#L234)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
-| [vaultwarden](./docker-compose.cloud.yml#L274)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
+| [fsib](./docker-compose.cloud.yml#L161)  | FireflyIII Screenshot Import Bot. |  | [GitHub](https://github.com/ben-pearce/firefly-screenshot-bot) |
+| [immich-proxy](./docker-compose.cloud.yml#L180)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
+| [nextcloud](./docker-compose.cloud.yml#L199)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
+| [paperless-ngx](./docker-compose.cloud.yml#L236)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
+| [vaultwarden](./docker-compose.cloud.yml#L276)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 | [hoppscotch](./docker-compose.dev.yml#L9)  | API Development Ecosystem. |  | [GitHub](https://github.com/hoppscotch/hoppscotch) |
 | [pgadmin](./docker-compose.dev.yml#L25)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
 | [homer](./docker-compose.management.yml#L9)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
