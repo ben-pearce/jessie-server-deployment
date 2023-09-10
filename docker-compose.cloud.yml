@@ -145,6 +145,8 @@ services:
       traefik.http.routers.firefly.entrypoints: https
       traefik.http.routers.firefly.middlewares: authelia
       traefik.http.routers.firefly.rule: Host(`${FIREFLY_HOST}`)
+      traefik.http.routers.firefly-api.entrypoints: https
+      traefik.http.routers.firefly-api.rule: Host(`${FIREFLY_HOST}`) && PathPrefix(`/api`)
     networks:
       firefly:
       firefly-web:
