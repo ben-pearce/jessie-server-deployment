@@ -53,6 +53,7 @@ services:
     image: ghcr.io/huginn/huginn-single-process
     networks:
       - huginn
+    restart: unless-stopped
     secrets:
       - huginn_postgres_password
       - smtp_password
