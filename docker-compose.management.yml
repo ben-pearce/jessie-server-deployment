@@ -47,7 +47,7 @@ services:
       traefik.docker.network: portainer-web
       traefik.enable: true
       traefik.http.routers.portainer.entrypoints: https
-      traefik.http.routers.portainer.rule: Host(`${PORTAINER_HOST}`)
+      traefik.http.routers.portainer.rule: Host(`docker.${HOST}`)
       traefik.http.services.portainer.loadbalancer.server.port: 9000
     networks:
       portainer-web:

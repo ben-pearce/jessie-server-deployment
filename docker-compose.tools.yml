@@ -17,7 +17,7 @@ services:
       traefik.docker.network: alltube-web
       traefik.enable: true
       traefik.http.routers.alltube.entrypoints: https
-      traefik.http.routers.alltube.rule: Host(`${ALLTUBE_HOST}`)
+      traefik.http.routers.alltube.rule: Host(`alltube.${HOST}`)
     networks:
       alltube-web:
     restart: unless-stopped
@@ -33,7 +33,7 @@ services:
       traefik.docker.network: cyberchef-web
       traefik.enable: true
       traefik.http.routers.cyberchef.entrypoints: https
-      traefik.http.routers.cyberchef.rule: Host(`${CYBERCHEF_HOST}`)
+      traefik.http.routers.cyberchef.rule: Host(`cyberchef.${HOST}`)
       traefik.http.services.cyberchef.loadbalancer.server.port: 8000
     networks:
       cyberchef-web:
@@ -70,7 +70,7 @@ services:
       traefik.docker.network: huginn-web
       traefik.enable: true
       traefik.http.routers.huginn.entrypoints: https
-      traefik.http.routers.huginn.rule: Host(`${HUGINN_HOST}`)
+      traefik.http.routers.huginn.rule: Host(`huginn.${HOST}`)
     networks:
       - huginn
       - huginn-web

@@ -25,7 +25,7 @@ services:
       traefik.enable: true
       traefik.http.routers.bazarr.entrypoints: https
       traefik.http.routers.bazarr.middlewares: authelia
-      traefik.http.routers.bazarr.rule: Host(`${BAZARR_HOST}`)
+      traefik.http.routers.bazarr.rule: Host(`bazarr.${HOST}`)
     networks:
       arr-web:
     restart: unless-stopped
@@ -48,7 +48,7 @@ services:
       traefik.enable: true
       traefik.http.routers.freshrss.entrypoints: https
       traefik.http.routers.freshrss.middlewares: authelia
-      traefik.http.routers.freshrss.rule: Host(`${FRESHRSS_HOST}`)
+      traefik.http.routers.freshrss.rule: Host(`rss.${HOST}`)
     networks:
       freshrss-web:
     restart: unless-stopped
@@ -70,7 +70,7 @@ services:
       traefik.docker.network: jellyfin-web
       traefik.enable: true
       traefik.http.routers.jellyfin.entrypoints: https
-      traefik.http.routers.jellyfin.rule: Host(`${JELLYFIN_HOST}`)
+      traefik.http.routers.jellyfin.rule: Host(`jellyfin.${HOST}`)
       traefik.http.services.jellyfin.loadbalancer.server.port: 8096
     networks:
       jellyfin:
@@ -103,7 +103,7 @@ services:
       traefik.enable: true
       traefik.http.routers.prowlarr.entrypoints: https
       traefik.http.routers.prowlarr.middlewares: authelia
-      traefik.http.routers.prowlarr.rule: Host(`${PROWLARR_HOST}`)
+      traefik.http.routers.prowlarr.rule: Host(`prowlarr.${HOST}`)
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
     network_mode: service:tunnel
     restart: unless-stopped
@@ -124,7 +124,7 @@ services:
       traefik.enable: true
       traefik.http.routers.radarr.entrypoints: https
       traefik.http.routers.radarr.middlewares: authelia
-      traefik.http.routers.radarr.rule: Host(`${RADARR_HOST}`)
+      traefik.http.routers.radarr.rule: Host(`radarr.${HOST}`)
     networks:
       arr-web:
       tunnel:
@@ -151,7 +151,7 @@ services:
       traefik.enable: true
       traefik.http.routers.sabnzbd.entrypoints: https
       traefik.http.routers.sabnzbd.middlewares: authelia
-      traefik.http.routers.sabnzbd.rule: Host(`${SABNZBD_HOST}`)
+      traefik.http.routers.sabnzbd.rule: Host(`sabnzbd.${HOST}`)
       traefik.http.services.sabnzbd.loadbalancer.server.port: 8080
     network_mode: service:tunnel
     restart: unless-stopped
@@ -174,7 +174,7 @@ services:
       traefik.enable: true
       traefik.http.routers.sonarr.entrypoints: https
       traefik.http.routers.sonarr.middlewares: authelia
-      traefik.http.routers.sonarr.rule: Host(`${SONARR_HOST}`)
+      traefik.http.routers.sonarr.rule: Host(`sonarr.${HOST}`)
     networks:
       arr-web:
       tunnel:
@@ -199,7 +199,7 @@ services:
       traefik.enable: true
       traefik.http.routers.transmission.entrypoints: https
       traefik.http.routers.transmission.middlewares: authelia
-      traefik.http.routers.transmission.rule: Host(`${TRANSMISSION_HOST}`)
+      traefik.http.routers.transmission.rule: Host(`transmission.${HOST}`)
       traefik.http.services.transmission.loadbalancer.server.port: 9091
     network_mode: service:tunnel
     restart: unless-stopped
@@ -221,7 +221,7 @@ services:
       traefik.enable: true
       traefik.http.routers.tvheadend.entrypoints: https
       traefik.http.routers.tvheadend.middlewares: authelia
-      traefik.http.routers.tvheadend.rule: Host(`${TVHEADEND_HOST}`)
+      traefik.http.routers.tvheadend.rule: Host(`tvheadend.${HOST}`)
       traefik.http.services.tvheadend.loadbalancer.server.port: 9981
     network_mode: service:tunnel
     restart: unless-stopped

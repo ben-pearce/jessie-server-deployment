@@ -21,7 +21,7 @@ services:
       traefik.enable: true
       traefik.http.routers.deemix.entrypoints: https
       traefik.http.routers.deemix.middlewares: authelia
-      traefik.http.routers.deemix.rule: Host(`${DEEMIX_HOST}`)
+      traefik.http.routers.deemix.rule: Host(`deemix.${HOST}`)
     networks:
       deemix-web:
     restart: unless-stopped
@@ -43,7 +43,7 @@ services:
       traefik.docker.network: navidrome-web
       traefik.enable: true
       traefik.http.routers.navidrome.entrypoints: https
-      traefik.http.routers.navidrome.rule: Host(`${NAVIDROME_HOST}`)
+      traefik.http.routers.navidrome.rule: Host(`navidrome.${HOST}`)
     networks:
       navidrome-web:
     restart: unless-stopped

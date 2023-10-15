@@ -16,7 +16,7 @@ services:
       traefik.enable: true
       traefik.http.routers.hoppscotch.entrypoints: https
       traefik.http.routers.hoppscotch.middlewares: authelia
-      traefik.http.routers.hoppscotch.rule: Host(`${HOPPSCOTCH_HOST}`)
+      traefik.http.routers.hoppscotch.rule: Host(`hoppscotch.${HOST}`)
       traefik.http.services.hoppscotch.loadbalancer.server.port: 3000
     networks:
       hoppscotch-web:
@@ -33,7 +33,7 @@ services:
       traefik.docker.network: pgadmin-web
       traefik.enable: true
       traefik.http.routers.pgadmin.entrypoints: https
-      traefik.http.routers.pgadmin.rule: Host(`${PGADMIN_HOST}`)
+      traefik.http.routers.pgadmin.rule: Host(`pgadmin.${HOST}`)
       traefik.http.services.pgadmin.loadbalancer.server.port: 80
     networks:
       authelia:

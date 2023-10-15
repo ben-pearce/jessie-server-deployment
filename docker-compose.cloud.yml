@@ -31,11 +31,11 @@ services:
       readme.links.web: https://www.authelia.com/
       traefik.docker.network: authelia-web
       traefik.enable: true
-      traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://${AUTHELIA_HOST}/
+      traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://login.${HOST}/
       traefik.http.middlewares.authelia.forwardauth.authresponseheaders: Remote-User, Remote-Groups, Remote-Email
       traefik.http.middlewares.authelia.forwardauth.trustforwardheader: true
       traefik.http.routers.authelia.entrypoints: https
-      traefik.http.routers.authelia.rule: Host(`${AUTHELIA_HOST}`)
+      traefik.http.routers.authelia.rule: Host(`login.${HOST}`)
       traefik.http.services.authelia.loadbalancer.server.port: 9091
     networks:
       authelia:
@@ -55,7 +55,7 @@ services:
     environment:
       - FIREFLY_III_ACCESS_TOKEN_FILE=/run/secrets/firefly_access_token
       - FIREFLY_III_URL=http://firefly:8080
-      - VANITY_URL=https://${FIREFLY_HOST}
+      - VANITY_URL=https://firefly.${HOST}
       - NORDIGEN_ID_FILE=/run/secrets/nordigen_id
       - NORDIGEN_KEY_FILE=/run/secrets/nordigen_key
       - TRUSTED_PROXIES=**
@@ -81,7 +81,7 @@ services:
       traefik.enable: true
       traefik.http.routers.fidi.entrypoints: https
       traefik.http.routers.fidi.middlewares: authelia
-      traefik.http.routers.fidi.rule: Host(`${FIREFLY_DATA_HOST}`)
+      traefik.http.routers.fidi.rule: Host(`firefly-data.${HOST}`)
     networks:
       firefly:
       firefly-web:
@@ -99,7 +99,7 @@ services:
       - firefly-postgres
     environment:
       - APP_KEY_FILE=/run/secrets/firefly_app_key
-      - APP_URL=https://${FIREFLY_HOST}/
+      - APP_URL=https://firefly.${HOST}/
       - TRUSTED_PROXIES=**
       - DB_HOST=firefly-postgres
       - DB_PORT=5432
@@ -126,9 +126,9 @@ services:
       traefik.enable: true
       traefik.http.routers.firefly.entrypoints: https
       traefik.http.routers.firefly.middlewares: authelia
-      traefik.http.routers.firefly.rule: Host(`${FIREFLY_HOST}`)
+      traefik.http.routers.firefly.rule: Host(`firefly.${HOST}`)
       traefik.http.routers.firefly-api.entrypoints: https
-      traefik.http.routers.firefly-api.rule: Host(`${FIREFLY_HOST}`) && PathPrefix(`/api`)
+      traefik.http.routers.firefly-api.rule: Host(`firefly.${HOST}`) && PathPrefix(`/api`)
     networks:
       firefly:
       firefly-web:
@@ -152,7 +152,7 @@ services:
       traefik.docker.network: immich-web
       traefik.enable: true
       traefik.http.routers.immich-proxy.entrypoints: https
-      traefik.http.routers.immich-proxy.rule: Host(`${IMMICH_HOST}`)
+      traefik.http.routers.immich-proxy.rule: Host(`immich.${HOST}`)
       traefik.http.services.immich-proxy.loadbalancer.server.port: 8080
     networks:
       immich:
@@ -182,7 +182,7 @@ services:
       traefik.docker.network: nextcloud-web
       traefik.enable: true
       traefik.http.routers.nextcloud.entrypoints: https
-      traefik.http.routers.nextcloud.rule: Host(`${NEXTCLOUD_HOST}`)
+      traefik.http.routers.nextcloud.rule: Host(`nextcloud.${HOST}`)
     networks:
       nextcloud:
       nextcloud-web:
@@ -209,7 +209,7 @@ services:
       PAPERLESS_TIKA_ENABLED: 1
       PAPERLESS_TIKA_ENDPOINT: http://paperless-tika:9998
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenberg:3000
-      PAPERLESS_URL: https://${PAPERLESS_HOST}
+      PAPERLESS_URL: https://paperless.${HOST}
     healthcheck:
       interval: 30s
       retries: 5
@@ -222,7 +222,7 @@ services:
       traefik.docker.network: paperless-web
       traefik.enable: true
       traefik.http.routers.paperless-ngx.entrypoints: https
-      traefik.http.routers.paperless-ngx.rule: Host(`${PAPERLESS_HOST}`)
+      traefik.http.routers.paperless-ngx.rule: Host(`paperless.${HOST}`)
       traefik.http.services.paperless-ngx.loadbalancer.server.port: 8000
     networks:
       paperless:
@@ -244,14 +244,14 @@ services:
       - SMTP_SECURITY=starttls
       - SMTP_USERNAME=${SMTP_USER}
       - SMTP_PASSWORD_FILE=/run/secrets/smtp_password
-      - DOMAIN=https://${BITWARDEN_HOST}
+      - DOMAIN=https://fence.${HOST}
     image: vaultwarden/server:latest
     labels:
       readme.description: Unofficial Bitwarden compatible server written in Rust.
       readme.links.github: https://github.com/dani-garcia/vaultwarden
       traefik.enable: true
       traefik.http.routers.vaultwarden.entrypoints: https
-      traefik.http.routers.vaultwarden.rule: Host(`${BITWARDEN_HOST}`)
+      traefik.http.routers.vaultwarden.rule: Host(`fence.${HOST}`)
     networks:
       vaultwarden-web:
     restart: unless-stopped
