@@ -50,30 +50,6 @@ services:
       - smtp_password
     volumes:
       - ${CONFIG_DIR}/authelia:/config
-  duplicati:
-    container_name: duplicati
-    environment:
-      - PUID=0
-      - PGID=0
-      - TZ
-    image: lscr.io/linuxserver/duplicati:latest
-    labels:
-      com.centurylinklabs.watchtower.enable: true
-      readme.description: Open Source Backup Client.
-      readme.links.docker: https://hub.docker.com/r/linuxserver/duplicati
-      readme.links.web: https://www.duplicati.com/
-      traefik.enable: true
-      traefik.http.routers.duplicati.entrypoints: https
-      traefik.http.routers.duplicati.middlewares: authelia
-      traefik.http.routers.duplicati.rule: Host(`${DUPLICATI_HOST}`)
-    networks:
-      duplicati-web:
-    restart: unless-stopped
-    volumes:
-      - ${CONFIG_DIR}/duplicati:/config
-      - ${CONFIG_DIR}:/source/container-configs:ro
-      - ${DATA_DIR}:/source/container-data:ro
-      - /mnt:/mnt
   fidi:
     container_name: fidi
     environment:
