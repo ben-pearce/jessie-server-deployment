@@ -4,8 +4,6 @@ This repository holds my docker compose files and configuration files for servic
 
 ## Overview
 
-Due to the number of services being deployed, I have categorized them and created a docker compose file for each category. These docker compose files are aggregated together by a script which allows you to treat all of them as if they were a single file.
-
 - [☁️ Cloud](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.cloud.yml)
 - [👨‍💻 Development](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.dev.yml)
 - [📨 Mail](https://github.com/ben-pearce/home-server-deployment/blob/main/docker-compose.mail.yml)
@@ -45,7 +43,7 @@ vi .env
 
 **Bring up the container network**
 ```
-./aggregate-docker-compose.sh up -d
+docker-compose up -d
 ```
 > 💭 The `aggregate-docker-compose.sh` script can be treated exactly like `docker-compose` command. 
 
@@ -63,12 +61,10 @@ I don't have any kind of project road map or plan for this, since I generally ju
 - [Minio](https://hub.docker.com/r/minio/minio/) - High Performance Object Storage.
 - [Guacamole](https://hub.docker.com/r/guacamole/guacamole) - Clientless remote desktop gateway.
 - [Glances](https://hub.docker.com/r/nicolargo/glances) - Cross-platform system monitoring tool.
-- [VSCode server](https://hub.docker.com/r/linuxserver/code-server) - VS Code running on a remote server.
 - [Grafana](https://hub.docker.com/r/grafana/grafana) - Open source analytics & monitoring solution
 - [Prometheus](https://hub.docker.com/r/prom/prometheus) - Prometheus is a systems and service monitoring system.
 - [Netdata](https://hub.docker.com/r/netdata/netdata) - Distributed, real-time, performance and health monitoring for systems and applications.
 - [CryptPad](https://cryptpad.fr/) - Collaboration suite end-to-end encrypted and open-source.
-- [SICKRAGE](https://www.sickrage.ca/) - Automatic video library manager for TV shows.
 - [horahora](https://github.com/horahoradev/horahora) - Self-hosted media server which continuously archives videos from other sites using yt-dlp.
 
 ## Contributions
