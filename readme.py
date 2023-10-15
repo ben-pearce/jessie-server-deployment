@@ -75,7 +75,7 @@ if __name__ == '__main__':
     containers = '\n'.join(container_rows) + '\n\n'
     containers += '\n\n'.join([f'<sup>{tag}</sup>{description}' for _, tag, description in notes])
 
-    for file_name in sorted(glob.glob('example.env/*.env')):
+    for file_name in sorted(glob.glob('.env.*')):
         logger.info(f'processing variables in {file_name}')
         comment = str()
         example = str()
@@ -83,7 +83,7 @@ if __name__ == '__main__':
         with open(file_name, 'r') as f:
             for line in filter(lambda v: v.strip(), f.readlines()):
                 if line.startswith('# ex: '):
-                    example = line.strip('# ex: ').strip()
+                    example = line.removeprefix('# ex: ').strip()
                 elif line.startswith('#'):
                     comment = line.strip('# ').strip()
                 else:
