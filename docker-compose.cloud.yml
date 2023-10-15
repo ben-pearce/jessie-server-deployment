@@ -139,25 +139,6 @@ services:
       - smtp_password
     volumes:
       - ${DATA_DIR}/firefly/upload:/var/www/html/storage/upload
-  fsib:
-    container_name: fsib
-    environment:
-      - FIREFLY_BASE_URL=http://firefly:8080
-      - FIREFLY_TOKEN_FILE=/run/secrets/firefly_access_token
-      - TELEGRAM_TOKEN
-      - TELEGRAM_ALLOWED_USERS
-    image: ghcr.io/ben-pearce/firefly-screenshot-bot:latest
-    labels:
-      com.centurylinklabs.watchtower.enable: true
-      readme.description: FireflyIII Screenshot Import Bot.
-      readme.links.github: https://github.com/ben-pearce/firefly-screenshot-bot
-    networks:
-      firefly:
-    restart: unless-stopped
-    secrets:
-      - firefly_access_token
-    volumes:
-      - ${CONFIG_DIR}/fsib:/storage
   immich-proxy:
     container_name: immich-proxy
     depends_on:
