@@ -7,6 +7,12 @@ networks:
 secrets:
   smtp_password:
     file: ./.secrets/smtp_password
+include:
+  - dependencies/docker-compose.authelia.yml
+  - dependencies/docker-compose.firefly.yml
+  - dependencies/docker-compose.immich.yml
+  - dependencies/docker-compose.nextcloud.yml
+  - dependencies/docker-compose.paperless.yml
 services:
   authelia:
     container_name: authelia

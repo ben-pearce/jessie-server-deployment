@@ -1,0 +1,9 @@
+include:
+  - docker-compose.cloud.yml
+  - docker-compose.dev.yml
+  - docker-compose.management.yml
+  - docker-compose.media.yml
+  - docker-compose.music.yml
+  - docker-compose.networking.yml
+  - docker-compose.status.yml
+  - docker-compose.tools.yml

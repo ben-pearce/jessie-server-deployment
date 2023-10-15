@@ -4,6 +4,8 @@ networks:
     name: alltube-web
   cyberchef-web:
     name: cyberchef-web
+include:
+  - dependencies/docker-compose.huginn.yml
 services:
   alltube:
     container_name: alltube
