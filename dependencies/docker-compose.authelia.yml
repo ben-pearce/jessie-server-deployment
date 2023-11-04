@@ -6,15 +6,15 @@ networks:
     name: authelia-web
 secrets:
   authelia_identity_providers_oidc_hmac_secret:
-    file: ./.secrets/authelia_identity_providers_oidc_hmac_secret
+    file: ../.secrets/authelia_identity_providers_oidc_hmac_secret
   authelia_identity_providers_oidc_issuer_private_key:
-    file: ./.secrets/authelia_identity_providers_oidc_issuer_private_key
+    file: ../.secrets/authelia_identity_providers_oidc_issuer_private_key
   authelia_jwt_secret:
-    file: ./.secrets/authelia_jwt_secret
+    file: ../.secrets/authelia_jwt_secret
   authelia_postgres_password:
-    file: ./.secrets/authelia_postgres_password
+    file: ../.secrets/authelia_postgres_password
   authelia_storage_encryption_key:
-    file: ./.secrets/authelia_storage_encryption_key
+    file: ../.secrets/authelia_storage_encryption_key
 services:
   authelia-postgres:
     container_name: authelia-postgres

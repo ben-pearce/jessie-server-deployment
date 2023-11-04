@@ -6,7 +6,7 @@ networks:
     name: huginn-web
 secrets:
   huginn_postgres_password:
-    file: ./.secrets/huginn_postgres_password
+    file: ../.secrets/huginn_postgres_password
 services:
   huginn-postgres:
     container_name: huginn-postgres

@@ -6,7 +6,7 @@ networks:
     name: nextcloud-web
 secrets:
   nextcloud_postgres_password:
-    file: ./.secrets/nextcloud_postgres_password
+    file: ../.secrets/nextcloud_postgres_password
 services:
   nextcloud-postgres:
     container_name: nextcloud-postgres

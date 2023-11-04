@@ -6,15 +6,15 @@ networks:
     name: firefly-web
 secrets:
   firefly_access_token:
-    file: ./.secrets/firefly_access_token
+    file: ../.secrets/firefly_access_token
   firefly_app_key:
-    file: ./.secrets/firefly_app_key
+    file: ../.secrets/firefly_app_key
   firefly_postgres_password:
-    file: ./.secrets/firefly_postgres_password
+    file: ../.secrets/firefly_postgres_password
   nordigen_id:
-    file: ./.secrets/nordigen_id
+    file: ../.secrets/nordigen_id
   nordigen_key:
-    file: ./.secrets/nordigen_key
+    file: ../.secrets/nordigen_key
 services:
   firefly-postgres:
     container_name: firefly-postgres

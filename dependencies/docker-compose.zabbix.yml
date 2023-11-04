@@ -6,7 +6,7 @@ networks:
     name: zabbix-web
 secrets:
   zabbix_postgres_password:
-    file: ./.secrets/zabbix_postgres_password
+    file: ../.secrets/zabbix_postgres_password
 services:
   zabbix-postgres:
     container_name: zabbix-postgres

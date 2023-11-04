@@ -6,7 +6,7 @@ networks:
     name: paperless-web
 secrets:
   paperless_postgres_password:
-    file: ./.secrets/paperless_postgres_password
+    file: ../.secrets/paperless_postgres_password
 services:
   paperless-gotenberg:
     command:

@@ -6,7 +6,7 @@ networks:
     name: immich-web
 secrets:
   immich_postgres_password:
-    file: ./.secrets/immich_postgres_password
+    file: ../.secrets/immich_postgres_password
 services:
   immich-machine-learning:
     container_name: immich-machine-learning
