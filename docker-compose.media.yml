@@ -8,6 +8,8 @@ networks:
     name: jellyfin
   jellyfin-web:
     name: jellyfin-web
+include:
+  - dependencies/docker-compose.jellyfin.yml
 services:
   bazarr:
     container_name: bazarr
@@ -61,8 +63,11 @@ services:
       - PUID
       - GUID
       - VERSION=latest
-      - JELLYFIN_PublishedServerUrl=${JELLYFIN_ADDR}
-    build: ./images/jellyfin
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.${HOST}
+      - DOCKER_MODS=linuxserver/mods:jellyfin-rffmpeg
+      - RFFMPEG_USER=jellyfin
+      - RFFMPEG_HOST=jellyfin-ffmpeg
+    image: lscr.io/linuxserver/jellyfin:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: The Free Software Media System.
@@ -77,16 +82,14 @@ services:
       jellyfin-web:
       tunnel:
     restart: unless-stopped
+    depends_on:
+      - jellyfin-mergerfs
     volumes:
       - ${DATA_DIR}/jellyfin:/config
       - ${MEDIA_DIR}/shows:/tv
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/music:/music
-      - ${CONFIG_DIR}/jellyfin/rffmpeg:/etc/rffmpeg
-      - type: tmpfs
-        target: /run/transcoding
-        tmpfs:
-          mode: 01777
+      - ${DATA_DIR}/jellyfin/mnt:/mnt:slave
   prowlarr:
     container_name: prowlarr
     environment:

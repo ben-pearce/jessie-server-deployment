@@ -1,0 +1,35 @@
+---
+services:
+  jellyfin-mergerfs:
+    cap_add:
+      - SYS_ADMIN
+    command: '-o allow_other,category.create=ff,minfreespace=1G /fast:/slow /mountpoint'
+    container_name: jellyfin-mergerfs
+    devices:
+      - /dev/fuse
+    image: ghcr.io/hotio/mergerfs
+    init: true
+    restart: unless-stopped
+    security_opt:
+      - apparmor:unconfined
+    tmpfs:
+      - /fast:rw,size=10G,mode=1777
+    user: root
+    volumes:
+      - /slow
+      - ${DATA_DIR}/jellyfin/mnt/transcodes:/mountpoint:shared
+  jellyfin-sftp:
+    command: transcode::1000
+    container_name: jellyfin-sftp
+    depends_on:
+      - jellyfin-mergerfs
+    image: atmoz/sftp
+    ports:
+      - '2222:22'
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG_DIR}/sftp/.ssh:/home/transcode/.ssh/keys
+      - ${CONFIG_DIR}/sftp/.ssh/ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key
+      - ${CONFIG_DIR}/sftp/.ssh/ssh_host_rsa_key:/etc/ssh/ssh_host_rsa_key
+      - ${DATA_DIR}/jellyfin/mnt:/home/transcode:slave
+version: '3.4'
