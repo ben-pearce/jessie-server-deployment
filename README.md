@@ -31,15 +31,15 @@ This repository holds my docker compose files and configuration files for servic
 | [ofelia](./docker-compose.management.yml#L30)  | Docker job scheduler. |  | [GitHub](https://github.com/mcuadros/ofelia) |
 | [portainer](./docker-compose.management.yml#L41)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
 | [watchtower](./docker-compose.management.yml#L59)  | A process for automating Docker container base image updates. |  | [GitHub](https://github.com/containrrr/watchtower), [Docker Hub](https://hub.docker.com/r/containrrr/watchtower) |
-| [bazarr](./docker-compose.media.yml#L13) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
-| [freshrss](./docker-compose.media.yml#L37)  | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
-| [jellyfin](./docker-compose.media.yml#L59) <sup>1</sup> | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
-| [prowlarr](./docker-compose.media.yml#L91) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
-| [radarr](./docker-compose.media.yml#L113) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
-| [sabnzbd](./docker-compose.media.yml#L138) <sup>1,2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
-| [sonarr](./docker-compose.media.yml#L163) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
-| [transmission](./docker-compose.media.yml#L188) <sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
-| [tvheadend](./docker-compose.media.yml#L211) <sup>1,2</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
+| [bazarr](./docker-compose.media.yml#L15) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
+| [freshrss](./docker-compose.media.yml#L39)  | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
+| [jellyfin](./docker-compose.media.yml#L61) <sup>1</sup> | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
+| [prowlarr](./docker-compose.media.yml#L94) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
+| [radarr](./docker-compose.media.yml#L116) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
+| [sabnzbd](./docker-compose.media.yml#L141) <sup>1,2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
+| [sonarr](./docker-compose.media.yml#L166) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
+| [transmission](./docker-compose.media.yml#L191) <sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
+| [tvheadend](./docker-compose.media.yml#L214) <sup>1,2</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
 | [deemix](./docker-compose.music.yml#L9) <sup>1</sup> | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
 | [navidrome](./docker-compose.music.yml#L32) <sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
 | [traefik](./docker-compose.networking.yml#L37)  | The Cloud Native Application Proxy. | `443:443`, `80:80` | [GitHub](https://github.com/traefik/traefik) |
@@ -100,7 +100,6 @@ The `.env` file stores environment variables to make starting the containers eas
 | `DATA_DIR` | Location of data storage on host. | `.data` |
 | `CLOUD_DIR` | Location of cloud storage on house. | `/mnt/cloud` |
 | `ADMIN_EMAIL` | Administrative email address | `somebody@email.com` |
-| `JELLYFIN_ADDR` | Jellyfin discoverability address. | `10.0.0.1` |
 | `LAN_SUBNET` | Local subnet | `10.0.0.0/24` |
 
 
