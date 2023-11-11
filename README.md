@@ -90,17 +90,17 @@ The `.env` file stores environment variables to make starting the containers eas
 | **Variable** | **Description** | **Example** |
 |---|---|---|
 | `HOST` | The main host for web-based services. | `example.com` |
-| `SMTP_HOST` | SMTP mail server host | `mail.example.com` |
-| `SMTP_USER` | SMTP username | `postmaster@example.com` |
+| `SMTP_HOST` | SMTP mail server host. | `mail.example.com` |
+| `SMTP_USER` | SMTP username. | `postmaster@example.com` |
 | `TZ` | Timezone for all containers. | `Europe/London` |
 | `PUID` | System user ID to run containers as. | `1000` |
 | `GUID` | System group ID to run containers as. | `1000` |
 | `MEDIA_DIR` | Location of media storage on host. | `/mnt/storage` |
 | `CONFIG_DIR` | Location of config storage on host. | `.config` |
 | `DATA_DIR` | Location of data storage on host. | `.data` |
-| `CLOUD_DIR` | Location of cloud storage on house. | `/mnt/cloud` |
-| `ADMIN_EMAIL` | Administrative email address | `somebody@email.com` |
-| `LAN_SUBNET` | Local subnet | `10.0.0.0/24` |
+| `CLOUD_DIR` | Location of cloud storage on host. | `/mnt/cloud` |
+| `ADMIN_EMAIL` | Administrative email address. | `somebody@email.com` |
+| `LAN_SUBNET` | Local subnet . | `10.0.0.0/24` |
 
 
 ## Ideas 
