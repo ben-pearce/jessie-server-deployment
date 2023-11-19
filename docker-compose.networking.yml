@@ -1,5 +1,7 @@
 ---
 networks:
+  cloudflared-web:
+    name: cloudflared-web
   tunnel:
     name: tunnel
   tunnel-web:
@@ -9,11 +11,26 @@ secrets:
     file: ./.secrets/cloudflare_dns_api_token
   cloudflare_zone_api_token:
     file: ./.secrets/cloudflare_zone_api_token
+  cloudflared_token:
+    file: ./.secrets/cloudflared_token
   pia_password:
     file: ./.secrets/pia_password
   pia_username:
     file: ./.secrets/pia_username
 services:
+  cloudflared:
+    command: tunnel --credentials-file /run/secrets/cloudflared_token run jessie
+    container_name: cloudflared
+    image: cloudflare/cloudflared
+    init: true
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Cloudflare Zero Trust tunnel
+    networks:
+      - cloudflared-web
+    restart: 'no'
+    secrets:
+      - cloudflared_token
   traefik:
     command:
       - '--global.sendAnonymousUsage=true'
@@ -54,6 +71,7 @@ services:
       alltube-web:
       arr-web:
       authelia-web:
+      cloudflared-web:
       cyberchef-web:
       deemix-web:
       default:
@@ -61,7 +79,6 @@ services:
       firefly-web:
       freshrss-web:
       homer-web:
-      yaade-web:
       huginn-web:
       immich-web:
       jellyfin-web:
@@ -77,6 +94,7 @@ services:
       tunnel-web:
       uptime-kuma-web:
       vaultwarden-web:
+      yaade-web:
       zabbix-web:
     ports:
       - '443:443'
