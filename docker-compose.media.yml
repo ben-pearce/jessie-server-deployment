@@ -90,6 +90,7 @@ services:
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/music:/music
       - ${DATA_DIR}/jellyfin/mnt:/mnt:slave
+      - ./dependencies/scripts/jellyfin:/custom-cont-init.d:ro
   prowlarr:
     container_name: prowlarr
     environment:
