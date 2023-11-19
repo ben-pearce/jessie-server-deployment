@@ -1,25 +1,25 @@
 ---
 networks:
-  hoppscotch-web:
-    name: hoppscotch-web
+  yaade-web:
+    name: yaade-web
   pgadmin-web:
     name: pgadmin-web
 services:
-  hoppscotch:
-    container_name: hoppscotch
-    image: hoppscotch/hoppscotch:latest
+  yaade:
+    container_name: yaade
+    image: esperotech/yaade:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
-      readme.description: API Development Ecosystem.
-      readme.links.github: https://github.com/hoppscotch/hoppscotch
-      traefik.docker.network: hoppscotch-web
+      readme.description: Yet Another API Development Environment.
+      readme.links.github: https://github.com/EsperoTech/yaade
+      traefik.docker.network: yaade-web
       traefik.enable: true
-      traefik.http.routers.hoppscotch.entrypoints: https
-      traefik.http.routers.hoppscotch.middlewares: authelia
-      traefik.http.routers.hoppscotch.rule: Host(`hoppscotch.${HOST}`)
-      traefik.http.services.hoppscotch.loadbalancer.server.port: 3000
+      traefik.http.routers.yaade.entrypoints: https
+      traefik.http.routers.yaade.middlewares: authelia
+      traefik.http.routers.yaade.rule: Host(`yaade.${HOST}`)
+      traefik.http.services.yaade.loadbalancer.server.port: 9339
     networks:
-      hoppscotch-web:
+      yaade-web:
     restart: unless-stopped
   pgadmin:
     container_name: pgadmin

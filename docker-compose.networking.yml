@@ -61,7 +61,7 @@ services:
       firefly-web:
       freshrss-web:
       homer-web:
-      hoppscotch-web:
+      yaade-web:
       huginn-web:
       immich-web:
       jellyfin-web:
