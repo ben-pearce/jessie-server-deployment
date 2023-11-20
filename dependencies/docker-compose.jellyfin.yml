@@ -19,7 +19,7 @@ services:
       - /slow
       - ${DATA_DIR}/jellyfin/mnt/transcodes:/mountpoint:shared
   jellyfin-sftp:
-    command: transcode::1000
+    command: transcode::${PUID}
     container_name: jellyfin-sftp
     depends_on:
       - jellyfin-mergerfs
