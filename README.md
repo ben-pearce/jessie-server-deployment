@@ -26,7 +26,7 @@ This repository holds my docker compose files and configuration files for servic
 | [paperless-ngx](./docker-compose.cloud.yml#L199)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
 | [vaultwarden](./docker-compose.cloud.yml#L239)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 | [yaade](./docker-compose.dev.yml#L9)  | Yet Another API Development Environment. |  | [GitHub](https://github.com/EsperoTech/yaade) |
-| [pgadmin](./docker-compose.dev.yml#L25)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
+| [pgadmin](./docker-compose.dev.yml#L29)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
 | [homer](./docker-compose.management.yml#L9)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
 | [ofelia](./docker-compose.management.yml#L30)  | Docker job scheduler. |  | [GitHub](https://github.com/mcuadros/ofelia) |
 | [portainer](./docker-compose.management.yml#L41)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
