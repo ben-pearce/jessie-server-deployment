@@ -7,6 +7,8 @@ networks:
 services:
   yaade:
     container_name: yaade
+    environment:
+      - YAADE_ADMIN_USERNAME=admin
     image: esperotech/yaade:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
@@ -21,6 +23,8 @@ services:
     networks:
       yaade-web:
     restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/yaade:/app/data
   pgadmin:
     container_name: pgadmin
     environment:
