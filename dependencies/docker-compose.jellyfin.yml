@@ -32,4 +32,4 @@ services:
       - ${CONFIG_DIR}/sftp/.ssh/ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key
       - ${CONFIG_DIR}/sftp/.ssh/ssh_host_rsa_key:/etc/ssh/ssh_host_rsa_key
       - ${DATA_DIR}/jellyfin/mnt:/home/transcode:slave
-version: '3.4'
+version: '3.9'

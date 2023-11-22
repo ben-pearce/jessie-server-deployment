@@ -28,4 +28,4 @@ services:
     volumes:
       - ${DATA_DIR}/postgres/nextcloud:/var/lib/postgresql/data
       - ${DATA_DIR}/postgres/backups:/backups
-version: '3.4'
+version: '3.9'

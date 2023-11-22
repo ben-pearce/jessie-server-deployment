@@ -49,4 +49,4 @@ services:
     restart: unless-stopped
     secrets:
       - zabbix_postgres_password
-version: '3.4'
+version: '3.9'

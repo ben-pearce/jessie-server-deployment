@@ -50,4 +50,4 @@ services:
     volumes:
       - ${DATA_DIR}/navidrome:/data
       - ${MEDIA_DIR}/music:/music:ro
-version: '3.4'
+version: '3.9'

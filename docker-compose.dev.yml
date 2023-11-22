@@ -52,4 +52,4 @@ services:
     volumes:
       - ${DATA_DIR}/pgadmin:/var/lib/pgadmin
       - ${CONFIG_DIR}/pgadmin/config_local.py:/pgadmin4/config_local.py
-version: '3.4'
+version: '3.9'
