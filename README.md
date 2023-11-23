@@ -21,10 +21,10 @@ This repository holds my docker compose files and configuration files for servic
 | [authelia](./docker-compose.cloud.yml#L18)  | The Single Sign-On Multi-Factor portal for web apps. |  | [Docker Hub](https://hub.docker.com/r/authelia/authelia), [Website](https://www.authelia.com/) |
 | [fidi](./docker-compose.cloud.yml#L54)  | Firefly III Data Importer. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/data-importer) |
 | [firefly](./docker-compose.cloud.yml#L97)  | Personal Finance Manager. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/core), [Website](https://www.firefly-iii.org/) |
-| [immich-proxy](./docker-compose.cloud.yml#L143)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
-| [nextcloud](./docker-compose.cloud.yml#L162)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
-| [paperless-ngx](./docker-compose.cloud.yml#L199)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
-| [vaultwarden](./docker-compose.cloud.yml#L239)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
+| [immich-server](./docker-compose.cloud.yml#L143)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
+| [nextcloud](./docker-compose.cloud.yml#L180)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
+| [paperless-ngx](./docker-compose.cloud.yml#L217)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
+| [vaultwarden](./docker-compose.cloud.yml#L257)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 | [yaade](./docker-compose.dev.yml#L9)  | Yet Another API Development Environment. |  | [GitHub](https://github.com/EsperoTech/yaade) |
 | [pgadmin](./docker-compose.dev.yml#L29)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
 | [homer](./docker-compose.management.yml#L9)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
