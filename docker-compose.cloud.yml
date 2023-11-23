@@ -139,11 +139,24 @@ services:
       - smtp_password
     volumes:
       - ${DATA_DIR}/firefly/upload:/var/www/html/storage/upload
-  immich-proxy:
-    container_name: immich-proxy
+  immich-server:
+    container_name: immich-server
     depends_on:
-      - immich-server
-    image: ghcr.io/immich-app/immich-proxy:release
+      - immich-redis
+      - immich-postgres
+      - immich-typesense
+    entrypoint: [ "/bin/sh", "./start-server.sh" ]
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOSTNAME=immich-redis
+      - DB_HOSTNAME=immich-postgres
+      - DB_USERNAME=immich
+      - DB_DATABASE_NAME=immich
+      - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
+      - TYPESENSE_HOST=immich-typesense
+      - TYPESENSE_API_KEY=typesense
+      - TYPESENSE_URL=ha://W3sKCSJob3N0IjogImltbWljaC10eXBlc2Vuc2UiLAoJInBvcnQiOiAiODEwOCIsCgkicHJvdG9jb2wiOiAiaHR0cCIKfV0=
+    image: ghcr.io/immich-app/immich-server:release
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Photo & Video Backup Solution
@@ -151,13 +164,18 @@ services:
       readme.links.web: https://immich.app/
       traefik.docker.network: immich-web
       traefik.enable: true
-      traefik.http.routers.immich-proxy.entrypoints: https
-      traefik.http.routers.immich-proxy.rule: Host(`immich.${HOST}`)
-      traefik.http.services.immich-proxy.loadbalancer.server.port: 8080
+      traefik.http.routers.immich-server.entrypoints: https
+      traefik.http.routers.immich-server.rule: Host(`immich.${HOST}`)
+      traefik.http.services.immich-server.loadbalancer.server.port: 3001
     networks:
       immich:
       immich-web:
     restart: unless-stopped
+    secrets:
+      - immich_postgres_password
+    volumes:
+      - ${DATA_DIR}/immich/upload:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
   nextcloud:
     container_name: nextcloud
     depends_on:
