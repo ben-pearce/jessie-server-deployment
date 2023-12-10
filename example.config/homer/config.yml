@@ -58,6 +58,11 @@ services:
         target: "_blank"
         type: "Radarr"
         apikey: dcd9f26124ba4efa89aa3b028a0b516d
+      - name: "Lidarr"
+        logo: "assets/dashboard-icons/png/lidarr.png"
+        subtitle: "Music Collection Manager"
+        url: "https://lidarr.jessie.benpearce.io"
+        target: "_blank"
       - name: "FreshRSS"
         logo: "assets/dashboard-icons/png/freshrss.png"
         subtitle: "RSS Aggregator"

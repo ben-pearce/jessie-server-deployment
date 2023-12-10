@@ -89,6 +89,7 @@ services:
       - ${MEDIA_DIR}/shows:/tv
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/music:/music
+      - ${MEDIA_DIR}/music-videos:/music-videos
       - ${DATA_DIR}/jellyfin/mnt:/mnt:slave
       - ./dependencies/scripts/jellyfin:/custom-cont-init.d:ro
   prowlarr:

@@ -26,8 +26,37 @@ services:
       deemix-web:
     restart: unless-stopped
     volumes:
-      - ${MEDIA_DIR}/music/:/downloads
+      - ${DATA_DIR}/lidarr/downloads:/downloads
       - ${CONFIG_DIR}/deemix:/config
+  lidarr:
+    container_name: lidarr
+    environment:
+      - PUID
+      - GUID
+      - TZ
+    image: ghcr.io/linuxserver/lidarr
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Music Collection Manager.
+      readme.links.github: https://github.com/Lidarr/Lidarr
+      traefik.docker.network: arr-web
+      traefik.enable: true
+      traefik.http.routers.lidarr.entrypoints: https
+      traefik.http.routers.lidarr.middlewares: authelia
+      traefik.http.routers.lidarr.rule: Host(`lidarr.${HOST}`)
+      traefik.http.services.lidarr.loadbalancer.server.port: 8686
+    networks:
+      arr-web:
+      tunnel:
+      navidrome-web:
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG_DIR}/lidarr/custom-services.d:/custom-services.d
+      - ${CONFIG_DIR}/lidarr/custom-cont-init.d:/custom-cont-init.d
+      - ${DATA_DIR}/lidarr:/config
+      - ${MEDIA_DIR}/music:/music
+      - ${MEDIA_DIR}/music-videos:/music-videos
+      - ${DATA_DIR}/lidarr/downloads:/downloads
   navidrome:
     container_name: navidrome
     environment:
