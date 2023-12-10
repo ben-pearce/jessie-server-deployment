@@ -34,14 +34,15 @@ This repository holds my docker compose files and configuration files for servic
 | [bazarr](./docker-compose.media.yml#L15) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [freshrss](./docker-compose.media.yml#L39)  | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
 | [jellyfin](./docker-compose.media.yml#L61) <sup>1</sup> | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
-| [prowlarr](./docker-compose.media.yml#L95) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
-| [radarr](./docker-compose.media.yml#L117) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
-| [sabnzbd](./docker-compose.media.yml#L142) <sup>1,2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
-| [sonarr](./docker-compose.media.yml#L167) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
-| [transmission](./docker-compose.media.yml#L192) <sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
-| [tvheadend](./docker-compose.media.yml#L215) <sup>1,2</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
-| [deemix](./docker-compose.music.yml#L9) <sup>1</sup> | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
-| [navidrome](./docker-compose.music.yml#L32) <sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
+| [prowlarr](./docker-compose.media.yml#L96) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
+| [radarr](./docker-compose.media.yml#L118) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
+| [sabnzbd](./docker-compose.media.yml#L143) <sup>1,2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
+| [sonarr](./docker-compose.media.yml#L168) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
+| [transmission](./docker-compose.media.yml#L193) <sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
+| [tvheadend](./docker-compose.media.yml#L216) <sup>1,2</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
+| [deemix](./docker-compose.music.yml#L9)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
+| [lidarr](./docker-compose.music.yml#L32) <sup>1</sup> | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
+| [navidrome](./docker-compose.music.yml#L61) <sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
 | [cloudflared](./docker-compose.networking.yml#L25)  | Cloudflare Zero Trust tunnel |  |  |
 | [traefik](./docker-compose.networking.yml#L57)  | The Cloud Native Application Proxy. | `443:443`, `80:80` | [GitHub](https://github.com/traefik/traefik) |
 | [tunnel](./docker-compose.networking.yml#L116)  | A Docker container for using WireGuard with PIA. | `9981:9981/tcp`, `9982:9982/tcp` | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
