@@ -22,9 +22,9 @@ This repository holds my docker compose files and configuration files for servic
 | [fidi](./docker-compose.cloud.yml#L54)  | Firefly III Data Importer. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/data-importer) |
 | [firefly](./docker-compose.cloud.yml#L97)  | Personal Finance Manager. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/core), [Website](https://www.firefly-iii.org/) |
 | [immich-server](./docker-compose.cloud.yml#L143)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
-| [nextcloud](./docker-compose.cloud.yml#L180)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
-| [paperless-ngx](./docker-compose.cloud.yml#L217)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
-| [vaultwarden](./docker-compose.cloud.yml#L257)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
+| [nextcloud](./docker-compose.cloud.yml#L176)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
+| [paperless-ngx](./docker-compose.cloud.yml#L213)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
+| [vaultwarden](./docker-compose.cloud.yml#L255)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 | [yaade](./docker-compose.dev.yml#L9)  | Yet Another API Development Environment. |  | [GitHub](https://github.com/EsperoTech/yaade) |
 | [pgadmin](./docker-compose.dev.yml#L29)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
 | [homer](./docker-compose.management.yml#L9)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
@@ -41,8 +41,8 @@ This repository holds my docker compose files and configuration files for servic
 | [transmission](./docker-compose.media.yml#L193) <sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
 | [tvheadend](./docker-compose.media.yml#L216) <sup>1,2</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
 | [deemix](./docker-compose.music.yml#L9)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
-| [lidarr](./docker-compose.music.yml#L32) <sup>1</sup> | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
-| [navidrome](./docker-compose.music.yml#L61) <sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
+| [lidarr](./docker-compose.music.yml#L33) <sup>1</sup> | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
+| [navidrome](./docker-compose.music.yml#L62) <sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
 | [cloudflared](./docker-compose.networking.yml#L25)  | Cloudflare Zero Trust tunnel |  |  |
 | [traefik](./docker-compose.networking.yml#L57)  | The Cloud Native Application Proxy. | `443:443`, `80:80` | [GitHub](https://github.com/traefik/traefik) |
 | [tunnel](./docker-compose.networking.yml#L116)  | A Docker container for using WireGuard with PIA. | `9981:9981/tcp`, `9982:9982/tcp` | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
