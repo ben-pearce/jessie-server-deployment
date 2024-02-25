@@ -69,7 +69,7 @@ services:
       - MAIL_PASSWORD_FILE=/run/secrets/smtp_password
       - MAIL_ENCRYPTION=ssl
       - MAIL_FROM_ADDRESS=${SMTP_USER}
-    image: fireflyiii/data-importer:develop
+    image: fireflyiii/data-importer:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
       ofelia.enabled: 'true'
