@@ -11,6 +11,7 @@ services:
       - PUID
       - GUID
       - UMASK_SET=022
+      - DEEMIX_SINGLE_USER=true
     image: registry.gitlab.com/bockiii/deemix-docker
     labels:
       com.centurylinklabs.watchtower.enable: true
