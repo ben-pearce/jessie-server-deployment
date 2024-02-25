@@ -36,7 +36,6 @@ services:
     depends_on:
       - immich-redis
       - immich-postgres
-      - immich-typesense
     entrypoint: [ "/bin/sh", "./start-microservices.sh" ]
     environment:
       - NODE_ENV=production
@@ -45,9 +44,6 @@ services:
       - DB_USERNAME=immich
       - DB_DATABASE_NAME=immich
       - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
-      - TYPESENSE_HOST=immich-typesense
-      - TYPESENSE_API_KEY=typesense
-      - TYPESENSE_URL=ha://W3sKCSJob3N0IjogImltbWljaC10eXBlc2Vuc2UiLAoJInBvcnQiOiAiODEwOCIsCgkicHJvdG9jb2wiOiAiaHR0cCIKfV0=
     image: ghcr.io/immich-app/immich-server:release
     labels:
       com.centurylinklabs.watchtower.enable: true
@@ -65,7 +61,7 @@ services:
       POSTGRES_DB: immich
       POSTGRES_PASSWORD_FILE: /run/secrets/immich_postgres_password
       POSTGRES_USER: immich
-    image: postgres:14.5
+    image: tensorchord/pgvecto-rs:pg14-v0.2.0
     labels:
       ofelia.enabled: 'true'
       ofelia.job-exec.immich-postgres-backup.command: /bin/sh -c 'pg_dump -U immich -d immich > /backups/immich.sql'
@@ -85,17 +81,4 @@ services:
     networks:
       - immich
     restart: unless-stopped
-  immich-typesense:
-    container_name: immich-typesense
-    environment:
-      - TYPESENSE_API_KEY=typesense
-      - TYPESENSE_DATA_DIR=/data
-    image: typesense/typesense:0.24.0
-    labels:
-      com.centurylinklabs.watchtower.enable: true
-    networks:
-      - immich
-    restart: unless-stopped
-    volumes:
-      - ${DATA_DIR}/immich/typesense:/data
 version: '3.9'

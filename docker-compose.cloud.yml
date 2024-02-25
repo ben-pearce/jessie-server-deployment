@@ -144,7 +144,6 @@ services:
     depends_on:
       - immich-redis
       - immich-postgres
-      - immich-typesense
     entrypoint: [ "/bin/sh", "./start-server.sh" ]
     environment:
       - NODE_ENV=production
@@ -153,9 +152,6 @@ services:
       - DB_USERNAME=immich
       - DB_DATABASE_NAME=immich
       - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
-      - TYPESENSE_HOST=immich-typesense
-      - TYPESENSE_API_KEY=typesense
-      - TYPESENSE_URL=ha://W3sKCSJob3N0IjogImltbWljaC10eXBlc2Vuc2UiLAoJInBvcnQiOiAiODEwOCIsCgkicHJvdG9jb2wiOiAiaHR0cCIKfV0=
     image: ghcr.io/immich-app/immich-server:release
     labels:
       com.centurylinklabs.watchtower.enable: true
