@@ -52,4 +52,17 @@ services:
     networks:
       - paperless
     restart: unless-stopped
+  paperless-scanner:
+    image: manuc66/node-hp-scan-to:latest
+    container_name: paperless-scanner
+    environment:
+      - IP=paperless-scanner
+      - LABEL=Paperless
+      - PATTERN="scan"_dd.mm.yyyy_hh:MM:ss
+      - PGID
+      - PUID
+      - TZ
+    volumes:
+      - ${DATA_DIR}/paperless/consume:/scan
+    restart: unless-stopped
 version: '3.9'
