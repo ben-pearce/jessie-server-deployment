@@ -99,6 +99,7 @@ services:
       vaultwarden-web:
       yaade-web:
       zabbix-web:
+      rxresume-web:
     ports:
       - '443:443'
       - '80:80'
