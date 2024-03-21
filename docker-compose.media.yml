@@ -1,4 +1,6 @@
 ---
+include:
+  - dependencies/docker-compose.jellyfin.yml
 networks:
   arr-web:
     name: arr-web
@@ -8,8 +10,6 @@ networks:
     name: jellyfin
   jellyfin-web:
     name: jellyfin-web
-include:
-  - dependencies/docker-compose.jellyfin.yml
 services:
   bazarr:
     container_name: bazarr
@@ -63,6 +63,8 @@ services:
       - ${LOG_DIR}/freshrss:/config/log
   jellyfin:
     container_name: jellyfin
+    depends_on:
+      - jellyfin-mergerfs
     environment:
       - PUID
       - GUID
@@ -86,8 +88,6 @@ services:
       jellyfin-web:
       tunnel:
     restart: unless-stopped
-    depends_on:
-      - jellyfin-mergerfs
     volumes:
       - ${DATA_DIR}/jellyfin:/config
       - ${MEDIA_DIR}/shows:/tv

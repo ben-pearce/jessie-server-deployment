@@ -1,30 +1,10 @@
 ---
 networks:
-  yaade-web:
-    name: yaade-web
   pgadmin-web:
     name: pgadmin-web
+  yaade-web:
+    name: yaade-web
 services:
-  yaade:
-    container_name: yaade
-    environment:
-      - YAADE_ADMIN_USERNAME=admin
-    image: esperotech/yaade:latest
-    labels:
-      com.centurylinklabs.watchtower.enable: true
-      readme.description: Yet Another API Development Environment.
-      readme.links.github: https://github.com/EsperoTech/yaade
-      traefik.docker.network: yaade-web
-      traefik.enable: true
-      traefik.http.routers.yaade.entrypoints: https
-      traefik.http.routers.yaade.middlewares: authelia
-      traefik.http.routers.yaade.rule: Host(`yaade.${HOST}`)
-      traefik.http.services.yaade.loadbalancer.server.port: 9339
-    networks:
-      yaade-web:
-    restart: unless-stopped
-    volumes:
-      - ${DATA_DIR}/yaade:/app/data
   pgadmin:
     container_name: pgadmin
     environment:
@@ -52,4 +32,26 @@ services:
     volumes:
       - ${DATA_DIR}/pgadmin:/var/lib/pgadmin
       - ${CONFIG_DIR}/pgadmin/config_local.py:/pgadmin4/config_local.py
+  yaade:
+    container_name: yaade
+    environment:
+      - YAADE_ADMIN_USERNAME=admin
+    image: esperotech/yaade:latest
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Yet Another API Development Environment.
+      readme.links.github: https://github.com/EsperoTech/yaade
+      traefik.docker.network: yaade-web
+      traefik.enable: true
+      traefik.http.routers.yaade.entrypoints: https
+      traefik.http.routers.yaade.middlewares: authelia
+      traefik.http.routers.yaade.rule: Host(`yaade.${HOST}`)
+      traefik.http.services.yaade.loadbalancer.server.port: 9339
+    networks:
+      yaade-web: null
+    restart: unless-stopped
+    tmpfs:
+      - /tmp:rw,mode=1777
+    volumes:
+      - ${DATA_DIR}/yaade:/app/data
 version: '3.9'

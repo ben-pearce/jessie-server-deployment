@@ -1,11 +1,11 @@
 ---
+include:
+  - dependencies/docker-compose.huginn.yml
 networks:
   alltube-web:
     name: alltube-web
   cyberchef-web:
     name: cyberchef-web
-include:
-  - dependencies/docker-compose.huginn.yml
 services:
   alltube:
     container_name: alltube
@@ -42,8 +42,8 @@ services:
     container_name: huginn
     depends_on:
       - huginn-postgres
-    entrypoint: 
-      - /bin/sh 
+    entrypoint:
+      - /bin/sh
       - '-c'
       - |
         export DATABASE_PASSWORD=$(cat /var/run/secrets/huginn_postgres_password) ;  

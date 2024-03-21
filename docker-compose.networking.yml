@@ -11,10 +11,10 @@ secrets:
     file: ./.secrets/cloudflare_dns_api_token
   cloudflare_zone_api_token:
     file: ./.secrets/cloudflare_zone_api_token
-  cloudflared_token:
-    file: ./.secrets/cloudflared_token
   cloudflared_cert:
     file: ./.secrets/cloudflared_cert
+  cloudflared_token:
+    file: ./.secrets/cloudflared_token
   pia_password:
     file: ./.secrets/pia_password
   pia_username:
@@ -79,7 +79,6 @@ services:
       cyberchef-web:
       deemix-web:
       default:
-      duplicati-web:
       firefly-web:
       freshrss-web:
       homer-web:
@@ -95,12 +94,12 @@ services:
       portainer-web:
         aliases:
           - login.${HOST}
+      rxresume-web:
       tunnel-web:
       uptime-kuma-web:
       vaultwarden-web:
       yaade-web:
       zabbix-web:
-      rxresume-web:
     ports:
       - '443:443'
       - '80:80'

@@ -1,12 +1,4 @@
 ---
-networks:
-  duplicati-web:
-    name: duplicati-web
-  vaultwarden-web:
-    name: vaultwarden-web
-secrets:
-  smtp_password:
-    file: ./.secrets/smtp_password
 include:
   - dependencies/docker-compose.authelia.yml
   - dependencies/docker-compose.firefly.yml
@@ -14,6 +6,12 @@ include:
   - dependencies/docker-compose.nextcloud.yml
   - dependencies/docker-compose.paperless.yml
   - dependencies/docker-compose.rxresume.yml
+networks:
+  vaultwarden-web:
+    name: vaultwarden-web
+secrets:
+  smtp_password:
+    file: ./.secrets/smtp_password
 services:
   authelia:
     container_name: authelia
@@ -125,11 +123,11 @@ services:
       readme.links.web: https://www.firefly-iii.org/
       traefik.docker.network: firefly-web
       traefik.enable: true
+      traefik.http.routers.firefly-api.entrypoints: https
+      traefik.http.routers.firefly-api.rule: Host(`firefly.${HOST}`) && PathPrefix(`/api`)
       traefik.http.routers.firefly.entrypoints: https
       traefik.http.routers.firefly.middlewares: authelia
       traefik.http.routers.firefly.rule: Host(`firefly.${HOST}`)
-      traefik.http.routers.firefly-api.entrypoints: https
-      traefik.http.routers.firefly-api.rule: Host(`firefly.${HOST}`) && PathPrefix(`/api`)
     networks:
       firefly:
       firefly-web:
@@ -252,6 +250,23 @@ services:
       - ${DATA_DIR}/paperless/media:/usr/src/paperless/media
       - ${DATA_DIR}/paperless/export:/usr/src/paperless/export
       - ${DATA_DIR}/paperless/consume:/usr/src/paperless/consume
+      - ${LOG_DIR}/paperless:/usr/src/paperless/data/log
+  rxresume-client:
+    container_name: rxresume-client
+    depends_on:
+      - rxresume-server
+    environment:
+      PUBLIC_SERVER_URL: https://rxresume.${HOST}/api
+      PUBLIC_URL: https://rxresume.${HOST}
+    image: amruthpillai/reactive-resume:client-latest
+    labels:
+      traefik.enable: true
+      traefik.http.routers.rxresume-client.entrypoints: https
+      traefik.http.routers.rxresume-client.rule: Host(`rxresume.${HOST}`)
+      traefik.http.services.rxresume-client.loadbalancer.server.port: 3000
+    networks:
+      - rxresume-web
+    restart: unless-stopped
   vaultwarden:
     container_name: vaultwarden
     environment:
@@ -276,20 +291,4 @@ services:
       - smtp_password
     volumes:
       - ${DATA_DIR}/vaultwarden:/data
-  rxresume-client:
-    container_name: rxresume-client
-    image: amruthpillai/reactive-resume:client-latest
-    restart: unless-stopped
-    depends_on:
-      - rxresume-server
-    networks:
-      - rxresume-web
-    environment:
-      PUBLIC_URL: https://rxresume.${HOST}
-      PUBLIC_SERVER_URL: https://rxresume.${HOST}/api
-    labels:
-      traefik.enable: true
-      traefik.http.routers.rxresume-client.entrypoints: https
-      traefik.http.routers.rxresume-client.rule: Host(`rxresume.${HOST}`)
-      traefik.http.services.rxresume-client.loadbalancer.server.port: 3000
 version: '3.9'

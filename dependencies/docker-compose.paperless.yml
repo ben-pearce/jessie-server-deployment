@@ -48,14 +48,7 @@ services:
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/redis/paperless:/data
-  paperless-tika:
-    container_name: paperless-tika
-    image: ghcr.io/paperless-ngx/tika:latest
-    networks:
-      - paperless
-    restart: unless-stopped
   paperless-scanner:
-    image: manuc66/node-hp-scan-to:latest
     container_name: paperless-scanner
     environment:
       - IP=paperless-scan
@@ -64,8 +57,15 @@ services:
       - PGID
       - PUID
       - TZ
+    image: manuc66/node-hp-scan-to:latest
+    restart: unless-stopped
     volumes:
       - ${DATA_DIR}/paperless/consume:/scan
+  paperless-tika:
+    container_name: paperless-tika
+    image: ghcr.io/paperless-ngx/tika:latest
+    networks:
+      - paperless
     restart: unless-stopped
     tmpfs:
       - /tmp:rw,mode=1777

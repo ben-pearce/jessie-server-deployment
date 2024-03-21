@@ -49,8 +49,8 @@ services:
       traefik.http.services.lidarr.loadbalancer.server.port: 8686
     networks:
       arr-web:
-      tunnel:
       navidrome-web:
+      tunnel:
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/lidarr/custom-services.d:/custom-services.d

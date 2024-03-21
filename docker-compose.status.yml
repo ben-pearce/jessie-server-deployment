@@ -1,9 +1,9 @@
 ---
+include:
+  - dependencies/docker-compose.zabbix.yml
 networks:
   uptime-kuma-web:
     name: uptime-kuma-web
-include:
-  - dependencies/docker-compose.zabbix.yml
 services:
   uptime-kuma:
     container_name: uptime-kuma

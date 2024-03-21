@@ -1,3 +1,4 @@
+---
 networks:
   rxresume:
     name: rxresume
@@ -26,29 +27,29 @@ services:
       - ${DATA_DIR}/postgres/backups:/backups
   rxresume-server:
     container_name: rxresume-server
-    image: amruthpillai/reactive-resume:server-latest
-    restart: unless-stopped
     depends_on:
       - rxresume-postgres
+    environment:
+      JWT_EXPIRY_TIME: 604800
+      JWT_SECRET: rxresume
+      POSTGRES_DB: rxresume
+      POSTGRES_HOST: rxresume-postgres
+      POSTGRES_PASSWORD: rxresume
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: rxresume
+      PUBLIC_SERVER_URL: https://rxresume.${HOST}/api
+      PUBLIC_URL: https://rxresume.${HOST}
+      SECRET_KEY: rxresume
+    image: amruthpillai/reactive-resume:server-latest
+    labels:
+      traefik.docker.network: rxresume-web
+      traefik.enable: true
+      traefik.http.middlewares.rxresume-server-strip.stripprefix.prefixes: /api
+      traefik.http.routers.rxresume-server.entrypoints: https
+      traefik.http.routers.rxresume-server.middlewares: rxresume-server-strip
+      traefik.http.routers.rxresume-server.rule: Host(`rxresume.${HOST}`) && PathPrefix(`/api`)
+      traefik.http.services.rxresume-server.loadbalancer.server.port: 3100
     networks:
       - rxresume
       - rxresume-web
-    environment:
-      PUBLIC_URL: https://rxresume.${HOST}
-      PUBLIC_SERVER_URL: https://rxresume.${HOST}/api
-      POSTGRES_DB: rxresume
-      POSTGRES_USER: rxresume
-      POSTGRES_PASSWORD: rxresume
-      SECRET_KEY: rxresume
-      POSTGRES_HOST: rxresume-postgres
-      POSTGRES_PORT: 5432
-      JWT_SECRET: rxresume
-      JWT_EXPIRY_TIME: 604800
-    labels:
-      traefik.enable: true
-      traefik.docker.network: rxresume-web
-      traefik.http.routers.rxresume-server.entrypoints: https
-      traefik.http.routers.rxresume-server.rule: Host(`rxresume.${HOST}`) && PathPrefix(`/api`)
-      traefik.http.routers.rxresume-server.middlewares: rxresume-server-strip
-      traefik.http.services.rxresume-server.loadbalancer.server.port: 3100
-      traefik.http.middlewares.rxresume-server-strip.stripprefix.prefixes: /api
+    restart: unless-stopped
