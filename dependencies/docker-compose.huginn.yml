@@ -52,6 +52,7 @@ services:
       SMTP_AUTHENTICATION: plain
       SMTP_ENABLE_STARTTLS_AUTO: false
       SMTP_SSL: true
+      UID: ${PUID}
     image: ghcr.io/huginn/huginn-single-process
     networks:
       - huginn

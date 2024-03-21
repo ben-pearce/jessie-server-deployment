@@ -62,6 +62,7 @@ services:
       SMTP_SERVER: ${SMTP_HOST}
       SMTP_SSL: true
       SMTP_USER_NAME: ${SMTP_USER}
+      UID: ${PUID}
     image: ghcr.io/huginn/huginn-single-process
     labels:
       com.centurylinklabs.watchtower.enable: true
