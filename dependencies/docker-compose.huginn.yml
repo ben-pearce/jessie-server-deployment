@@ -9,6 +9,10 @@ secrets:
     file: ../.secrets/huginn_postgres_password
 services:
   huginn-postgres:
+    command: |
+      -c max_wal_size=30GB 
+      -c checkpoint_timeout=60min
+      -c wal_writer_flush_after=6400
     container_name: huginn-postgres
     environment:
       POSTGRES_DB: huginn
