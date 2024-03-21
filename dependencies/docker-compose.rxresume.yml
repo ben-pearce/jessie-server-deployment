@@ -19,6 +19,8 @@ services:
     networks:
       - rxresume
     restart: unless-stopped
+    tmpfs:
+      - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
     volumes:
       - ${DATA_DIR}/postgres/rxresume:/var/lib/postgresql/data
       - ${DATA_DIR}/postgres/backups:/backups

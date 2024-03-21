@@ -29,6 +29,7 @@ services:
     volumes:
       - ${DATA_DIR}/lidarr/downloads:/downloads
       - ${CONFIG_DIR}/deemix:/config
+      - ${LOG_DIR}/deemix:/config/log
   lidarr:
     container_name: lidarr
     environment:
@@ -58,6 +59,7 @@ services:
       - ${MEDIA_DIR}/music:/music
       - ${MEDIA_DIR}/music-videos:/music-videos
       - ${DATA_DIR}/lidarr/downloads:/downloads
+      - ${LOG_DIR}/lidarr:/config/logs
   navidrome:
     container_name: navidrome
     environment:

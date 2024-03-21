@@ -35,6 +35,8 @@ services:
     restart: unless-stopped
     secrets:
       - paperless_postgres_password
+    tmpfs:
+      - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
     volumes:
       - ${DATA_DIR}/postgres/paperless:/var/lib/postgresql/data
       - ${DATA_DIR}/postgres/backups:/backups
@@ -65,4 +67,6 @@ services:
     volumes:
       - ${DATA_DIR}/paperless/consume:/scan
     restart: unless-stopped
+    tmpfs:
+      - /tmp:rw,mode=1777
 version: '3.9'

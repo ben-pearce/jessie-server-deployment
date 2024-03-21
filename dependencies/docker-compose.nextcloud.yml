@@ -25,6 +25,8 @@ services:
     restart: unless-stopped
     secrets:
       - nextcloud_postgres_password
+    tmpfs:
+      - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
     volumes:
       - ${DATA_DIR}/postgres/nextcloud:/var/lib/postgresql/data
       - ${DATA_DIR}/postgres/backups:/backups

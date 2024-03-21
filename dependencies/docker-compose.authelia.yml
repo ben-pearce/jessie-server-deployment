@@ -33,6 +33,8 @@ services:
     restart: unless-stopped
     secrets:
       - authelia_postgres_password
+    tmpfs:
+      - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
     volumes:
       - ${DATA_DIR}/postgres/authelia:/var/lib/postgresql/data
       - ${DATA_DIR}/postgres/backups:/backups

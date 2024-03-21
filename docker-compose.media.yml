@@ -35,6 +35,7 @@ services:
       - ${CONFIG_DIR}/bazarr:/config
       - ${MEDIA_DIR}/shows:/tv
       - ${MEDIA_DIR}/movies:/movies
+      - ${LOG_DIR}/bazarr:/config/log
   freshrss:
     container_name: freshrss
     environment:
@@ -54,9 +55,12 @@ services:
     networks:
       freshrss-web:
     restart: unless-stopped
+    tmpfs:
+      - /config/www/freshrss/data/cache:rw,mode=1777
     volumes:
       - ${CONFIG_DIR}/freshrss/config.php:/config/www/freshrss/data/config.php:ro
       - ${DATA_DIR}/freshrss:/config
+      - ${LOG_DIR}/freshrss:/config/log
   jellyfin:
     container_name: jellyfin
     environment:
@@ -91,6 +95,7 @@ services:
       - ${MEDIA_DIR}/music:/music
       - ${MEDIA_DIR}/music-videos:/music-videos
       - ${DATA_DIR}/jellyfin/mnt:/mnt:slave
+      - ${LOG_DIR}/jellyfin:/config/log
       - ./dependencies/scripts/jellyfin:/custom-cont-init.d:ro
   prowlarr:
     container_name: prowlarr
@@ -113,7 +118,7 @@ services:
     network_mode: service:tunnel
     restart: unless-stopped
     volumes:
-      - ${CONFIG_DIR}/prowlarr:/config
+      - ${LOG_DIR}/prowlarr:/config/logs
   radarr:
     container_name: radarr
     environment:
@@ -139,6 +144,7 @@ services:
       - ${CONFIG_DIR}/radarr/config.xml:/config/config.xml
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/downloads/complete:/downloads
+      - ${LOG_DIR}/radarr:/config/logs
   sabnzbd:
     container_name: sabnzbd
     environment:
@@ -164,6 +170,7 @@ services:
       - ${DATA_DIR}/sabnzbd:/config
       - ${MEDIA_DIR}/downloads:/downloads
       - ${MEDIA_DIR}/downloads/incomplete:/incomplete-downloads
+      - ${LOG_DIR}/sabnzbd:/config/logs
   sonarr:
     container_name: sonarr
     environment:
@@ -189,6 +196,7 @@ services:
       - ${CONFIG_DIR}/sonarr/config.xml:/config/config.xml
       - ${MEDIA_DIR}/shows:/tv
       - ${MEDIA_DIR}/downloads/complete:/downloads
+      - ${LOG_DIR}/sonarr:/config/logs
   transmission:
     container_name: transmission
     environment:
