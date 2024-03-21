@@ -118,6 +118,7 @@ services:
     network_mode: service:tunnel
     restart: unless-stopped
     volumes:
+      - ${DATA_DIR}/prowlarr:/config
       - ${LOG_DIR}/prowlarr:/config/logs
   radarr:
     container_name: radarr
