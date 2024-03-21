@@ -58,7 +58,7 @@ services:
     image: manuc66/node-hp-scan-to:latest
     container_name: paperless-scanner
     environment:
-      - IP=paperless-scanner
+      - IP=paperless-scan
       - LABEL=Paperless
       - PATTERN="scan"_dd.mm.yyyy_hh:MM:ss
       - PGID
