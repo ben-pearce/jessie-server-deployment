@@ -81,6 +81,7 @@ services:
       default:
       firefly-web:
       freshrss-web:
+      feishin-web:
       homer-web:
       huginn-web:
       immich-web:

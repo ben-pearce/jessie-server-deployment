@@ -4,6 +4,8 @@ networks:
     name: deemix-web
   navidrome-web:
     name: navidrome-web
+  feishin-web:
+    name: feishin-web
 services:
   deemix:
     container_name: deemix
@@ -82,4 +84,25 @@ services:
     volumes:
       - ${DATA_DIR}/navidrome:/data
       - ${MEDIA_DIR}/music:/music:ro
+  feishin:
+    container_name: feishin
+    environment:
+      - SERVER_NAME=jessie
+      - SERVER_TYPE=navidrome
+      - SERVER_URL=https://navidrome.${HOST}
+      - SERVER_LOCK=true
+    image: ghcr.io/jeffvli/feishin:latest
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: A modern self-hosted music player.
+      readme.links.github: https://github.com/jeffvli/feishin
+      traefik.docker.network: feishin-web
+      traefik.enable: true
+      traefik.http.routers.feishin.entrypoints: https
+      traefik.http.routers.feishin.middlewares: authelia
+      traefik.http.routers.feishin.rule: Host(`feishin.${HOST}`)
+      traefik.http.services.feishin.loadbalancer.server.port: 9180
+    networks:
+      feishin-web:
+    restart: unless-stopped
 version: '3.9'
