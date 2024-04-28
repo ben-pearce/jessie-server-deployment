@@ -1,8 +1,0 @@
-body #app {
-  background-repeat: repeat;
-  background-size: 500px 500px;
-}
-
-a[aria-label="Toggle dark mode"] {
-  display: none !important;
-}
