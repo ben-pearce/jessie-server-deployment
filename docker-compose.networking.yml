@@ -72,7 +72,6 @@ services:
       traefik.http.routers.api.rule: Host(`traefik.${HOST}`)
       traefik.http.services.traefik.loadbalancer.server.port: 8080
     networks:
-      alltube-web:
       arr-web:
       authelia-web:
       cloudflared-web:
@@ -101,6 +100,7 @@ services:
       vaultwarden-web:
       yaade-web:
       zabbix-web:
+      cobalt-web:
     ports:
       - '443:443'
       - '80:80'

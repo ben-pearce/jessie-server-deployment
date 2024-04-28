@@ -2,27 +2,27 @@
 include:
   - dependencies/docker-compose.huginn.yml
 networks:
-  alltube-web:
-    name: alltube-web
   cyberchef-web:
     name: cyberchef-web
 services:
-  alltube:
-    container_name: alltube
-    image: rudloff/alltube
+  cobalt-web:
+    container_name: cobalt-web
+    environment:
+      - WEB_URL=https://cobalt.${HOST}
+      - API_URL=https://cobalt.${HOST}
+    image: ghcr.io/wukko/cobalt:7
     labels:
-      com.centurylinklabs.watchtower.enable: true
-      readme.description: Web GUI for youtube-dl.
-      readme.links.github: https://github.com/Rudloff/alltube
-      traefik.docker.network: alltube-web
+      readme.description: Save what you love.
+      readme.links.github: https://github.com/wukko/cobalt
       traefik.enable: true
-      traefik.http.routers.alltube.entrypoints: https
-      traefik.http.routers.alltube.rule: Host(`alltube.${HOST}`)
+      traefik.http.routers.cobalt-web.entrypoints: https
+      traefik.http.routers.cobalt-web.rule: Host(`cobalt.${HOST}`)
+      traefik.http.services.cobalt-web.loadbalancer.server.port: 9001
     networks:
-      alltube-web:
+      cobalt-web:
     restart: unless-stopped
-    volumes:
-      - ${CONFIG_DIR}/alltube:/var/www/html/config
+    depends_on:
+      - cobalt-api
   cyberchef:
     container_name: cyberchef
     image: mpepping/cyberchef
