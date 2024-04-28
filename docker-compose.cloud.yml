@@ -6,7 +6,6 @@ include:
   - dependencies/docker-compose.nextcloud.yml
   - dependencies/docker-compose.paperless.yml
   - dependencies/docker-compose.rxresume.yml
-  - dependencies/docker-compose.cobalt.yml
 networks:
   vaultwarden-web:
     name: vaultwarden-web
@@ -291,5 +290,15 @@ services:
     secrets:
       - smtp_password
     volumes:
-      - ${DATA_DIR}/vaultwarden:/data
+      - ${DATA_DIR}/vaultwarden:/data   
+  # owntracks-frontend:
+  #   image: owntracks/frontend
+  #   ports:
+  #     - 80:80
+  #   volumes:
+  #     - ./path/to/custom/config.js:/usr/share/nginx/html/config/config.js
+  #   environment:
+  #     - SERVER_HOST=otrecorder
+  #     - SERVER_PORT=8083
+  #   restart: unless-stopped
 version: '3.9'

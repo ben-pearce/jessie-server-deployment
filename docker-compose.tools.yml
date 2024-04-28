@@ -1,6 +1,7 @@
 ---
 include:
   - dependencies/docker-compose.huginn.yml
+  - dependencies/docker-compose.cobalt.yml
 networks:
   cyberchef-web:
     name: cyberchef-web
