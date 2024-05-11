@@ -70,9 +70,10 @@ services:
       - GUID
       - VERSION=latest
       - JELLYFIN_PublishedServerUrl=https://jellyfin.${HOST}
-      - DOCKER_MODS=linuxserver/mods:jellyfin-rffmpeg
-      - RFFMPEG_USER=jellyfin
-      - RFFMPEG_HOST=jellyfin-ffmpeg
+      - DOCKER_MODS=ghcr.io/ben-pearce/remote-ffmpeg-docker-mod:latest
+      - REMOTE_FFMPEG_USER=root
+      - REMOTE_FFMPEG_HOST=alpha.benpearce.io
+      - REMOTE_FFMPEG_BINARY=/usr/lib/jellyfin-ffmpeg/ffmpeg
     image: lscr.io/linuxserver/jellyfin:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
@@ -96,7 +97,6 @@ services:
       - ${MEDIA_DIR}/music-videos:/music-videos
       - ${DATA_DIR}/jellyfin/mnt:/mnt:slave
       - ${LOG_DIR}/jellyfin:/config/log
-      - ./dependencies/scripts/jellyfin:/custom-cont-init.d:ro
   prowlarr:
     container_name: prowlarr
     environment:

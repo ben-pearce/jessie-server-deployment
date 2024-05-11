@@ -18,18 +18,4 @@ services:
     volumes:
       - /slow
       - ${DATA_DIR}/jellyfin/mnt/transcodes:/mountpoint:shared
-  jellyfin-sftp:
-    command: transcode::${PUID}
-    container_name: jellyfin-sftp
-    depends_on:
-      - jellyfin-mergerfs
-    image: atmoz/sftp
-    ports:
-      - '2222:22'
-    restart: unless-stopped
-    volumes:
-      - ${CONFIG_DIR}/sftp/.ssh:/home/transcode/.ssh/keys
-      - ${CONFIG_DIR}/sftp/.ssh/ssh_host_ed25519_key:/etc/ssh/ssh_host_ed25519_key
-      - ${CONFIG_DIR}/sftp/.ssh/ssh_host_rsa_key:/etc/ssh/ssh_host_rsa_key
-      - ${DATA_DIR}/jellyfin/mnt:/home/transcode:slave
 version: '3.9'
