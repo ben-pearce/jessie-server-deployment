@@ -1,0 +1,32 @@
+---
+networks:
+  obsidian-web:
+    name: obsidian-web
+services:
+  obsidian-couchdb:
+    container_name: obsidian-couchdb
+    image: couchdb:latest
+    user: ${PUID}
+    environment:
+      COUCHDB_USER: ben
+      COUCHDB_PASSWORD: couchdb
+    volumes:
+      - ${DATA_DIR}/couchdb/obsidian:/opt/couchdb/data
+      - ${CONFIG_DIR}/couchdb/obsidian.ini:/opt/couchdb/etc/local.d/docker.ini
+    networks:
+      - obsidian-web
+    restart: unless-stopped
+    labels:
+      traefik.enable: true
+      traefik.docker.network: obsidian-web
+      traefik.http.routers.obsidian-couchdb.entrypoints: https
+      traefik.http.routers.obsidian-couchdb.rule: Host(`obsidian-couchdb.${HOST}`)
+      traefik.http.services.obsidian-couchdb.loadbalancer.server.port: 5984
+      traefik.http.routers.obsidian-couchdb.middlewares: obsidian-cors
+      traefik.http.middlewares.obsidian-cors.headers.accesscontrolallowmethods: GET,PUT,POST,HEAD,DELETE
+      traefik.http.middlewares.obsidian-cors.headers.accesscontrolallowheaders: accept,authorization,content-type,origin,referer
+      traefik.http.middlewares.obsidian-cors.headers.accesscontrolalloworiginlist: app://obsidian.md,capacitor://localhost,http://localhost
+      traefik.http.middlewares.obsidian-cors.headers.accesscontrolmaxage: 3600
+      traefik.http.middlewares.obsidian-cors.headers.addvaryheader: true
+      traefik.http.middlewares.obsidian-cors.headers.accessControlAllowCredentials: true
+version: '3.9'

@@ -6,6 +6,7 @@ include:
   - dependencies/docker-compose.nextcloud.yml
   - dependencies/docker-compose.paperless.yml
   - dependencies/docker-compose.rxresume.yml
+  - dependencies/docker-compose.obsidian.yml
 networks:
   vaultwarden-web:
     name: vaultwarden-web
