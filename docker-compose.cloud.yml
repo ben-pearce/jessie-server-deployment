@@ -293,7 +293,7 @@ services:
     secrets:
       - smtp_password
     volumes:
-      - ${DATA_DIR}/vaultwarden:/data   
+      - ${DATA_DIR}/vaultwarden:/data
   wallabag:
     container_name: wallabag
     environment:
@@ -312,4 +312,3 @@ services:
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/wallabag:/var/www/wallabag/data
-version: '3.9'

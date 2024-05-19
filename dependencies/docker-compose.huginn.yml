@@ -64,4 +64,3 @@ services:
     secrets:
       - huginn_postgres_password
       - smtp_password
-version: '3.9'

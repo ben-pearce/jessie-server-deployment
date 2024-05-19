@@ -162,4 +162,3 @@ services:
       - /tmp:rw,mode=1777
     volumes:
       - ${DATA_DIR}/unifi:/config
-version: '3.9'

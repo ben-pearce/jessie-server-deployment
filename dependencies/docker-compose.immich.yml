@@ -83,4 +83,3 @@ services:
     networks:
       - immich
     restart: unless-stopped
-version: '3.9'

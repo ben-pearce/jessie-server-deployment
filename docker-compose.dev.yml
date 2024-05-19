@@ -54,4 +54,3 @@ services:
       - /tmp:rw,mode=1777
     volumes:
       - ${DATA_DIR}/yaade:/app/data
-version: '3.9'

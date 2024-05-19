@@ -38,4 +38,3 @@ services:
       - ${DATA_DIR}/postgres/backups:/backups
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
-version: '3.9'

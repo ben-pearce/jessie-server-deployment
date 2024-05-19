@@ -88,4 +88,3 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     secrets:
       - smtp_password
-version: '3.9'

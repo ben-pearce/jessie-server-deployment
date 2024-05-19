@@ -239,4 +239,3 @@ services:
       - ${CONFIG_DIR}/tvheadend:/config
       - ${MEDIA_DIR}/recordings:/recordings
       - ./dependencies/scripts/tvheadend/tv_grab_url_gz:/usr/bin/tv_grab_url_gz
-version: '3.9'

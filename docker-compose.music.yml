@@ -105,4 +105,3 @@ services:
     networks:
       feishin-web:
     restart: unless-stopped
-version: '3.9'

@@ -69,4 +69,3 @@ services:
     restart: unless-stopped
     tmpfs:
       - /tmp:rw,mode=1777
-version: '3.9'

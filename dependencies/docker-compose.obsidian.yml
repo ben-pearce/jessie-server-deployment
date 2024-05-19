@@ -29,4 +29,3 @@ services:
       traefik.http.middlewares.obsidian-cors.headers.accesscontrolmaxage: 3600
       traefik.http.middlewares.obsidian-cors.headers.addvaryheader: true
       traefik.http.middlewares.obsidian-cors.headers.accessControlAllowCredentials: true
-version: '3.9'
