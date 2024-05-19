@@ -1,6 +1,4 @@
 ---
-include:
-  - dependencies/docker-compose.jellyfin.yml
 networks:
   arr-web:
     name: arr-web
@@ -63,17 +61,14 @@ services:
       - ${LOG_DIR}/freshrss:/config/log
   jellyfin:
     container_name: jellyfin
-    depends_on:
-      - jellyfin-mergerfs
     environment:
       - PUID
       - GUID
       - VERSION=latest
       - JELLYFIN_PublishedServerUrl=https://jellyfin.${HOST}
-      - DOCKER_MODS=ghcr.io/ben-pearce/remote-ffmpeg-docker-mod:latest
+      - DOCKER_MODS=ghcr.io/ben-pearce/remote-ffmpeg-docker-mod:jellyfin
       - REMOTE_FFMPEG_USER=root
       - REMOTE_FFMPEG_HOST=alpha.benpearce.io
-      - REMOTE_FFMPEG_BINARY=/usr/lib/jellyfin-ffmpeg/ffmpeg
     image: lscr.io/linuxserver/jellyfin:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
@@ -89,13 +84,14 @@ services:
       jellyfin-web:
       tunnel:
     restart: unless-stopped
+    tmpfs:
+      - /config/data/transcodes:rw,size=10G,mode=1777
     volumes:
       - ${DATA_DIR}/jellyfin:/config
       - ${MEDIA_DIR}/shows:/tv
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/music:/music
       - ${MEDIA_DIR}/music-videos:/music-videos
-      - ${DATA_DIR}/jellyfin/mnt:/mnt:slave
       - ${LOG_DIR}/jellyfin:/config/log
   prowlarr:
     container_name: prowlarr
