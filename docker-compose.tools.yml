@@ -15,6 +15,7 @@ services:
       - API_URL=https://cobalt.${HOST}
     image: ghcr.io/wukko/cobalt:7
     labels:
+      com.centurylinklabs.watchtower.enable: true
       readme.description: Save what you love.
       readme.links.github: https://github.com/wukko/cobalt
       traefik.enable: true
