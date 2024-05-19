@@ -10,6 +10,8 @@ include:
 networks:
   vaultwarden-web:
     name: vaultwarden-web
+  wallabag-web:
+    name: wallabag-web
 secrets:
   smtp_password:
     file: ./.secrets/smtp_password
@@ -292,14 +294,22 @@ services:
       - smtp_password
     volumes:
       - ${DATA_DIR}/vaultwarden:/data   
-  # owntracks-frontend:
-  #   image: owntracks/frontend
-  #   ports:
-  #     - 80:80
-  #   volumes:
-  #     - ./path/to/custom/config.js:/usr/share/nginx/html/config/config.js
-  #   environment:
-  #     - SERVER_HOST=otrecorder
-  #     - SERVER_PORT=8083
-  #   restart: unless-stopped
+  wallabag:
+    container_name: wallabag
+    environment:
+      - SYMFONY__ENV__DOMAIN_NAME=https://wallabag.${HOST}
+    image: wallabag/wallabag
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: A self hostable application for saving web pages, freely.
+      readme.links.github: https://github.com/wallabag
+      traefik.enable: true
+      traefik.http.routers.wallabag.entrypoints: https
+      traefik.http.routers.wallabag.rule: Host(`wallabag.${HOST}`)
+      traefik.docker.network: wallabag-web
+    networks:
+      wallabag-web:
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/wallabag:/var/www/wallabag/data
 version: '3.9'

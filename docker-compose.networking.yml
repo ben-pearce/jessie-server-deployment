@@ -102,6 +102,7 @@ services:
       zabbix-web:
       obsidian-web:
       cobalt-web:
+      wallabag-web:
     ports:
       - '443:443'
       - '80:80'
