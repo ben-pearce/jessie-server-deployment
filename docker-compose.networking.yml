@@ -88,6 +88,7 @@ services:
       obsidian-web:
       cobalt-web:
       wallabag-web:
+      stirling-pdf-web:
     ports:
       - '443:443'
       - '80:80'
