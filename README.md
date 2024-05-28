@@ -46,9 +46,9 @@ This repository holds my docker compose files and configuration files for servic
 | [lidarr](./docker-compose.music.yml#L36) <sup>1</sup> | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
 | [navidrome](./docker-compose.music.yml#L66) <sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
 | [feishin](./docker-compose.music.yml#L88)  | A modern self-hosted music player. |  | [GitHub](https://github.com/jeffvli/feishin) |
-| [traefik](./docker-compose.networking.yml#L44)  | The Cloud Native Application Proxy. | `443:443`, `80:80` | [GitHub](https://github.com/traefik/traefik) |
-| [tunnel](./docker-compose.networking.yml#L104)  | A Docker container for using WireGuard with PIA. | `9981:9981/tcp`, `9982:9982/tcp` | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
-| [unifi-controller](./docker-compose.networking.yml#L139)  | Wireless network management. | `3478:3478/udp`, `10001:10001/udp`, `8080:8080` |  |
+| [traefik](./docker-compose.networking.yml#L45)  | The Cloud Native Application Proxy. | `443:443`, `80:80` | [GitHub](https://github.com/traefik/traefik) |
+| [tunnel](./docker-compose.networking.yml#L105)  | A Docker container for using WireGuard with PIA. | `9981:9981/tcp`, `9982:9982/tcp` | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
+| [unifi-controller](./docker-compose.networking.yml#L140)  | Wireless network management. | `3478:3478/udp`, `10001:10001/udp`, `8080:8080` |  |
 | [uptime-kuma](./docker-compose.status.yml#L9)  | Self-hosted monitoring tool like "Uptime Robot". |  | [GitHub](https://github.com/louislam/uptime-kuma) |
 | [zabbix-web](./docker-compose.status.yml#L26)  | Zabbix web frontend. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql) |
 | [cobalt-web](./docker-compose.tools.yml#L12)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
