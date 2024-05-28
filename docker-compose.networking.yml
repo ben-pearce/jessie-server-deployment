@@ -31,6 +31,7 @@ services:
       - '--entrypoints.http.http.redirections.entrypoint.to=https'
       - '--entrypoints.http.http.redirections.entrypoint.scheme=https'
       - '--entrypoints.https.address=:443'
+      - '--entrypoints.https.forwardedheaders.trustedips=${LAN_SUBNET}'
       - '--entrypoints.https.http.tls=true'
       - '--entrypoints.https.http.tls.certResolver=resolver'
       - '--entrypoints.https.http.tls.domains[0].main=${HOST}'
