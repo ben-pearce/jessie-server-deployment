@@ -31,30 +31,6 @@ services:
     volumes:
       - ${DATA_DIR}/immich/upload:/usr/src/app/upload
       - ${DATA_DIR}/immich/model-cache:/cache
-  immich-microservices:
-    container_name: immich-microservices
-    depends_on:
-      - immich-redis
-      - immich-postgres
-    entrypoint: [ "/bin/sh", "./start-microservices.sh" ]
-    environment:
-      - NODE_ENV=production
-      - REDIS_HOSTNAME=immich-redis
-      - DB_HOSTNAME=immich-postgres
-      - DB_USERNAME=immich
-      - DB_DATABASE_NAME=immich
-      - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
-    image: ghcr.io/immich-app/immich-server:release
-    labels:
-      com.centurylinklabs.watchtower.enable: true
-    networks:
-      - immich
-    restart: unless-stopped
-    secrets:
-      - immich_postgres_password
-    volumes:
-      - ${DATA_DIR}/immich/upload:/usr/src/app/upload
-      - /etc/localtime:/etc/localtime:ro
   immich-postgres:
     container_name: immich-postgres
     environment:
