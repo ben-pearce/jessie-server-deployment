@@ -22,13 +22,13 @@ This repository holds my docker compose files and configuration files for servic
 | [fidi](./docker-compose.cloud.yml#L56)  | Firefly III Data Importer. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/data-importer) |
 | [firefly](./docker-compose.cloud.yml#L99)  | Personal Finance Manager. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/core), [Website](https://www.firefly-iii.org/) |
 | [immich-server](./docker-compose.cloud.yml#L145)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
-| [nextcloud](./docker-compose.cloud.yml#L178)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
-| [paperless-ngx](./docker-compose.cloud.yml#L215)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
-| [rxresume-client](./docker-compose.cloud.yml#L258)  |  |  |  |
-| [vaultwarden](./docker-compose.cloud.yml#L274)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
-| [wallabag](./docker-compose.cloud.yml#L298)  | A self hostable application for saving web pages, freely. |  | [GitHub](https://github.com/wallabag) |
+| [nextcloud](./docker-compose.cloud.yml#L177)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
+| [paperless-ngx](./docker-compose.cloud.yml#L214)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
+| [rxresume-client](./docker-compose.cloud.yml#L257)  |  |  |  |
+| [vaultwarden](./docker-compose.cloud.yml#L273)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
+| [wallabag](./docker-compose.cloud.yml#L297)  | A self hostable application for saving web pages, freely. |  | [GitHub](https://github.com/wallabag) |
 | [pgadmin](./docker-compose.dev.yml#L9)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
-| [yaade](./docker-compose.dev.yml#L36)  | Yet Another API Development Environment. |  | [GitHub](https://github.com/EsperoTech/yaade) |
+| [yaade](./docker-compose.dev.yml#L35)  | Yet Another API Development Environment. |  | [GitHub](https://github.com/EsperoTech/yaade) |
 | [homer](./docker-compose.management.yml#L9)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
 | [ofelia](./docker-compose.management.yml#L30)  | Docker job scheduler. |  | [GitHub](https://github.com/mcuadros/ofelia) |
 | [portainer](./docker-compose.management.yml#L51)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
@@ -51,10 +51,10 @@ This repository holds my docker compose files and configuration files for servic
 | [unifi-controller](./docker-compose.networking.yml#L140)  | Wireless network management. | `3478:3478/udp`, `10001:10001/udp`, `8080:8080` |  |
 | [uptime-kuma](./docker-compose.status.yml#L9)  | Self-hosted monitoring tool like "Uptime Robot". |  | [GitHub](https://github.com/louislam/uptime-kuma) |
 | [zabbix-web](./docker-compose.status.yml#L26)  | Zabbix web frontend. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql) |
-| [cobalt-web](./docker-compose.tools.yml#L12)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
-| [cyberchef](./docker-compose.tools.yml#L32)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
-| [huginn](./docker-compose.tools.yml#L48)  | Build agents that perform automated tasks for you online. |  | [GitHub](https://github.com/huginn/huginn) |
-| [stirling-pdf](./docker-compose.tools.yml#L89)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
+| [cobalt-web](./docker-compose.tools.yml#L13)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
+| [cyberchef](./docker-compose.tools.yml#L33)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
+| [n8n](./docker-compose.tools.yml#L49)  | Powerful workflow automation. |  |  |
+| [stirling-pdf](./docker-compose.tools.yml#L61)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
 
 <sup>1</sup>Assumes mass storage available, mounted at MEDIA_DIR on the host.
 
@@ -107,6 +107,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `LOG_DIR` | Location of logs directory on host. | `/var/log` |
 | `ADMIN_EMAIL` | Administrative email address. | `somebody@email.com` |
 | `LAN_SUBNET` | Local subnet . | `10.0.0.0/24` |
+| `PRINTER_HOST` | Printer host |  |
 
 
 ## Contributions
