@@ -1,12 +1,13 @@
 ---
 include:
-  - dependencies/docker-compose.huginn.yml
   - dependencies/docker-compose.cobalt.yml
 networks:
   cyberchef-web:
     name: cyberchef-web
   stirling-pdf-web:
     name: stirling-pdf-web
+  n8n-web:
+    name: n8n-web
 services:
   cobalt-web:
     container_name: cobalt-web
@@ -44,47 +45,18 @@ services:
     networks:
       cyberchef-web:
     restart: unless-stopped
-  huginn:
-    container_name: huginn
-    depends_on:
-      - huginn-postgres
-    entrypoint:
-      - /bin/sh
-      - '-c'
-      - |
-        export DATABASE_PASSWORD=$(cat /var/run/secrets/huginn_postgres_password) ;  
-        export SMTP_PASSWORD=$(cat /var/run/secrets/smtp_password) ;  
-        /scripts/init
-    environment:
-      DATABASE_ADAPTER: postgresql
-      DATABASE_HOST: huginn-postgres
-      DATABASE_NAME: huginn
-      DATABASE_USERNAME: huginn
-      EMAIL_FROM_ADDRESS: ${SMTP_USER}
-      SMTP_AUTHENTICATION: plain
-      SMTP_DOMAIN: ${HOST}
-      SMTP_ENABLE_STARTTLS_AUTO: false
-      SMTP_PORT: 465
-      SMTP_SERVER: ${SMTP_HOST}
-      SMTP_SSL: true
-      SMTP_USER_NAME: ${SMTP_USER}
-      UID: ${PUID}
-    image: ghcr.io/huginn/huginn-single-process
+  n8n:
+    container_name: n8n
+    image: docker.n8n.io/n8nio/n8n
     labels:
       com.centurylinklabs.watchtower.enable: true
-      readme.description: Build agents that perform automated tasks for you online.
-      readme.links.github: https://github.com/huginn/huginn
-      traefik.docker.network: huginn-web
+      readme.description: Powerful workflow automation.
+      readme.links.website: https://n8n.io/
+      traefik.docker.network: n8n-web
       traefik.enable: true
-      traefik.http.routers.huginn.entrypoints: https
-      traefik.http.routers.huginn.rule: Host(`huginn.${HOST}`)
-    networks:
-      - huginn
-      - huginn-web
+      traefik.http.routers.n8n.entrypoints: https
+      traefik.http.routers.n8n.rule: Host(`n8n.${HOST}`)
     restart: unless-stopped
-    secrets:
-      - huginn_postgres_password
-      - smtp_password
   stirling-pdf:
     container_name: stirling-pdf
     image: frooodle/s-pdf:latest

@@ -66,7 +66,7 @@ services:
       freshrss-web:
       feishin-web:
       homer-web:
-      huginn-web:
+      n8n-web:
       immich-web:
       jellyfin-web:
       navidrome-web:

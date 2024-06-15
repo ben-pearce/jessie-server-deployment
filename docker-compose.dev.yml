@@ -22,7 +22,6 @@ services:
     networks:
       authelia:
       firefly:
-      huginn:
       immich:
       nextcloud:
       paperless:
