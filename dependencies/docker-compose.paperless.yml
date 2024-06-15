@@ -51,7 +51,7 @@ services:
   paperless-scanner:
     container_name: paperless-scanner
     environment:
-      - IP=paperless-scan
+      - IP=${PRINTER_HOST}
       - LABEL=Paperless
       - PATTERN="scan"_dd.mm.yyyy_hh:MM:ss
       - PGID
