@@ -55,11 +55,8 @@ services:
       tunnel:
     restart: unless-stopped
     volumes:
-      - ${CONFIG_DIR}/lidarr/custom-services.d:/custom-services.d
-      - ${CONFIG_DIR}/lidarr/custom-cont-init.d:/custom-cont-init.d
       - ${DATA_DIR}/lidarr:/config
-      - ${MEDIA_DIR}/music:/music
-      - ${MEDIA_DIR}/music-videos:/music-videos
+      - ${MUSIC_DIR}:/music
       - ${DATA_DIR}/lidarr/downloads:/downloads
       - ${LOG_DIR}/lidarr:/config/logs
   navidrome:
@@ -83,7 +80,7 @@ services:
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/navidrome:/data
-      - ${MEDIA_DIR}/music:/music:ro
+      - ${MUSIC_DIR}:/music:ro
   feishin:
     container_name: feishin
     environment:
