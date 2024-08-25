@@ -36,16 +36,16 @@ This repository holds my docker compose files and configuration files for servic
 | [bazarr](./docker-compose.media.yml#L13) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [freshrss](./docker-compose.media.yml#L38)  | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
 | [jellyfin](./docker-compose.media.yml#L63) <sup>1</sup> | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
-| [prowlarr](./docker-compose.media.yml#L97) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
-| [radarr](./docker-compose.media.yml#L120) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
-| [sabnzbd](./docker-compose.media.yml#L146) <sup>1,2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
-| [sonarr](./docker-compose.media.yml#L172) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
-| [transmission](./docker-compose.media.yml#L198) <sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
-| [tvheadend](./docker-compose.media.yml#L221) <sup>1,2</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
+| [prowlarr](./docker-compose.media.yml#L98) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
+| [radarr](./docker-compose.media.yml#L121) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
+| [sabnzbd](./docker-compose.media.yml#L147) <sup>1,2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
+| [sonarr](./docker-compose.media.yml#L173) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
+| [transmission](./docker-compose.media.yml#L199) <sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
+| [tvheadend](./docker-compose.media.yml#L222) <sup>1,2</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
 | [deemix](./docker-compose.music.yml#L11)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
-| [lidarr](./docker-compose.music.yml#L36) <sup>1</sup> | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
-| [navidrome](./docker-compose.music.yml#L66) <sup>1</sup> | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
-| [feishin](./docker-compose.music.yml#L88)  | A modern self-hosted music player. |  | [GitHub](https://github.com/jeffvli/feishin) |
+| [lidarr](./docker-compose.music.yml#L36)  | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
+| [navidrome](./docker-compose.music.yml#L63)  | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
+| [feishin](./docker-compose.music.yml#L85)  | A modern self-hosted music player. |  | [GitHub](https://github.com/jeffvli/feishin) |
 | [traefik](./docker-compose.networking.yml#L45)  | The Cloud Native Application Proxy. | `443:443`, `80:80` | [GitHub](https://github.com/traefik/traefik) |
 | [tunnel](./docker-compose.networking.yml#L105)  | A Docker container for using WireGuard with PIA. | `9981:9981/tcp`, `9982:9982/tcp` | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
 | [unifi-controller](./docker-compose.networking.yml#L140)  | Wireless network management. | `3478:3478/udp`, `10001:10001/udp`, `8080:8080` |  |
@@ -54,7 +54,7 @@ This repository holds my docker compose files and configuration files for servic
 | [cobalt-web](./docker-compose.tools.yml#L13)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
 | [cyberchef](./docker-compose.tools.yml#L33)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
 | [n8n](./docker-compose.tools.yml#L49)  | Powerful workflow automation. |  |  |
-| [stirling-pdf](./docker-compose.tools.yml#L61)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
+| [stirling-pdf](./docker-compose.tools.yml#L63)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
 
 <sup>1</sup>Assumes mass storage available, mounted at MEDIA_DIR on the host.
 
@@ -104,6 +104,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `CONFIG_DIR` | Location of config storage on host. | `.config` |
 | `DATA_DIR` | Location of data storage on host. | `.data` |
 | `CLOUD_DIR` | Location of cloud storage on host. | `/mnt/cloud` |
+| `MUSIC_DIR` | Location of music storage on host. | `/mnt/music` |
 | `LOG_DIR` | Location of logs directory on host. | `/var/log` |
 | `ADMIN_EMAIL` | Administrative email address. | `somebody@email.com` |
 | `LAN_SUBNET` | Local subnet . | `10.0.0.0/24` |
