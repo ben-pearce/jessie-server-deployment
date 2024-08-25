@@ -64,6 +64,7 @@ services:
     environment:
       - PUID
       - GUID
+      - TZ
       - VERSION=latest
       - JELLYFIN_PublishedServerUrl=https://jellyfin.${HOST}
       - DOCKER_MODS=ghcr.io/ben-pearce/remote-ffmpeg-docker-mod:jellyfin
