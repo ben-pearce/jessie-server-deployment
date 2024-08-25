@@ -48,6 +48,8 @@ services:
   n8n:
     container_name: n8n
     image: docker.n8n.io/n8nio/n8n
+    volumes:
+      - ${DATA_DIR}/n8n:/home/node/.n8n
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Powerful workflow automation.
