@@ -1,6 +1,7 @@
 ---
 include:
   - dependencies/docker-compose.cobalt.yml
+  - dependencies/docker-compose.fdroid.yml
 networks:
   cyberchef-web:
     name: cyberchef-web
