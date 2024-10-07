@@ -88,6 +88,7 @@ services:
       cobalt-web:
       wallabag-web:
       stirling-pdf-web:
+      otr-web:
       fdroid-web:
     ports:
       - '443:443'
