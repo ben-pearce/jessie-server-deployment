@@ -49,7 +49,11 @@ services:
       traefik.enable: true
       traefik.http.routers.freshrss.entrypoints: https
       traefik.http.routers.freshrss.middlewares: authelia
+      traefik.http.routers.freshrss.priority: 1
       traefik.http.routers.freshrss.rule: Host(`rss.${HOST}`)
+      traefik.http.routers.freshrss-api.entrypoints: https
+      traefik.http.routers.freshrss-api.rule: Host(`rss.${HOST}`) && PathPrefix(`/api`)
+      traefik.http.routers.freshrss-api.priority: 99
     networks:
       freshrss-web:
     restart: unless-stopped
