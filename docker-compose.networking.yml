@@ -78,7 +78,6 @@ services:
       portainer-web:
         aliases:
           - login.${HOST}
-      rxresume-web:
       tunnel-web:
       uptime-kuma-web:
       vaultwarden-web:

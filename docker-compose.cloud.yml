@@ -5,7 +5,6 @@ include:
   - dependencies/docker-compose.immich.yml
   - dependencies/docker-compose.nextcloud.yml
   - dependencies/docker-compose.paperless.yml
-  - dependencies/docker-compose.rxresume.yml
   - dependencies/docker-compose.obsidian.yml
   - dependencies/docker-compose.owntracks.yml
 networks:
@@ -254,22 +253,6 @@ services:
       - ${DATA_DIR}/paperless/export:/usr/src/paperless/export
       - ${DATA_DIR}/paperless/consume:/usr/src/paperless/consume
       - ${LOG_DIR}/paperless:/usr/src/paperless/data/log
-  rxresume-client:
-    container_name: rxresume-client
-    depends_on:
-      - rxresume-server
-    environment:
-      PUBLIC_SERVER_URL: https://rxresume.${HOST}/api
-      PUBLIC_URL: https://rxresume.${HOST}
-    image: amruthpillai/reactive-resume:client-latest
-    labels:
-      traefik.enable: true
-      traefik.http.routers.rxresume-client.entrypoints: https
-      traefik.http.routers.rxresume-client.rule: Host(`rxresume.${HOST}`)
-      traefik.http.services.rxresume-client.loadbalancer.server.port: 3000
-    networks:
-      - rxresume-web
-    restart: unless-stopped
   vaultwarden:
     container_name: vaultwarden
     environment:
