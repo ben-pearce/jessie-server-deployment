@@ -51,6 +51,9 @@ services:
     image: docker.n8n.io/n8nio/n8n
     volumes:
       - ${DATA_DIR}/n8n:/home/node/.n8n
+    environment:
+      - GENERIC_TIMEZONE=${TZ}
+      - TZ
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Powerful workflow automation.
