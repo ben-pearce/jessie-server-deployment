@@ -28,5 +28,9 @@ services:
       traefik.http.routers.fdroid-web-homer.entrypoints: https
       traefik.http.routers.fdroid-web-homer.rule: Host(`${HOST}`) && Path(`/.well-known/assetlinks.json`)
       traefik.http.routers.fdroid-web-homer.middlewares: homer-replacepath
+      traefik.http.middlewares.stirling-pdf-replacepath.replacepath.path: /repo/stirling-pdf/assetlinks.json
+      traefik.http.routers.fdroid-web-stirling-pdf.entrypoints: https
+      traefik.http.routers.fdroid-web-stirling-pdf.rule: Host(`stirling-pdf.${HOST}`) && Path(`/.well-known/assetlinks.json`)
+      traefik.http.routers.fdroid-web-stirling-pdf.middlewares: stirling-pdf-replacepath
       traefik.http.services.fdroid-web.loadbalancer.server.port: 80
     restart: unless-stopped
