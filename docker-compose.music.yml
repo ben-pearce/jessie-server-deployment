@@ -64,7 +64,7 @@ services:
     environment:
       - ND_SCANSCHEDULE=1h
       - ND_LOGLEVEL=info
-      - ND_SESSIONTIMEOUT=24h
+      - ND_SESSIONTIMEOUT=72h
       - ND_BASEURL=/
     image: deluan/navidrome:latest
     labels:
