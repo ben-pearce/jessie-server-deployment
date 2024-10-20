@@ -33,4 +33,6 @@ services:
       traefik.http.routers.fdroid-web-stirling-pdf.rule: Host(`stirling-pdf.${HOST}`) && Path(`/.well-known/assetlinks.json`)
       traefik.http.routers.fdroid-web-stirling-pdf.middlewares: stirling-pdf-replacepath
       traefik.http.services.fdroid-web.loadbalancer.server.port: 80
+    networks:
+      - fdroid-web
     restart: unless-stopped
