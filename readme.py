@@ -31,12 +31,12 @@ env_rows = [
 env_template = '| {} | {} | {} |'
 
 if __name__ == '__main__':
-    for file_name in sorted(glob.glob('./docker-compose.*.yml')):
+    for file_name in sorted(glob.glob('./dependencies/**/docker-compose.*.yml', recursive=True)):
         with open(file_name, 'r') as f:
             try:
                 compose = yaml.safe_load(f)
                 logger.info(f'processing compose file {file_name}')
-                for name, service in compose.get('services').items():
+                for name, service in compose.get('services', {}).items():
                     labels = service.get('labels', {})
 
                     f.seek(0)
@@ -67,7 +67,7 @@ if __name__ == '__main__':
                                 ('Website', 'web')
                             ] if f'readme.links.{i}' in labels])
                     ))
-                count = len(compose.get('services'))
+                count = len(compose.get('services', {}))
                 logger.info(f'processed {count} services in {file_name}')
             except yaml.YAMLError as e:
                 logger.error('failed to parse yaml: ', e)
