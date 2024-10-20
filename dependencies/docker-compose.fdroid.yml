@@ -4,7 +4,7 @@ networks:
     name: fdroid-web
 secrets:
   fdroid_password:
-    file: ./.secrets/fdroid_password
+    file: ../.secrets/fdroid_password
 services:
   fdroid-server:
     container_name: fdroid-server

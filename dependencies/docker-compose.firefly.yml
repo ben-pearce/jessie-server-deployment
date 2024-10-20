@@ -1,4 +1,6 @@
 ---
+include:
+  - ./common/docker-compose.secrets.yml
 networks:
   firefly:
     name: firefly
@@ -38,3 +40,92 @@ services:
       - ${DATA_DIR}/postgres/backups:/backups
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
+  fidi:
+    container_name: fidi
+    environment:
+      - FIREFLY_III_ACCESS_TOKEN_FILE=/run/secrets/firefly_access_token
+      - FIREFLY_III_URL=http://firefly:8080
+      - VANITY_URL=https://firefly.${HOST}
+      - NORDIGEN_ID_FILE=/run/secrets/nordigen_id
+      - NORDIGEN_KEY_FILE=/run/secrets/nordigen_key
+      - TRUSTED_PROXIES=**
+      - IMPORT_DIR_ALLOWLIST=/import
+      - ENABLE_MAIL_REPORT=true
+      - MAIL_DESTINATION=${ADMIN_MAIL}
+      - MAIL_MAILER=smtp
+      - MAIL_HOST=${SMTP_HOST}
+      - MAIL_PORT=465
+      - MAIL_USERNAME=${SMTP_USER}
+      - MAIL_PASSWORD_FILE=/run/secrets/smtp_password
+      - MAIL_ENCRYPTION=ssl
+      - MAIL_FROM_ADDRESS=${SMTP_USER}
+    image: fireflyiii/data-importer:latest
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      ofelia.enabled: 'true'
+      ofelia.job-exec.finance-import.command: /bin/sh -c 'for f in /import/*; do php artisan importer:import $$f; done'
+      ofelia.job-exec.finance-import.schedule: 0 0 03 * * *
+      readme.description: Firefly III Data Importer.
+      readme.links.docker: https://hub.docker.com/r/fireflyiii/data-importer
+      traefik.docker.network: firefly-web
+      traefik.enable: true
+      traefik.http.routers.fidi.entrypoints: https
+      traefik.http.routers.fidi.middlewares: authelia
+      traefik.http.routers.fidi.rule: Host(`firefly-data.${HOST}`)
+    networks:
+      firefly:
+      firefly-web:
+    restart: unless-stopped
+    secrets:
+      - firefly_access_token
+      - nordigen_id
+      - nordigen_key
+      - smtp_password
+    volumes:
+      - ${CONFIG_DIR}/fidi:/import
+  firefly:
+    container_name: firefly
+    depends_on:
+      - firefly-postgres
+    environment:
+      - APP_KEY_FILE=/run/secrets/firefly_app_key
+      - APP_URL=https://firefly.${HOST}/
+      - TRUSTED_PROXIES=**
+      - DB_HOST=firefly-postgres
+      - DB_PORT=5432
+      - DB_CONNECTION=pgsql
+      - DB_DATABASE=firefly
+      - DB_USERNAME=firefly
+      - DB_PASSWORD_FILE=/run/secrets/firefly_postgres_password
+      - MAIL_MAILER=smtp
+      - MAIL_HOST=${SMTP_HOST}
+      - MAIL_PORT=465
+      - MAIL_FROM=${SMTP_USER}
+      - MAIL_USERNAME=${SMTP_USER}
+      - MAIL_PASSWORD_FILE=/run/secrets/smtp_password
+      - MAIL_ENCRYPTION=ssl
+      - AUTHENTICATION_GUARD=remote_user_guard
+      - AUTHENTICATION_GUARD_HEADER=HTTP_REMOTE_EMAIL
+    image: fireflyiii/core:latest
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Personal Finance Manager.
+      readme.links.docker: https://hub.docker.com/r/fireflyiii/core
+      readme.links.web: https://www.firefly-iii.org/
+      traefik.docker.network: firefly-web
+      traefik.enable: true
+      traefik.http.routers.firefly-api.entrypoints: https
+      traefik.http.routers.firefly-api.rule: Host(`firefly.${HOST}`) && PathPrefix(`/api`)
+      traefik.http.routers.firefly.entrypoints: https
+      traefik.http.routers.firefly.middlewares: authelia
+      traefik.http.routers.firefly.rule: Host(`firefly.${HOST}`)
+    networks:
+      firefly:
+      firefly-web:
+    restart: unless-stopped
+    secrets:
+      - firefly_postgres_password
+      - firefly_app_key
+      - smtp_password
+    volumes:
+      - ${DATA_DIR}/firefly/upload:/var/www/html/storage/upload

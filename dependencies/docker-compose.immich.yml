@@ -8,6 +8,38 @@ secrets:
   immich_postgres_password:
     file: ../.secrets/immich_postgres_password
 services:
+  immich-server:
+    container_name: immich-server
+    depends_on:
+      - immich-redis
+      - immich-postgres
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOSTNAME=immich-redis
+      - DB_HOSTNAME=immich-postgres
+      - DB_USERNAME=immich
+      - DB_DATABASE_NAME=immich
+      - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
+    image: ghcr.io/immich-app/immich-server:release
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Photo & Video Backup Solution
+      readme.links.github: https://github.com/immich-app/immich
+      readme.links.web: https://immich.app/
+      traefik.docker.network: immich-web
+      traefik.enable: true
+      traefik.http.routers.immich-server.entrypoints: https
+      traefik.http.routers.immich-server.rule: Host(`immich.${HOST}`)
+      traefik.http.services.immich-server.loadbalancer.server.port: 3001
+    networks:
+      immich:
+      immich-web:
+    restart: unless-stopped
+    secrets:
+      - immich_postgres_password
+    volumes:
+      - ${DATA_DIR}/immich/upload:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
   immich-machine-learning:
     container_name: immich-machine-learning
     depends_on:

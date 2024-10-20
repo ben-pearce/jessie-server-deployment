@@ -22,7 +22,7 @@ services:
       - OTR_PORT=0
     restart: unless-stopped
   owntracks-frontend:
-    container_name: owntracks
+    container_name: owntracks-frontend
     image: owntracks/frontend
     environment:
       - SERVER_HOST=otrecorder

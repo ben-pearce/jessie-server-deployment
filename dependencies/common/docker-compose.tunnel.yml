@@ -1,0 +1,50 @@
+---
+networks:
+  tunnel:
+    name: tunnel
+  tunnel-web:
+    name: tunnel-web
+secrets:
+  pia_password:
+    file: ../../.secrets/pia_password
+  pia_username:
+    file: ../../.secrets/pia_username
+services:
+  tunnel:
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    container_name: tunnel
+    environment:
+      - LOC=uk
+      - USER_FILE=/run/secrets/pia_username
+      - PASS_FILE=/run/secrets/pia_password
+      - EXIT_ON_FATAL=1
+      - LOCAL_NETWORK=${LAN_SUBNET}
+      - VPNDNS=0
+    healthcheck:
+      interval: 30s
+      retries: 3
+      test: ping -c 1 1.1.1.1 || exit 1
+      timeout: 10s
+    image: thrnz/docker-wireguard-pia
+    labels:
+      readme.description: A Docker container for using WireGuard with PIA.
+      readme.links.docker: https://hub.docker.com/r/thrnz/docker-wireguard-pia
+    networks:
+      tunnel:
+      tunnel-web:
+    ports:
+      - 9981:9981/tcp
+      - 9982:9982/tcp
+    restart: unless-stopped
+    secrets:
+      - pia_username
+      - pia_password
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
+      - net.ipv6.conf.default.disable_ipv6=1
+      - net.ipv6.conf.all.disable_ipv6=1
+      - net.ipv6.conf.lo.disable_ipv6=1
+    volumes:
+      - ${DATA_DIR}/pia:/pia

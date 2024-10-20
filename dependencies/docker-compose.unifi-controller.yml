@@ -1,0 +1,27 @@
+---
+services:
+  unifi-controller:
+    container_name: unifi-controller
+    environment:
+      - PUID
+      - PGID
+      - MEM_LIMIT=1024
+      - MEM_STARTUP=1024
+    image: ghcr.io/linuxserver/unifi-controller
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Wireless network management.
+      traefik.enable: true
+      traefik.http.routers.unifi.entrypoints: https
+      traefik.http.routers.unifi.rule: Host(`unifi.${HOST}`)
+      traefik.http.services.unifi-controller.loadbalancer.server.port: 8443
+      traefik.http.services.unifi-controller.loadbalancer.server.scheme: https
+    ports:
+      - 3478:3478/udp
+      - 10001:10001/udp
+      - '8080:8080'
+    restart: unless-stopped
+    tmpfs:
+      - /tmp:rw,mode=1777
+    volumes:
+      - ${DATA_DIR}/unifi:/config

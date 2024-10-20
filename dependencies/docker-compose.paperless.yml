@@ -8,6 +8,49 @@ secrets:
   paperless_postgres_password:
     file: ../.secrets/paperless_postgres_password
 services:
+  paperless-ngx:
+    container_name: paperless-ngx
+    depends_on:
+      - paperless-postgres
+      - paperless-redis
+      - paperless-gotenberg
+      - paperless-tika
+    environment:
+      PAPERLESS_DBHOST: paperless-postgres
+      PAPERLESS_DBPASS_FILE: /run/secrets/paperless_postgres_password
+      PAPERLESS_REDIS: redis://paperless-redis:6379
+      PAPERLESS_TIKA_ENABLED: 1
+      PAPERLESS_TIKA_ENDPOINT: http://paperless-tika:9998
+      PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenberg:3000
+      PAPERLESS_URL: https://paperless.${HOST}
+      USERMAP_GID: ${GUID}
+      USERMAP_UID: ${PUID}
+    healthcheck:
+      interval: 30s
+      retries: 5
+      test: ["CMD", "curl", "-fs", "-S", "--max-time", "2", "http://localhost:8000"]
+      timeout: 10s
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    labels:
+      readme.description: Document Management System.
+      readme.links.github: https://github.com/paperless-ngx/paperless-ngx
+      traefik.docker.network: paperless-web
+      traefik.enable: true
+      traefik.http.routers.paperless-ngx.entrypoints: https
+      traefik.http.routers.paperless-ngx.rule: Host(`paperless.${HOST}`)
+      traefik.http.services.paperless-ngx.loadbalancer.server.port: 8000
+    networks:
+      paperless:
+      paperless-web:
+    restart: unless-stopped
+    secrets:
+      - paperless_postgres_password
+    volumes:
+      - ${DATA_DIR}/paperless/data:/usr/src/paperless/data
+      - ${DATA_DIR}/paperless/media:/usr/src/paperless/media
+      - ${DATA_DIR}/paperless/export:/usr/src/paperless/export
+      - ${DATA_DIR}/paperless/consume:/usr/src/paperless/consume
+      - ${LOG_DIR}/paperless:/usr/src/paperless/data/log
   paperless-gotenberg:
     command:
       - gotenberg

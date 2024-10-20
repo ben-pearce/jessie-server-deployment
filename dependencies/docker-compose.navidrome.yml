@@ -1,0 +1,27 @@
+---
+networks:
+  navidrome-web:
+    name: navidrome-web
+services:
+  navidrome:
+    container_name: navidrome
+    environment:
+      - ND_SCANSCHEDULE=1h
+      - ND_LOGLEVEL=info
+      - ND_SESSIONTIMEOUT=72h
+      - ND_BASEURL=/
+    image: deluan/navidrome:latest
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Modern Music Server and Streamer compatible with Subsonic/Airsonic.
+      readme.links.github: https://github.com/navidrome/navidrome
+      traefik.docker.network: navidrome-web
+      traefik.enable: true
+      traefik.http.routers.navidrome.entrypoints: https
+      traefik.http.routers.navidrome.rule: Host(`navidrome.${HOST}`)
+    networks:
+      navidrome-web:
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/navidrome:/data
+      - ${MUSIC_DIR}:/music:ro

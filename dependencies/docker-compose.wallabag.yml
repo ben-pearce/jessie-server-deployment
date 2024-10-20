@@ -1,0 +1,23 @@
+---
+networks:
+  wallabag-web:
+    name: wallabag-web
+services:
+  wallabag:
+    container_name: wallabag
+    environment:
+      - SYMFONY__ENV__DOMAIN_NAME=https://wallabag.${HOST}
+    image: wallabag/wallabag
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: A self hostable application for saving web pages, freely.
+      readme.links.github: https://github.com/wallabag
+      traefik.enable: true
+      traefik.http.routers.wallabag.entrypoints: https
+      traefik.http.routers.wallabag.rule: Host(`wallabag.${HOST}`)
+      traefik.docker.network: wallabag-web
+    networks:
+      wallabag-web:
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/wallabag:/var/www/wallabag/data
