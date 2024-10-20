@@ -40,8 +40,8 @@ services:
       traefik.http.routers.paperless-ngx.rule: Host(`paperless.${HOST}`)
       traefik.http.services.paperless-ngx.loadbalancer.server.port: 8000
     networks:
-      paperless:
-      paperless-web:
+      - paperless
+      - paperless-web
     restart: unless-stopped
     secrets:
       - paperless_postgres_password

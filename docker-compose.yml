@@ -50,39 +50,35 @@ services:
       traefik.http.routers.api.rule: Host(`traefik.${HOST}`)
       traefik.http.services.traefik.loadbalancer.server.port: 8080
     networks:
-      arr-web:
-      authelia-web:
-      cyberchef-web:
-      deemix-web:
-      default:
-      firefly-web:
-      freshrss-web:
-      feishin-web:
-      homer-web:
-      n8n-web:
-      immich-web:
-      jellyfin-web:
-      navidrome-web:
-      nextcloud-web:
-      paperless-web:
-      pgadmin-web:
-        aliases:
-          - login.${HOST}
-      portainer-web:
-        aliases:
-          - login.${HOST}
-      tunnel-web:
-      uptime-kuma-web:
-      vaultwarden-web:
-      yaade-web:
-      zabbix-web:
-      obsidian-web:
-      cobalt-web:
-      wallabag-web:
-      stirling-pdf-web:
-      otr-web:
-      fdroid-web:
-      lidarr-web:
+      - arr-web
+      - authelia-web
+      - cyberchef-web
+      - deemix-web
+      - default
+      - firefly-web
+      - freshrss-web
+      - feishin-web
+      - homer-web
+      - n8n-web
+      - immich-web
+      - jellyfin-web
+      - navidrome-web
+      - nextcloud-web
+      - paperless-web
+      - pgadmin-web
+      - portainer-web
+      - tunnel-web
+      - uptime-kuma-web
+      - vaultwarden-web
+      - yaade-web
+      - zabbix-web
+      - obsidian-web
+      - cobalt-web
+      - wallabag-web
+      - stirling-pdf-web
+      - otr-web
+      - fdroid-web
+      - lidarr-web
     ports:
       - '443:443'
       - '80:80'

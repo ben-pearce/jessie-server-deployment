@@ -21,7 +21,7 @@ services:
       traefik.http.routers.lidarr.rule: Host(`lidarr.${HOST}`)
       traefik.http.services.lidarr.loadbalancer.server.port: 8686
     networks:
-      lidarr-web:
+      - lidarr-web
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/lidarr:/config

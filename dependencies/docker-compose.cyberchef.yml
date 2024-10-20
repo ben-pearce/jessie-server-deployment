@@ -17,5 +17,5 @@ services:
       traefik.http.routers.cyberchef.rule: Host(`cyberchef.${HOST}`)
       traefik.http.services.cyberchef.loadbalancer.server.port: 8000
     networks:
-      cyberchef-web:
+      - cyberchef-web
     restart: unless-stopped

@@ -19,7 +19,7 @@ services:
       traefik.http.routers.homer.middlewares: authelia
       traefik.http.routers.homer.rule: Host(`${HOST}`)
     networks:
-      homer-web:
+      - homer-web
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/homer:/www/assets

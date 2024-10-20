@@ -23,7 +23,7 @@ services:
       traefik.http.routers.bazarr.middlewares: authelia
       traefik.http.routers.bazarr.rule: Host(`bazarr.${HOST}`)
     networks:
-      arr-web:
+      - arr-web
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/bazarr:/config
@@ -70,8 +70,8 @@ services:
       traefik.http.routers.radarr.middlewares: authelia
       traefik.http.routers.radarr.rule: Host(`radarr.${HOST}`)
     networks:
-      arr-web:
-      tunnel:
+      - arr-web
+      - tunnel
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/radarr:/config
@@ -122,8 +122,8 @@ services:
       traefik.http.routers.sonarr.middlewares: authelia
       traefik.http.routers.sonarr.rule: Host(`sonarr.${HOST}`)
     networks:
-      arr-web:
-      tunnel:
+      - arr-web
+      - tunnel
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/sonarr:/config

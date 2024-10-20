@@ -19,7 +19,7 @@ services:
       traefik.http.routers.cobalt-web.rule: Host(`cobalt.${HOST}`)
       traefik.http.services.cobalt-web.loadbalancer.server.port: 9001
     networks:
-      cobalt-web:
+      - cobalt-web
     restart: unless-stopped
     depends_on:
       - cobalt-api
@@ -36,7 +36,7 @@ services:
       traefik.http.routers.cobalt-api.rule: Host(`cobalt.${HOST}`) && PathPrefix(`/api`)
       traefik.http.services.cobalt-api.loadbalancer.server.port: 9000
     networks:
-      cobalt-web:
+      - cobalt-web
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/cobalt/cookies.json:/cookies.json

@@ -73,8 +73,8 @@ services:
       traefik.http.routers.fidi.middlewares: authelia
       traefik.http.routers.fidi.rule: Host(`firefly-data.${HOST}`)
     networks:
-      firefly:
-      firefly-web:
+      - firefly
+      - firefly-web
     restart: unless-stopped
     secrets:
       - firefly_access_token
@@ -120,8 +120,8 @@ services:
       traefik.http.routers.firefly.middlewares: authelia
       traefik.http.routers.firefly.rule: Host(`firefly.${HOST}`)
     networks:
-      firefly:
-      firefly-web:
+      - firefly
+      - firefly-web
     restart: unless-stopped
     secrets:
       - firefly_postgres_password

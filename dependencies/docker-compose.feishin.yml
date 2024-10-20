@@ -22,5 +22,5 @@ services:
       traefik.http.routers.feishin.rule: Host(`feishin.${HOST}`)
       traefik.http.services.feishin.loadbalancer.server.port: 9180
     networks:
-      feishin-web:
+      - feishin-web
     restart: unless-stopped

@@ -23,7 +23,7 @@ services:
       traefik.http.routers.vaultwarden.entrypoints: https
       traefik.http.routers.vaultwarden.rule: Host(`fence.${HOST}`)
     networks:
-      vaultwarden-web:
+      - vaultwarden-web
     restart: unless-stopped
     secrets:
       - smtp_password

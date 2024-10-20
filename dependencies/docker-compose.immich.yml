@@ -32,8 +32,8 @@ services:
       traefik.http.routers.immich-server.rule: Host(`immich.${HOST}`)
       traefik.http.services.immich-server.loadbalancer.server.port: 3001
     networks:
-      immich:
-      immich-web:
+      - immich
+      - immich-web
     restart: unless-stopped
     secrets:
       - immich_postgres_password

@@ -16,7 +16,7 @@ services:
       traefik.http.routers.portainer.rule: Host(`docker.${HOST}`)
       traefik.http.services.portainer.loadbalancer.server.port: 9000
     networks:
-      portainer-web:
+      - portainer-web
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

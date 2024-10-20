@@ -17,7 +17,7 @@ services:
       traefik.http.routers.wallabag.rule: Host(`wallabag.${HOST}`)
       traefik.docker.network: wallabag-web
     networks:
-      wallabag-web:
+      - wallabag-web
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/wallabag:/var/www/wallabag/data

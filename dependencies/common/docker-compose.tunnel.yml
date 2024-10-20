@@ -32,8 +32,8 @@ services:
       readme.description: A Docker container for using WireGuard with PIA.
       readme.links.docker: https://hub.docker.com/r/thrnz/docker-wireguard-pia
     networks:
-      tunnel:
-      tunnel-web:
+      - tunnel
+      - tunnel-web
     ports:
       - 9981:9981/tcp
       - 9982:9982/tcp

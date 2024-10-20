@@ -36,8 +36,8 @@ services:
       traefik.http.routers.nextcloud.entrypoints: https
       traefik.http.routers.nextcloud.rule: Host(`nextcloud.${HOST}`)
     networks:
-      nextcloud:
-      nextcloud-web:
+      - nextcloud
+      - nextcloud-web
     restart: unless-stopped
     secrets:
       - nextcloud_postgres_password

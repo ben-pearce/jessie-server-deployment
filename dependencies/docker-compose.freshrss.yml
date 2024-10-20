@@ -24,7 +24,7 @@ services:
       traefik.http.routers.freshrss-api.rule: Host(`rss.${HOST}`) && PathPrefix(`/api`)
       traefik.http.routers.freshrss-api.priority: 99
     networks:
-      freshrss-web:
+      - freshrss-web
     restart: unless-stopped
     tmpfs:
       - /config/www/freshrss/data/cache:rw,mode=1777

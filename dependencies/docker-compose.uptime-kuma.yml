@@ -15,7 +15,7 @@ services:
       traefik.http.routers.uptime-kuma.entrypoints: https
       traefik.http.routers.uptime-kuma.rule: Host(`status.${HOST}`)
     networks:
-      uptime-kuma-web:
+      - uptime-kuma-web
     restart: always
     volumes:
       - ${DATA_DIR}/uptime-kuma:/app/data

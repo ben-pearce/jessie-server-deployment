@@ -19,7 +19,7 @@ services:
       traefik.http.routers.yaade.rule: Host(`yaade.${HOST}`)
       traefik.http.services.yaade.loadbalancer.server.port: 9339
     networks:
-      yaade-web: null
+      - yaade-web
     restart: unless-stopped
     tmpfs:
       - /tmp:rw,mode=1777

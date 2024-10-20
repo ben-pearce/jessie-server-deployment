@@ -18,13 +18,13 @@ services:
       traefik.http.routers.pgadmin.rule: Host(`pgadmin.${HOST}`)
       traefik.http.services.pgadmin.loadbalancer.server.port: 80
     networks:
-      authelia:
-      firefly:
-      immich:
-      nextcloud:
-      paperless:
-      pgadmin-web:
-      zabbix:
+      - authelia
+      - firefly
+      - immich
+      - nextcloud
+      - paperless
+      - pgadmin-web
+      - zabbix
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/pgadmin:/var/lib/pgadmin

@@ -22,7 +22,7 @@ services:
       traefik.http.routers.deemix.middlewares: authelia
       traefik.http.routers.deemix.rule: Host(`deemix.${HOST}`)
     networks:
-      deemix-web:
+      - deemix-web
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/lidarr/downloads:/downloads

@@ -42,8 +42,8 @@ services:
       traefik.http.routers.authelia.rule: Host(`login.${HOST}`)
       traefik.http.services.authelia.loadbalancer.server.port: 9091
     networks:
-      authelia:
-      authelia-web:
+      - authelia
+      - authelia-web
     restart: unless-stopped
     secrets:
       - authelia_identity_providers_oidc_hmac_secret
