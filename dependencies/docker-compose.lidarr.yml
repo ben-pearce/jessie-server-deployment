@@ -1,4 +1,7 @@
 ---
+networks:
+  lidarr-web:
+    name: lidarr-web
 services:
   lidarr:
     container_name: lidarr
@@ -17,6 +20,8 @@ services:
       traefik.http.routers.lidarr.middlewares: authelia
       traefik.http.routers.lidarr.rule: Host(`lidarr.${HOST}`)
       traefik.http.services.lidarr.loadbalancer.server.port: 8686
+    networks:
+      lidarr-web:
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/lidarr:/config

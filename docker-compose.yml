@@ -82,6 +82,7 @@ services:
       stirling-pdf-web:
       otr-web:
       fdroid-web:
+      lidarr-web:
     ports:
       - '443:443'
       - '80:80'
