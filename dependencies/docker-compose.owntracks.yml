@@ -18,6 +18,8 @@ services:
       traefik.http.routers.otr.entrypoints: https
       traefik.http.routers.otr.rule: Host(`otr.${HOST}`)
       traefik.http.services.otr.loadbalancer.server.port: 8083
+    networks:
+      - otr-web
     environment:
       - OTR_PORT=0
     restart: unless-stopped
@@ -27,6 +29,8 @@ services:
     environment:
       - SERVER_HOST=otrecorder
       - SERVER_PORT=8083
+    networks:
+      - otr-web
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Web interface for OwnTracks built with Vue.js
