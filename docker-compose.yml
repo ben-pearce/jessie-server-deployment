@@ -41,7 +41,7 @@ services:
       - CF_ZONE_API_TOKEN_FILE=/run/secrets/cloudflare_zone_api_token
       - CF_DNS_API_TOKEN_FILE=/run/secrets/cloudflare_dns_api_token
     hostname: traefik
-    image: traefik:v2.9
+    image: traefik:v3
     labels:
       readme.description: The Cloud Native Application Proxy.
       readme.links.github: https://github.com/traefik/traefik
