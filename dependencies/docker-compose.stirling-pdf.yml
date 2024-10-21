@@ -5,24 +5,24 @@ networks:
 services:
   stirling-pdf:
     container_name: stirling-pdf
+    environment:
+      - DOCKER_ENABLE_SECURITY=false
+      - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
+      - LANGS=en_GB
     image: frooodle/s-pdf:latest
-    volumes:
-      - ${DATA_DIR}/stirling-pdf:/usr/share/tessdata
-      - ${CONFIG_DIR}/stirling-pdf:/configs
-      - ${LOG_DIR}/logs:/logs/
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: PDF manipulation tool.
       readme.links.github: https://github.com/Stirling-Tools/Stirling-PDF
       traefik.docker.network: stirling-web
       traefik.enable: true
-      traefik.http.routers.stirling-pdf.middlewares: authelia
       traefik.http.routers.stirling-pdf.entrypoints: https
+      traefik.http.routers.stirling-pdf.middlewares: authelia
       traefik.http.routers.stirling-pdf.rule: Host(`stirling-pdf.${HOST}`)
-    restart: unless-stopped
     networks:
       - stirling-pdf-web
-    environment:
-      - DOCKER_ENABLE_SECURITY=false
-      - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
-      - LANGS=en_GB
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/stirling-pdf:/usr/share/tessdata
+      - ${CONFIG_DIR}/stirling-pdf:/configs
+      - ${LOG_DIR}/logs:/logs/

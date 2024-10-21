@@ -21,7 +21,7 @@ services:
       readme.links.docker: https://hub.docker.com/r/containrrr/watchtower
       readme.links.github: https://github.com/containrrr/watchtower
     restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     secrets:
       - smtp_password
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

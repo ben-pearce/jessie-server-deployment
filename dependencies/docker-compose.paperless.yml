@@ -8,6 +8,16 @@ secrets:
   paperless_postgres_password:
     file: ../.secrets/paperless_postgres_password
 services:
+  paperless-gotenberg:
+    command:
+      - gotenberg
+      - '--chromium-disable-javascript=true'
+      - '--chromium-allow-list=file:///tmp/.*'
+    container_name: paperless-gotenberg
+    image: docker.io/gotenberg/gotenberg:7.8
+    networks:
+      - paperless
+    restart: unless-stopped
   paperless-ngx:
     container_name: paperless-ngx
     depends_on:
@@ -51,16 +61,6 @@ services:
       - ${DATA_DIR}/paperless/export:/usr/src/paperless/export
       - ${DATA_DIR}/paperless/consume:/usr/src/paperless/consume
       - ${LOG_DIR}/paperless:/usr/src/paperless/data/log
-  paperless-gotenberg:
-    command:
-      - gotenberg
-      - '--chromium-disable-javascript=true'
-      - '--chromium-allow-list=file:///tmp/.*'
-    container_name: paperless-gotenberg
-    image: docker.io/gotenberg/gotenberg:7.8
-    networks:
-      - paperless
-    restart: unless-stopped
   paperless-postgres:
     container_name: paperless-postgres
     environment:
