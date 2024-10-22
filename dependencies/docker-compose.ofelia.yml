@@ -9,12 +9,12 @@ services:
     labels:
       ofelia.enabled: true
       ofelia.job-run.deezer-arl-fetch.command: consume json --file /config/deemix/login.json --path arl
-      ofelia.job-run.deezer-arl-fetch.image: ghcr.io/ben-pearce/deezer-arl:v1.0.6
+      ofelia.job-run.deezer-arl-fetch.image: ghcr.io/ben-pearce/deezer-arl:v1.0.7
       ofelia.job-run.deezer-arl-fetch.schedule: 0 30 */3 * * *
       ofelia.job-run.deezer-arl-fetch.volume: |
         [ "${DATA_DIR}/deezer-arl/:/app/data", "${CONFIG_DIR}/deemix:/config/deemix" ]
       ofelia.job-run.deezer-arl-pull.command: pull --max-arls 3 --requires-can-stream-lossless
-      ofelia.job-run.deezer-arl-pull.image: ghcr.io/ben-pearce/deezer-arl:v1.0.6
+      ofelia.job-run.deezer-arl-pull.image: ghcr.io/ben-pearce/deezer-arl:v1.0.7
       ofelia.job-run.deezer-arl-pull.schedule: 0 0 */3 * * *
       ofelia.job-run.deezer-arl-pull.volume: ${DATA_DIR}/deezer-arl/:/app/data
       readme.description: Docker job scheduler.
