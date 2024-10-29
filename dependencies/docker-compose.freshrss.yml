@@ -1,0 +1,34 @@
+---
+networks:
+  freshrss-web:
+    name: freshrss-web
+services:
+  freshrss:
+    container_name: freshrss
+    environment:
+      - PUID
+      - GUID
+      - TZ
+    image: ghcr.io/linuxserver/freshrss
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Self-hosted RSS feed aggregator.
+      readme.links.github: https://github.com/FreshRSS/FreshRSS
+      traefik.docker.network: freshrss-web
+      traefik.enable: true
+      traefik.http.routers.freshrss.entrypoints: https
+      traefik.http.routers.freshrss.middlewares: authelia
+      traefik.http.routers.freshrss.priority: 1
+      traefik.http.routers.freshrss.rule: Host(`rss.${HOST}`)
+      traefik.http.routers.freshrss-api.entrypoints: https
+      traefik.http.routers.freshrss-api.rule: Host(`rss.${HOST}`) && PathPrefix(`/api`)
+      traefik.http.routers.freshrss-api.priority: 99
+    networks:
+      - freshrss-web
+    restart: unless-stopped
+    tmpfs:
+      - /config/www/freshrss/data/cache:rw,mode=1777
+    volumes:
+      - ${CONFIG_DIR}/freshrss/config.php:/config/www/freshrss/data/config.php:ro
+      - ${DATA_DIR}/freshrss:/config
+      - ${LOG_DIR}/freshrss:/config/log

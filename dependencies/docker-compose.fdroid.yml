@@ -4,33 +4,35 @@ networks:
     name: fdroid-web
 secrets:
   fdroid_password:
-    file: ./.secrets/fdroid_password
+    file: ../.secrets/fdroid_password
 services:
   fdroid-server:
     container_name: fdroid-server
-    image: ghcr.io/ben-pearce/pwa-to-fdroid:latest
-    secrets:
-      - fdroid_password
     environment:
       HTTP_AUTH_LOGIN: ben
       HTTP_AUTH_PASSWORD_FILE: /run/secrets/fdroid_password
+    image: ghcr.io/ben-pearce/pwa-to-fdroid:latest
     labels:
       com.centurylinklabs.watchtower.enable: true
       traefik.docker.network: fdroid-web
       traefik.enable: true
+      traefik.http.middlewares.cobalt-replacepath.replacepath.path: /repo/cobalt/assetlinks.json
+      traefik.http.middlewares.homer-replacepath.replacepath.path: /repo/homer/assetlinks.json
+      traefik.http.middlewares.stirling-pdf-replacepath.replacepath.path: /repo/stirling-pdf/assetlinks.json
+      traefik.http.routers.fdroid-web-cobalt.entrypoints: https
+      traefik.http.routers.fdroid-web-cobalt.middlewares: cobalt-replacepath
+      traefik.http.routers.fdroid-web-cobalt.rule: Host(`cobalt.${HOST}`) && Path(`/.well-known/assetlinks.json`)
+      traefik.http.routers.fdroid-web-homer.entrypoints: https
+      traefik.http.routers.fdroid-web-homer.middlewares: homer-replacepath
+      traefik.http.routers.fdroid-web-homer.rule: Host(`${HOST}`) && Path(`/.well-known/assetlinks.json`)
+      traefik.http.routers.fdroid-web-stirling-pdf.entrypoints: https
+      traefik.http.routers.fdroid-web-stirling-pdf.middlewares: stirling-pdf-replacepath
+      traefik.http.routers.fdroid-web-stirling-pdf.rule: Host(`stirling-pdf.${HOST}`) && Path(`/.well-known/assetlinks.json`)
       traefik.http.routers.fdroid-web.entrypoints: https
       traefik.http.routers.fdroid-web.rule: Host(`fdroid.${HOST}`)
-      traefik.http.middlewares.cobalt-replacepath.replacepath.path: /repo/cobalt/assetlinks.json
-      traefik.http.routers.fdroid-web-cobalt.entrypoints: https
-      traefik.http.routers.fdroid-web-cobalt.rule: Host(`cobalt.${HOST}`) && Path(`/.well-known/assetlinks.json`)
-      traefik.http.routers.fdroid-web-cobalt.middlewares: cobalt-replacepath
-      traefik.http.middlewares.homer-replacepath.replacepath.path: /repo/homer/assetlinks.json
-      traefik.http.routers.fdroid-web-homer.entrypoints: https
-      traefik.http.routers.fdroid-web-homer.rule: Host(`${HOST}`) && Path(`/.well-known/assetlinks.json`)
-      traefik.http.routers.fdroid-web-homer.middlewares: homer-replacepath
-      traefik.http.middlewares.stirling-pdf-replacepath.replacepath.path: /repo/stirling-pdf/assetlinks.json
-      traefik.http.routers.fdroid-web-stirling-pdf.entrypoints: https
-      traefik.http.routers.fdroid-web-stirling-pdf.rule: Host(`stirling-pdf.${HOST}`) && Path(`/.well-known/assetlinks.json`)
-      traefik.http.routers.fdroid-web-stirling-pdf.middlewares: stirling-pdf-replacepath
       traefik.http.services.fdroid-web.loadbalancer.server.port: 80
+    networks:
+      - fdroid-web
     restart: unless-stopped
+    secrets:
+      - fdroid_password

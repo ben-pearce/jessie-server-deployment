@@ -1,4 +1,6 @@
 ---
+include:
+  - ./common/docker-compose.secrets.yml
 networks:
   authelia:
     name: authelia
@@ -16,6 +18,42 @@ secrets:
   authelia_storage_encryption_key:
     file: ../.secrets/authelia_storage_encryption_key
 services:
+  authelia:
+    container_name: authelia
+    environment:
+      - AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE=/run/secrets/authelia_jwt_secret
+      - AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE=/run/secrets/authelia_identity_providers_oidc_hmac_secret
+      - AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE=/run/secrets/authelia_storage_encryption_key
+      - AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE=/run/secrets/authelia_postgres_password
+      - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/smtp_password
+      - X_AUTHELIA_CONFIG_FILTERS=template
+    image: authelia/authelia
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: The Single Sign-On Multi-Factor portal for web apps.
+      readme.links.docker: https://hub.docker.com/r/authelia/authelia
+      readme.links.web: https://www.authelia.com/
+      traefik.docker.network: authelia-web
+      traefik.enable: true
+      traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://login.${HOST}/
+      traefik.http.middlewares.authelia.forwardauth.authresponseheaders: Remote-User, Remote-Groups, Remote-Email
+      traefik.http.middlewares.authelia.forwardauth.trustforwardheader: true
+      traefik.http.routers.authelia.entrypoints: https
+      traefik.http.routers.authelia.rule: Host(`login.${HOST}`)
+      traefik.http.services.authelia.loadbalancer.server.port: 9091
+    networks:
+      - authelia
+      - authelia-web
+    restart: unless-stopped
+    secrets:
+      - authelia_identity_providers_oidc_hmac_secret
+      - authelia_identity_providers_oidc_jwks
+      - authelia_jwt_secret
+      - authelia_storage_encryption_key
+      - authelia_postgres_password
+      - smtp_password
+    volumes:
+      - ${CONFIG_DIR}/authelia:/config
   authelia-postgres:
     container_name: authelia-postgres
     environment:

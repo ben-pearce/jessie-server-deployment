@@ -1,0 +1,21 @@
+---
+networks:
+  cyberchef-web:
+    name: cyberchef-web
+services:
+  cyberchef:
+    container_name: cyberchef
+    image: mpepping/cyberchef
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis.
+      readme.links.github: https://github.com/gchq/CyberChef
+      traefik.docker.network: cyberchef-web
+      traefik.enable: true
+      traefik.http.routers.cyberchef.entrypoints: https
+      traefik.http.routers.cyberchef.middlewares: authelia
+      traefik.http.routers.cyberchef.rule: Host(`cyberchef.${HOST}`)
+      traefik.http.services.cyberchef.loadbalancer.server.port: 8000
+    networks:
+      - cyberchef-web
+    restart: unless-stopped

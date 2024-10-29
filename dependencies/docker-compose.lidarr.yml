@@ -1,0 +1,30 @@
+---
+networks:
+  lidarr-web:
+    name: lidarr-web
+services:
+  lidarr:
+    container_name: lidarr
+    environment:
+      - PUID
+      - GUID
+      - TZ
+    image: ghcr.io/linuxserver/lidarr
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Music Collection Manager.
+      readme.links.github: https://github.com/Lidarr/Lidarr
+      traefik.docker.network: arr-web
+      traefik.enable: true
+      traefik.http.routers.lidarr.entrypoints: https
+      traefik.http.routers.lidarr.middlewares: authelia
+      traefik.http.routers.lidarr.rule: Host(`lidarr.${HOST}`)
+      traefik.http.services.lidarr.loadbalancer.server.port: 8686
+    networks:
+      - lidarr-web
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/lidarr:/config
+      - ${MUSIC_DIR}:/music
+      - ${DATA_DIR}/lidarr/downloads:/downloads
+      - ${LOG_DIR}/lidarr:/config/logs

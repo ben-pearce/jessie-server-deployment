@@ -5,10 +5,9 @@ networks:
 services:
   otrecorder:
     container_name: otrecorder
+    environment:
+      - OTR_PORT=0
     image: owntracks/recorder
-    volumes:
-      - ${CONFIG_DIR}/otr:/config
-      - ${DATA_DIR}/otr:/store
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Store and access data published by OwnTracks apps.
@@ -18,15 +17,18 @@ services:
       traefik.http.routers.otr.entrypoints: https
       traefik.http.routers.otr.rule: Host(`otr.${HOST}`)
       traefik.http.services.otr.loadbalancer.server.port: 8083
-    environment:
-      - OTR_PORT=0
+    networks:
+      - otr-web
     restart: unless-stopped
+    volumes:
+      - ${CONFIG_DIR}/otr:/config
+      - ${DATA_DIR}/otr:/store
   owntracks-frontend:
-    container_name: owntracks
-    image: owntracks/frontend
+    container_name: owntracks-frontend
     environment:
       - SERVER_HOST=otrecorder
       - SERVER_PORT=8083
+    image: owntracks/frontend
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Web interface for OwnTracks built with Vue.js
@@ -36,4 +38,6 @@ services:
       traefik.http.routers.owntracks.entrypoints: https
       traefik.http.routers.owntracks.rule: Host(`owntracks.${HOST}`)
       traefik.http.services.owntracks.loadbalancer.server.port: 80
+    networks:
+      - otr-web
     restart: unless-stopped

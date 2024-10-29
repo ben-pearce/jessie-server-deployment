@@ -1,0 +1,27 @@
+---
+include:
+  - ./common/docker-compose.secrets.yml
+services:
+  watchtower:
+    container_name: watchtower
+    environment:
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_SCHEDULE=0 0 0 1 * *
+      - WATCHTOWER_NOTIFICATIONS=email
+      - WATCHTOWER_NOTIFICATION_EMAIL_FROM=${SMTP_USER}
+      - WATCHTOWER_NOTIFICATION_EMAIL_TO=${ADMIN_MAIL}
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER=${SMTP_HOST}
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT=587
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER=${SMTP_USER}
+      - WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD=/run/secrets/smtp_password
+    image: containrrr/watchtower
+    labels:
+      readme.description: A process for automating Docker container base image updates.
+      readme.links.docker: https://hub.docker.com/r/containrrr/watchtower
+      readme.links.github: https://github.com/containrrr/watchtower
+    restart: unless-stopped
+    secrets:
+      - smtp_password
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

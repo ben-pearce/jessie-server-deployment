@@ -1,0 +1,178 @@
+---
+include:
+  - common/docker-compose.tunnel.yml
+networks:
+  arr-web:
+    name: arr-web
+services:
+  bazarr:
+    container_name: bazarr
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    image: lscr.io/linuxserver/bazarr:latest
+    labels:
+      readme.description: Manage and download subtitles based on your requirements.
+      readme.links.docker: https://hub.docker.com/r/linuxserver/bazarr
+      readme.links.github: https://github.com/morpheus65535/bazarr
+      readme.links.web: https://www.bazarr.media/
+      traefik.docker.network: arr-web
+      traefik.enable: true
+      traefik.http.routers.bazarr.entrypoints: https
+      traefik.http.routers.bazarr.middlewares: authelia
+      traefik.http.routers.bazarr.rule: Host(`bazarr.${HOST}`)
+    networks:
+      - arr-web
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG_DIR}/bazarr:/config
+      - ${MEDIA_DIR}/shows:/tv
+      - ${MEDIA_DIR}/movies:/movies
+      - ${LOG_DIR}/bazarr:/config/log
+  prowlarr:
+    container_name: prowlarr
+    environment:
+      - PUID
+      - GUID
+      - TZ
+    image: lscr.io/linuxserver/prowlarr:latest
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: An indexer manager/proxy.
+      readme.links.github: https://github.com/Prowlarr/Prowlarr
+      readme.links.web: https://wiki.servarr.com/prowlarr
+      traefik.docker.network: tunnel-web
+      traefik.enable: true
+      traefik.http.routers.prowlarr.entrypoints: https
+      traefik.http.routers.prowlarr.middlewares: authelia
+      traefik.http.routers.prowlarr.rule: Host(`prowlarr.${HOST}`)
+      traefik.http.services.prowlarr.loadbalancer.server.port: 9696
+    network_mode: service:tunnel
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/prowlarr:/config
+      - ${LOG_DIR}/prowlarr:/config/logs
+  radarr:
+    container_name: radarr
+    environment:
+      - PUID
+      - GUID
+      - TZ
+    image: ghcr.io/linuxserver/radarr
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: A fork of Sonarr to work with movies à la Couchpotato.
+      readme.links.github: https://github.com/Radarr/Radarr
+      traefik.docker.network: arr-web
+      traefik.enable: true
+      traefik.http.routers.radarr.entrypoints: https
+      traefik.http.routers.radarr.middlewares: authelia
+      traefik.http.routers.radarr.rule: Host(`radarr.${HOST}`)
+    networks:
+      - arr-web
+      - tunnel
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/radarr:/config
+      - ${CONFIG_DIR}/radarr/config.xml:/config/config.xml
+      - ${MEDIA_DIR}/movies:/movies
+      - ${MEDIA_DIR}/downloads/complete:/downloads
+      - ${LOG_DIR}/radarr:/config/logs
+  sabnzbd:
+    container_name: sabnzbd
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    image: lscr.io/linuxserver/sabnzbd:latest
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: The free and easy binary newsreader.
+      readme.links.docker: https://hub.docker.com/r/linuxserver/sabnzbd
+      readme.links.github: https://github.com/sabnzbd/sabnzbd
+      readme.links.web: https://sabnzbd.org/
+      traefik.docker.network: tunnel-web
+      traefik.enable: true
+      traefik.http.routers.sabnzbd.entrypoints: https
+      traefik.http.routers.sabnzbd.middlewares: authelia
+      traefik.http.routers.sabnzbd.rule: Host(`sabnzbd.${HOST}`)
+      traefik.http.services.sabnzbd.loadbalancer.server.port: 8080
+    network_mode: service:tunnel
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/sabnzbd:/config
+      - ${MEDIA_DIR}/downloads:/downloads
+      - ${MEDIA_DIR}/downloads/incomplete:/incomplete-downloads
+      - ${LOG_DIR}/sabnzbd:/config/logs
+  sonarr:
+    container_name: sonarr
+    environment:
+      - PUID
+      - GUID
+      - TZ
+    image: ghcr.io/linuxserver/sonarr
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Smart PVR for newsgroup and bittorrent users.
+      readme.links.github: https://github.com/Sonarr/Sonarr
+      traefik.docker.network: arr-web
+      traefik.enable: true
+      traefik.http.routers.sonarr.entrypoints: https
+      traefik.http.routers.sonarr.middlewares: authelia
+      traefik.http.routers.sonarr.rule: Host(`sonarr.${HOST}`)
+    networks:
+      - arr-web
+      - tunnel
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/sonarr:/config
+      - ${CONFIG_DIR}/sonarr/config.xml:/config/config.xml
+      - ${MEDIA_DIR}/shows:/tv
+      - ${MEDIA_DIR}/downloads/complete:/downloads
+      - ${LOG_DIR}/sonarr:/config/logs
+  transmission:
+    container_name: transmission
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    image: lscr.io/linuxserver/transmission
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Fast, easy, and free BitTorrent client.
+      readme.links.github: https://github.com/transmission/transmission
+      traefik.docker.network: tunnel-web
+      traefik.enable: true
+      traefik.http.routers.transmission.entrypoints: https
+      traefik.http.routers.transmission.middlewares: authelia
+      traefik.http.routers.transmission.rule: Host(`transmission.${HOST}`)
+      traefik.http.services.transmission.loadbalancer.server.port: 9091
+    network_mode: service:tunnel
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/transmission:/config
+      - ${MEDIA_DIR}/downloads:/downloads
+      - ${MEDIA_DIR}/downloads/watch:/watch
+  tvheadend:
+    container_name: tvheadend
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    image: lscr.io/linuxserver/tvheadend:latest
+    labels:
+      readme.description: TV Streaming Server.
+      readme.links.web: https://tvheadend.org/
+      traefik.docker.network: tunnel-web
+      traefik.enable: true
+      traefik.http.routers.tvheadend.entrypoints: https
+      traefik.http.routers.tvheadend.middlewares: authelia
+      traefik.http.routers.tvheadend.rule: Host(`tvheadend.${HOST}`)
+      traefik.http.services.tvheadend.loadbalancer.server.port: 9981
+    network_mode: service:tunnel
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG_DIR}/tvheadend:/config
+      - ${MEDIA_DIR}/recordings:/recordings
+      - ./scripts/tvheadend/tv_grab_url_gz:/usr/bin/tv_grab_url_gz

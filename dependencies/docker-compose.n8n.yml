@@ -1,0 +1,22 @@
+---
+networks:
+  n8n-web:
+    name: n8n-web
+services:
+  n8n:
+    container_name: n8n
+    environment:
+      - GENERIC_TIMEZONE=${TZ}
+      - TZ
+    image: docker.n8n.io/n8nio/n8n
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Powerful workflow automation.
+      readme.links.website: https://n8n.io/
+      traefik.docker.network: n8n-web
+      traefik.enable: true
+      traefik.http.routers.n8n.entrypoints: https
+      traefik.http.routers.n8n.rule: Host(`n8n.${HOST}`)
+    restart: unless-stopped
+    volumes:
+      - ${DATA_DIR}/n8n:/home/node/.n8n

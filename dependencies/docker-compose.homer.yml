@@ -1,0 +1,25 @@
+---
+networks:
+  homer-web:
+    name: homer-web
+services:
+  homer:
+    container_name: homer
+    environment:
+      - UID=${PUID}
+      - GID=${GUID}
+    image: b4bz/homer:latest
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: A very simple static homepage for your server.
+      readme.links.github: https://github.com/bastienwirtz/homer
+      traefik.docker.network: homer-web
+      traefik.enable: true
+      traefik.http.routers.homer.entrypoints: https
+      traefik.http.routers.homer.middlewares: authelia
+      traefik.http.routers.homer.rule: Host(`${HOST}`)
+    networks:
+      - homer-web
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG_DIR}/homer:/www/assets

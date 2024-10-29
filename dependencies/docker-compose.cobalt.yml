@@ -16,7 +16,27 @@ services:
       traefik.http.routers.cobalt-api.rule: Host(`cobalt.${HOST}`) && PathPrefix(`/api`)
       traefik.http.services.cobalt-api.loadbalancer.server.port: 9000
     networks:
-      cobalt-web:
+      - cobalt-web
     restart: unless-stopped
     volumes:
       - ${CONFIG_DIR}/cobalt/cookies.json:/cookies.json
+  cobalt-web:
+    container_name: cobalt-web
+    depends_on:
+      - cobalt-api
+    environment:
+      - WEB_URL=https://cobalt.${HOST}
+      - API_URL=https://cobalt.${HOST}
+    image: ghcr.io/wukko/cobalt:7
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: Save what you love.
+      readme.links.github: https://github.com/wukko/cobalt
+      traefik.enable: true
+      traefik.http.routers.cobalt-web.entrypoints: https
+      traefik.http.routers.cobalt-web.middlewares: authelia
+      traefik.http.routers.cobalt-web.rule: Host(`cobalt.${HOST}`)
+      traefik.http.services.cobalt-web.loadbalancer.server.port: 9001
+    networks:
+      - cobalt-web
+    restart: unless-stopped

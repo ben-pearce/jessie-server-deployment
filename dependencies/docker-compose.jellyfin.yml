@@ -1,0 +1,41 @@
+---
+include:
+  - common/docker-compose.tunnel.yml
+networks:
+  jellyfin-web:
+    name: jellyfin-web
+services:
+  jellyfin:
+    container_name: jellyfin
+    environment:
+      - PUID
+      - GUID
+      - TZ
+      - VERSION=latest
+      - JELLYFIN_PublishedServerUrl=https://jellyfin.${HOST}
+      - DOCKER_MODS=ghcr.io/ben-pearce/remote-ffmpeg-docker-mod:jellyfin
+      - REMOTE_FFMPEG_USER=root
+      - REMOTE_FFMPEG_HOST=alpha.benpearce.io
+    image: lscr.io/linuxserver/jellyfin:latest
+    labels:
+      com.centurylinklabs.watchtower.enable: true
+      readme.description: The Free Software Media System.
+      readme.links.github: https://github.com/jellyfin/jellyfin
+      traefik.docker.network: jellyfin-web
+      traefik.enable: true
+      traefik.http.routers.jellyfin.entrypoints: https
+      traefik.http.routers.jellyfin.rule: Host(`jellyfin.${HOST}`)
+      traefik.http.services.jellyfin.loadbalancer.server.port: 8096
+    networks:
+      - jellyfin-web
+      - tunnel
+    restart: unless-stopped
+    tmpfs:
+      - /config/data/transcodes:rw,size=10G,mode=1777
+    volumes:
+      - ${DATA_DIR}/jellyfin:/config
+      - ${MEDIA_DIR}/shows:/tv
+      - ${MEDIA_DIR}/movies:/movies
+      - ${MUSIC_DIR}:/music
+      - ${MEDIA_DIR}/music-videos:/music-videos
+      - ${LOG_DIR}/jellyfin:/config/log
