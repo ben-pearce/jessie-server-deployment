@@ -16,11 +16,8 @@ services:
       readme.description: Barebone deezer downloader.
       readme.links.gitlab: https://gitlab.com/Bockiii/deemix-docker
       readme.links.website: https://deemix.app/
-      traefik.docker.network: deemix-web
-      traefik.enable: true
-      traefik.http.routers.deemix.entrypoints: https
-      traefik.http.routers.deemix.middlewares: authelia
-      traefik.http.routers.deemix.rule: Host(`deemix.${HOST}`)
+      sablier.enable: true
+      sablier.group: deemix
     networks:
       - deemix-web
     restart: unless-stopped
