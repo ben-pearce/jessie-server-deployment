@@ -1,11 +1,11 @@
 ---
 include:
-  - dependencies/docker-compose.authelia.yml
-  - dependencies/docker-compose.firefly.yml
-  - dependencies/docker-compose.immich.yml
-  - dependencies/docker-compose.nextcloud.yml
-  - dependencies/docker-compose.paperless.yml
-  - dependencies/docker-compose.obsidian.yml
-  - dependencies/docker-compose.owntracks.yml
-  - dependencies/docker-compose.vaultwarden.yml
-  - dependencies/docker-compose.wallabag.yml
+  - stacks/docker-compose.authelia.yml
+  - stacks/docker-compose.firefly.yml
+  - stacks/docker-compose.immich.yml
+  - stacks/docker-compose.nextcloud.yml
+  - stacks/docker-compose.paperless.yml
+  - stacks/docker-compose.obsidian.yml
+  - stacks/docker-compose.owntracks.yml
+  - stacks/docker-compose.vaultwarden.yml
+  - stacks/docker-compose.wallabag.yml

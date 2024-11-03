@@ -1,7 +1,7 @@
 ---
 include:
-  - dependencies/docker-compose.cobalt.yml
-  - dependencies/docker-compose.fdroid.yml
-  - dependencies/docker-compose.cyberchef.yml
-  - dependencies/docker-compose.n8n.yml
-  - dependencies/docker-compose.stirling-pdf.yml
+  - stacks/docker-compose.cobalt.yml
+  - stacks/docker-compose.fdroid.yml
+  - stacks/docker-compose.cyberchef.yml
+  - stacks/docker-compose.n8n.yml
+  - stacks/docker-compose.stirling-pdf.yml

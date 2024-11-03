@@ -1,4 +1,4 @@
 ---
 include:
-  - dependencies/docker-compose.uptime-kuma.yml
-  - dependencies/docker-compose.zabbix.yml
+  - stacks/docker-compose.uptime-kuma.yml
+  - stacks/docker-compose.zabbix.yml

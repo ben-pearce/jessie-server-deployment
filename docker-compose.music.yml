@@ -1,6 +1,6 @@
 ---
 include:
-  - dependencies/docker-compose.feishin.yml
-  - dependencies/docker-compose.deemix.yml
-  - dependencies/docker-compose.lidarr.yml
-  - dependencies/docker-compose.navidrome.yml
+  - stacks/docker-compose.feishin.yml
+  - stacks/docker-compose.deemix.yml
+  - stacks/docker-compose.lidarr.yml
+  - stacks/docker-compose.navidrome.yml

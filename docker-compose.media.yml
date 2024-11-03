@@ -1,5 +1,5 @@
 ---
 include:
-  - dependencies/docker-compose.freshrss.yml
-  - dependencies/docker-compose.jellyfin.yml
-  - dependencies/docker-compose.arr.yml
+  - stacks/docker-compose.freshrss.yml
+  - stacks/docker-compose.jellyfin.yml
+  - stacks/docker-compose.arr.yml

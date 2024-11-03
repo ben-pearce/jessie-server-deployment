@@ -31,7 +31,7 @@ env_rows = [
 env_template = '| {} | {} | {} |'
 
 if __name__ == '__main__':
-    for file_name in sorted(glob.glob('./dependencies/**/docker-compose.*.yml', recursive=True)):
+    for file_name in sorted(glob.glob('./stacks/**/docker-compose.*.yml', recursive=True)):
         with open(file_name, 'r') as f:
             try:
                 compose = yaml.safe_load(f)
