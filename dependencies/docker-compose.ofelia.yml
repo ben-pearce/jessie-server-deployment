@@ -19,6 +19,7 @@ services:
       ofelia.job-run.deezer-arl-pull.volume: ${DATA_DIR}/deezer-arl/:/app/data
       readme.description: Docker job scheduler.
       readme.links.github: https://github.com/mcuadros/ofelia
+    network_mode: none
     restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro

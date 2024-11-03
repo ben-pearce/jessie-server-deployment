@@ -101,6 +101,8 @@ services:
       - PUID
       - TZ
     image: manuc66/node-hp-scan-to:latest
+    networks:
+      - paperless
     restart: unless-stopped
     volumes:
       - ${DATA_DIR}/paperless/consume:/scan

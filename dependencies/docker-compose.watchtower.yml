@@ -1,4 +1,7 @@
 ---
+networks:
+  watchtower:
+    name: watchtower
 include:
   - ./common/docker-compose.secrets.yml
 services:
@@ -20,6 +23,8 @@ services:
       readme.description: A process for automating Docker container base image updates.
       readme.links.docker: https://hub.docker.com/r/containrrr/watchtower
       readme.links.github: https://github.com/containrrr/watchtower
+    networks:
+      - watchtower
     restart: unless-stopped
     secrets:
       - smtp_password

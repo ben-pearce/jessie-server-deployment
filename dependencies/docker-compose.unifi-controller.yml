@@ -1,4 +1,7 @@
 ---
+networks:
+  unifi-web:
+    name: unifi-web
 services:
   unifi-controller:
     container_name: unifi-controller
@@ -16,10 +19,12 @@ services:
       traefik.http.routers.unifi.rule: Host(`unifi.${HOST}`)
       traefik.http.services.unifi-controller.loadbalancer.server.port: 8443
       traefik.http.services.unifi-controller.loadbalancer.server.scheme: https
+    networks:
+      - unifi-web
     ports:
       - 3478:3478/udp
       - 10001:10001/udp
-      - '8080:8080'
+      - 8080:8080
     restart: unless-stopped
     tmpfs:
       - /tmp:rw,mode=1777

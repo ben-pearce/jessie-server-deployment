@@ -83,6 +83,7 @@ services:
       - fdroid-web
       - lidarr-web
       - sablier
+      - unifi-web
     ports:
       - '443:443'
       - '80:80'
