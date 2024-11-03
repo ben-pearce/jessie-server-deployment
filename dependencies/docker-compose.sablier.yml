@@ -1,0 +1,15 @@
+---
+networks:
+  sablier:
+    name: sablier
+services:
+  sablier:
+    container_name: sablier
+    image: sablierapp/sablier:1.8.1
+    command:
+      - start
+      - --provider.name=docker
+    networks:
+      - sablier
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

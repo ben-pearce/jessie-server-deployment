@@ -21,6 +21,7 @@ services:
       - '--api.dashboard=true'
       - '--providers.docker=true'
       - '--providers.docker.exposedbydefault=false'
+      - '--providers.file.directory=/etc/traefik/dynamic_config'
       - '--entrypoints.http.address=:80'
       - '--entrypoints.http.http.redirections.entrypoint.to=https'
       - '--entrypoints.http.http.redirections.entrypoint.scheme=https'
@@ -36,8 +37,11 @@ services:
       - '--certificatesresolvers.resolver.acme.storage=/letsencrypt/acme.json'
       - '--certificatesresolvers.resolver.acme.dnschallenge.resolvers=1.1.1.1,1.0.0.1'
       - '--serversTransport.insecureSkipVerify=true'
+      - '--experimental.plugins.sablier.modulename=github.com/sablierapp/sablier'
+      - '--experimental.plugins.sablier.version=v1.8.1'
     container_name: traefik
     environment:
+      - HOST
       - CF_ZONE_API_TOKEN_FILE=/run/secrets/cloudflare_zone_api_token
       - CF_DNS_API_TOKEN_FILE=/run/secrets/cloudflare_dns_api_token
     hostname: traefik
@@ -54,7 +58,6 @@ services:
       - authelia-web
       - cyberchef-web
       - deemix-web
-      - default
       - firefly-web
       - freshrss-web
       - feishin-web
@@ -79,6 +82,7 @@ services:
       - otr-web
       - fdroid-web
       - lidarr-web
+      - sablier
     ports:
       - '443:443'
       - '80:80'
@@ -87,5 +91,6 @@ services:
       - cloudflare_dns_api_token
       - cloudflare_zone_api_token
     volumes:
-      - ${DATA_DIR}/letsencrypt:/letsencrypt
+      - ${DATA_DIR}/letsencrypt:/letsencrypt#
+      - ./traefik/:/etc/traefik/dynamic_config/
       - /var/run/docker.sock:/var/run/docker.sock:ro

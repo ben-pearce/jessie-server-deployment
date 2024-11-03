@@ -3,4 +3,5 @@ include:
   - dependencies/docker-compose.homer.yml
   - dependencies/docker-compose.ofelia.yml
   - dependencies/docker-compose.portainer.yml
+  - dependencies/docker-compose.sablier.yml
   - dependencies/docker-compose.watchtower.yml

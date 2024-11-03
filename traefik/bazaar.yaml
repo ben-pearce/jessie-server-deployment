@@ -1,0 +1,16 @@
+http:
+  services:
+    bazarr:
+      loadBalancer:
+        servers:
+          - url: http://bazarr:6767
+
+  routers:
+    bazarr:
+      rule: Host(`bazarr.{{env "HOST"}}`)
+      entryPoints:
+        - https
+      middlewares:
+        - authelia@docker
+        - sablier-bazarr@file
+      service: bazarr
