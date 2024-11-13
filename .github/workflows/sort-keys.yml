@@ -1,9 +1,9 @@
-name: readme
+name: sort keys
 
 on:
   push:
-    paths-ignore:
-      - 'README.md'
+    paths:
+      - '**docker-compose.*.yml'
     branches: [ "main" ]
 
 
@@ -15,24 +15,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Install Python
-        uses: actions/setup-python@v4 
+      - name: Install node
+        uses: actions/setup-node@v4
         with:
-          python-version: 'pypy3.9' 
+          node-version: 22
 
-      - name: Install PyYAML
+      - name: Sort YAML files
         run: |
-          pip install pyyaml
-          
-      - name: Generate README
-        run: |
-          python readme.py
+          npm i yaml-sort
+          npx yaml-sort --input docker-compose.*.yml stacks/docker-compose.*.yml
 
-      - name: Commit & push README
+      - name: Commit & push
         run: |
           git pull
           git config --global user.name 'Ben Pearce'
           git config --global user.email 'me@benpearce.io'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git commit -am "docs: update README.md" || true
+          git commit -am "chore: sort yaml keys" || true
           git push
