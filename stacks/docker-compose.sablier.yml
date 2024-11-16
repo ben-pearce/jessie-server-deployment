@@ -6,6 +6,9 @@ services:
   sablier:
     container_name: sablier
     image: sablierapp/sablier:1.8.1
+    labels:
+      readme.description: Stop containers after a period of inactivity.
+      readme.links.github: https://github.com/acouvreur/sablier
     command:
       - start
       - --provider.name=docker
