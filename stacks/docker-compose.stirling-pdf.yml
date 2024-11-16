@@ -1,4 +1,3 @@
----
 networks:
   stirling-pdf-web:
     name: stirling-pdf-web

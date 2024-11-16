@@ -1,4 +1,3 @@
----
 networks:
   fdroid-web:
     name: fdroid-web

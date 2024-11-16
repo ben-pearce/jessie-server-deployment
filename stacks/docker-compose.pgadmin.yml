@@ -1,4 +1,3 @@
----
 networks:
   pgadmin-web:
     name: pgadmin-web

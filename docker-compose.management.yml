@@ -1,4 +1,3 @@
----
 include:
   - stacks/docker-compose.homer.yml
   - stacks/docker-compose.ofelia.yml

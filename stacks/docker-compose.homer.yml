@@ -1,4 +1,3 @@
----
 networks:
   homer-web:
     name: homer-web

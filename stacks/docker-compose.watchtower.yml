@@ -1,9 +1,8 @@
----
+include:
+  - ./common/docker-compose.secrets.yml
 networks:
   watchtower:
     name: watchtower
-include:
-  - ./common/docker-compose.secrets.yml
 services:
   watchtower:
     container_name: watchtower

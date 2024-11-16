@@ -1,4 +1,3 @@
----
 networks:
   uptime-kuma-web:
     name: uptime-kuma-web

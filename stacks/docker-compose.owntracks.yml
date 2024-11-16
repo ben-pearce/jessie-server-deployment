@@ -1,4 +1,3 @@
----
 networks:
   otr-web:
     name: otr-web

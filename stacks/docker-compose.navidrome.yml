@@ -1,4 +1,3 @@
----
 networks:
   navidrome-web:
     name: navidrome-web

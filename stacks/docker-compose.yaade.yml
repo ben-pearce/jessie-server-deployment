@@ -1,4 +1,3 @@
----
 networks:
   yaade-web:
     name: yaade-web

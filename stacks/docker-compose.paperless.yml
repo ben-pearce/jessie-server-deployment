@@ -1,4 +1,3 @@
----
 networks:
   paperless:
     name: paperless
@@ -38,7 +37,14 @@ services:
     healthcheck:
       interval: 30s
       retries: 5
-      test: ["CMD", "curl", "-fs", "-S", "--max-time", "2", "http://localhost:8000"]
+      test:
+        - CMD
+        - curl
+        - '-fs'
+        - '-S'
+        - '--max-time'
+        - '2'
+        - http://localhost:8000
       timeout: 10s
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     labels:

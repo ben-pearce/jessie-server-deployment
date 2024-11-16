@@ -1,4 +1,3 @@
----
 networks:
   cyberchef-web:
     name: cyberchef-web
@@ -8,7 +7,9 @@ services:
     image: mpepping/cyberchef
     labels:
       com.centurylinklabs.watchtower.enable: true
-      readme.description: The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis.
+      readme.description: >-
+        The Cyber Swiss Army Knife - a web app for encryption, encoding,
+        compression and data analysis.
       readme.links.github: https://github.com/gchq/CyberChef
       traefik.docker.network: cyberchef-web
       traefik.enable: true

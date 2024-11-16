@@ -1,4 +1,3 @@
----
 networks:
   cobalt-web:
     name: cobalt-web

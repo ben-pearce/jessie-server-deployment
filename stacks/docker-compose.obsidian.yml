@@ -1,4 +1,3 @@
----
 networks:
   obsidian-web:
     name: obsidian-web

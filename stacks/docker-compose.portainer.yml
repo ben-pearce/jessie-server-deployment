@@ -1,4 +1,3 @@
----
 networks:
   portainer-web:
     name: portainer-web

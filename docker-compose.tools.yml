@@ -1,4 +1,3 @@
----
 include:
   - stacks/docker-compose.cobalt.yml
   - stacks/docker-compose.fdroid.yml

@@ -1,4 +1,3 @@
----
 networks:
   lidarr-web:
     name: lidarr-web

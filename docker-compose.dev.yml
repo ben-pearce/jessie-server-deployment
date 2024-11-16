@@ -1,4 +1,3 @@
----
 include:
   - stacks/docker-compose.yaade.yml
   - stacks/docker-compose.pgadmin.yml

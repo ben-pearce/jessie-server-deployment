@@ -1,4 +1,3 @@
----
 networks:
   feishin-web:
     name: feishin-web
