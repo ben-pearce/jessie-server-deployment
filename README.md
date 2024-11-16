@@ -6,7 +6,6 @@ This repository holds my docker compose files and configuration files for servic
 
 - [☁️ Cloud](https://github.com/ben-pearce/jessie-server-deployment/blob/main/docker-compose.cloud.yml)
 - [👨‍💻 Development](https://github.com/ben-pearce/jessie-server-deployment/blob/main/docker-compose.dev.yml)
-- [📨 Mail](https://github.com/ben-pearce/jessie-server-deployment/blob/main/docker-compose.mail.yml)
 - [💼 Management](https://github.com/ben-pearce/jessie-server-deployment/blob/main/docker-compose.management.yml)
 - [📺 Media](https://github.com/ben-pearce/jessie-server-deployment/blob/main/docker-compose.media.yml)
 - [💿 Music](https://github.com/ben-pearce/jessie-server-deployment/blob/main/docker-compose.music.yml)
@@ -61,7 +60,7 @@ This repository holds my docker compose files and configuration files for servic
 | [paperless-tika](./stacks/docker-compose.paperless.yml#L110)  |  |  |  |
 | [pgadmin](./stacks/docker-compose.pgadmin.yml#L7)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
 | [portainer](./stacks/docker-compose.portainer.yml#L7)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
-| [sablier](./stacks/docker-compose.sablier.yml#L7)  |  |  |  |
+| [sablier](./stacks/docker-compose.sablier.yml#L7)  | Stop containers after a period of inactivity. |  | [GitHub](https://github.com/acouvreur/sablier) |
 | [stirling-pdf](./stacks/docker-compose.stirling-pdf.yml#L7)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
 | [unifi-controller](./stacks/docker-compose.unifi-controller.yml#L7)  | Wireless network management. | `3478:3478/udp`, `10001:10001/udp`, `8080:8080` |  |
 | [uptime-kuma](./stacks/docker-compose.uptime-kuma.yml#L7)  | Self-hosted monitoring tool like "Uptime Robot". |  | [GitHub](https://github.com/louislam/uptime-kuma) |
