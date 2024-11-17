@@ -4,7 +4,7 @@ services:
     container_name: ofelia
     environment:
       - TZ
-    image: mcuadros/ofelia:latest
+    image: mcuadros/ofelia:0.3.13
     labels:
       ofelia.enabled: true
       ofelia.job-run.deezer-arl-fetch.command: consume json --file /config/deemix/login.json --path arl

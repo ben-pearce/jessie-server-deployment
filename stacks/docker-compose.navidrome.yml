@@ -9,7 +9,7 @@ services:
       - ND_LOGLEVEL=info
       - ND_SESSIONTIMEOUT=72h
       - ND_BASEURL=/
-    image: deluan/navidrome:latest
+    image: deluan/navidrome:0.53.3
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Modern Music Server and Streamer compatible with Subsonic/Airsonic.
