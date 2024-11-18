@@ -9,7 +9,7 @@ services:
       - PGID
       - MEM_LIMIT=1024
       - MEM_STARTUP=1024
-    image: ghcr.io/linuxserver/unifi-controller
+    image: ghcr.io/linuxserver/unifi-controller:8.0.24
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Wireless network management.

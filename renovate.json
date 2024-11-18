@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "docker-compose": {
+    "fileMatch": [
+      "(^|/)(?:docker-)?compose[^/]*(\\..+)?\\.ya?ml$"
+    ]
+  },
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["lscr.io/linuxserver/tvheadend"],
+      "allowedVersions": "/^version-[0-9a-f]{8}$/"
+    }
+  ],
+  "repositories": ["ben-pearce/jessie-server-deployment"]
+}

@@ -6,7 +6,7 @@ services:
     container_name: otrecorder
     environment:
       - OTR_PORT=0
-    image: owntracks/recorder
+    image: owntracks/recorder:0.9.9
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Store and access data published by OwnTracks apps.
@@ -27,7 +27,7 @@ services:
     environment:
       - SERVER_HOST=otrecorder
       - SERVER_PORT=8083
-    image: owntracks/frontend
+    image: owntracks/frontend:2.15.3
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Web interface for OwnTracks built with Vue.js

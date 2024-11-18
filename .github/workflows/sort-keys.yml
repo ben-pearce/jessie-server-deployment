@@ -1,35 +1,35 @@
-name: sort keys
+# name: sort keys
 
-on:
-  push:
-    paths:
-      - '**docker-compose.*.yml'
-    branches: [ "main" ]
+# on:
+#   push:
+#     paths:
+#       - '**docker-compose.*.yml'
+#     branches: [ "main" ]
 
 
-jobs:
-  generate:
-    runs-on: ubuntu-latest
+# jobs:
+#   generate:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v3
 
-      - name: Install node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
+#       - name: Install node
+#         uses: actions/setup-node@v4
+#         with:
+#           node-version: 22
 
-      - name: Sort YAML files
-        run: |
-          npm i yaml-sort
-          npx yaml-sort --input docker-compose.*.yml stacks/docker-compose.*.yml
+#       - name: Sort YAML files
+#         run: |
+#           npm i yaml-sort
+#           npx yaml-sort --input docker-compose.*.yml stacks/docker-compose.*.yml
 
-      - name: Commit & push
-        run: |
-          git pull
-          git config --global user.name 'Ben Pearce'
-          git config --global user.email 'me@benpearce.io'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git commit -am "chore: sort yaml keys" || true
-          git push
+#       - name: Commit & push
+#         run: |
+#           git pull
+#           git config --global user.name 'Ben Pearce'
+#           git config --global user.email 'me@benpearce.io'
+#           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+#           git commit -am "chore: sort yaml keys" || true
+#           git push

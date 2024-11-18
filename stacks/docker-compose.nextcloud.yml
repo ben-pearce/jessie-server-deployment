@@ -24,7 +24,7 @@ services:
       - SMTP_NAME=${SMTP_USER}
       - SMTP_PASSWORD_FILE=/run/secrets/smtp_password
       - MAIL_FROM=${SMTP_USER}
-    image: nextcloud
+    image: nextcloud:30.0.2
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Personal Cloud Storage

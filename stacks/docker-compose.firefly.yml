@@ -36,7 +36,7 @@ services:
       - MAIL_PASSWORD_FILE=/run/secrets/smtp_password
       - MAIL_ENCRYPTION=ssl
       - MAIL_FROM_ADDRESS=${SMTP_USER}
-    image: fireflyiii/data-importer:latest
+    image: fireflyiii/data-importer:version-1.5.7
     labels:
       com.centurylinklabs.watchtower.enable: true
       ofelia.enabled: 'true'
@@ -85,7 +85,7 @@ services:
       - MAIL_ENCRYPTION=ssl
       - AUTHENTICATION_GUARD=remote_user_guard
       - AUTHENTICATION_GUARD_HEADER=HTTP_REMOTE_EMAIL
-    image: fireflyiii/core:latest
+    image: fireflyiii/core:version-6.1.22
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Personal Finance Manager.

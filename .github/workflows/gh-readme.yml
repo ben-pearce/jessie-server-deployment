@@ -1,10 +1,10 @@
 name: readme
 
-on:
-  push:
-    paths-ignore:
-      - 'README.md'
-    branches: [ "main" ]
+# on:
+#   push:
+#     paths-ignore:
+#       - 'README.md'
+#     branches: [ "main" ]
 
 
 jobs:

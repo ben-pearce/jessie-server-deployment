@@ -42,7 +42,7 @@ services:
       - DB_SERVER_HOST=zabbix-postgres
       - POSTGRES_USER=zabbix
       - POSTGRES_PASSWORD_FILE=/run/secrets/zabbix_postgres_password
-    image: zabbix/zabbix-server-pgsql:alpine-latest
+    image: zabbix/zabbix-server-pgsql:7.0.5-alpine
     networks:
       - zabbix
     ports:
@@ -61,7 +61,7 @@ services:
       - POSTGRES_PASSWORD_FILE=/run/secrets/zabbix_postgres_password
       - PHP_TZ=${TZ}
       - ZBX_SERVER_HOST=zabbix-server
-    image: zabbix/zabbix-web-nginx-pgsql:alpine-latest
+    image: zabbix/zabbix-web-nginx-pgsql:7.0.5-alpine
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Zabbix web frontend.
