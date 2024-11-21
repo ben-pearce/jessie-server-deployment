@@ -33,7 +33,7 @@
     {
       "matchDatasources": "docker",
       "matchPackageNames": ["ghcr.io/linuxserver/lidarr"],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
+      "allowedVersions": "<8"
     },
     {
       "matchDatasources": "docker",
