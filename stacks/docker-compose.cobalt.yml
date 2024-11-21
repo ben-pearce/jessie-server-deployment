@@ -8,7 +8,7 @@ services:
       - API_URL=https://cobalt.${HOST}
       - API_NAME=jessie
       - COOKIE_PATH=/cookies.json
-    image: ghcr.io/wukko/cobalt:7
+    image: ghcr.io/wukko/cobalt:7.15
     labels:
       traefik.enable: true
       traefik.http.routers.cobalt-api.entrypoints: https
@@ -26,7 +26,7 @@ services:
     environment:
       - WEB_URL=https://cobalt.${HOST}
       - API_URL=https://cobalt.${HOST}
-    image: ghcr.io/wukko/cobalt:7
+    image: ghcr.io/wukko/cobalt:7.15
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Save what you love.
