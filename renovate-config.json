@@ -8,5 +8,12 @@
       "(^|/)(?:docker-)?compose[^/]*(\\..+)?\\.ya?ml$"
     ]
   },
-  "repositories": ["ben-pearce/jessie-server-deployment"]
+  "repositories": ["ben-pearce/jessie-server-deployment"],
+  "packageRules": [
+    {
+      "matchDatasources": "docker",
+      "matchPackageNames": ["lscr.io/linuxserver/transmission"],
+      "allowedVersions": "<2021"
+    }
+  ]
 }
