@@ -2,8 +2,9 @@ name: readme
 
 on:
   push:
-    paths-ignore:
-      - 'README.md'
+    paths:
+      - '**docker-compose.*.yml'
+      - 'README.tmpl.md'
     branches: [ "main" ]
 
 
