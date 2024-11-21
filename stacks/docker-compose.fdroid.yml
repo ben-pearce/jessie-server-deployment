@@ -10,7 +10,7 @@ services:
     environment:
       HTTP_AUTH_LOGIN: ben
       HTTP_AUTH_PASSWORD_FILE: /run/secrets/fdroid_password
-    image: ghcr.io/ben-pearce/pwa-to-fdroid:latest
+    image: ghcr.io/ben-pearce/pwa-to-fdroid:v1.1.0
     labels:
       com.centurylinklabs.watchtower.enable: true
       traefik.docker.network: fdroid-web

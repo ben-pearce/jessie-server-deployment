@@ -7,7 +7,7 @@ services:
     environment:
       COUCHDB_PASSWORD: couchdb
       COUCHDB_USER: ben
-    image: couchdb:latest
+    image: couchdb:3.4.2
     labels:
       traefik.docker.network: obsidian-web
       traefik.enable: true

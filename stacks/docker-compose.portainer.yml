@@ -4,7 +4,7 @@ networks:
 services:
   portainer:
     container_name: portainer
-    image: portainer/portainer-ce
+    image: portainer/portainer-ce:2.21.4
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Universal management GUI for Docker.

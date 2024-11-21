@@ -46,7 +46,7 @@ services:
         - '2'
         - http://localhost:8000
       timeout: 10s
-    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.13.5
     labels:
       readme.description: Document Management System.
       readme.links.github: https://github.com/paperless-ngx/paperless-ngx
@@ -91,7 +91,7 @@ services:
       - ${DATA_DIR}/postgres/backups:/backups
   paperless-redis:
     container_name: paperless-redis
-    image: redis:7
+    image: redis:7.4.1
     networks:
       - paperless
     restart: unless-stopped
@@ -114,7 +114,7 @@ services:
       - ${DATA_DIR}/paperless/consume:/scan
   paperless-tika:
     container_name: paperless-tika
-    image: ghcr.io/paperless-ngx/tika:latest
+    image: ghcr.io/paperless-ngx/tika:2.9.1-minimal
     networks:
       - paperless
     restart: unless-stopped

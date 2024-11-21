@@ -4,7 +4,7 @@ networks:
 services:
   cyberchef:
     container_name: cyberchef
-    image: mpepping/cyberchef
+    image: mpepping/cyberchef:v10.19.4
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: >-
