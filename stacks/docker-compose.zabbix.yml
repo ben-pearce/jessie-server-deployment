@@ -61,7 +61,7 @@ services:
       - POSTGRES_PASSWORD_FILE=/run/secrets/zabbix_postgres_password
       - PHP_TZ=${TZ}
       - ZBX_SERVER_HOST=zabbix-server
-    image: zabbix/zabbix-web-nginx-pgsql:7.0.5-alpine
+    image: zabbix/zabbix-web-nginx-pgsql:7.0.6-alpine
     labels:
       com.centurylinklabs.watchtower.enable: true
       readme.description: Zabbix web frontend.
