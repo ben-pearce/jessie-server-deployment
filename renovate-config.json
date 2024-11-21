@@ -34,6 +34,11 @@
       "matchDatasources": "docker",
       "matchPackageNames": ["ghcr.io/linuxserver/lidarr"],
       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
+    },
+    {
+      "matchDatasources": "docker",
+      "matchPackageNames": ["tensorchord/pgvecto-rs"],
+      "versioning": "regex:^(?<compatibility>.*)-v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
     }
   ]
 }
