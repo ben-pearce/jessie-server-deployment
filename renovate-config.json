@@ -39,6 +39,16 @@
       "matchDatasources": "docker",
       "matchPackageNames": ["tensorchord/pgvecto-rs"],
       "versioning": "regex:^(?<compatibility>.*)-v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
+    },
+    {
+      "matchDatasources": "docker",
+      "matchPackageNames": ["ghcr.io/linuxserver/lidarr"],
+      "allowedVersions": "<8"
+    },
+    {
+      "matchDatasources": "docker",
+      "matchPackageNames": ["docker.io/gotenberg/gotenberg"],
+      "allowedVersions": "<=7"
     }
   ]
 }
