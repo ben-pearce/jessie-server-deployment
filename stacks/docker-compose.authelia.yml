@@ -63,7 +63,7 @@ services:
       POSTGRES_DB: authelia
       POSTGRES_PASSWORD_FILE: /run/secrets/authelia_postgres_password
       POSTGRES_USER: authelia
-    image: postgres:14.5
+    image: postgres:14.14
     labels:
       ofelia.enabled: 'true'
       ofelia.job-exec.authelia-postgres-backup.command: /bin/sh -c 'pg_dump -U authelia -d authelia > /backups/authelia.sql'
