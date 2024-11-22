@@ -3,4 +3,3 @@ include:
   - stacks/docker-compose.ofelia.yml
   - stacks/docker-compose.portainer.yml
   - stacks/docker-compose.sablier.yml
-  - stacks/docker-compose.watchtower.yml
