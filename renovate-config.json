@@ -48,7 +48,7 @@
     {
       "matchDatasources": "docker",
       "matchPackageNames": ["docker.io/gotenberg/gotenberg"],
-      "allowedVersions": "<=7"
+      "allowedVersions": "<=8"
     }
   ]
 }
