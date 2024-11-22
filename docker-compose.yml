@@ -92,6 +92,6 @@ services:
       - cloudflare_dns_api_token
       - cloudflare_zone_api_token
     volumes:
-      - ${DATA_DIR}/letsencrypt:/letsencrypt#
+      - ${DATA_DIR}/letsencrypt:/letsencrypt
       - ./traefik/:/etc/traefik/dynamic_config/
       - /var/run/docker.sock:/var/run/docker.sock:ro
