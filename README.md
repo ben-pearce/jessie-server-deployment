@@ -66,7 +66,6 @@ This repository holds my docker compose files and configuration files for servic
 | [uptime-kuma](./stacks/docker-compose.uptime-kuma.yml#L6)  | Self-hosted monitoring tool like "Uptime Robot". |  | [GitHub](https://github.com/louislam/uptime-kuma) |
 | [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L8)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 | [wallabag](./stacks/docker-compose.wallabag.yml#L6)  | A self hostable application for saving web pages, freely. |  | [GitHub](https://github.com/wallabag) |
-| [watchtower](./stacks/docker-compose.watchtower.yml#L8)  | A process for automating Docker container base image updates. |  | [GitHub](https://github.com/containrrr/watchtower), [Docker Hub](https://hub.docker.com/r/containrrr/watchtower) |
 | [yaade](./stacks/docker-compose.yaade.yml#L6)  | Yet Another API Development Environment. |  | [GitHub](https://github.com/EsperoTech/yaade) |
 | [zabbix-postgres](./stacks/docker-compose.zabbix.yml#L18)  |  |  |  |
 | [zabbix-server](./stacks/docker-compose.zabbix.yml#L40)  |  | `10051:10051` |  |
