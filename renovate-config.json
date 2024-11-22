@@ -49,6 +49,11 @@
       "matchDatasources": "docker",
       "matchPackageNames": ["docker.io/gotenberg/gotenberg"],
       "allowedVersions": "<=8"
+    },
+    {
+      "matchDatasources": "docker",
+      "matchPackageNames": ["redis"],
+      "allowedVersions": "<=6"
     }
   ]
 }
