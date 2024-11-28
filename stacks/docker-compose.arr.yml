@@ -34,7 +34,6 @@ services:
       - TZ
     image: lscr.io/linuxserver/prowlarr:1.26.1
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: An indexer manager/proxy.
       readme.links.github: https://github.com/Prowlarr/Prowlarr
       readme.links.web: https://wiki.servarr.com/prowlarr
@@ -57,7 +56,6 @@ services:
       - TZ
     image: ghcr.io/linuxserver/radarr:5.15.1
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: A fork of Sonarr to work with movies à la Couchpotato.
       readme.links.github: https://github.com/Radarr/Radarr
       traefik.docker.network: arr-web
@@ -83,7 +81,6 @@ services:
       - TZ
     image: lscr.io/linuxserver/sabnzbd:4.3.3
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: The free and easy binary newsreader.
       readme.links.docker: https://hub.docker.com/r/linuxserver/sabnzbd
       readme.links.github: https://github.com/sabnzbd/sabnzbd
@@ -109,7 +106,6 @@ services:
       - TZ
     image: ghcr.io/linuxserver/sonarr:4.0.10
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: Smart PVR for newsgroup and bittorrent users.
       readme.links.github: https://github.com/Sonarr/Sonarr
       traefik.docker.network: arr-web
@@ -135,7 +131,6 @@ services:
       - TZ
     image: lscr.io/linuxserver/transmission:4.0.6
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: Fast, easy, and free BitTorrent client.
       readme.links.github: https://github.com/transmission/transmission
       traefik.docker.network: tunnel-web

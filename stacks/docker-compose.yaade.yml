@@ -8,7 +8,6 @@ services:
       - YAADE_ADMIN_USERNAME=admin
     image: esperotech/yaade:latest
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: Yet Another API Development Environment.
       readme.links.github: https://github.com/EsperoTech/yaade
       traefik.docker.network: yaade-web

@@ -9,7 +9,6 @@ services:
       - GID=${GUID}
     image: b4bz/homer:v24.11.4
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: A very simple static homepage for your server.
       readme.links.github: https://github.com/bastienwirtz/homer
       traefik.docker.network: homer-web

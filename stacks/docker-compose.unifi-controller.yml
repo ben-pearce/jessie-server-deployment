@@ -11,7 +11,6 @@ services:
       - MEM_STARTUP=1024
     image: ghcr.io/linuxserver/unifi-controller:8.0.24
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: Wireless network management.
       traefik.enable: true
       traefik.http.routers.unifi.entrypoints: https

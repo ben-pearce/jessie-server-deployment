@@ -38,7 +38,6 @@ services:
       - MAIL_FROM_ADDRESS=${SMTP_USER}
     image: fireflyiii/data-importer:version-1.5.7
     labels:
-      com.centurylinklabs.watchtower.enable: true
       ofelia.enabled: 'true'
       ofelia.job-exec.finance-import.command: >-
         /bin/sh -c 'for f in /import/*; do php artisan importer:import $$f;
@@ -87,7 +86,6 @@ services:
       - AUTHENTICATION_GUARD_HEADER=HTTP_REMOTE_EMAIL
     image: fireflyiii/core:version-6.1.22
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: Personal Finance Manager.
       readme.links.docker: https://hub.docker.com/r/fireflyiii/core
       readme.links.web: https://www.firefly-iii.org/

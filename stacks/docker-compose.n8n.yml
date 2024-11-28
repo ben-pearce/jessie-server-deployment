@@ -9,7 +9,6 @@ services:
       - TZ
     image: docker.n8n.io/n8nio/n8n:1.69.0
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: Powerful workflow automation.
       readme.links.website: https://n8n.io/
       traefik.docker.network: n8n-web

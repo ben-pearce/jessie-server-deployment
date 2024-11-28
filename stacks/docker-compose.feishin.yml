@@ -11,7 +11,6 @@ services:
       - SERVER_LOCK=true
     image: ghcr.io/jeffvli/feishin:0.12.1
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: A modern self-hosted music player.
       readme.links.github: https://github.com/jeffvli/feishin
       traefik.docker.network: feishin-web

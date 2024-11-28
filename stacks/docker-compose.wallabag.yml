@@ -8,7 +8,6 @@ services:
       - SYMFONY__ENV__DOMAIN_NAME=https://wallabag.${HOST}
     image: wallabag/wallabag:2.6.10
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: A self hostable application for saving web pages, freely.
       readme.links.github: https://github.com/wallabag
       traefik.docker.network: wallabag-web

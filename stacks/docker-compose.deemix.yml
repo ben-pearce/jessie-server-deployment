@@ -11,7 +11,6 @@ services:
       - DEEMIX_SINGLE_USER=true
     image: registry.gitlab.com/bockiii/deemix-docker:2022.12.14-r222.5d447b6035
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: Barebone deezer downloader.
       readme.links.gitlab: https://gitlab.com/Bockiii/deemix-docker
       readme.links.website: https://deemix.app/

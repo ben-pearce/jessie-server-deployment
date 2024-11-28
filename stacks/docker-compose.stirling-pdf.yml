@@ -10,7 +10,6 @@ services:
       - LANGS=en_GB
     image: frooodle/s-pdf:0.33.1
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: PDF manipulation tool.
       readme.links.github: https://github.com/Stirling-Tools/Stirling-PDF
       traefik.docker.network: stirling-web

@@ -26,7 +26,6 @@ services:
       - MAIL_FROM=${SMTP_USER}
     image: nextcloud:30.0.2
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: Personal Cloud Storage
       readme.links.docker: https://hub.docker.com/_/nextcloud
       readme.links.web: https://nextcloud.com/

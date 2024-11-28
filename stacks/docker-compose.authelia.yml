@@ -32,7 +32,6 @@ services:
       - X_AUTHELIA_CONFIG_FILTERS=template
     image: authelia/authelia:4.38.17
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: The Single Sign-On Multi-Factor portal for web apps.
       readme.links.docker: https://hub.docker.com/r/authelia/authelia
       readme.links.web: https://www.authelia.com/

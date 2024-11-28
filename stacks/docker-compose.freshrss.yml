@@ -10,7 +10,6 @@ services:
       - TZ
     image: ghcr.io/linuxserver/freshrss:1.24.3
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: Self-hosted RSS feed aggregator.
       readme.links.github: https://github.com/FreshRSS/FreshRSS
       traefik.docker.network: freshrss-web

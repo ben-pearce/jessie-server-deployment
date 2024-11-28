@@ -8,7 +8,6 @@ services:
       - OTR_PORT=0
     image: owntracks/recorder:0.9.9
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: Store and access data published by OwnTracks apps.
       readme.links.github: https://github.com/owntracks/recorder
       traefik.docker.network: otr-web
@@ -29,7 +28,6 @@ services:
       - SERVER_PORT=8083
     image: owntracks/frontend:2.15.3
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: Web interface for OwnTracks built with Vue.js
       readme.links.github: https://github.com/owntracks/frontend
       traefik.docker.network: otr-web

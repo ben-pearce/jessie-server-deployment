@@ -17,7 +17,6 @@ services:
       - REMOTE_FFMPEG_HOST=alpha.benpearce.io
     image: lscr.io/linuxserver/jellyfin:10.10.3
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: The Free Software Media System.
       readme.links.github: https://github.com/jellyfin/jellyfin
       traefik.docker.network: jellyfin-web

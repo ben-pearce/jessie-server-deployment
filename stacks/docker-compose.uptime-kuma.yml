@@ -6,7 +6,6 @@ services:
     container_name: uptime-kuma
     image: louislam/uptime-kuma:1.23.15
     labels:
-      com.centurylinklabs.watchtower.enable: true
       readme.description: Self-hosted monitoring tool like "Uptime Robot".
       readme.links.github: https://github.com/louislam/uptime-kuma
       traefik.docker.network: uptime-kuma-web
