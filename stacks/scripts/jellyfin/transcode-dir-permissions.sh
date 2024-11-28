@@ -1,1 +1,0 @@
-chown root:root /mnt
