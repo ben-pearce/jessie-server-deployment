@@ -24,7 +24,6 @@ This repository holds my docker compose files and configuration files for servic
 | [sabnzbd](./stacks/docker-compose.arr.yml#L77) <sup>1,2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
 | [sonarr](./stacks/docker-compose.arr.yml#L102) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
 | [transmission](./stacks/docker-compose.arr.yml#L127) <sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
-| [tvheadend](./stacks/docker-compose.arr.yml#L149) <sup>1,2</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
 | [authelia](./stacks/docker-compose.authelia.yml#L21)  | The Single Sign-On Multi-Factor portal for web apps. |  | [Docker Hub](https://hub.docker.com/r/authelia/authelia), [Website](https://www.authelia.com/) |
 | [authelia-postgres](./stacks/docker-compose.authelia.yml#L60)  |  |  |  |
 | [cobalt-api](./stacks/docker-compose.cobalt.yml#L6)  |  |  |  |
@@ -43,6 +42,7 @@ This repository holds my docker compose files and configuration files for servic
 | [immich-redis](./stacks/docker-compose.immich.yml#L54)  |  |  |  |
 | [immich-server](./stacks/docker-compose.immich.yml#L60)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
 | [jellyfin](./stacks/docker-compose.jellyfin.yml#L8) <sup>1</sup> | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
+| [tvheadend](./stacks/docker-compose.jellyfin.yml#L41) <sup>1</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
 | [lidarr](./stacks/docker-compose.lidarr.yml#L6)  | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
 | [n8n](./stacks/docker-compose.n8n.yml#L6)  | Powerful workflow automation. |  |  |
 | [navidrome](./stacks/docker-compose.navidrome.yml#L6)  | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
