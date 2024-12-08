@@ -32,7 +32,7 @@ services:
       - PUID
       - GUID
       - TZ
-    image: lscr.io/linuxserver/prowlarr:1.26.1
+    image: lscr.io/linuxserver/prowlarr:1.27.0
     labels:
       readme.description: An indexer manager/proxy.
       readme.links.github: https://github.com/Prowlarr/Prowlarr
