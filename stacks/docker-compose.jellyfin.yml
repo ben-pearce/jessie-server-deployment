@@ -37,3 +37,26 @@ services:
       - ${MUSIC_DIR}:/music
       - ${MEDIA_DIR}/music-videos:/music-videos
       - ${LOG_DIR}/jellyfin:/config/log
+  tvheadend:
+    container_name: tvheadend
+    environment:
+      - PUID
+      - PGID
+      - TZ
+    image: lscr.io/linuxserver/tvheadend:version-26ec161f
+    labels:
+      readme.description: TV Streaming Server.
+      readme.links.web: https://tvheadend.org/
+      traefik.docker.network: tunnel-web
+      traefik.enable: true
+      traefik.http.routers.tvheadend.entrypoints: https
+      traefik.http.routers.tvheadend.middlewares: authelia
+      traefik.http.routers.tvheadend.rule: Host(`tvheadend.${HOST}`)
+      traefik.http.services.tvheadend.loadbalancer.server.port: 9981
+    networks:
+      - jellyfin-web
+    restart: unless-stopped
+    volumes:
+      - ${CONFIG_DIR}/tvheadend:/config
+      - ${MEDIA_DIR}/recordings:/recordings
+      - ./scripts/tvheadend/tv_grab_url_gz:/usr/bin/tv_grab_url_gz
