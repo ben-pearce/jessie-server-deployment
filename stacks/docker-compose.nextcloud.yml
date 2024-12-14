@@ -24,7 +24,7 @@ services:
       - SMTP_NAME=${SMTP_USER}
       - SMTP_PASSWORD_FILE=/run/secrets/smtp_password
       - MAIL_FROM=${SMTP_USER}
-    image: nextcloud:30.0.3
+    image: nextcloud:30.0.4
     labels:
       readme.description: Personal Cloud Storage
       readme.links.docker: https://hub.docker.com/_/nextcloud
