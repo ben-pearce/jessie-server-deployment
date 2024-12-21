@@ -8,7 +8,7 @@ services:
       - PUID
       - GUID
       - TZ
-    image: ghcr.io/linuxserver/lidarr:2.7.1
+    image: ghcr.io/linuxserver/lidarr:2.8.2
     labels:
       readme.description: Music Collection Manager.
       readme.links.github: https://github.com/Lidarr/Lidarr
