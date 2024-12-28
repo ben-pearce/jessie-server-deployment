@@ -8,7 +8,7 @@ services:
       - API_URL=https://cobalt-api.${HOST}
       - API_NAME=jessie
       - COOKIE_PATH=/cookies.json
-    image: ghcr.io/imputnet/cobalt:10.4.6
+    image: ghcr.io/imputnet/cobalt:10.5.1
     labels:
       traefik.enable: true
       traefik.http.routers.cobalt-api.entrypoints: https
