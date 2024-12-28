@@ -9,7 +9,7 @@ services:
       - ND_LOGLEVEL=info
       - ND_SESSIONTIMEOUT=72h
       - ND_BASEURL=/
-    image: deluan/navidrome:0.53.3
+    image: deluan/navidrome:0.54.2
     labels:
       readme.description: Modern Music Server and Streamer compatible with Subsonic/Airsonic.
       readme.links.github: https://github.com/navidrome/navidrome
