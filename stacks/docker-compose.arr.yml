@@ -10,7 +10,7 @@ services:
       - PUID
       - PGID
       - TZ
-    image: lscr.io/linuxserver/bazarr:1.4.5
+    image: lscr.io/linuxserver/bazarr:1.5.1
     labels:
       readme.description: Manage and download subtitles based on your requirements.
       readme.links.docker: https://hub.docker.com/r/linuxserver/bazarr
