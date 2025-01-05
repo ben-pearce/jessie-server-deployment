@@ -4,7 +4,7 @@ networks:
 services:
   portainer:
     container_name: portainer
-    image: portainer/portainer-ce:2.24.1
+    image: portainer/portainer-ce:2.25.1
     labels:
       readme.description: Universal management GUI for Docker.
       readme.links.github: https://github.com/portainer/portainer
