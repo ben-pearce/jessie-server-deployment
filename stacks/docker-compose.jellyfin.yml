@@ -15,7 +15,7 @@ services:
       - DOCKER_MODS=ghcr.io/ben-pearce/remote-ffmpeg-docker-mod:jellyfin-v0.3.1
       - REMOTE_FFMPEG_USER=root
       - REMOTE_FFMPEG_HOST=alpha.benpearce.io
-    image: lscr.io/linuxserver/jellyfin:10.10.4
+    image: lscr.io/linuxserver/jellyfin:10.10.5
     labels:
       readme.description: The Free Software Media System.
       readme.links.github: https://github.com/jellyfin/jellyfin
