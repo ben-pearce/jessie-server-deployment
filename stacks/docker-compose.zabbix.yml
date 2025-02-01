@@ -42,7 +42,7 @@ services:
       - DB_SERVER_HOST=zabbix-postgres
       - POSTGRES_USER=zabbix
       - POSTGRES_PASSWORD_FILE=/run/secrets/zabbix_postgres_password
-    image: zabbix/zabbix-server-pgsql:7.2.2-alpine
+    image: zabbix/zabbix-server-pgsql:7.2.3-alpine
     networks:
       - zabbix
     ports:
