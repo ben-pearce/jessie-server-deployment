@@ -61,7 +61,7 @@ services:
       - POSTGRES_PASSWORD_FILE=/run/secrets/zabbix_postgres_password
       - PHP_TZ=${TZ}
       - ZBX_SERVER_HOST=zabbix-server
-    image: zabbix/zabbix-web-nginx-pgsql:7.2.2-alpine
+    image: zabbix/zabbix-web-nginx-pgsql:7.2.3-alpine
     labels:
       readme.description: Zabbix web frontend.
       readme.links.docker: https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql
