@@ -104,7 +104,7 @@ services:
       - PUID
       - GUID
       - TZ
-    image: ghcr.io/linuxserver/sonarr:4.0.12
+    image: ghcr.io/linuxserver/sonarr:4.0.13
     labels:
       readme.description: Smart PVR for newsgroup and bittorrent users.
       readme.links.github: https://github.com/Sonarr/Sonarr
