@@ -14,7 +14,7 @@ services:
       - SMTP_USERNAME=${SMTP_USER}
       - SMTP_PASSWORD_FILE=/run/secrets/smtp_password
       - DOMAIN=https://fence.${HOST}
-    image: vaultwarden/server:1.33.1
+    image: vaultwarden/server:1.33.2
     labels:
       readme.description: Unofficial Bitwarden compatible server written in Rust.
       readme.links.github: https://github.com/dani-garcia/vaultwarden
