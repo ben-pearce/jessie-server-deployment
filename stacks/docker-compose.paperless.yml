@@ -73,7 +73,7 @@ services:
       POSTGRES_DB: paperless
       POSTGRES_PASSWORD_FILE: /run/secrets/paperless_postgres_password
       POSTGRES_USER: paperless
-    image: postgres:14.15
+    image: postgres:14.16
     labels:
       ofelia.enabled: 'true'
       ofelia.job-exec.paperless-postgres-backup.command: /bin/sh -c 'pg_dump -U paperless -d paperless > /backups/paperless.sql'
