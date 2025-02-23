@@ -30,7 +30,7 @@ services:
         AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE=/run/secrets/authelia_postgres_password
       - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/smtp_password
       - X_AUTHELIA_CONFIG_FILTERS=template
-    image: authelia/authelia:4.38.18
+    image: authelia/authelia:4.38.19
     labels:
       readme.description: The Single Sign-On Multi-Factor portal for web apps.
       readme.links.docker: https://hub.docker.com/r/authelia/authelia
