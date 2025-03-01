@@ -19,11 +19,11 @@ This repository holds my docker compose files and configuration files for servic
 |---|---|---|---|
 | [tunnel](./stacks/common/docker-compose.tunnel.yml#L17)  | A Docker container for using WireGuard with PIA. | `9981:9981/tcp`, `9982:9982/tcp` | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
 | [bazarr](./stacks/docker-compose.arr.yml#L8) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
-| [prowlarr](./stacks/docker-compose.arr.yml#L30) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
-| [radarr](./stacks/docker-compose.arr.yml#L52) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
-| [sabnzbd](./stacks/docker-compose.arr.yml#L77) <sup>1,2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
-| [sonarr](./stacks/docker-compose.arr.yml#L102) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
-| [transmission](./stacks/docker-compose.arr.yml#L127) <sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
+| [prowlarr](./stacks/docker-compose.arr.yml#L33) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
+| [radarr](./stacks/docker-compose.arr.yml#L55) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
+| [sabnzbd](./stacks/docker-compose.arr.yml#L80) <sup>1,2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
+| [sonarr](./stacks/docker-compose.arr.yml#L105) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
+| [transmission](./stacks/docker-compose.arr.yml#L130) <sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
 | [authelia](./stacks/docker-compose.authelia.yml#L21)  | The Single Sign-On Multi-Factor portal for web apps. |  | [Docker Hub](https://hub.docker.com/r/authelia/authelia), [Website](https://www.authelia.com/) |
 | [authelia-postgres](./stacks/docker-compose.authelia.yml#L60)  |  |  |  |
 | [cobalt-api](./stacks/docker-compose.cobalt.yml#L6)  |  |  |  |
@@ -60,7 +60,6 @@ This repository holds my docker compose files and configuration files for servic
 | [paperless-tika](./stacks/docker-compose.paperless.yml#L116)  |  |  |  |
 | [pgadmin](./stacks/docker-compose.pgadmin.yml#L6)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
 | [portainer](./stacks/docker-compose.portainer.yml#L6)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
-| [sablier](./stacks/docker-compose.sablier.yml#L9)  | Stop containers after a period of inactivity. |  | [GitHub](https://github.com/acouvreur/sablier) |
 | [stirling-pdf](./stacks/docker-compose.stirling-pdf.yml#L6)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
 | [unifi-controller](./stacks/docker-compose.unifi-controller.yml#L6)  | Wireless network management. | `3478:3478/udp`, `10001:10001/udp`, `8080:8080` |  |
 | [uptime-kuma](./stacks/docker-compose.uptime-kuma.yml#L6)  | Self-hosted monitoring tool like "Uptime Robot". |  | [GitHub](https://github.com/louislam/uptime-kuma) |
