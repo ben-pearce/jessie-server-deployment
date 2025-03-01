@@ -16,26 +16,26 @@ secrets:
 services:
   traefik:
     command:
-      - '--global.sendAnonymousUsage=false'
-      - '--api.insecure=true'
-      - '--api.dashboard=true'
-      - '--providers.docker=true'
-      - '--providers.docker.exposedbydefault=false'
-      - '--entrypoints.http.address=:80'
-      - '--entrypoints.http.http.redirections.entrypoint.to=https'
-      - '--entrypoints.http.http.redirections.entrypoint.scheme=https'
-      - '--entrypoints.https.address=:443'
-      - '--entrypoints.https.forwardedheaders.trustedips=${LAN_SUBNET}'
-      - '--entrypoints.https.http.tls=true'
-      - '--entrypoints.https.http.tls.certResolver=resolver'
-      - '--entrypoints.https.http.tls.domains[0].main=${HOST}'
-      - '--entrypoints.https.http.tls.domains[0].sans=*.${HOST}'
-      - '--certificatesresolvers.resolver.acme.dnschallenge=true'
-      - '--certificatesresolvers.resolver.acme.dnschallenge.provider=cloudflare'
-      - '--certificatesresolvers.resolver.acme.email=${ADMIN_MAIL}'
-      - '--certificatesresolvers.resolver.acme.storage=/letsencrypt/acme.json'
-      - '--certificatesresolvers.resolver.acme.dnschallenge.resolvers=1.1.1.1,1.0.0.1'
-      - '--serversTransport.insecureSkipVerify=true'
+      - "--global.sendAnonymousUsage=false"
+      - "--api.insecure=true"
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.http.address=:80"
+      - "--entrypoints.http.http.redirections.entrypoint.to=https"
+      - "--entrypoints.http.http.redirections.entrypoint.scheme=https"
+      - "--entrypoints.https.address=:443"
+      - "--entrypoints.https.forwardedheaders.trustedips=${LAN_SUBNET}"
+      - "--entrypoints.https.http.tls=true"
+      - "--entrypoints.https.http.tls.certResolver=resolver"
+      - "--entrypoints.https.http.tls.domains[0].main=${HOST}"
+      - "--entrypoints.https.http.tls.domains[0].sans=*.${HOST}"
+      - "--certificatesresolvers.resolver.acme.dnschallenge=true"
+      - "--certificatesresolvers.resolver.acme.dnschallenge.provider=cloudflare"
+      - "--certificatesresolvers.resolver.acme.email=${ADMIN_MAIL}"
+      - "--certificatesresolvers.resolver.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesresolvers.resolver.acme.dnschallenge.resolvers=1.1.1.1,1.0.0.1"
+      - "--serversTransport.insecureSkipVerify=true"
     container_name: traefik
     environment:
       - CF_ZONE_API_TOKEN_FILE=/run/secrets/cloudflare_zone_api_token
@@ -80,8 +80,8 @@ services:
       - lidarr-web
       - unifi-web
     ports:
-      - '443:443'
-      - '80:80'
+      - "443:443"
+      - "80:80"
     restart: unless-stopped
     secrets:
       - cloudflare_dns_api_token
