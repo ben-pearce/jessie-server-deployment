@@ -3,6 +3,7 @@ name: sort keys
 on:
   push:
     paths:
+      - '**docker-compose.yml'
       - '**docker-compose.*.yml'
     branches: [ "main" ]
 

@@ -3,6 +3,7 @@ name: readme
 on:
   push:
     paths:
+      - '**docker-compose.yml'
       - '**docker-compose.*.yml'
       - 'README.tmpl.md'
     branches: [ "main" ]
