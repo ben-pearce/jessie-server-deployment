@@ -16,8 +16,11 @@ services:
       readme.links.docker: https://hub.docker.com/r/linuxserver/bazarr
       readme.links.github: https://github.com/morpheus65535/bazarr
       readme.links.web: https://www.bazarr.media/
-      sablier.enable: true
-      sablier.group: arr
+      traefik.docker.network: arr-web
+      traefik.enable: true
+      traefik.http.routers.bazarr.entrypoints: https
+      traefik.http.routers.bazarr.middlewares: authelia
+      traefik.http.routers.bazarr.rule: Host(`bazarr.${HOST}`)
     networks:
       - arr-web
     restart: unless-stopped
