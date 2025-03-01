@@ -38,7 +38,7 @@ services:
       - MAIL_FROM_ADDRESS=${SMTP_USER}
     image: fireflyiii/data-importer:version-1.5.7
     labels:
-      ofelia.enabled: 'true'
+      ofelia.enabled: "true"
       ofelia.job-exec.finance-import.command: >-
         /bin/sh -c 'for f in /import/*; do php artisan importer:import $$f;
         done'
@@ -114,7 +114,7 @@ services:
       POSTGRES_USER: firefly
     image: postgres:14.17
     labels:
-      ofelia.enabled: 'true'
+      ofelia.enabled: "true"
       ofelia.job-exec.firefly-postgres-backup.command: /bin/sh -c 'pg_dump -U firefly -d firefly > /backups/firefly.sql'
       ofelia.job-exec.firefly-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.firefly-postgres-backup.user: postgres

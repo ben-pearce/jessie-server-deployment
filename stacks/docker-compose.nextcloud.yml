@@ -53,7 +53,7 @@ services:
       POSTGRES_USER: nextcloud
     image: postgres:14.17
     labels:
-      ofelia.enabled: 'true'
+      ofelia.enabled: "true"
       ofelia.job-exec.nextcloud-postgres-backup.command: /bin/sh -c 'pg_dump -U nextcloud -d nextcloud > /backups/nextcloud.sql'
       ofelia.job-exec.nextcloud-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.nextcloud-postgres-backup.user: postgres

@@ -22,7 +22,7 @@ services:
       POSTGRES_USER: zabbix
     image: postgres:14.17
     labels:
-      ofelia.enabled: 'true'
+      ofelia.enabled: "true"
       ofelia.job-exec.zabbix-postgres-backup.command: /bin/sh -c 'pg_dump -U zabbix -d zabbix > /backups/zabbix.sql'
       ofelia.job-exec.zabbix-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.zabbix-postgres-backup.user: postgres
@@ -46,7 +46,7 @@ services:
     networks:
       - zabbix
     ports:
-      - '10051:10051'
+      - "10051:10051"
     restart: unless-stopped
     secrets:
       - zabbix_postgres_password
