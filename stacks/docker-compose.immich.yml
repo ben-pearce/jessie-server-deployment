@@ -19,7 +19,7 @@ services:
       - DB_USERNAME=immich
       - DB_DATABASE_NAME=immich
       - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
-    image: ghcr.io/immich-app/immich-machine-learning:v1.126.1
+    image: ghcr.io/immich-app/immich-machine-learning:v1.128.0
     networks:
       - immich
     restart: unless-stopped
