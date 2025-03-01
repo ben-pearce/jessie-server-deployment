@@ -8,7 +8,7 @@ services:
       - PUID
       - GUID
       - TZ
-    image: ghcr.io/linuxserver/freshrss:1.25.0
+    image: ghcr.io/linuxserver/freshrss:1.26.0
     labels:
       readme.description: Self-hosted RSS feed aggregator.
       readme.links.github: https://github.com/FreshRSS/FreshRSS
