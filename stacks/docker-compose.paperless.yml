@@ -32,7 +32,7 @@ services:
       PAPERLESS_TIKA_ENDPOINT: http://paperless-tika:9998
       PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-gotenberg:3000
       PAPERLESS_URL: https://paperless.${HOST}
-      USERMAP_GID: ${GUID}
+      USERMAP_GID: ${PGID}
       USERMAP_UID: ${PUID}
     healthcheck:
       interval: 30s

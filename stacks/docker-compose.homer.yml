@@ -6,7 +6,7 @@ services:
     container_name: homer
     environment:
       - UID=${PUID}
-      - GID=${GUID}
+      - GID=${PGID}
     image: b4bz/homer:v25.03.1
     labels:
       readme.description: A very simple static homepage for your server.
