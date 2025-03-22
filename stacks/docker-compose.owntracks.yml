@@ -6,7 +6,7 @@ services:
     container_name: otrecorder
     environment:
       - OTR_PORT=0
-    image: owntracks/recorder:0.9.9
+    image: owntracks/recorder:1.0.0
     labels:
       readme.description: Store and access data published by OwnTracks apps.
       readme.links.github: https://github.com/owntracks/recorder
