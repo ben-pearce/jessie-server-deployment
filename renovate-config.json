@@ -3,7 +3,8 @@
   "extends": [
     "config:recommended"
   ],
-  "prHourlyLimit": 15,
+  "prHourlyLimit": 20,
+  "prConcurrentLimit": 20,
   "docker-compose": {
     "fileMatch": [
       "(^|/)(?:docker-)?compose[^/]*(\\..+)?\\.ya?ml$"
