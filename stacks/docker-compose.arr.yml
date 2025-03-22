@@ -57,7 +57,7 @@ services:
       - PUID
       - PGID
       - TZ
-    image: ghcr.io/linuxserver/radarr:5.19.3
+    image: ghcr.io/linuxserver/radarr:5.20.2
     labels:
       readme.description: A fork of Sonarr to work with movies à la Couchpotato.
       readme.links.github: https://github.com/Radarr/Radarr
