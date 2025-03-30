@@ -42,7 +42,7 @@ This repository holds my docker compose files and configuration files for servic
 | [immich-redis](./stacks/docker-compose.immich.yml#L54)  |  |  |  |
 | [immich-server](./stacks/docker-compose.immich.yml#L60)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
 | [jellyfin](./stacks/docker-compose.jellyfin.yml#L8) <sup>1</sup> | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
-| [tvheadend](./stacks/docker-compose.jellyfin.yml#L41) <sup>1</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
+| [tvheadend](./stacks/docker-compose.jellyfin.yml#L43) <sup>1</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
 | [lidarr](./stacks/docker-compose.lidarr.yml#L6)  | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
 | [n8n](./stacks/docker-compose.n8n.yml#L6)  | Powerful workflow automation. |  |  |
 | [navidrome](./stacks/docker-compose.navidrome.yml#L6)  | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
