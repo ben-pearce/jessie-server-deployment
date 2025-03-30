@@ -24,6 +24,8 @@ services:
       - SMTP_NAME=${SMTP_USER}
       - SMTP_PASSWORD_FILE=/run/secrets/smtp_password
       - MAIL_FROM=${SMTP_USER}
+      - REDIS_HOST=nextcloud-redis
+      - REDIS_PORT=6379
     image: nextcloud:31.0.2
     labels:
       readme.description: Personal Cloud Storage
@@ -71,3 +73,9 @@ services:
     volumes:
       - ${DATA_DIR}/postgres/nextcloud:/var/lib/postgresql/data
       - ${DATA_DIR}/postgres/backups:/backups
+  nextcloud-redis:
+    container_name: nextcloud-redis
+    image: redis:6.2
+    networks:
+      - nextcloud
+    restart: unless-stopped
