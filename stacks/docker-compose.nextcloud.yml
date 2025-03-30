@@ -33,6 +33,10 @@ services:
       traefik.enable: true
       traefik.http.routers.nextcloud.entrypoints: https
       traefik.http.routers.nextcloud.rule: Host(`nextcloud.${HOST}`)
+      ofelia.enabled: "true"
+      ofelia.job-exec.nextcloud-cron.command: php /var/www/html/cron.php
+      ofelia.job-exec.nextcloud-cron.schedule: 0 */5 * * * *
+      ofelia.job-exec.nextcloud-cron.user: www-data
     networks:
       - nextcloud
       - nextcloud-web
