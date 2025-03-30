@@ -35,6 +35,8 @@ services:
       traefik.enable: true
       traefik.http.routers.nextcloud.entrypoints: https
       traefik.http.routers.nextcloud.rule: Host(`nextcloud.${HOST}`)
+      traefik.http.middlewares.nextcloud-hsts.headers.customresponseheaders.Strict-Transport-Security: max-age=15552000;
+      traefik.http.routers.nextcloud.middlewares: nextcloud-hsts
       ofelia.enabled: "true"
       ofelia.job-exec.nextcloud-cron.command: php /var/www/html/cron.php
       ofelia.job-exec.nextcloud-cron.schedule: 0 */5 * * * *
