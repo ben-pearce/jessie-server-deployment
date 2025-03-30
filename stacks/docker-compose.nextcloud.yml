@@ -28,19 +28,19 @@ services:
       - REDIS_PORT=6379
     image: nextcloud:31.0.2
     labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.nextcloud-cron.command: php /var/www/html/cron.php
+      ofelia.job-exec.nextcloud-cron.schedule: 0 */5 * * * *
+      ofelia.job-exec.nextcloud-cron.user: www-data
       readme.description: Personal Cloud Storage
       readme.links.docker: https://hub.docker.com/_/nextcloud
       readme.links.web: https://nextcloud.com/
       traefik.docker.network: nextcloud-web
       traefik.enable: true
-      traefik.http.routers.nextcloud.entrypoints: https
-      traefik.http.routers.nextcloud.rule: Host(`nextcloud.${HOST}`)
       traefik.http.middlewares.nextcloud-hsts.headers.customresponseheaders.Strict-Transport-Security: max-age=15552000;
+      traefik.http.routers.nextcloud.entrypoints: https
       traefik.http.routers.nextcloud.middlewares: nextcloud-hsts
-      ofelia.enabled: "true"
-      ofelia.job-exec.nextcloud-cron.command: php /var/www/html/cron.php
-      ofelia.job-exec.nextcloud-cron.schedule: 0 */5 * * * *
-      ofelia.job-exec.nextcloud-cron.user: www-data
+      traefik.http.routers.nextcloud.rule: Host(`nextcloud.${HOST}`)
     networks:
       - nextcloud
       - nextcloud-web
