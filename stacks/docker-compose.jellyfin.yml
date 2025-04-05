@@ -12,11 +12,11 @@ services:
       - TZ
       - VERSION=latest
       - JELLYFIN_PublishedServerUrl=https://jellyfin.${HOST}
-      - DOCKER_MODS=ghcr.io/ben-pearce/remote-ffmpeg-docker-mod:v0.4.6
+      - DOCKER_MODS=ghcr.io/ben-pearce/remote-ffmpeg-docker-mod:v0.4.9
       - REMOTE_FFMPEG_USER=ffmpeg
       - REMOTE_FFMPEG_HOST=alpha.benpearce.io
       - REMOTE_FFMPEG_BINARY=/usr/lib/jellyfin-ffmpeg/ffmpeg
-      - FFMPEG_PATH=/usr/bin/remote-ffmpeg
+      - FFMPEG_PATH=/usr/bin/remote-ffmpeg/ffmpeg
     image: lscr.io/linuxserver/jellyfin:10.10.6
     labels:
       readme.description: The Free Software Media System.
