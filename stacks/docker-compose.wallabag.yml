@@ -6,7 +6,7 @@ services:
     container_name: wallabag
     environment:
       - SYMFONY__ENV__DOMAIN_NAME=https://wallabag.${HOST}
-    image: wallabag/wallabag:2.6.10
+    image: wallabag/wallabag:2.6.12
     labels:
       readme.description: A self hostable application for saving web pages, freely.
       readme.links.github: https://github.com/wallabag
