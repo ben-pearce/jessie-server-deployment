@@ -46,7 +46,7 @@ services:
         - "2"
         - http://localhost:8000
       timeout: 10s
-    image: ghcr.io/paperless-ngx/paperless-ngx:2.14.7
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.15.1
     labels:
       readme.description: Document Management System.
       readme.links.github: https://github.com/paperless-ngx/paperless-ngx
