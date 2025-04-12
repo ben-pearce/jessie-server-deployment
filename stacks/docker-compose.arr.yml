@@ -82,7 +82,7 @@ services:
       - PUID
       - PGID
       - TZ
-    image: lscr.io/linuxserver/sabnzbd:4.5.0
+    image: lscr.io/linuxserver/sabnzbd:4.5.1
     labels:
       readme.description: The free and easy binary newsreader.
       readme.links.docker: https://hub.docker.com/r/linuxserver/sabnzbd
