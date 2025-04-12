@@ -17,7 +17,7 @@ services:
       - REMOTE_FFMPEG_HOST=alpha.benpearce.io
       - REMOTE_FFMPEG_BINARY=/usr/lib/jellyfin-ffmpeg/ffmpeg
       - FFMPEG_PATH=/usr/bin/remote-ffmpeg/ffmpeg
-    image: lscr.io/linuxserver/jellyfin:10.10.6
+    image: lscr.io/linuxserver/jellyfin:10.10.7
     labels:
       readme.description: The Free Software Media System.
       readme.links.github: https://github.com/jellyfin/jellyfin
