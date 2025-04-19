@@ -13,7 +13,7 @@ services:
       - "--chromium-disable-javascript=true"
       - "--chromium-allow-list=file:///tmp/.*"
     container_name: paperless-gotenberg
-    image: docker.io/gotenberg/gotenberg:8.19
+    image: docker.io/gotenberg/gotenberg:8.20
     networks:
       - paperless
     restart: unless-stopped
