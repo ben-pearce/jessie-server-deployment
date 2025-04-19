@@ -57,6 +57,16 @@
       "matchDatasources": "docker",
       "matchPackageNames": ["redis"],
       "allowedVersions": "<=6"
+    },
+    {
+      "matchDatasources": "docker",
+      "matchPackageNames": ["ghcr.io/imputnet/cobalt"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)(\\.(?<patch>\\d+))?$"
+    },
+    {
+      "matchDatasources": "docker",
+      "matchPackageNames": ["ghcr.io/ben-pearce/cobalt-web"],
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)(\\.(?<patch>\\d+))?$"
     }
   ]
 }
