@@ -3,70 +3,10 @@
   "extends": [
     "config:recommended"
   ],
-  "prHourlyLimit": 20,
-  "prConcurrentLimit": 20,
+  "repositories": ["ben-pearce/server-deployment-template"],
   "docker-compose": {
     "fileMatch": [
       "(^|/)(?:docker-)?compose[^/]*(\\..+)?\\.ya?ml$"
     ]
-  },
-  "repositories": ["ben-pearce/jessie-server-deployment"],
-  "packageRules": [
-    {
-      "matchDatasources": "docker",
-      "matchPackageNames": ["lscr.io/linuxserver/transmission"],
-      "allowedVersions": "<2021"
-    },
-    {
-      "matchDatasources": "docker",
-      "matchPackageNames": ["lscr.io/linuxserver/jellyfin"],
-      "allowedVersions": "<2021"
-    },
-    {
-      "matchDatasources": "docker",
-      "matchPackageNames": ["mcuadros/ofelia"],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
-    },
-    {
-      "matchDatasources": "docker",
-      "matchPackageNames": ["postgres"],
-      "allowedVersions": "<=14"
-    },
-    {
-      "matchDatasources": "docker",
-      "matchPackageNames": ["ghcr.io/linuxserver/lidarr"],
-      "allowedVersions": "<8"
-    },
-    {
-      "matchDatasources": "docker",
-      "matchPackageNames": ["tensorchord/pgvecto-rs"],
-      "versioning": "regex:^(?<compatibility>.*)-v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$",
-      "allowedVersions": "<0.4"
-    },
-    {
-      "matchDatasources": "docker",
-      "matchPackageNames": ["ghcr.io/linuxserver/lidarr"],
-      "allowedVersions": "<8"
-    },
-    {
-      "matchDatasources": "docker",
-      "matchPackageNames": ["docker.io/gotenberg/gotenberg"],
-      "allowedVersions": "<=8"
-    },
-    {
-      "matchDatasources": "docker",
-      "matchPackageNames": ["redis"],
-      "allowedVersions": "<=6"
-    },
-    {
-      "matchDatasources": "docker",
-      "matchPackageNames": ["ghcr.io/imputnet/cobalt"],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)(\\.(?<patch>\\d+))?$"
-    },
-    {
-      "matchDatasources": "docker",
-      "matchPackageNames": ["ghcr.io/ben-pearce/cobalt-web"],
-      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)(\\.(?<patch>\\d+))?$"
-    }
-  ]
+  }
 }
