@@ -1,0 +1,28 @@
+name: 🔄 Template Repository Sync
+
+on:
+  schedule:
+  - cron: "0 0 1 * *"
+  workflow_dispatch:
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: 🛠️ Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: 🔄 Sync Template Repository
+        uses: AndreasAugustin/actions-template-sync@v2
+        with:
+          source_gh_token: ${{ secrets.RENOVATE_TOKEN }}
+          target_gh_token: ${{ secrets.RENOVATE_TOKEN }}
+          git_user_name: github-actions[bot]
+          git_user_email: github-actions[bot]@users.noreply.github.com
+          source_repo_path: ben-pearce/server-deployment-template
