@@ -7,7 +7,7 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=${ADMIN_MAIL}
       - PGADMIN_DEFAULT_PASSWORD=admin
-    image: dpage/pgadmin4:9.2.0
+    image: dpage/pgadmin4:9.2.0@sha256:52cb72a9e3da275324ca0b9bb3891021366d501aad375db34584a7bca8ce02ff
     labels:
       readme.description: Web based administration tool for the PostgreSQL database.
       readme.links.docker: https://hub.docker.com/r/dpage/pgadmin4
