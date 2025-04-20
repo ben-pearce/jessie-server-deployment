@@ -1,4 +1,4 @@
-name: template-sync
+name: 🔄 Template Repository Sync
 
 on:
   schedule:
@@ -23,4 +23,6 @@ jobs:
         with:
           source_gh_token: ${{ secrets.RENOVATE_TOKEN }}
           target_gh_token: ${{ secrets.RENOVATE_TOKEN }}
+          git_user_name: github-actions[bot]
+          git_user_email: github-actions[bot]@users.noreply.github.com
           source_repo_path: ben-pearce/server-deployment-template
