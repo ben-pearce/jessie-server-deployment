@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4.2.2
 
       - name: 🤖 Run Renovate
-        uses: renovatebot/github-action@v41.0.18
+        uses: renovatebot/github-action@19e3d87179488d6a0cd9da744d37123ea4b338e5 # v41.0.20
         with:
           configurationFile: renovate-config.json
           token: ${{ secrets.RENOVATE_TOKEN }}
