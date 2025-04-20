@@ -4,7 +4,7 @@ networks:
 services:
   cyberchef:
     container_name: cyberchef
-    image: mpepping/cyberchef:v10.19.4
+    image: mpepping/cyberchef:v10.19.4@sha256:91e04eaaa1ba1eac6b8e410d6f7b340e1ea0450d48ccbb52ec67ce6faa3672c5
     labels:
       readme.description: >-
         The Cyber Swiss Army Knife - a web app for encryption, encoding,

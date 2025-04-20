@@ -9,7 +9,7 @@ services:
       - SERVER_TYPE=navidrome
       - SERVER_URL=https://navidrome.${HOST}
       - SERVER_LOCK=true
-    image: ghcr.io/jeffvli/feishin:0.12.3
+    image: ghcr.io/jeffvli/feishin:0.12.3@sha256:e0ae6c75d7aecbc1f20078e4f8ec7c91dd4abe7aa2c7a8eeaade9ac2c632c7c7
     labels:
       readme.description: A modern self-hosted music player.
       readme.links.github: https://github.com/jeffvli/feishin

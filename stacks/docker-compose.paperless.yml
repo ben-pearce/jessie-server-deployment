@@ -13,7 +13,7 @@ services:
       - "--chromium-disable-javascript=true"
       - "--chromium-allow-list=file:///tmp/.*"
     container_name: paperless-gotenberg
-    image: docker.io/gotenberg/gotenberg:8.20
+    image: docker.io/gotenberg/gotenberg:8.20@sha256:cda4386c7ed38f18bc6897828be01ba7361c99929a5c84ec5e293d7916e29bac
     networks:
       - paperless
     restart: unless-stopped
@@ -46,7 +46,7 @@ services:
         - "2"
         - http://localhost:8000
       timeout: 10s
-    image: ghcr.io/paperless-ngx/paperless-ngx:2.15.2
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.15.2@sha256:80d1a7fe4f638cb00c1dcf5ff4ce2c15d92f13a6287db1e1b94f58c35a689e47
     labels:
       readme.description: Document Management System.
       readme.links.github: https://github.com/paperless-ngx/paperless-ngx
@@ -73,7 +73,7 @@ services:
       POSTGRES_DB: paperless
       POSTGRES_PASSWORD_FILE: /run/secrets/paperless_postgres_password
       POSTGRES_USER: paperless
-    image: postgres:14.17
+    image: postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.paperless-postgres-backup.command: /bin/sh -c 'pg_dump -U paperless -d paperless > /backups/paperless.sql'
@@ -91,7 +91,7 @@ services:
       - ${DATA_DIR}/postgres/backups:/backups
   paperless-redis:
     container_name: paperless-redis
-    image: redis:7.4.1
+    image: redis:7.4.1@sha256:bb142a9c18ac18a16713c1491d779697b4e107c22a97266616099d288237ef47
     networks:
       - paperless
     restart: unless-stopped
@@ -106,7 +106,7 @@ services:
       - PGID
       - PUID
       - TZ
-    image: manuc66/node-hp-scan-to:latest
+    image: manuc66/node-hp-scan-to:latest@sha256:687060294b2e7f7a2fc637c0e5003b71bc2a0a07c5ee517e26f2a9841a1afaad
     networks:
       - paperless
     restart: unless-stopped
@@ -114,7 +114,7 @@ services:
       - ${DATA_DIR}/paperless/consume:/scan
   paperless-tika:
     container_name: paperless-tika
-    image: ghcr.io/paperless-ngx/tika:2.9.1-minimal
+    image: ghcr.io/paperless-ngx/tika:2.9.1-minimal@sha256:20db3df89eaeb1b271dd840888fe909b88b12f4b86ef641ec07a1d45d4c5168f
     networks:
       - paperless
     restart: unless-stopped

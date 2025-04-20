@@ -19,7 +19,7 @@ services:
       - DB_USERNAME=immich
       - DB_DATABASE_NAME=immich
       - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
-    image: ghcr.io/immich-app/immich-machine-learning:v1.131.2
+    image: ghcr.io/immich-app/immich-machine-learning:v1.131.2@sha256:29836cf73146057ac388546021fff3e00c923e22a28587cceb5108a5e537987d
     networks:
       - immich
     restart: unless-stopped
@@ -34,7 +34,7 @@ services:
       POSTGRES_DB: immich
       POSTGRES_PASSWORD_FILE: /run/secrets/immich_postgres_password
       POSTGRES_USER: immich
-    image: tensorchord/pgvecto-rs:pg14-v0.3.0
+    image: tensorchord/pgvecto-rs:pg14-v0.3.0@sha256:5674cef7e32c25466e7b32aed7d171271756b2df4cbc73f399ea3bbaa8bcff9b
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.immich-postgres-backup.command: /bin/sh -c 'pg_dump -U immich -d immich > /backups/immich.sql'
@@ -52,7 +52,7 @@ services:
       - ${DATA_DIR}/postgres/backups:/backups
   immich-redis:
     container_name: immich-redis
-    image: redis:6.2
+    image: redis:6.2@sha256:3a2bd6da7a0ad2a1786539c1d340ff9bd8ba6c3214f41d585e29a905e0281909
     networks:
       - immich
     restart: unless-stopped
@@ -68,7 +68,7 @@ services:
       - DB_USERNAME=immich
       - DB_DATABASE_NAME=immich
       - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
-    image: ghcr.io/immich-app/immich-server:v1.131.3
+    image: ghcr.io/immich-app/immich-server:v1.131.3@sha256:7e5b6729b12b5e5cc5d98bcc6f7c27f723fabae4ee77696855808ebd5200bbf8
     labels:
       readme.description: Photo & Video Backup Solution
       readme.links.github: https://github.com/immich-app/immich
