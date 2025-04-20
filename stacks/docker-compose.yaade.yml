@@ -6,7 +6,7 @@ services:
     container_name: yaade
     environment:
       - YAADE_ADMIN_USERNAME=admin
-    image: esperotech/yaade:latest
+    image: esperotech/yaade:latest@sha256:87757fb5d49a79be3202e327f603f7e5fb94a9290ec8c1b313b9f73235aaeb25
     labels:
       readme.description: Yet Another API Development Environment.
       readme.links.github: https://github.com/EsperoTech/yaade

@@ -7,7 +7,7 @@ services:
     environment:
       - GENERIC_TIMEZONE=${TZ}
       - TZ
-    image: docker.n8n.io/n8nio/n8n:1.89.2
+    image: docker.n8n.io/n8nio/n8n:1.89.2@sha256:effe40f115291478bf265720dbd798b046dd4f04390fc9b1713d3d1c35cc476b
     labels:
       readme.description: Powerful workflow automation.
       readme.links.website: https://n8n.io/

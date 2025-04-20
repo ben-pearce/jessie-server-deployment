@@ -17,7 +17,7 @@ services:
       - REMOTE_FFMPEG_HOST=pve.benpearce.io
       - REMOTE_FFMPEG_BINARY=/usr/lib/jellyfin-ffmpeg/ffmpeg
       - FFMPEG_PATH=/usr/bin/remote-ffmpeg/ffmpeg
-    image: lscr.io/linuxserver/jellyfin:10.10.7
+    image: lscr.io/linuxserver/jellyfin:10.10.7@sha256:fffa82da33d0ff3aeed70e255cead2a12bee87da7c9722db0ee1c8c3a5f94896
     labels:
       readme.description: The Free Software Media System.
       readme.links.github: https://github.com/jellyfin/jellyfin
@@ -45,7 +45,7 @@ services:
       - PUID
       - PGID
       - TZ
-    image: lscr.io/linuxserver/tvheadend:version-26ec161f
+    image: lscr.io/linuxserver/tvheadend:version-26ec161f@sha256:5da84d8b5e16943b2654fbd6b84a60135f2c68182b66a25bc4e4fe322b7f9b8d
     labels:
       readme.description: TV Streaming Server.
       readme.links.web: https://tvheadend.org/

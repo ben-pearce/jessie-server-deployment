@@ -4,7 +4,7 @@ services:
     container_name: ofelia
     environment:
       - TZ
-    image: mcuadros/ofelia:0.3.16
+    image: mcuadros/ofelia:0.3.16@sha256:ef9b94b936146b3c8404c8b4ec6eaa5a2175386adda6126bbea474682681d4ed
     labels:
       ofelia.enabled: true
       readme.description: Docker job scheduler.

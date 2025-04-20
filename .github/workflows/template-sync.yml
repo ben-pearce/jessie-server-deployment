@@ -14,12 +14,12 @@ jobs:
 
     steps:
       - name: 🛠️ Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         with:
           persist-credentials: false
 
       - name: 🔄 Sync Template Repository
-        uses: AndreasAugustin/actions-template-sync@v2
+        uses: AndreasAugustin/actions-template-sync@bcb94410a4f1dffdfe5eaabc8234c3b8e76ebc5b # v2
         with:
           source_gh_token: ${{ secrets.RENOVATE_TOKEN }}
           target_gh_token: ${{ secrets.RENOVATE_TOKEN }}
