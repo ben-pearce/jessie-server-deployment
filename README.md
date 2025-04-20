@@ -17,6 +17,7 @@ This repository holds my docker compose files and configuration files for servic
 
 | **Name** | **Description** | **Ports** | **Links** |
 |---|---|---|---|
+| [traefik](./docker-compose.yml#L40)  | The Cloud Native Application Proxy. | `443:443`, `80:80` | [GitHub](https://github.com/traefik/traefik) |
 | [tunnel](./stacks/common/docker-compose.tunnel.yml#L17)  | A Docker container for using WireGuard with PIA. | `9981:9981/tcp`, `9982:9982/tcp` | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
 | [bazarr](./stacks/docker-compose.arr.yml#L8) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [prowlarr](./stacks/docker-compose.arr.yml#L33) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
