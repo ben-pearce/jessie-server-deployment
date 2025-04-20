@@ -7,7 +7,8 @@ services:
     environment:
       - UID=${PUID}
       - GID=${PGID}
-    image: b4bz/homer:v25.04.1@sha256:602287607aa9ba98e317a9d5d31ce45fd37e016685d230bf7fb0dc9f4004e607
+    image: >-
+      b4bz/homer:v25.04.1@sha256:602287607aa9ba98e317a9d5d31ce45fd37e016685d230bf7fb0dc9f4004e607
     labels:
       readme.description: A very simple static homepage for your server.
       readme.links.github: https://github.com/bastienwirtz/homer

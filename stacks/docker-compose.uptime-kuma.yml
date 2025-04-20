@@ -4,7 +4,8 @@ networks:
 services:
   uptime-kuma:
     container_name: uptime-kuma
-    image: louislam/uptime-kuma:1.23.16@sha256:431fee3be822b04861cf0e35daf4beef6b7cb37391c5f26c3ad6e12ce280fe18
+    image: >-
+      louislam/uptime-kuma:1.23.16@sha256:431fee3be822b04861cf0e35daf4beef6b7cb37391c5f26c3ad6e12ce280fe18
     labels:
       readme.description: Self-hosted monitoring tool like "Uptime Robot".
       readme.links.github: https://github.com/louislam/uptime-kuma

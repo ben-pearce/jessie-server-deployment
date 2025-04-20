@@ -10,7 +10,8 @@ services:
     environment:
       HTTP_AUTH_LOGIN: ben
       HTTP_AUTH_PASSWORD_FILE: /run/secrets/fdroid_password
-    image: ghcr.io/ben-pearce/pwa-to-fdroid:v1.1.0@sha256:88d654d55297653fb6690ada082eff290735a01bc5a6799aa5a716d9bc20e088
+    image: >-
+      ghcr.io/ben-pearce/pwa-to-fdroid:v1.1.0@sha256:88d654d55297653fb6690ada082eff290735a01bc5a6799aa5a716d9bc20e088
     labels:
       traefik.docker.network: fdroid-web
       traefik.enable: true

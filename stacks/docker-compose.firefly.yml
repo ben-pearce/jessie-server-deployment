@@ -36,7 +36,8 @@ services:
       - MAIL_PASSWORD_FILE=/run/secrets/smtp_password
       - MAIL_ENCRYPTION=ssl
       - MAIL_FROM_ADDRESS=${SMTP_USER}
-    image: fireflyiii/data-importer:version-1.5.7@sha256:e63b5b6c24bef446185fe46bdc740a2b07219accdb65e8ec17234aa32708a34b
+    image: >-
+      fireflyiii/data-importer:version-1.5.7@sha256:e63b5b6c24bef446185fe46bdc740a2b07219accdb65e8ec17234aa32708a34b
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.finance-import.command: >-
@@ -84,7 +85,8 @@ services:
       - MAIL_ENCRYPTION=ssl
       - AUTHENTICATION_GUARD=remote_user_guard
       - AUTHENTICATION_GUARD_HEADER=HTTP_REMOTE_EMAIL
-    image: fireflyiii/core:version-6.1.22@sha256:44f67ba091816c3a714224a4790439b63e0bf0829e23ce7d24361ec10bfc5365
+    image: >-
+      fireflyiii/core:version-6.1.22@sha256:44f67ba091816c3a714224a4790439b63e0bf0829e23ce7d24361ec10bfc5365
     labels:
       readme.description: Personal Finance Manager.
       readme.links.docker: https://hub.docker.com/r/fireflyiii/core
@@ -112,7 +114,8 @@ services:
       POSTGRES_DB: firefly
       POSTGRES_PASSWORD_FILE: /run/secrets/firefly_postgres_password
       POSTGRES_USER: firefly
-    image: postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
+    image: >-
+      postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.firefly-postgres-backup.command: /bin/sh -c 'pg_dump -U firefly -d firefly > /backups/firefly.sql'

@@ -8,7 +8,8 @@ services:
       - API_URL=https://cobalt-api.${HOST}
       - API_NAME=jessie
       - COOKIE_PATH=/cookies.json
-    image: ghcr.io/imputnet/cobalt:10.9.1@sha256:0a2998b24b41261ea9ca2b17dc3efacaa1990383fe677d490e9cb2e37173575b
+    image: >-
+      ghcr.io/imputnet/cobalt:10.9.1@sha256:0a2998b24b41261ea9ca2b17dc3efacaa1990383fe677d490e9cb2e37173575b
     labels:
       traefik.enable: true
       traefik.http.routers.cobalt-api.entrypoints: https
@@ -23,7 +24,8 @@ services:
     container_name: cobalt-web
     depends_on:
       - cobalt-api
-    image: ghcr.io/ben-pearce/cobalt-web:10.9@sha256:c15d6b4dc6f5948ad0aae19a958f1b58876c9aed66c479e80028a9bb41199558
+    image: >-
+      ghcr.io/ben-pearce/cobalt-web:10.9@sha256:c15d6b4dc6f5948ad0aae19a958f1b58876c9aed66c479e80028a9bb41199558
     labels:
       readme.description: Save what you love.
       readme.links.github: https://github.com/wukko/cobalt

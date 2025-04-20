@@ -20,7 +20,8 @@ services:
       POSTGRES_DB: zabbix
       POSTGRES_PASSWORD_FILE: /run/secrets/zabbix_postgres_password
       POSTGRES_USER: zabbix
-    image: postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
+    image: >-
+      postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.zabbix-postgres-backup.command: /bin/sh -c 'pg_dump -U zabbix -d zabbix > /backups/zabbix.sql'
@@ -42,7 +43,8 @@ services:
       - DB_SERVER_HOST=zabbix-postgres
       - POSTGRES_USER=zabbix
       - POSTGRES_PASSWORD_FILE=/run/secrets/zabbix_postgres_password
-    image: zabbix/zabbix-server-pgsql:7.2.5-alpine@sha256:dfc75d79767addb6812c4762d6aa5a2a778f8dd185dd164058bd47beba6b5e9d
+    image: >-
+      zabbix/zabbix-server-pgsql:7.2.5-alpine@sha256:dfc75d79767addb6812c4762d6aa5a2a778f8dd185dd164058bd47beba6b5e9d
     networks:
       - zabbix
     ports:
@@ -61,7 +63,8 @@ services:
       - POSTGRES_PASSWORD_FILE=/run/secrets/zabbix_postgres_password
       - PHP_TZ=${TZ}
       - ZBX_SERVER_HOST=zabbix-server
-    image: zabbix/zabbix-web-nginx-pgsql:7.2.5-alpine@sha256:822fa5ebdcbd8ab4a2dab007ac0827d56ac8bf1a9fa7a3660e719b0564211a4c
+    image: >-
+      zabbix/zabbix-web-nginx-pgsql:7.2.5-alpine@sha256:822fa5ebdcbd8ab4a2dab007ac0827d56ac8bf1a9fa7a3660e719b0564211a4c
     labels:
       readme.description: Zabbix web frontend.
       readme.links.docker: https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql

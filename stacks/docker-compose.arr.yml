@@ -10,7 +10,8 @@ services:
       - PUID
       - PGID
       - TZ
-    image: lscr.io/linuxserver/bazarr:1.5.1@sha256:b98bdcac54db7ed05524fb63447b855d7fc419428222b3827b1cc9655f95bf51
+    image: >-
+      lscr.io/linuxserver/bazarr:1.5.1@sha256:b98bdcac54db7ed05524fb63447b855d7fc419428222b3827b1cc9655f95bf51
     labels:
       readme.description: Manage and download subtitles based on your requirements.
       readme.links.docker: https://hub.docker.com/r/linuxserver/bazarr
@@ -35,7 +36,8 @@ services:
       - PUID
       - PGID
       - TZ
-    image: lscr.io/linuxserver/prowlarr:1.33.3@sha256:e3242cf552ed1818f9e8208c7826e6b3a28b9203c9732fb0dae176b0323954f2
+    image: >-
+      lscr.io/linuxserver/prowlarr:1.33.3@sha256:e3242cf552ed1818f9e8208c7826e6b3a28b9203c9732fb0dae176b0323954f2
     labels:
       readme.description: An indexer manager/proxy.
       readme.links.github: https://github.com/Prowlarr/Prowlarr
@@ -57,7 +59,8 @@ services:
       - PUID
       - PGID
       - TZ
-    image: ghcr.io/linuxserver/radarr:5.21.1@sha256:5ad8df1b0dc0bb0c2232a9278b85c3c230d82184415f83238b5969da8dc6a942
+    image: >-
+      ghcr.io/linuxserver/radarr:5.21.1@sha256:5ad8df1b0dc0bb0c2232a9278b85c3c230d82184415f83238b5969da8dc6a942
     labels:
       readme.description: A fork of Sonarr to work with movies à la Couchpotato.
       readme.links.github: https://github.com/Radarr/Radarr
@@ -82,7 +85,8 @@ services:
       - PUID
       - PGID
       - TZ
-    image: lscr.io/linuxserver/sabnzbd:4.5.1@sha256:4087a051fa3aec7c320db624f572eba71513bcb34b146fbd036b8c7c92b78bfa
+    image: >-
+      lscr.io/linuxserver/sabnzbd:4.5.1@sha256:4087a051fa3aec7c320db624f572eba71513bcb34b146fbd036b8c7c92b78bfa
     labels:
       readme.description: The free and easy binary newsreader.
       readme.links.docker: https://hub.docker.com/r/linuxserver/sabnzbd
@@ -107,7 +111,8 @@ services:
       - PUID
       - PGID
       - TZ
-    image: ghcr.io/linuxserver/sonarr:4.0.14@sha256:cefa1c97ba8f5db60c1c89d04015ead764d3b850b4fbdc5784bdde2a02d72350
+    image: >-
+      ghcr.io/linuxserver/sonarr:4.0.14@sha256:cefa1c97ba8f5db60c1c89d04015ead764d3b850b4fbdc5784bdde2a02d72350
     labels:
       readme.description: Smart PVR for newsgroup and bittorrent users.
       readme.links.github: https://github.com/Sonarr/Sonarr
@@ -132,7 +137,8 @@ services:
       - PUID
       - PGID
       - TZ
-    image: lscr.io/linuxserver/transmission:4.0.6@sha256:8a7166930c889524e2fc7abb16671c253c1ca7d634d8bf88c6c04a15a1ed44bb
+    image: >-
+      lscr.io/linuxserver/transmission:4.0.6@sha256:8a7166930c889524e2fc7abb16671c253c1ca7d634d8bf88c6c04a15a1ed44bb
     labels:
       readme.description: Fast, easy, and free BitTorrent client.
       readme.links.github: https://github.com/transmission/transmission

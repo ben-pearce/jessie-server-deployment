@@ -6,7 +6,8 @@ services:
     container_name: otrecorder
     environment:
       - OTR_PORT=0
-    image: owntracks/recorder:1.0.0@sha256:8de5f7674fa7a4575635702fb41a6307e7294a31f393ac165c25328e45e36372
+    image: >-
+      owntracks/recorder:1.0.0@sha256:8de5f7674fa7a4575635702fb41a6307e7294a31f393ac165c25328e45e36372
     labels:
       readme.description: Store and access data published by OwnTracks apps.
       readme.links.github: https://github.com/owntracks/recorder
@@ -26,7 +27,8 @@ services:
     environment:
       - SERVER_HOST=otrecorder
       - SERVER_PORT=8083
-    image: owntracks/frontend:2.15.3@sha256:efa313bdec583939f6edc70eb148670a8bba1a5aed0508a326f5b2f2751d0861
+    image: >-
+      owntracks/frontend:2.15.3@sha256:efa313bdec583939f6edc70eb148670a8bba1a5aed0508a326f5b2f2751d0861
     labels:
       readme.description: Web interface for OwnTracks built with Vue.js
       readme.links.github: https://github.com/owntracks/frontend

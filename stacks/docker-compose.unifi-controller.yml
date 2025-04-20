@@ -9,7 +9,8 @@ services:
       - PGID
       - MEM_LIMIT=1024
       - MEM_STARTUP=1024
-    image: ghcr.io/linuxserver/unifi-controller:8.0.24@sha256:0ae315a3a45635e443899e30e86bd507c2c48922cb27f4bc7241777885f4650e
+    image: >-
+      ghcr.io/linuxserver/unifi-controller:8.0.24@sha256:0ae315a3a45635e443899e30e86bd507c2c48922cb27f4bc7241777885f4650e
     labels:
       readme.description: Wireless network management.
       traefik.enable: true
