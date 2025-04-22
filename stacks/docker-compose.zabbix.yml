@@ -41,7 +41,7 @@ services:
       - POSTGRES_USER=zabbix
       - POSTGRES_PASSWORD_FILE=/run/secrets/zabbix_postgres_password
     ports:
-      - '0.0.0.0:10051:10051'
+      - "0.0.0.0:10051:10051"
     networks:
       - zabbix
     restart: unless-stopped

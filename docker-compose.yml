@@ -23,8 +23,8 @@ services:
       - CF_ZONE_API_TOKEN_FILE=/run/secrets/cloudflare_zone_api_token
       - CF_DNS_API_TOKEN_FILE=/run/secrets/cloudflare_dns_api_token
     ports:
-      - '0.0.0.0:80:80'
-      - '0.0.0.0:443:443'
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
     networks:
       - arr-web
       - authelia-web
