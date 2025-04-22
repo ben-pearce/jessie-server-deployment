@@ -1,14 +1,18 @@
-networks:
-  obsidian-web:
-    name: obsidian-web
+name: obsidian
 services:
   obsidian-couchdb:
+    image: >-
+      couchdb:3.4.3@sha256:61df6b12ad36146a1ac138e5d9ad31e473a3e622aeccab6664e174e100ec1276
     container_name: obsidian-couchdb
+    volumes:
+      - ${DATA_DIR}/couchdb/obsidian:/opt/couchdb/data
+      - ${CONFIG_DIR}/couchdb/obsidian.ini:/opt/couchdb/etc/local.d/docker.ini
     environment:
       COUCHDB_PASSWORD: couchdb
       COUCHDB_USER: ben
-    image: >-
-      couchdb:3.4.3@sha256:61df6b12ad36146a1ac138e5d9ad31e473a3e622aeccab6664e174e100ec1276
+    networks:
+      - obsidian-web
+    restart: unless-stopped
     labels:
       traefik.docker.network: obsidian-web
       traefik.enable: true
@@ -22,10 +26,7 @@ services:
       traefik.http.routers.obsidian-couchdb.middlewares: obsidian-cors
       traefik.http.routers.obsidian-couchdb.rule: Host(`obsidian-couchdb.${HOST}`)
       traefik.http.services.obsidian-couchdb.loadbalancer.server.port: 5984
-    networks:
-      - obsidian-web
-    restart: unless-stopped
     user: ${PUID}
-    volumes:
-      - ${DATA_DIR}/couchdb/obsidian:/opt/couchdb/data
-      - ${CONFIG_DIR}/couchdb/obsidian.ini:/opt/couchdb/etc/local.d/docker.ini
+networks:
+  obsidian-web:
+    name: obsidian-web

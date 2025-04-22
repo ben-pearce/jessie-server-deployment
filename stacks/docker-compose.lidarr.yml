@@ -1,15 +1,21 @@
-networks:
-  lidarr-web:
-    name: lidarr-web
+name: lidarr
 services:
   lidarr:
+    image: >-
+      ghcr.io/linuxserver/lidarr:2.10.3@sha256:a6a7991f217f3c8b2bfffce1eb962e84b7ecd3cf7869f1456af54d0551bac9b7
     container_name: lidarr
+    volumes:
+      - ${DATA_DIR}/lidarr:/config
+      - ${MUSIC_DIR}:/music
+      - ${DATA_DIR}/lidarr/downloads:/downloads
+      - ${LOG_DIR}/lidarr:/config/logs
     environment:
       - PUID
       - PGID
       - TZ
-    image: >-
-      ghcr.io/linuxserver/lidarr:2.10.3@sha256:a6a7991f217f3c8b2bfffce1eb962e84b7ecd3cf7869f1456af54d0551bac9b7
+    networks:
+      - lidarr-web
+    restart: unless-stopped
     labels:
       readme.description: Music Collection Manager.
       readme.links.github: https://github.com/Lidarr/Lidarr
@@ -19,11 +25,6 @@ services:
       traefik.http.routers.lidarr.middlewares: authelia
       traefik.http.routers.lidarr.rule: Host(`lidarr.${HOST}`)
       traefik.http.services.lidarr.loadbalancer.server.port: 8686
-    networks:
-      - lidarr-web
-    restart: unless-stopped
-    volumes:
-      - ${DATA_DIR}/lidarr:/config
-      - ${MUSIC_DIR}:/music
-      - ${DATA_DIR}/lidarr/downloads:/downloads
-      - ${LOG_DIR}/lidarr:/config/logs
+networks:
+  lidarr-web:
+    name: lidarr-web

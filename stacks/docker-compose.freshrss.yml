@@ -1,15 +1,20 @@
-networks:
-  freshrss-web:
-    name: freshrss-web
+name: freshrss
 services:
   freshrss:
+    image: >-
+      ghcr.io/linuxserver/freshrss:1.26.1@sha256:dde03bcecb60563de3fc546fee1de2fe4c0f544a6e00d74d1c108964c4dcfb44
     container_name: freshrss
+    volumes:
+      - ${CONFIG_DIR}/freshrss/config.php:/config/www/freshrss/data/config.php:ro
+      - ${DATA_DIR}/freshrss:/config
+      - ${LOG_DIR}/freshrss:/config/log
     environment:
       - PUID
       - PGID
       - TZ
-    image: >-
-      ghcr.io/linuxserver/freshrss:1.26.1@sha256:dde03bcecb60563de3fc546fee1de2fe4c0f544a6e00d74d1c108964c4dcfb44
+    networks:
+      - freshrss-web
+    restart: unless-stopped
     labels:
       readme.description: Self-hosted RSS feed aggregator.
       readme.links.github: https://github.com/FreshRSS/FreshRSS
@@ -22,13 +27,8 @@ services:
       traefik.http.routers.freshrss.middlewares: authelia
       traefik.http.routers.freshrss.priority: 1
       traefik.http.routers.freshrss.rule: Host(`rss.${HOST}`)
-    networks:
-      - freshrss-web
-    restart: unless-stopped
     tmpfs:
       - /config/www/freshrss/data/cache:rw,mode=1777
-    volumes:
-      - >-
-        ${CONFIG_DIR}/freshrss/config.php:/config/www/freshrss/data/config.php:ro
-      - ${DATA_DIR}/freshrss:/config
-      - ${LOG_DIR}/freshrss:/config/log
+networks:
+  freshrss-web:
+    name: freshrss-web

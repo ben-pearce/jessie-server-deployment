@@ -1,17 +1,17 @@
-networks:
-  fdroid-web:
-    name: fdroid-web
-secrets:
-  fdroid_password:
-    file: ../.secrets/fdroid_password
+name: fdroid
 services:
   fdroid-server:
+    image: >-
+      ghcr.io/ben-pearce/pwa-to-fdroid:v1.1.0@sha256:88d654d55297653fb6690ada082eff290735a01bc5a6799aa5a716d9bc20e088
     container_name: fdroid-server
+    secrets:
+      - fdroid_password
     environment:
       HTTP_AUTH_LOGIN: ben
       HTTP_AUTH_PASSWORD_FILE: /run/secrets/fdroid_password
-    image: >-
-      ghcr.io/ben-pearce/pwa-to-fdroid:v1.1.0@sha256:88d654d55297653fb6690ada082eff290735a01bc5a6799aa5a716d9bc20e088
+    networks:
+      - fdroid-web
+    restart: unless-stopped
     labels:
       traefik.docker.network: fdroid-web
       traefik.enable: true
@@ -30,8 +30,9 @@ services:
       traefik.http.routers.fdroid-web.entrypoints: https
       traefik.http.routers.fdroid-web.rule: Host(`fdroid.${HOST}`)
       traefik.http.services.fdroid-web.loadbalancer.server.port: 80
-    networks:
-      - fdroid-web
-    restart: unless-stopped
-    secrets:
-      - fdroid_password
+networks:
+  fdroid-web:
+    name: fdroid-web
+secrets:
+  fdroid_password:
+    file: ../.secrets/fdroid_password

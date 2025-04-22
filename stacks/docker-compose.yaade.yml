@@ -1,13 +1,16 @@
-networks:
-  yaade-web:
-    name: yaade-web
+name: yaade
 services:
   yaade:
-    container_name: yaade
-    environment:
-      - YAADE_ADMIN_USERNAME=admin
     image: >-
       esperotech/yaade:latest@sha256:87757fb5d49a79be3202e327f603f7e5fb94a9290ec8c1b313b9f73235aaeb25
+    container_name: yaade
+    volumes:
+      - ${DATA_DIR}/yaade:/app/data
+    environment:
+      - YAADE_ADMIN_USERNAME=admin
+    networks:
+      - yaade-web
+    restart: unless-stopped
     labels:
       readme.description: Yet Another API Development Environment.
       readme.links.github: https://github.com/EsperoTech/yaade
@@ -17,10 +20,8 @@ services:
       traefik.http.routers.yaade.middlewares: authelia
       traefik.http.routers.yaade.rule: Host(`yaade.${HOST}`)
       traefik.http.services.yaade.loadbalancer.server.port: 9339
-    networks:
-      - yaade-web
-    restart: unless-stopped
     tmpfs:
       - /tmp:rw,mode=1777
-    volumes:
-      - ${DATA_DIR}/yaade:/app/data
+networks:
+  yaade-web:
+    name: yaade-web

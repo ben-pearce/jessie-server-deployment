@@ -1,5 +1,70 @@
+name: authelia
 include:
   - ./common/docker-compose.secrets.yml
+services:
+  authelia:
+    image: >-
+      authelia/authelia:4.39.1@sha256:e325963609cc928861ffe8130c09111862df88dd8fcafbcd2c47e5ff0a4ae268
+    container_name: authelia
+    volumes:
+      - ${CONFIG_DIR}/authelia:/config
+    secrets:
+      - authelia_identity_providers_oidc_hmac_secret
+      - authelia_identity_providers_oidc_jwks
+      - authelia_jwt_secret
+      - authelia_storage_encryption_key
+      - authelia_postgres_password
+      - smtp_password
+    environment:
+      - >-
+        AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE=/run/secrets/authelia_jwt_secret
+      - >-
+        AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE=/run/secrets/authelia_identity_providers_oidc_hmac_secret
+      - >-
+        AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE=/run/secrets/authelia_storage_encryption_key
+      - >-
+        AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE=/run/secrets/authelia_postgres_password
+      - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/smtp_password
+      - X_AUTHELIA_CONFIG_FILTERS=template
+    networks:
+      - authelia
+      - authelia-web
+    restart: unless-stopped
+    labels:
+      readme.description: The Single Sign-On Multi-Factor portal for web apps.
+      readme.links.docker: https://hub.docker.com/r/authelia/authelia
+      readme.links.web: https://www.authelia.com/
+      traefik.docker.network: authelia-web
+      traefik.enable: true
+      traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://login.${HOST}/
+      traefik.http.middlewares.authelia.forwardauth.authresponseheaders: Remote-User, Remote-Groups, Remote-Email
+      traefik.http.middlewares.authelia.forwardauth.trustforwardheader: true
+      traefik.http.routers.authelia.entrypoints: https
+      traefik.http.routers.authelia.rule: Host(`login.${HOST}`)
+      traefik.http.services.authelia.loadbalancer.server.port: 9091
+  authelia-postgres:
+    image: >-
+      postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
+    container_name: authelia-postgres
+    volumes:
+      - ${DATA_DIR}/postgres/authelia:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/backups:/backups
+    secrets:
+      - authelia_postgres_password
+    environment:
+      POSTGRES_DB: authelia
+      POSTGRES_PASSWORD_FILE: /run/secrets/authelia_postgres_password
+      POSTGRES_USER: authelia
+    networks:
+      - authelia
+    restart: unless-stopped
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.authelia-postgres-backup.command: /bin/sh -c 'pg_dump -U authelia -d authelia > /backups/authelia.sql'
+      ofelia.job-exec.authelia-postgres-backup.schedule: 0 0 04 * * *
+      ofelia.job-exec.authelia-postgres-backup.user: postgres
+    tmpfs:
+      - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
 networks:
   authelia:
     name: authelia
@@ -16,67 +81,3 @@ secrets:
     file: ../.secrets/authelia_postgres_password
   authelia_storage_encryption_key:
     file: ../.secrets/authelia_storage_encryption_key
-services:
-  authelia:
-    container_name: authelia
-    environment:
-      - >-
-        AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE=/run/secrets/authelia_jwt_secret
-      - >-
-        AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE=/run/secrets/authelia_identity_providers_oidc_hmac_secret
-      - >-
-        AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE=/run/secrets/authelia_storage_encryption_key
-      - >-
-        AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE=/run/secrets/authelia_postgres_password
-      - AUTHELIA_NOTIFIER_SMTP_PASSWORD_FILE=/run/secrets/smtp_password
-      - X_AUTHELIA_CONFIG_FILTERS=template
-    image: >-
-      authelia/authelia:4.39.1@sha256:e325963609cc928861ffe8130c09111862df88dd8fcafbcd2c47e5ff0a4ae268
-    labels:
-      readme.description: The Single Sign-On Multi-Factor portal for web apps.
-      readme.links.docker: https://hub.docker.com/r/authelia/authelia
-      readme.links.web: https://www.authelia.com/
-      traefik.docker.network: authelia-web
-      traefik.enable: true
-      traefik.http.middlewares.authelia.forwardauth.address: http://authelia:9091/api/verify?rd=https://login.${HOST}/
-      traefik.http.middlewares.authelia.forwardauth.authresponseheaders: Remote-User, Remote-Groups, Remote-Email
-      traefik.http.middlewares.authelia.forwardauth.trustforwardheader: true
-      traefik.http.routers.authelia.entrypoints: https
-      traefik.http.routers.authelia.rule: Host(`login.${HOST}`)
-      traefik.http.services.authelia.loadbalancer.server.port: 9091
-    networks:
-      - authelia
-      - authelia-web
-    restart: unless-stopped
-    secrets:
-      - authelia_identity_providers_oidc_hmac_secret
-      - authelia_identity_providers_oidc_jwks
-      - authelia_jwt_secret
-      - authelia_storage_encryption_key
-      - authelia_postgres_password
-      - smtp_password
-    volumes:
-      - ${CONFIG_DIR}/authelia:/config
-  authelia-postgres:
-    container_name: authelia-postgres
-    environment:
-      POSTGRES_DB: authelia
-      POSTGRES_PASSWORD_FILE: /run/secrets/authelia_postgres_password
-      POSTGRES_USER: authelia
-    image: >-
-      postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
-    labels:
-      ofelia.enabled: "true"
-      ofelia.job-exec.authelia-postgres-backup.command: /bin/sh -c 'pg_dump -U authelia -d authelia > /backups/authelia.sql'
-      ofelia.job-exec.authelia-postgres-backup.schedule: 0 0 04 * * *
-      ofelia.job-exec.authelia-postgres-backup.user: postgres
-    networks:
-      - authelia
-    restart: unless-stopped
-    secrets:
-      - authelia_postgres_password
-    tmpfs:
-      - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
-    volumes:
-      - ${DATA_DIR}/postgres/authelia:/var/lib/postgresql/data
-      - ${DATA_DIR}/postgres/backups:/backups

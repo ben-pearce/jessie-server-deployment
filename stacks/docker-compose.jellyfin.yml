@@ -1,11 +1,18 @@
+name: jellyfin
 include:
   - common/docker-compose.tunnel.yml
-networks:
-  jellyfin-web:
-    name: jellyfin-web
 services:
   jellyfin:
+    image: >-
+      lscr.io/linuxserver/jellyfin:10.10.7@sha256:fffa82da33d0ff3aeed70e255cead2a12bee87da7c9722db0ee1c8c3a5f94896
     container_name: jellyfin
+    volumes:
+      - ${DATA_DIR}/jellyfin:/config
+      - ${MEDIA_DIR}/shows:/tv
+      - ${MEDIA_DIR}/movies:/movies
+      - ${MUSIC_DIR}:/music
+      - ${MEDIA_DIR}/music-videos:/music-videos
+      - ${LOG_DIR}/jellyfin:/config/log
     environment:
       - PUID
       - PGID
@@ -17,8 +24,10 @@ services:
       - REMOTE_FFMPEG_HOST=pve.benpearce.io
       - REMOTE_FFMPEG_BINARY=/usr/lib/jellyfin-ffmpeg/ffmpeg
       - FFMPEG_PATH=/usr/bin/remote-ffmpeg/ffmpeg
-    image: >-
-      lscr.io/linuxserver/jellyfin:10.10.7@sha256:fffa82da33d0ff3aeed70e255cead2a12bee87da7c9722db0ee1c8c3a5f94896
+    networks:
+      - jellyfin-web
+      - tunnel
+    restart: unless-stopped
     labels:
       readme.description: The Free Software Media System.
       readme.links.github: https://github.com/jellyfin/jellyfin
@@ -27,27 +36,23 @@ services:
       traefik.http.routers.jellyfin.entrypoints: https
       traefik.http.routers.jellyfin.rule: Host(`jellyfin.${HOST}`)
       traefik.http.services.jellyfin.loadbalancer.server.port: 8096
-    networks:
-      - jellyfin-web
-      - tunnel
-    restart: unless-stopped
     tmpfs:
       - /config/data/transcodes:rw,size=10G,mode=1777
-    volumes:
-      - ${DATA_DIR}/jellyfin:/config
-      - ${MEDIA_DIR}/shows:/tv
-      - ${MEDIA_DIR}/movies:/movies
-      - ${MUSIC_DIR}:/music
-      - ${MEDIA_DIR}/music-videos:/music-videos
-      - ${LOG_DIR}/jellyfin:/config/log
   tvheadend:
+    image: >-
+      lscr.io/linuxserver/tvheadend:version-26ec161f@sha256:5da84d8b5e16943b2654fbd6b84a60135f2c68182b66a25bc4e4fe322b7f9b8d
     container_name: tvheadend
+    volumes:
+      - ${CONFIG_DIR}/tvheadend:/config
+      - ${MEDIA_DIR}/recordings:/recordings
+      - ./scripts/tvheadend/tv_grab_url_gz:/usr/bin/tv_grab_url_gz
     environment:
       - PUID
       - PGID
       - TZ
-    image: >-
-      lscr.io/linuxserver/tvheadend:version-26ec161f@sha256:5da84d8b5e16943b2654fbd6b84a60135f2c68182b66a25bc4e4fe322b7f9b8d
+    networks:
+      - jellyfin-web
+    restart: unless-stopped
     labels:
       readme.description: TV Streaming Server.
       readme.links.web: https://tvheadend.org/
@@ -57,10 +62,6 @@ services:
       traefik.http.routers.tvheadend.middlewares: authelia
       traefik.http.routers.tvheadend.rule: Host(`tvheadend.${HOST}`)
       traefik.http.services.tvheadend.loadbalancer.server.port: 9981
-    networks:
-      - jellyfin-web
-    restart: unless-stopped
-    volumes:
-      - ${CONFIG_DIR}/tvheadend:/config
-      - ${MEDIA_DIR}/recordings:/recordings
-      - ./scripts/tvheadend/tv_grab_url_gz:/usr/bin/tv_grab_url_gz
+networks:
+  jellyfin-web:
+    name: jellyfin-web

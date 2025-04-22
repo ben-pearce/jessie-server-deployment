@@ -1,16 +1,21 @@
-networks:
-  deemix-web:
-    name: deemix-web
+name: deemix
 services:
   deemix:
+    image: >-
+      registry.gitlab.com/bockiii/deemix-docker:2022.12.14-r222.5d447b6035@sha256:d325660d833c30c8bbb5cf0caa75135b42a2f69b82f2269fd5bea91a04c449e6
     container_name: deemix
+    volumes:
+      - ${DATA_DIR}/lidarr/downloads:/downloads
+      - ${CONFIG_DIR}/deemix:/config
+      - ${LOG_DIR}/deemix:/config/log
     environment:
       - PUID
       - PGID
       - UMASK_SET=022
       - DEEMIX_SINGLE_USER=true
-    image: >-
-      registry.gitlab.com/bockiii/deemix-docker:2022.12.14-r222.5d447b6035@sha256:d325660d833c30c8bbb5cf0caa75135b42a2f69b82f2269fd5bea91a04c449e6
+    networks:
+      - deemix-web
+    restart: unless-stopped
     labels:
       readme.description: Barebone deezer downloader.
       readme.links.gitlab: https://gitlab.com/Bockiii/deemix-docker
@@ -20,10 +25,6 @@ services:
       traefik.http.routers.deemix.entrypoints: https
       traefik.http.routers.deemix.middlewares: authelia
       traefik.http.routers.deemix.rule: Host(`deemix.${HOST}`)
-    networks:
-      - deemix-web
-    restart: unless-stopped
-    volumes:
-      - ${DATA_DIR}/lidarr/downloads:/downloads
-      - ${CONFIG_DIR}/deemix:/config
-      - ${LOG_DIR}/deemix:/config/log
+networks:
+  deemix-web:
+    name: deemix-web

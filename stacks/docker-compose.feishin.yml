@@ -1,16 +1,17 @@
-networks:
-  feishin-web:
-    name: feishin-web
+name: feishin
 services:
   feishin:
+    image: >-
+      ghcr.io/jeffvli/feishin:0.12.3@sha256:e0ae6c75d7aecbc1f20078e4f8ec7c91dd4abe7aa2c7a8eeaade9ac2c632c7c7
     container_name: feishin
     environment:
       - SERVER_NAME=jessie
       - SERVER_TYPE=navidrome
       - SERVER_URL=https://navidrome.${HOST}
       - SERVER_LOCK=true
-    image: >-
-      ghcr.io/jeffvli/feishin:0.12.3@sha256:e0ae6c75d7aecbc1f20078e4f8ec7c91dd4abe7aa2c7a8eeaade9ac2c632c7c7
+    networks:
+      - feishin-web
+    restart: unless-stopped
     labels:
       readme.description: A modern self-hosted music player.
       readme.links.github: https://github.com/jeffvli/feishin
@@ -20,6 +21,6 @@ services:
       traefik.http.routers.feishin.middlewares: authelia
       traefik.http.routers.feishin.rule: Host(`feishin.${HOST}`)
       traefik.http.services.feishin.loadbalancer.server.port: 9180
-    networks:
-      - feishin-web
-    restart: unless-stopped
+networks:
+  feishin-web:
+    name: feishin-web

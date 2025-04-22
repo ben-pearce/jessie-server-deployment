@@ -1,14 +1,17 @@
-networks:
-  homer-web:
-    name: homer-web
+name: homer
 services:
   homer:
+    image: >-
+      b4bz/homer:v25.04.1@sha256:602287607aa9ba98e317a9d5d31ce45fd37e016685d230bf7fb0dc9f4004e607
     container_name: homer
+    volumes:
+      - ${CONFIG_DIR}/homer:/www/assets
     environment:
       - UID=${PUID}
       - GID=${PGID}
-    image: >-
-      b4bz/homer:v25.04.1@sha256:602287607aa9ba98e317a9d5d31ce45fd37e016685d230bf7fb0dc9f4004e607
+    networks:
+      - homer-web
+    restart: unless-stopped
     labels:
       readme.description: A very simple static homepage for your server.
       readme.links.github: https://github.com/bastienwirtz/homer
@@ -17,8 +20,6 @@ services:
       traefik.http.routers.homer.entrypoints: https
       traefik.http.routers.homer.middlewares: authelia
       traefik.http.routers.homer.rule: Host(`${HOST}`)
-    networks:
-      - homer-web
-    restart: unless-stopped
-    volumes:
-      - ${CONFIG_DIR}/homer:/www/assets
+networks:
+  homer-web:
+    name: homer-web

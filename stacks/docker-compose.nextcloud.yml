@@ -1,18 +1,21 @@
+name: nextcloud
 include:
   - ./common/docker-compose.secrets.yml
-networks:
-  nextcloud:
-    name: nextcloud
-  nextcloud-web:
-    name: nextcloud-web
-secrets:
-  nextcloud_postgres_password:
-    file: ../.secrets/nextcloud_postgres_password
 services:
   nextcloud:
+    image: >-
+      nextcloud:31.0.2@sha256:30f08b83aba96464c85bebfa5288a188cfc358e827c267f08436c418bc05946e
     container_name: nextcloud
     depends_on:
       - nextcloud-postgres
+    volumes:
+      - ${DATA_DIR}/nextcloud/html:/var/www/html
+      - ${DATA_DIR}/nextcloud/apps:/var/www/html/custom_apps
+      - ${DATA_DIR}/nextcloud/data:/var/www/html/data
+      - ${CONFIG_DIR}/nextcloud:/var/www/html/config
+    secrets:
+      - nextcloud_postgres_password
+      - smtp_password
     environment:
       - POSTGRES_DB=nextcloud
       - POSTGRES_USER=nextcloud
@@ -26,8 +29,10 @@ services:
       - MAIL_FROM=${SMTP_USER}
       - REDIS_HOST=nextcloud-redis
       - REDIS_PORT=6379
-    image: >-
-      nextcloud:31.0.2@sha256:30f08b83aba96464c85bebfa5288a188cfc358e827c267f08436c418bc05946e
+    networks:
+      - nextcloud
+      - nextcloud-web
+    restart: unless-stopped
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.nextcloud-cron.command: php /var/www/html/cron.php
@@ -42,45 +47,41 @@ services:
       traefik.http.routers.nextcloud.entrypoints: https
       traefik.http.routers.nextcloud.middlewares: nextcloud-hsts
       traefik.http.routers.nextcloud.rule: Host(`nextcloud.${HOST}`)
-    networks:
-      - nextcloud
-      - nextcloud-web
-    restart: unless-stopped
+  nextcloud-postgres:
+    image: >-
+      postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
+    container_name: nextcloud-postgres
+    volumes:
+      - ${DATA_DIR}/postgres/nextcloud:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/backups:/backups
     secrets:
       - nextcloud_postgres_password
-      - smtp_password
-    volumes:
-      - ${DATA_DIR}/nextcloud/html:/var/www/html
-      - ${DATA_DIR}/nextcloud/apps:/var/www/html/custom_apps
-      - ${DATA_DIR}/nextcloud/data:/var/www/html/data
-      - ${CONFIG_DIR}/nextcloud:/var/www/html/config
-  nextcloud-postgres:
-    container_name: nextcloud-postgres
     environment:
       POSTGRES_DB: nextcloud
       POSTGRES_PASSWORD_FILE: /run/secrets/nextcloud_postgres_password
       POSTGRES_USER: nextcloud
-    image: >-
-      postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
+    networks:
+      - nextcloud
+    restart: unless-stopped
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.nextcloud-postgres-backup.command: /bin/sh -c 'pg_dump -U nextcloud -d nextcloud > /backups/nextcloud.sql'
       ofelia.job-exec.nextcloud-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.nextcloud-postgres-backup.user: postgres
-    networks:
-      - nextcloud
-    restart: unless-stopped
-    secrets:
-      - nextcloud_postgres_password
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
-    volumes:
-      - ${DATA_DIR}/postgres/nextcloud:/var/lib/postgresql/data
-      - ${DATA_DIR}/postgres/backups:/backups
   nextcloud-redis:
-    container_name: nextcloud-redis
     image: >-
       redis:6.2@sha256:3a2bd6da7a0ad2a1786539c1d340ff9bd8ba6c3214f41d585e29a905e0281909
+    container_name: nextcloud-redis
     networks:
       - nextcloud
     restart: unless-stopped
+networks:
+  nextcloud:
+    name: nextcloud
+  nextcloud-web:
+    name: nextcloud-web
+secrets:
+  nextcloud_postgres_password:
+    file: ../.secrets/nextcloud_postgres_password

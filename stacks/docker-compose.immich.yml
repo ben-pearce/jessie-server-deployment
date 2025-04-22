@@ -1,17 +1,17 @@
-networks:
-  immich:
-    name: immich
-  immich-web:
-    name: immich-web
-secrets:
-  immich_postgres_password:
-    file: ../.secrets/immich_postgres_password
+name: immich
 services:
   immich-machine-learning:
+    image: >-
+      ghcr.io/immich-app/immich-machine-learning:v1.131.2@sha256:29836cf73146057ac388546021fff3e00c923e22a28587cceb5108a5e537987d
     container_name: immich-machine-learning
     depends_on:
-      - immich-redis
       - immich-postgres
+      - immich-redis
+    volumes:
+      - ${DATA_DIR}/immich/upload:/usr/src/app/upload
+      - ${DATA_DIR}/immich/model-cache:/cache
+    secrets:
+      - immich_postgres_password
     environment:
       - NODE_ENV=production
       - REDIS_HOSTNAME=immich-redis
@@ -19,51 +19,51 @@ services:
       - DB_USERNAME=immich
       - DB_DATABASE_NAME=immich
       - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
-    image: >-
-      ghcr.io/immich-app/immich-machine-learning:v1.131.2@sha256:29836cf73146057ac388546021fff3e00c923e22a28587cceb5108a5e537987d
     networks:
       - immich
     restart: unless-stopped
+  immich-postgres:
+    image: >-
+      tensorchord/pgvecto-rs:pg14-v0.3.0@sha256:5674cef7e32c25466e7b32aed7d171271756b2df4cbc73f399ea3bbaa8bcff9b
+    container_name: immich-postgres
+    volumes:
+      - ${DATA_DIR}/postgres/immich:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/backups:/backups
     secrets:
       - immich_postgres_password
-    volumes:
-      - ${DATA_DIR}/immich/upload:/usr/src/app/upload
-      - ${DATA_DIR}/immich/model-cache:/cache
-  immich-postgres:
-    container_name: immich-postgres
     environment:
       POSTGRES_DB: immich
       POSTGRES_PASSWORD_FILE: /run/secrets/immich_postgres_password
       POSTGRES_USER: immich
-    image: >-
-      tensorchord/pgvecto-rs:pg14-v0.3.0@sha256:5674cef7e32c25466e7b32aed7d171271756b2df4cbc73f399ea3bbaa8bcff9b
+    networks:
+      - immich
+    restart: unless-stopped
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.immich-postgres-backup.command: /bin/sh -c 'pg_dump -U immich -d immich > /backups/immich.sql'
       ofelia.job-exec.immich-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.immich-postgres-backup.user: postgres
-    networks:
-      - immich
-    restart: unless-stopped
-    secrets:
-      - immich_postgres_password
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
-    volumes:
-      - ${DATA_DIR}/postgres/immich:/var/lib/postgresql/data
-      - ${DATA_DIR}/postgres/backups:/backups
   immich-redis:
-    container_name: immich-redis
     image: >-
       redis:6.2@sha256:3a2bd6da7a0ad2a1786539c1d340ff9bd8ba6c3214f41d585e29a905e0281909
+    container_name: immich-redis
     networks:
       - immich
     restart: unless-stopped
   immich-server:
+    image: >-
+      ghcr.io/immich-app/immich-server:v1.131.3@sha256:7e5b6729b12b5e5cc5d98bcc6f7c27f723fabae4ee77696855808ebd5200bbf8
     container_name: immich-server
     depends_on:
-      - immich-redis
       - immich-postgres
+      - immich-redis
+    volumes:
+      - ${DATA_DIR}/immich/upload:/usr/src/app/upload
+      - /etc/localtime:/etc/localtime:ro
+    secrets:
+      - immich_postgres_password
     environment:
       - NODE_ENV=production
       - REDIS_HOSTNAME=immich-redis
@@ -71,8 +71,10 @@ services:
       - DB_USERNAME=immich
       - DB_DATABASE_NAME=immich
       - DB_PASSWORD_FILE=/run/secrets/immich_postgres_password
-    image: >-
-      ghcr.io/immich-app/immich-server:v1.131.3@sha256:7e5b6729b12b5e5cc5d98bcc6f7c27f723fabae4ee77696855808ebd5200bbf8
+    networks:
+      - immich
+      - immich-web
+    restart: unless-stopped
     labels:
       readme.description: Photo & Video Backup Solution
       readme.links.github: https://github.com/immich-app/immich
@@ -82,12 +84,11 @@ services:
       traefik.http.routers.immich-server.entrypoints: https
       traefik.http.routers.immich-server.rule: Host(`immich.${HOST}`)
       traefik.http.services.immich-server.loadbalancer.server.port: 2283
-    networks:
-      - immich
-      - immich-web
-    restart: unless-stopped
-    secrets:
-      - immich_postgres_password
-    volumes:
-      - ${DATA_DIR}/immich/upload:/usr/src/app/upload
-      - /etc/localtime:/etc/localtime:ro
+networks:
+  immich:
+    name: immich
+  immich-web:
+    name: immich-web
+secrets:
+  immich_postgres_password:
+    file: ../.secrets/immich_postgres_password

@@ -1,16 +1,17 @@
+name: ofelia
 services:
   ofelia:
-    command: daemon --docker
-    container_name: ofelia
-    environment:
-      - TZ
     image: >-
       mcuadros/ofelia:0.3.16@sha256:ef9b94b936146b3c8404c8b4ec6eaa5a2175386adda6126bbea474682681d4ed
+    container_name: ofelia
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      - TZ
+    network_mode: none
+    command: daemon --docker
+    restart: unless-stopped
     labels:
       ofelia.enabled: true
       readme.description: Docker job scheduler.
       readme.links.github: https://github.com/mcuadros/ofelia
-    network_mode: none
-    restart: unless-stopped
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro

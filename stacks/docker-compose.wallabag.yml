@@ -1,13 +1,16 @@
-networks:
-  wallabag-web:
-    name: wallabag-web
+name: wallabag
 services:
   wallabag:
-    container_name: wallabag
-    environment:
-      - SYMFONY__ENV__DOMAIN_NAME=https://wallabag.${HOST}
     image: >-
       wallabag/wallabag:2.6.12@sha256:9989e05769885aef0b316508b728580460c7713e435cc0b02c16e7b06e17bb6a
+    container_name: wallabag
+    volumes:
+      - ${DATA_DIR}/wallabag:/var/www/wallabag/data
+    environment:
+      - SYMFONY__ENV__DOMAIN_NAME=https://wallabag.${HOST}
+    networks:
+      - wallabag-web
+    restart: unless-stopped
     labels:
       readme.description: A self hostable application for saving web pages, freely.
       readme.links.github: https://github.com/wallabag
@@ -15,8 +18,6 @@ services:
       traefik.enable: true
       traefik.http.routers.wallabag.entrypoints: https
       traefik.http.routers.wallabag.rule: Host(`wallabag.${HOST}`)
-    networks:
-      - wallabag-web
-    restart: unless-stopped
-    volumes:
-      - ${DATA_DIR}/wallabag:/var/www/wallabag/data
+networks:
+  wallabag-web:
+    name: wallabag-web

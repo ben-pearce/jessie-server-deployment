@@ -1,31 +1,32 @@
-networks:
-  cobalt-web:
-    name: cobalt-web
+name: cobalt
 services:
   cobalt-api:
+    image: >-
+      ghcr.io/imputnet/cobalt:10.9.1@sha256:0a2998b24b41261ea9ca2b17dc3efacaa1990383fe677d490e9cb2e37173575b
     container_name: cobalt-api
+    volumes:
+      - ${CONFIG_DIR}/cobalt/cookies.json:/cookies.json
     environment:
       - API_URL=https://cobalt-api.${HOST}
       - API_NAME=jessie
       - COOKIE_PATH=/cookies.json
-    image: >-
-      ghcr.io/imputnet/cobalt:10.9.1@sha256:0a2998b24b41261ea9ca2b17dc3efacaa1990383fe677d490e9cb2e37173575b
+    networks:
+      - cobalt-web
+    restart: unless-stopped
     labels:
       traefik.enable: true
       traefik.http.routers.cobalt-api.entrypoints: https
       traefik.http.routers.cobalt-api.rule: Host(`cobalt-api.${HOST}`)
       traefik.http.services.cobalt-api.loadbalancer.server.port: 9000
-    networks:
-      - cobalt-web
-    restart: unless-stopped
-    volumes:
-      - ${CONFIG_DIR}/cobalt/cookies.json:/cookies.json
   cobalt-web:
+    image: >-
+      ghcr.io/ben-pearce/cobalt-web:10.9@sha256:c15d6b4dc6f5948ad0aae19a958f1b58876c9aed66c479e80028a9bb41199558
     container_name: cobalt-web
     depends_on:
       - cobalt-api
-    image: >-
-      ghcr.io/ben-pearce/cobalt-web:10.9@sha256:c15d6b4dc6f5948ad0aae19a958f1b58876c9aed66c479e80028a9bb41199558
+    networks:
+      - cobalt-web
+    restart: unless-stopped
     labels:
       readme.description: Save what you love.
       readme.links.github: https://github.com/wukko/cobalt
@@ -34,6 +35,6 @@ services:
       traefik.http.routers.cobalt-web.middlewares: authelia
       traefik.http.routers.cobalt-web.rule: Host(`cobalt.${HOST}`)
       traefik.http.services.cobalt-web.loadbalancer.server.port: 8080
-    networks:
-      - cobalt-web
-    restart: unless-stopped
+networks:
+  cobalt-web:
+    name: cobalt-web

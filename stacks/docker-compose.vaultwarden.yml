@@ -1,11 +1,15 @@
+name: vaultwarden
 include:
   - ./common/docker-compose.secrets.yml
-networks:
-  vaultwarden-web:
-    name: vaultwarden-web
 services:
   vaultwarden:
+    image: >-
+      vaultwarden/server:1.33.2@sha256:87edb99945da91bd7504ac1435495595af2e89ad2c7adc151ae5bf091ec8baf2
     container_name: vaultwarden
+    volumes:
+      - ${DATA_DIR}/vaultwarden:/data
+    secrets:
+      - smtp_password
     environment:
       - SMTP_HOST
       - SMTP_FROM=${SMTP_USER}
@@ -14,18 +18,15 @@ services:
       - SMTP_USERNAME=${SMTP_USER}
       - SMTP_PASSWORD_FILE=/run/secrets/smtp_password
       - DOMAIN=https://fence.${HOST}
-    image: >-
-      vaultwarden/server:1.33.2@sha256:87edb99945da91bd7504ac1435495595af2e89ad2c7adc151ae5bf091ec8baf2
+    networks:
+      - vaultwarden-web
+    restart: unless-stopped
     labels:
       readme.description: Unofficial Bitwarden compatible server written in Rust.
       readme.links.github: https://github.com/dani-garcia/vaultwarden
       traefik.enable: true
       traefik.http.routers.vaultwarden.entrypoints: https
       traefik.http.routers.vaultwarden.rule: Host(`fence.${HOST}`)
-    networks:
-      - vaultwarden-web
-    restart: unless-stopped
-    secrets:
-      - smtp_password
-    volumes:
-      - ${DATA_DIR}/vaultwarden:/data
+networks:
+  vaultwarden-web:
+    name: vaultwarden-web

@@ -1,3 +1,4 @@
+name: cloud
 include:
   - stacks/docker-compose.authelia.yml
   - stacks/docker-compose.firefly.yml

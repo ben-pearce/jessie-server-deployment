@@ -1,3 +1,4 @@
+name: music
 include:
   - stacks/docker-compose.feishin.yml
   - stacks/docker-compose.deemix.yml

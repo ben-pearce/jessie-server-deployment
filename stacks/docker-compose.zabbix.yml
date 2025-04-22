@@ -1,13 +1,20 @@
-networks:
-  zabbix:
-    name: zabbix
-  zabbix-web:
-    name: zabbix-web
-secrets:
-  zabbix_postgres_password:
-    file: ../.secrets/zabbix_postgres_password
+name: zabbix
 services:
   zabbix-postgres:
+    image: >-
+      postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
+    container_name: zabbix-postgres
+    volumes:
+      - ${DATA_DIR}/postgres/zabbix:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/backups:/backups
+    secrets:
+      - zabbix_postgres_password
+    environment:
+      POSTGRES_DB: zabbix
+      POSTGRES_PASSWORD_FILE: /run/secrets/zabbix_postgres_password
+      POSTGRES_USER: zabbix
+    networks:
+      - zabbix
     command: |
       -c fsync=off 
       -c synchronous_commit=off 
@@ -15,56 +22,48 @@ services:
       -c max_wal_size=30GB 
       -c checkpoint_timeout=60min
       -c wal_writer_flush_after=6400
-    container_name: zabbix-postgres
-    environment:
-      POSTGRES_DB: zabbix
-      POSTGRES_PASSWORD_FILE: /run/secrets/zabbix_postgres_password
-      POSTGRES_USER: zabbix
-    image: >-
-      postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
+    restart: unless-stopped
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.zabbix-postgres-backup.command: /bin/sh -c 'pg_dump -U zabbix -d zabbix > /backups/zabbix.sql'
       ofelia.job-exec.zabbix-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.zabbix-postgres-backup.user: postgres
-    networks:
-      - zabbix
-    restart: unless-stopped
-    secrets:
-      - zabbix_postgres_password
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
-    volumes:
-      - ${DATA_DIR}/postgres/zabbix:/var/lib/postgresql/data
-      - ${DATA_DIR}/postgres/backups:/backups
   zabbix-server:
+    image: >-
+      zabbix/zabbix-server-pgsql:7.2.5-alpine@sha256:dfc75d79767addb6812c4762d6aa5a2a778f8dd185dd164058bd47beba6b5e9d
     container_name: zabbix-server
+    secrets:
+      - zabbix_postgres_password
     environment:
       - DB_SERVER_HOST=zabbix-postgres
       - POSTGRES_USER=zabbix
       - POSTGRES_PASSWORD_FILE=/run/secrets/zabbix_postgres_password
-    image: >-
-      zabbix/zabbix-server-pgsql:7.2.5-alpine@sha256:dfc75d79767addb6812c4762d6aa5a2a778f8dd185dd164058bd47beba6b5e9d
+    ports:
+      - '0.0.0.0:10051:10051'
     networks:
       - zabbix
-    ports:
-      - "10051:10051"
     restart: unless-stopped
-    secrets:
-      - zabbix_postgres_password
   zabbix-web:
+    image: >-
+      zabbix/zabbix-web-nginx-pgsql:7.2.5-alpine@sha256:822fa5ebdcbd8ab4a2dab007ac0827d56ac8bf1a9fa7a3660e719b0564211a4c
     container_name: zabbix-web
     depends_on:
       - zabbix-postgres
       - zabbix-server
+    secrets:
+      - zabbix_postgres_password
     environment:
       - DB_SERVER_HOST=zabbix-postgres
       - POSTGRES_USER=zabbix
       - POSTGRES_PASSWORD_FILE=/run/secrets/zabbix_postgres_password
       - PHP_TZ=${TZ}
       - ZBX_SERVER_HOST=zabbix-server
-    image: >-
-      zabbix/zabbix-web-nginx-pgsql:7.2.5-alpine@sha256:822fa5ebdcbd8ab4a2dab007ac0827d56ac8bf1a9fa7a3660e719b0564211a4c
+    networks:
+      - zabbix
+      - zabbix-web
+    restart: unless-stopped
     labels:
       readme.description: Zabbix web frontend.
       readme.links.docker: https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql
@@ -73,9 +72,11 @@ services:
       traefik.http.routers.zabbix.entrypoints: https
       traefik.http.routers.zabbix.rule: Host(`zabbix.${HOST}`)
       traefik.http.services.zabbix.loadbalancer.server.port: 8080
-    networks:
-      - zabbix
-      - zabbix-web
-    restart: unless-stopped
-    secrets:
-      - zabbix_postgres_password
+networks:
+  zabbix:
+    name: zabbix
+  zabbix-web:
+    name: zabbix-web
+secrets:
+  zabbix_postgres_password:
+    file: ../.secrets/zabbix_postgres_password

@@ -1,3 +1,4 @@
+name: media
 include:
   - stacks/docker-compose.freshrss.yml
   - stacks/docker-compose.jellyfin.yml

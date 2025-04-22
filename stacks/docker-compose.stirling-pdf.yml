@@ -1,15 +1,20 @@
-networks:
-  stirling-pdf-web:
-    name: stirling-pdf-web
+name: stirling-pdf
 services:
   stirling-pdf:
+    image: >-
+      frooodle/s-pdf:0.45.6@sha256:fc53d48a018cc36446a4b1373db633be51301b828755e312c386b7700cdf2318
     container_name: stirling-pdf
+    volumes:
+      - ${DATA_DIR}/stirling-pdf:/usr/share/tessdata
+      - ${CONFIG_DIR}/stirling-pdf:/configs
+      - ${LOG_DIR}/logs:/logs/
     environment:
       - DOCKER_ENABLE_SECURITY=false
       - INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
       - LANGS=en_GB
-    image: >-
-      frooodle/s-pdf:0.45.6@sha256:fc53d48a018cc36446a4b1373db633be51301b828755e312c386b7700cdf2318
+    networks:
+      - stirling-pdf-web
+    restart: unless-stopped
     labels:
       readme.description: PDF manipulation tool.
       readme.links.github: https://github.com/Stirling-Tools/Stirling-PDF
@@ -18,10 +23,6 @@ services:
       traefik.http.routers.stirling-pdf.entrypoints: https
       traefik.http.routers.stirling-pdf.middlewares: authelia
       traefik.http.routers.stirling-pdf.rule: Host(`stirling-pdf.${HOST}`)
-    networks:
-      - stirling-pdf-web
-    restart: unless-stopped
-    volumes:
-      - ${DATA_DIR}/stirling-pdf:/usr/share/tessdata
-      - ${CONFIG_DIR}/stirling-pdf:/configs
-      - ${LOG_DIR}/logs:/logs/
+networks:
+  stirling-pdf-web:
+    name: stirling-pdf-web

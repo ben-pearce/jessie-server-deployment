@@ -1,16 +1,23 @@
-networks:
-  unifi-web:
-    name: unifi-web
+name: unifi-controller
 services:
   unifi-controller:
+    image: >-
+      ghcr.io/linuxserver/unifi-controller:8.0.24@sha256:0ae315a3a45635e443899e30e86bd507c2c48922cb27f4bc7241777885f4650e
     container_name: unifi-controller
+    volumes:
+      - ${DATA_DIR}/unifi:/config
     environment:
       - PUID
       - PGID
       - MEM_LIMIT=1024
       - MEM_STARTUP=1024
-    image: >-
-      ghcr.io/linuxserver/unifi-controller:8.0.24@sha256:0ae315a3a45635e443899e30e86bd507c2c48922cb27f4bc7241777885f4650e
+    ports:
+      - '0.0.0.0:3478:3478/udp'
+      - '0.0.0.0:8080:8080'
+      - '0.0.0.0:10001:10001/udp'
+    networks:
+      - unifi-web
+    restart: unless-stopped
     labels:
       readme.description: Wireless network management.
       traefik.enable: true
@@ -18,14 +25,8 @@ services:
       traefik.http.routers.unifi.rule: Host(`unifi.${HOST}`)
       traefik.http.services.unifi-controller.loadbalancer.server.port: 8443
       traefik.http.services.unifi-controller.loadbalancer.server.scheme: https
-    networks:
-      - unifi-web
-    ports:
-      - 3478:3478/udp
-      - 10001:10001/udp
-      - "8080:8080"
-    restart: unless-stopped
     tmpfs:
       - /tmp:rw,mode=1777
-    volumes:
-      - ${DATA_DIR}/unifi:/config
+networks:
+  unifi-web:
+    name: unifi-web
