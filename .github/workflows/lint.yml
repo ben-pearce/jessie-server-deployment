@@ -31,11 +31,11 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
 
-      - name: 📑 Sort YAML Files
+      - name: 🔎 Run dclint
         run: |
           shopt -s nullglob
-          npx --yes yaml-sort --quotingStyle double --input ./docker-compose*.yml ./**/docker-compose*.yml
-          git commit -am "chore: sort yaml keys" || true
+          npx --yes dclint --max-warnings 1 --fix ./docker-compose*.yml ./**/docker-compose*.yml
+          git commit -am "chore: satisfy dclint requirements" || true
           shopt -u nullglob
 
       - name: ✨ Run Prettier
