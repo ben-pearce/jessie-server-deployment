@@ -18,7 +18,7 @@ This repository holds my docker compose files and configuration files for servic
 | **Name** | **Description** | **Ports** | **Links** |
 |---|---|---|---|
 | [traefik](./docker-compose.yml#L15)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
-| [tunnel](./stacks/common/docker-compose.tunnel.yml#L17)  | A Docker container for using WireGuard with PIA. | `9981:9981/tcp`, `9982:9982/tcp` | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
+| [tunnel](./stacks/common/docker-compose.tunnel.yml#L5)  | A Docker container for using WireGuard with PIA. |  | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
 | [bazarr](./stacks/docker-compose.arr.yml#L8) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [prowlarr](./stacks/docker-compose.arr.yml#L34) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
 | [radarr](./stacks/docker-compose.arr.yml#L57) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
