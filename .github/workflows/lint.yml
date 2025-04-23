@@ -33,17 +33,17 @@ jobs:
 
       - name: 🔎 Run dclint
         run: |
-          shopt -s nullglob
-          npx --yes dclint --max-warnings 1 --fix ./docker-compose*.yml ./**/docker-compose*.yml
+          shopt -s globstar
+          npx --yes dclint --max-warnings 1 --fix ./**/docker-compose*.yml
           git commit -am "chore: satisfy dclint requirements" || true
-          shopt -u nullglob
+          shopt -u globstar
 
       - name: ✨ Run Prettier
         run: |
-          shopt -s nullglob
-          npx --yes prettier --write ./docker-compose*.yml ./**/docker-compose*.yml
+          shopt -s globstar
+          npx --yes prettier --single-quote --write ./**/docker-compose*.yml
           git commit -am "chore: satisfy prettier requirements" || true
-          shopt -u nullglob
+          shopt -u globstar
 
       - name: 🚀 Push Changes
         run: |
