@@ -34,7 +34,7 @@ services:
       - nextcloud-web
     restart: unless-stopped
     labels:
-      ofelia.enabled: "true"
+      ofelia.enabled: 'true'
       ofelia.job-exec.nextcloud-cron.command: php /var/www/html/cron.php
       ofelia.job-exec.nextcloud-cron.schedule: 0 */5 * * * *
       ofelia.job-exec.nextcloud-cron.user: www-data
@@ -64,7 +64,7 @@ services:
       - nextcloud
     restart: unless-stopped
     labels:
-      ofelia.enabled: "true"
+      ofelia.enabled: 'true'
       ofelia.job-exec.nextcloud-postgres-backup.command: /bin/sh -c 'pg_dump -U nextcloud -d nextcloud > /backups/nextcloud.sql'
       ofelia.job-exec.nextcloud-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.nextcloud-postgres-backup.user: postgres

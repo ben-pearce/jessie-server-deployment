@@ -24,7 +24,7 @@ services:
       -c wal_writer_flush_after=6400
     restart: unless-stopped
     labels:
-      ofelia.enabled: "true"
+      ofelia.enabled: 'true'
       ofelia.job-exec.zabbix-postgres-backup.command: /bin/sh -c 'pg_dump -U zabbix -d zabbix > /backups/zabbix.sql'
       ofelia.job-exec.zabbix-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.zabbix-postgres-backup.user: postgres

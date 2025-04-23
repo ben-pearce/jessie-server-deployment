@@ -8,8 +8,8 @@ services:
       - paperless
     command:
       - gotenberg
-      - "--chromium-disable-javascript=true"
-      - "--chromium-allow-list=file:///tmp/.*"
+      - '--chromium-disable-javascript=true'
+      - '--chromium-allow-list=file:///tmp/.*'
     restart: unless-stopped
   paperless-ngx:
     image: >-
@@ -48,10 +48,10 @@ services:
       test:
         - CMD
         - curl
-        - "-fs"
-        - "-S"
-        - "--max-time"
-        - "2"
+        - '-fs'
+        - '-S'
+        - '--max-time'
+        - '2'
         - http://localhost:8000
       timeout: 10s
     labels:
@@ -79,7 +79,7 @@ services:
       - paperless
     restart: unless-stopped
     labels:
-      ofelia.enabled: "true"
+      ofelia.enabled: 'true'
       ofelia.job-exec.paperless-postgres-backup.command: /bin/sh -c 'pg_dump -U paperless -d paperless > /backups/paperless.sql'
       ofelia.job-exec.paperless-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.paperless-postgres-backup.user: postgres

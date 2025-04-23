@@ -59,7 +59,7 @@ services:
       - authelia
     restart: unless-stopped
     labels:
-      ofelia.enabled: "true"
+      ofelia.enabled: 'true'
       ofelia.job-exec.authelia-postgres-backup.command: /bin/sh -c 'pg_dump -U authelia -d authelia > /backups/authelia.sql'
       ofelia.job-exec.authelia-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.authelia-postgres-backup.user: postgres

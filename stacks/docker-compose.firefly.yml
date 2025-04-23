@@ -35,7 +35,7 @@ services:
       - firefly-web
     restart: unless-stopped
     labels:
-      ofelia.enabled: "true"
+      ofelia.enabled: 'true'
       ofelia.job-exec.finance-import.command: >-
         /bin/sh -c 'for f in /import/*; do php artisan importer:import $$f; done'
       ofelia.job-exec.finance-import.schedule: 0 0 03 * * *
@@ -109,7 +109,7 @@ services:
       - firefly
     restart: unless-stopped
     labels:
-      ofelia.enabled: "true"
+      ofelia.enabled: 'true'
       ofelia.job-exec.firefly-postgres-backup.command: /bin/sh -c 'pg_dump -U firefly -d firefly > /backups/firefly.sql'
       ofelia.job-exec.firefly-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.firefly-postgres-backup.user: postgres

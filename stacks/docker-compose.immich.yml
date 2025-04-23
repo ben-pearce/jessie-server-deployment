@@ -39,7 +39,7 @@ services:
       - immich
     restart: unless-stopped
     labels:
-      ofelia.enabled: "true"
+      ofelia.enabled: 'true'
       ofelia.job-exec.immich-postgres-backup.command: /bin/sh -c 'pg_dump -U immich -d immich > /backups/immich.sql'
       ofelia.job-exec.immich-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.immich-postgres-backup.user: postgres
