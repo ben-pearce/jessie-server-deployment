@@ -12,9 +12,9 @@ services:
       - MEM_LIMIT=1024
       - MEM_STARTUP=1024
     ports:
-      - "0.0.0.0:3478:3478/udp"
-      - "0.0.0.0:8080:8080"
-      - "0.0.0.0:10001:10001/udp"
+      - '0.0.0.0:3478:3478/udp'
+      - '0.0.0.0:8080:8080'
+      - '0.0.0.0:10001:10001/udp'
     networks:
       - unifi-web
     restart: unless-stopped
