@@ -50,7 +50,7 @@ services:
       traefik.http.routers.prowlarr.rule: Host(`prowlarr.${HOST}`)
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
   radarr:
-    image: ghcr.io/linuxserver/radarr:5.21.1@sha256:5ad8df1b0dc0bb0c2232a9278b85c3c230d82184415f83238b5969da8dc6a942
+    image: ghcr.io/linuxserver/radarr:5.22.4@sha256:7e9dbd55e29496f66fd8f3e210e5c202c1437ba8f4a748013c6da8ac268a0de1
     container_name: radarr
     volumes:
       - ${DATA_DIR}/radarr:/config
