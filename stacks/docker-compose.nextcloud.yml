@@ -3,8 +3,7 @@ include:
   - ./common/docker-compose.secrets.yml
 services:
   nextcloud:
-    image: >-
-      nextcloud:31.0.2@sha256:30f08b83aba96464c85bebfa5288a188cfc358e827c267f08436c418bc05946e
+    image: nextcloud:31.0.2@sha256:30f08b83aba96464c85bebfa5288a188cfc358e827c267f08436c418bc05946e
     container_name: nextcloud
     depends_on:
       - nextcloud-postgres
@@ -48,8 +47,7 @@ services:
       traefik.http.routers.nextcloud.middlewares: nextcloud-hsts
       traefik.http.routers.nextcloud.rule: Host(`nextcloud.${HOST}`)
   nextcloud-postgres:
-    image: >-
-      postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
+    image: postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
     container_name: nextcloud-postgres
     volumes:
       - ${DATA_DIR}/postgres/nextcloud:/var/lib/postgresql/data
@@ -71,8 +69,7 @@ services:
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
   nextcloud-redis:
-    image: >-
-      redis:6.2@sha256:3a2bd6da7a0ad2a1786539c1d340ff9bd8ba6c3214f41d585e29a905e0281909
+    image: redis:6.2@sha256:3a2bd6da7a0ad2a1786539c1d340ff9bd8ba6c3214f41d585e29a905e0281909
     container_name: nextcloud-redis
     networks:
       - nextcloud

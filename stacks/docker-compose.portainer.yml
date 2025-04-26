@@ -1,8 +1,7 @@
 name: portainer
 services:
   portainer:
-    image: >-
-      portainer/portainer-ce:2.29.0@sha256:08a29a35a665abd399148e79019a732c4743c18adcaf977c131b7fa098fff435
+    image: portainer/portainer-ce:2.29.0@sha256:08a29a35a665abd399148e79019a732c4743c18adcaf977c131b7fa098fff435
     container_name: portainer
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock

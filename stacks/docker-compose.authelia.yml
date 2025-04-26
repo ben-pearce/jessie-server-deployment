@@ -3,8 +3,7 @@ include:
   - ./common/docker-compose.secrets.yml
 services:
   authelia:
-    image: >-
-      authelia/authelia:4.39.1@sha256:e325963609cc928861ffe8130c09111862df88dd8fcafbcd2c47e5ff0a4ae268
+    image: authelia/authelia:4.39.1@sha256:e325963609cc928861ffe8130c09111862df88dd8fcafbcd2c47e5ff0a4ae268
     container_name: authelia
     volumes:
       - ${CONFIG_DIR}/authelia:/config
@@ -43,8 +42,7 @@ services:
       traefik.http.routers.authelia.rule: Host(`login.${HOST}`)
       traefik.http.services.authelia.loadbalancer.server.port: 9091
   authelia-postgres:
-    image: >-
-      postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
+    image: postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
     container_name: authelia-postgres
     volumes:
       - ${DATA_DIR}/postgres/authelia:/var/lib/postgresql/data

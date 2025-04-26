@@ -1,8 +1,7 @@
 name: wallabag
 services:
   wallabag:
-    image: >-
-      wallabag/wallabag:2.6.12@sha256:9989e05769885aef0b316508b728580460c7713e435cc0b02c16e7b06e17bb6a
+    image: wallabag/wallabag:2.6.12@sha256:9989e05769885aef0b316508b728580460c7713e435cc0b02c16e7b06e17bb6a
     container_name: wallabag
     volumes:
       - ${DATA_DIR}/wallabag:/var/www/wallabag/data

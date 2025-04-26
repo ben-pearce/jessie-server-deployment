@@ -3,8 +3,7 @@ include:
   - common/docker-compose.tunnel.yml
 services:
   jellyfin:
-    image: >-
-      lscr.io/linuxserver/jellyfin:10.10.7@sha256:fffa82da33d0ff3aeed70e255cead2a12bee87da7c9722db0ee1c8c3a5f94896
+    image: lscr.io/linuxserver/jellyfin:10.10.7@sha256:fffa82da33d0ff3aeed70e255cead2a12bee87da7c9722db0ee1c8c3a5f94896
     container_name: jellyfin
     volumes:
       - ${DATA_DIR}/jellyfin:/config
@@ -39,8 +38,7 @@ services:
     tmpfs:
       - /config/data/transcodes:rw,size=10G,mode=1777
   tvheadend:
-    image: >-
-      lscr.io/linuxserver/tvheadend:version-26ec161f@sha256:5da84d8b5e16943b2654fbd6b84a60135f2c68182b66a25bc4e4fe322b7f9b8d
+    image: lscr.io/linuxserver/tvheadend:version-26ec161f@sha256:5da84d8b5e16943b2654fbd6b84a60135f2c68182b66a25bc4e4fe322b7f9b8d
     container_name: tvheadend
     volumes:
       - ${CONFIG_DIR}/tvheadend:/config

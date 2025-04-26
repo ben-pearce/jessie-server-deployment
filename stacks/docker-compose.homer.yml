@@ -1,8 +1,7 @@
 name: homer
 services:
   homer:
-    image: >-
-      b4bz/homer:v25.04.1@sha256:602287607aa9ba98e317a9d5d31ce45fd37e016685d230bf7fb0dc9f4004e607
+    image: b4bz/homer:v25.04.1@sha256:602287607aa9ba98e317a9d5d31ce45fd37e016685d230bf7fb0dc9f4004e607
     container_name: homer
     volumes:
       - ${CONFIG_DIR}/homer:/www/assets

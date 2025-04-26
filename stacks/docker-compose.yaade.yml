@@ -1,8 +1,7 @@
 name: yaade
 services:
   yaade:
-    image: >-
-      esperotech/yaade:latest@sha256:87757fb5d49a79be3202e327f603f7e5fb94a9290ec8c1b313b9f73235aaeb25
+    image: esperotech/yaade:latest@sha256:87757fb5d49a79be3202e327f603f7e5fb94a9290ec8c1b313b9f73235aaeb25
     container_name: yaade
     volumes:
       - ${DATA_DIR}/yaade:/app/data

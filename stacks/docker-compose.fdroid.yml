@@ -1,8 +1,7 @@
 name: fdroid
 services:
   fdroid-server:
-    image: >-
-      ghcr.io/ben-pearce/pwa-to-fdroid:v1.1.0@sha256:88d654d55297653fb6690ada082eff290735a01bc5a6799aa5a716d9bc20e088
+    image: ghcr.io/ben-pearce/pwa-to-fdroid:v1.1.0@sha256:88d654d55297653fb6690ada082eff290735a01bc5a6799aa5a716d9bc20e088
     container_name: fdroid-server
     secrets:
       - fdroid_password

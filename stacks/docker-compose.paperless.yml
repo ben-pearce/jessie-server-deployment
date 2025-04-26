@@ -1,8 +1,7 @@
 name: paperless
 services:
   paperless-gotenberg:
-    image: >-
-      docker.io/gotenberg/gotenberg:8.20@sha256:cda4386c7ed38f18bc6897828be01ba7361c99929a5c84ec5e293d7916e29bac
+    image: docker.io/gotenberg/gotenberg:8.20@sha256:cda4386c7ed38f18bc6897828be01ba7361c99929a5c84ec5e293d7916e29bac
     container_name: paperless-gotenberg
     networks:
       - paperless
@@ -12,8 +11,7 @@ services:
       - '--chromium-allow-list=file:///tmp/.*'
     restart: unless-stopped
   paperless-ngx:
-    image: >-
-      ghcr.io/paperless-ngx/paperless-ngx:2.15.2@sha256:80d1a7fe4f638cb00c1dcf5ff4ce2c15d92f13a6287db1e1b94f58c35a689e47
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.15.2@sha256:80d1a7fe4f638cb00c1dcf5ff4ce2c15d92f13a6287db1e1b94f58c35a689e47
     container_name: paperless-ngx
     depends_on:
       - paperless-gotenberg
@@ -63,8 +61,7 @@ services:
       traefik.http.routers.paperless-ngx.rule: Host(`paperless.${HOST}`)
       traefik.http.services.paperless-ngx.loadbalancer.server.port: 8000
   paperless-postgres:
-    image: >-
-      postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
+    image: postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
     container_name: paperless-postgres
     volumes:
       - ${DATA_DIR}/postgres/paperless:/var/lib/postgresql/data
@@ -86,8 +83,7 @@ services:
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
   paperless-redis:
-    image: >-
-      redis:7.4.1@sha256:bb142a9c18ac18a16713c1491d779697b4e107c22a97266616099d288237ef47
+    image: redis:7.4.1@sha256:bb142a9c18ac18a16713c1491d779697b4e107c22a97266616099d288237ef47
     container_name: paperless-redis
     volumes:
       - ${DATA_DIR}/redis/paperless:/data
@@ -95,8 +91,7 @@ services:
       - paperless
     restart: unless-stopped
   paperless-scanner:
-    image: >-
-      manuc66/node-hp-scan-to:latest@sha256:687060294b2e7f7a2fc637c0e5003b71bc2a0a07c5ee517e26f2a9841a1afaad
+    image: manuc66/node-hp-scan-to:latest@sha256:687060294b2e7f7a2fc637c0e5003b71bc2a0a07c5ee517e26f2a9841a1afaad
     container_name: paperless-scanner
     volumes:
       - ${DATA_DIR}/paperless/consume:/scan
@@ -111,8 +106,7 @@ services:
       - paperless
     restart: unless-stopped
   paperless-tika:
-    image: >-
-      ghcr.io/paperless-ngx/tika:2.9.1-minimal@sha256:20db3df89eaeb1b271dd840888fe909b88b12f4b86ef641ec07a1d45d4c5168f
+    image: ghcr.io/paperless-ngx/tika:2.9.1-minimal@sha256:20db3df89eaeb1b271dd840888fe909b88b12f4b86ef641ec07a1d45d4c5168f
     container_name: paperless-tika
     networks:
       - paperless

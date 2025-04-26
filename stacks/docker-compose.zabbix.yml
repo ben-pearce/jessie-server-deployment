@@ -1,8 +1,7 @@
 name: zabbix
 services:
   zabbix-postgres:
-    image: >-
-      postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
+    image: postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
     container_name: zabbix-postgres
     volumes:
       - ${DATA_DIR}/postgres/zabbix:/var/lib/postgresql/data
@@ -31,8 +30,7 @@ services:
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
   zabbix-server:
-    image: >-
-      zabbix/zabbix-server-pgsql:7.2.5-alpine@sha256:dfc75d79767addb6812c4762d6aa5a2a778f8dd185dd164058bd47beba6b5e9d
+    image: zabbix/zabbix-server-pgsql:7.2.5-alpine@sha256:dfc75d79767addb6812c4762d6aa5a2a778f8dd185dd164058bd47beba6b5e9d
     container_name: zabbix-server
     secrets:
       - zabbix_postgres_password
@@ -46,8 +44,7 @@ services:
       - zabbix
     restart: unless-stopped
   zabbix-web:
-    image: >-
-      zabbix/zabbix-web-nginx-pgsql:7.2.5-alpine@sha256:822fa5ebdcbd8ab4a2dab007ac0827d56ac8bf1a9fa7a3660e719b0564211a4c
+    image: zabbix/zabbix-web-nginx-pgsql:7.2.5-alpine@sha256:822fa5ebdcbd8ab4a2dab007ac0827d56ac8bf1a9fa7a3660e719b0564211a4c
     container_name: zabbix-web
     depends_on:
       - zabbix-postgres
