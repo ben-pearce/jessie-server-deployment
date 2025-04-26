@@ -44,7 +44,7 @@ services:
       - zabbix
     restart: unless-stopped
   zabbix-web:
-    image: zabbix/zabbix-web-nginx-pgsql:7.2.5-alpine@sha256:822fa5ebdcbd8ab4a2dab007ac0827d56ac8bf1a9fa7a3660e719b0564211a4c
+    image: zabbix/zabbix-web-nginx-pgsql:7.2.6-alpine@sha256:7545ba09739096008cb153b27dc710786b98ecbe8caf31bc8bbff2b045ec7f30
     container_name: zabbix-web
     depends_on:
       - zabbix-postgres
