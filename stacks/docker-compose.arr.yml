@@ -125,7 +125,7 @@ services:
       traefik.http.routers.sonarr.middlewares: authelia
       traefik.http.routers.sonarr.rule: Host(`sonarr.${HOST}`)
   transmission:
-    image: lscr.io/linuxserver/transmission:4.0.6@sha256:8a7166930c889524e2fc7abb16671c253c1ca7d634d8bf88c6c04a15a1ed44bb
+    image: lscr.io/linuxserver/transmission:4.0.6@sha256:2b8ab10e04a17108f63995246efceb6e890d50b7e848efbca305217a016288e7
     container_name: transmission
     volumes:
       - ${DATA_DIR}/transmission:/config
