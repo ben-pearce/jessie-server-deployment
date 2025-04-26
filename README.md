@@ -17,60 +17,60 @@ This repository holds my docker compose files and configuration files for servic
 
 | **Name** | **Description** | **Ports** | **Links** |
 |---|---|---|---|
-| [traefik](./docker-compose.yml#L15)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
+| [traefik](./docker-compose.yml#L14)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
 | [tunnel](./stacks/common/docker-compose.tunnel.yml#L5)  | A Docker container for using WireGuard with PIA. |  | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
-| [bazarr](./stacks/docker-compose.arr.yml#L8) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
-| [prowlarr](./stacks/docker-compose.arr.yml#L34) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
-| [radarr](./stacks/docker-compose.arr.yml#L57) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
-| [sabnzbd](./stacks/docker-compose.arr.yml#L83) <sup>1,2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
-| [sonarr](./stacks/docker-compose.arr.yml#L109) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
-| [transmission](./stacks/docker-compose.arr.yml#L135) <sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
-| [authelia](./stacks/docker-compose.authelia.yml#L8)  | The Single Sign-On Multi-Factor portal for web apps. |  | [Docker Hub](https://hub.docker.com/r/authelia/authelia), [Website](https://www.authelia.com/) |
-| [authelia-postgres](./stacks/docker-compose.authelia.yml#L48)  |  |  |  |
-| [cobalt-api](./stacks/docker-compose.cobalt.yml#L6)  |  |  |  |
-| [cobalt-web](./stacks/docker-compose.cobalt.yml#L24)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
-| [cyberchef](./stacks/docker-compose.cyberchef.yml#L6)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
-| [deemix](./stacks/docker-compose.deemix.yml#L6)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
-| [fdroid-server](./stacks/docker-compose.fdroid.yml#L6)  |  |  |  |
-| [feishin](./stacks/docker-compose.feishin.yml#L6)  | A modern self-hosted music player. |  | [GitHub](https://github.com/jeffvli/feishin) |
-| [fidi](./stacks/docker-compose.firefly.yml#L8)  | Firefly III Data Importer. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/data-importer) |
-| [firefly](./stacks/docker-compose.firefly.yml#L52)  | Personal Finance Manager. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/core), [Website](https://www.firefly-iii.org/) |
-| [firefly-postgres](./stacks/docker-compose.firefly.yml#L98)  |  |  |  |
-| [freshrss](./stacks/docker-compose.freshrss.yml#L6)  | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
-| [homer](./stacks/docker-compose.homer.yml#L6)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
-| [immich-machine-learning](./stacks/docker-compose.immich.yml#L6)  |  |  |  |
-| [immich-postgres](./stacks/docker-compose.immich.yml#L28)  |  |  |  |
-| [immich-redis](./stacks/docker-compose.immich.yml#L51)  |  |  |  |
-| [immich-server](./stacks/docker-compose.immich.yml#L58)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
-| [jellyfin](./stacks/docker-compose.jellyfin.yml#L8) <sup>1</sup> | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
-| [tvheadend](./stacks/docker-compose.jellyfin.yml#L44) <sup>1</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
-| [lidarr](./stacks/docker-compose.lidarr.yml#L6)  | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
-| [n8n](./stacks/docker-compose.n8n.yml#L6)  | Powerful workflow automation. |  |  |
-| [navidrome](./stacks/docker-compose.navidrome.yml#L6)  | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
-| [nextcloud](./stacks/docker-compose.nextcloud.yml#L8)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
-| [nextcloud-postgres](./stacks/docker-compose.nextcloud.yml#L53)  |  |  |  |
-| [nextcloud-redis](./stacks/docker-compose.nextcloud.yml#L76)  |  |  |  |
-| [obsidian-couchdb](./stacks/docker-compose.obsidian.yml#L6)  |  |  |  |
-| [ofelia](./stacks/docker-compose.ofelia.yml#L6)  | Docker job scheduler. |  | [GitHub](https://github.com/mcuadros/ofelia) |
-| [otrecorder](./stacks/docker-compose.owntracks.yml#L6)  | Store and access data published by OwnTracks apps. |  | [GitHub](https://github.com/owntracks/recorder) |
-| [owntracks-frontend](./stacks/docker-compose.owntracks.yml#L26)  | Web interface for OwnTracks built with Vue.js |  | [GitHub](https://github.com/owntracks/frontend) |
-| [paperless-gotenberg](./stacks/docker-compose.paperless.yml#L6)  |  |  |  |
-| [paperless-ngx](./stacks/docker-compose.paperless.yml#L17)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
-| [paperless-postgres](./stacks/docker-compose.paperless.yml#L68)  |  |  |  |
-| [paperless-redis](./stacks/docker-compose.paperless.yml#L91)  |  |  |  |
-| [paperless-scanner](./stacks/docker-compose.paperless.yml#L100)  |  |  |  |
-| [paperless-tika](./stacks/docker-compose.paperless.yml#L116)  |  |  |  |
-| [pgadmin](./stacks/docker-compose.pgadmin.yml#L6)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
-| [portainer](./stacks/docker-compose.portainer.yml#L6)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
-| [stirling-pdf](./stacks/docker-compose.stirling-pdf.yml#L6)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
-| [unifi-controller](./stacks/docker-compose.unifi-controller.yml#L6)  | Wireless network management. | `0.0.0.0:3478:3478/udp`, `0.0.0.0:8080:8080`, `0.0.0.0:10001:10001/udp` |  |
-| [uptime-kuma](./stacks/docker-compose.uptime-kuma.yml#L6)  | Self-hosted monitoring tool like "Uptime Robot". |  | [GitHub](https://github.com/louislam/uptime-kuma) |
-| [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L8)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
-| [wallabag](./stacks/docker-compose.wallabag.yml#L6)  | A self hostable application for saving web pages, freely. |  | [GitHub](https://github.com/wallabag) |
-| [yaade](./stacks/docker-compose.yaade.yml#L6)  | Yet Another API Development Environment. |  | [GitHub](https://github.com/EsperoTech/yaade) |
-| [zabbix-postgres](./stacks/docker-compose.zabbix.yml#L6)  |  |  |  |
-| [zabbix-server](./stacks/docker-compose.zabbix.yml#L36)  |  | `0.0.0.0:10051:10051` |  |
-| [zabbix-web](./stacks/docker-compose.zabbix.yml#L51)  | Zabbix web frontend. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql) |
+| [bazarr](./stacks/docker-compose.arr.yml#L7) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
+| [prowlarr](./stacks/docker-compose.arr.yml#L32) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
+| [radarr](./stacks/docker-compose.arr.yml#L54) <sup>1</sup> | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
+| [sabnzbd](./stacks/docker-compose.arr.yml#L79) <sup>1,2</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
+| [sonarr](./stacks/docker-compose.arr.yml#L104) <sup>1</sup> | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
+| [transmission](./stacks/docker-compose.arr.yml#L129) <sup>1,2</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
+| [authelia](./stacks/docker-compose.authelia.yml#L7)  | The Single Sign-On Multi-Factor portal for web apps. |  | [Docker Hub](https://hub.docker.com/r/authelia/authelia), [Website](https://www.authelia.com/) |
+| [authelia-postgres](./stacks/docker-compose.authelia.yml#L46)  |  |  |  |
+| [cobalt-api](./stacks/docker-compose.cobalt.yml#L5)  |  |  |  |
+| [cobalt-web](./stacks/docker-compose.cobalt.yml#L22)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
+| [cyberchef](./stacks/docker-compose.cyberchef.yml#L5)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
+| [deemix](./stacks/docker-compose.deemix.yml#L5)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
+| [fdroid-server](./stacks/docker-compose.fdroid.yml#L5)  |  |  |  |
+| [feishin](./stacks/docker-compose.feishin.yml#L5)  | A modern self-hosted music player. |  | [GitHub](https://github.com/jeffvli/feishin) |
+| [fidi](./stacks/docker-compose.firefly.yml#L7)  | Firefly III Data Importer. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/data-importer) |
+| [firefly](./stacks/docker-compose.firefly.yml#L50)  | Personal Finance Manager. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/core), [Website](https://www.firefly-iii.org/) |
+| [firefly-postgres](./stacks/docker-compose.firefly.yml#L95)  |  |  |  |
+| [freshrss](./stacks/docker-compose.freshrss.yml#L5)  | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
+| [homer](./stacks/docker-compose.homer.yml#L5)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
+| [immich-machine-learning](./stacks/docker-compose.immich.yml#L5)  |  |  |  |
+| [immich-postgres](./stacks/docker-compose.immich.yml#L26)  |  |  |  |
+| [immich-redis](./stacks/docker-compose.immich.yml#L48)  |  |  |  |
+| [immich-server](./stacks/docker-compose.immich.yml#L54)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
+| [jellyfin](./stacks/docker-compose.jellyfin.yml#L7) <sup>1</sup> | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
+| [tvheadend](./stacks/docker-compose.jellyfin.yml#L42) <sup>1</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
+| [lidarr](./stacks/docker-compose.lidarr.yml#L5)  | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
+| [n8n](./stacks/docker-compose.n8n.yml#L5)  | Powerful workflow automation. |  |  |
+| [navidrome](./stacks/docker-compose.navidrome.yml#L5)  | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
+| [nextcloud](./stacks/docker-compose.nextcloud.yml#L7)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
+| [nextcloud-postgres](./stacks/docker-compose.nextcloud.yml#L51)  |  |  |  |
+| [nextcloud-redis](./stacks/docker-compose.nextcloud.yml#L73)  |  |  |  |
+| [obsidian-couchdb](./stacks/docker-compose.obsidian.yml#L5)  |  |  |  |
+| [ofelia](./stacks/docker-compose.ofelia.yml#L5)  | Docker job scheduler. |  | [GitHub](https://github.com/mcuadros/ofelia) |
+| [otrecorder](./stacks/docker-compose.owntracks.yml#L5)  | Store and access data published by OwnTracks apps. |  | [GitHub](https://github.com/owntracks/recorder) |
+| [owntracks-frontend](./stacks/docker-compose.owntracks.yml#L24)  | Web interface for OwnTracks built with Vue.js |  | [GitHub](https://github.com/owntracks/frontend) |
+| [paperless-gotenberg](./stacks/docker-compose.paperless.yml#L5)  |  |  |  |
+| [paperless-ngx](./stacks/docker-compose.paperless.yml#L15)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
+| [paperless-postgres](./stacks/docker-compose.paperless.yml#L65)  |  |  |  |
+| [paperless-redis](./stacks/docker-compose.paperless.yml#L87)  |  |  |  |
+| [paperless-scanner](./stacks/docker-compose.paperless.yml#L95)  |  |  |  |
+| [paperless-tika](./stacks/docker-compose.paperless.yml#L110)  |  |  |  |
+| [pgadmin](./stacks/docker-compose.pgadmin.yml#L5)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
+| [portainer](./stacks/docker-compose.portainer.yml#L5)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
+| [stirling-pdf](./stacks/docker-compose.stirling-pdf.yml#L5)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
+| [unifi-controller](./stacks/docker-compose.unifi-controller.yml#L5)  | Wireless network management. | `0.0.0.0:3478:3478/udp`, `0.0.0.0:8080:8080`, `0.0.0.0:10001:10001/udp` |  |
+| [uptime-kuma](./stacks/docker-compose.uptime-kuma.yml#L5)  | Self-hosted monitoring tool like "Uptime Robot". |  | [GitHub](https://github.com/louislam/uptime-kuma) |
+| [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L7)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
+| [wallabag](./stacks/docker-compose.wallabag.yml#L5)  | A self hostable application for saving web pages, freely. |  | [GitHub](https://github.com/wallabag) |
+| [yaade](./stacks/docker-compose.yaade.yml#L5)  | Yet Another API Development Environment. |  | [GitHub](https://github.com/EsperoTech/yaade) |
+| [zabbix-postgres](./stacks/docker-compose.zabbix.yml#L5)  |  |  |  |
+| [zabbix-server](./stacks/docker-compose.zabbix.yml#L34)  |  | `0.0.0.0:10051:10051` |  |
+| [zabbix-web](./stacks/docker-compose.zabbix.yml#L48)  | Zabbix web frontend. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql) |
 
 <sup>1</sup>Assumes mass storage available, mounted at MEDIA_DIR on the host.
 
