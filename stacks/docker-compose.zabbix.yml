@@ -30,7 +30,7 @@ services:
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
   zabbix-server:
-    image: zabbix/zabbix-server-pgsql:7.2.5-alpine@sha256:dfc75d79767addb6812c4762d6aa5a2a778f8dd185dd164058bd47beba6b5e9d
+    image: zabbix/zabbix-server-pgsql:7.2.6-alpine@sha256:697ebb59166f7d9f98ddceff552e9f16428213416f1fa126df4ae97dfe4750e1
     container_name: zabbix-server
     secrets:
       - zabbix_postgres_password
