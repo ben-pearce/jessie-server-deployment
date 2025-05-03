@@ -91,7 +91,7 @@ services:
       traefik.http.routers.firefly.middlewares: authelia
       traefik.http.routers.firefly.rule: Host(`firefly.${HOST}`)
   firefly-postgres:
-    image: postgres:14.17@sha256:1e6c52c366e39e869184256c45757e1c85ba15b3d244b0a2cea640da6df1c4e3
+    image: postgres:17.4@sha256:304ab813518754228f9f792f79d6da36359b82d8ecf418096c636725f8c930ad
     container_name: firefly-postgres
     volumes:
       - ${DATA_DIR}/postgres/firefly:/var/lib/postgresql/data

@@ -30,11 +30,6 @@
     },
     {
       "matchDatasources": "docker",
-      "matchPackageNames": ["postgres"],
-      "allowedVersions": "<=14"
-    },
-    {
-      "matchDatasources": "docker",
       "matchPackageNames": ["tensorchord/pgvecto-rs"],
       "versioning": "regex:^(?<compatibility>.*)-v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$",
       "allowedVersions": "<0.4"
