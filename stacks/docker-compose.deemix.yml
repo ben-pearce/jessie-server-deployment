@@ -1,7 +1,7 @@
 name: deemix
 services:
   deemix:
-    image: registry.gitlab.com/bockiii/deemix-docker:2022.12.14-r222.5d447b6035@sha256:d325660d833c30c8bbb5cf0caa75135b42a2f69b82f2269fd5bea91a04c449e6
+    image: ghcr.io/bambanah/deemix:v4.3.3@sha256:986162ca42ef17362b7fec079610ac19626acca571e8cc7a929bfcc4da9f495f
     container_name: deemix
     volumes:
       - ${DATA_DIR}/lidarr/downloads:/downloads
