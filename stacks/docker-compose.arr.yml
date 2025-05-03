@@ -75,7 +75,7 @@ services:
       traefik.http.routers.radarr.middlewares: authelia
       traefik.http.routers.radarr.rule: Host(`radarr.${HOST}`)
   sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:4.5.1@sha256:219f9d2508849a916614840e48bc0d09769724a0bd2cb031d42572cdefc23c04
+    image: lscr.io/linuxserver/sabnzbd:4.5.1-ls216@sha256:64fef49beb0bf1df043c556c2abf1b8485031fad6409995d75ee93e201359d52
     container_name: sabnzbd
     volumes:
       - ${DATA_DIR}/sabnzbd:/config
