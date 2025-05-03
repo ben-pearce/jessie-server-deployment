@@ -35,19 +35,9 @@
     },
     {
       "matchDatasources": "docker",
-      "matchPackageNames": ["ghcr.io/linuxserver/lidarr"],
-      "allowedVersions": "<8"
-    },
-    {
-      "matchDatasources": "docker",
       "matchPackageNames": ["tensorchord/pgvecto-rs"],
       "versioning": "regex:^(?<compatibility>.*)-v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$",
       "allowedVersions": "<0.4"
-    },
-    {
-      "matchDatasources": "docker",
-      "matchPackageNames": ["ghcr.io/linuxserver/lidarr"],
-      "allowedVersions": "<8"
     },
     {
       "matchDatasources": "docker",
