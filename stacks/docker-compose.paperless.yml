@@ -91,7 +91,7 @@ services:
       - paperless
     restart: unless-stopped
   paperless-scanner:
-    image: manuc66/node-hp-scan-to:latest@sha256:95db7d698b3d8744919cce87bad1473c821597449195e55fd68871925315165c
+    image: manuc66/node-hp-scan-to:1.7.2@sha256:58a07f8789b8f21af5793fd744d44c2b4fccfdff6fea4e49c5cbdfc45debb61a
     container_name: paperless-scanner
     volumes:
       - ${DATA_DIR}/paperless/consume:/scan
