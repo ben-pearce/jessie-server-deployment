@@ -43,12 +43,6 @@ services:
       ofelia.job-exec.immich-postgres-backup.user: postgres
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
-  immich-valkey:
-    image: valkey:8.1.1@sha256:c855f98e09d558a0d7cc1a4e56473231206a4c54c0114ada9c485b47aeb92ec8
-    container_name: immich-valkey
-    networks:
-      - immich
-    restart: unless-stopped
   immich-server:
     image: ghcr.io/immich-app/immich-server:v1.132.3@sha256:6680d88486251b0264a78a1934fe82eef875555aa6d84d703a0980328a5d5c31
     container_name: immich-server
@@ -80,6 +74,12 @@ services:
       traefik.http.routers.immich-server.entrypoints: https
       traefik.http.routers.immich-server.rule: Host(`immich.${HOST}`)
       traefik.http.services.immich-server.loadbalancer.server.port: 2283
+  immich-valkey:
+    image: valkey:8.1.1@sha256:c855f98e09d558a0d7cc1a4e56473231206a4c54c0114ada9c485b47aeb92ec8
+    container_name: immich-valkey
+    networks:
+      - immich
+    restart: unless-stopped
 networks:
   immich:
     name: immich
