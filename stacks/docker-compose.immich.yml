@@ -5,7 +5,7 @@ services:
     container_name: immich-machine-learning
     depends_on:
       - immich-postgres
-      - immich-redis
+      - immich-valkey
     volumes:
       - ${DATA_DIR}/immich/upload:/usr/src/app/upload
       - ${DATA_DIR}/immich/model-cache:/cache
@@ -13,7 +13,7 @@ services:
       - immich_postgres_password
     environment:
       - NODE_ENV=production
-      - REDIS_HOSTNAME=immich-redis
+      - REDIS_HOSTNAME=immich-valkey
       - DB_HOSTNAME=immich-postgres
       - DB_USERNAME=immich
       - DB_DATABASE_NAME=immich
@@ -43,9 +43,9 @@ services:
       ofelia.job-exec.immich-postgres-backup.user: postgres
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
-  immich-redis:
-    image: redis:6.2@sha256:905cecd397c79d38eccad5f561a72f17c3f89e8209b30f53748564ad21c6bb98
-    container_name: immich-redis
+  immich-valkey:
+    image: valkey:8.1.1@sha256:c855f98e09d558a0d7cc1a4e56473231206a4c54c0114ada9c485b47aeb92ec8
+    container_name: immich-valkey
     networks:
       - immich
     restart: unless-stopped
@@ -54,7 +54,7 @@ services:
     container_name: immich-server
     depends_on:
       - immich-postgres
-      - immich-redis
+      - immich-valkey
     volumes:
       - ${DATA_DIR}/immich/upload:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -62,7 +62,7 @@ services:
       - immich_postgres_password
     environment:
       - NODE_ENV=production
-      - REDIS_HOSTNAME=immich-redis
+      - REDIS_HOSTNAME=immich-valkey
       - DB_HOSTNAME=immich-postgres
       - DB_USERNAME=immich
       - DB_DATABASE_NAME=immich
