@@ -63,6 +63,11 @@
       "matchDatasources": "docker",
       "matchPackageNames": ["ghcr.io/ben-pearce/cobalt-web"],
       "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)(\\.(?<patch>\\d+))?$"
+    },
+    {
+      "matchDatasources": "docker",
+      "matchPackageNames": ["thrnz/docker-wireguard-pia"],
+      "versioning": "regex:^(?<major>\\d+)_master_(?<build>.+)$"
     }
   ]
 }
