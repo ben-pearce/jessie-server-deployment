@@ -50,7 +50,7 @@ services:
       traefik.http.routers.prowlarr.rule: Host(`prowlarr.${HOST}`)
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
   radarr:
-    image: ghcr.io/linuxserver/radarr:5.22.4.9896-ls273@sha256:3a220dd02a24cb3610441ec6811bf70846e851e05f3219ec4801a06bd0646912
+    image: lscr.io/linuxserver/radarr:5.22.4.9896-ls273@sha256:3a220dd02a24cb3610441ec6811bf70846e851e05f3219ec4801a06bd0646912
     container_name: radarr
     volumes:
       - ${DATA_DIR}/radarr:/config
@@ -100,7 +100,7 @@ services:
       traefik.http.routers.sabnzbd.rule: Host(`sabnzbd.${HOST}`)
       traefik.http.services.sabnzbd.loadbalancer.server.port: 8080
   sonarr:
-    image: ghcr.io/linuxserver/sonarr:4.0.14.2939-ls281@sha256:5581b2188f11ea6693e0dfe3f3c3198bb605b78088ec685ad579a5a308cc0d5d
+    image: lscr.io/linuxserver/sonarr:4.0.14.2939-ls281@sha256:5581b2188f11ea6693e0dfe3f3c3198bb605b78088ec685ad579a5a308cc0d5d
     container_name: sonarr
     volumes:
       - ${DATA_DIR}/sonarr:/config
