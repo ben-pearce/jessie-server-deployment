@@ -16,7 +16,6 @@ services:
       - nextcloud
       - paperless
       - pgadmin-web
-      - zabbix
     restart: unless-stopped
     labels:
       readme.description: Web based administration tool for the PostgreSQL database.

@@ -5,8 +5,6 @@ include:
   - docker-compose.management.yml
   - docker-compose.media.yml
   - docker-compose.music.yml
-  - docker-compose.networking.yml
-  - docker-compose.status.yml
   - docker-compose.tools.yml
 services:
   traefik:
@@ -40,12 +38,9 @@ services:
       - nextcloud-web
       - paperless-web
       - pgadmin-web
-      - portainer-web
       - tunnel-web
-      - uptime-kuma-web
       - vaultwarden-web
       - yaade-web
-      - zabbix-web
       - obsidian-web
       - cobalt-web
       - wallabag-web
@@ -53,7 +48,6 @@ services:
       - otr-web
       - fdroid-web
       - lidarr-web
-      - unifi-web
     command:
       - '--global.sendAnonymousUsage=false'
       - '--api.insecure=true'
