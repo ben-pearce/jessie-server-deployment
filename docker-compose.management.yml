@@ -2,4 +2,3 @@ name: management
 include:
   - stacks/docker-compose.homer.yml
   - stacks/docker-compose.ofelia.yml
-  - stacks/docker-compose.portainer.yml

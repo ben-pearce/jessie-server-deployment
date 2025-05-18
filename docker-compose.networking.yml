@@ -1,3 +1,0 @@
-name: networking
-include:
-  - stacks/docker-compose.unifi-controller.yml
