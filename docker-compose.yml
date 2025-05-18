@@ -56,7 +56,6 @@ services:
       - pgadmin-web
       - tunnel-web
       - vaultwarden-web
-      - yaade-web
       - obsidian-web
       - cobalt-web
       - wallabag-web
