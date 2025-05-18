@@ -10,15 +10,15 @@ This repository holds my docker compose files and configuration files for servic
 - [📺 Media](https://github.com/ben-pearce/jessie-server-deployment/blob/main/docker-compose.media.yml)
 - [💿 Music](https://github.com/ben-pearce/jessie-server-deployment/blob/main/docker-compose.music.yml)
 - [🌐 Networking](https://github.com/ben-pearce/jessie-server-deployment/blob/main/docker-compose.networking.yml)
-- [📈 Status / Monitoring](https://github.com/ben-pearce/jessie-server-deployment/blob/main/docker-compose.status.yml)
 - [🔧 Tools / Utilities](https://github.com/ben-pearce/jessie-server-deployment/blob/main/docker-compose.tools.yml)
 
 ## Containers
 
 | **Name** | **Description** | **Ports** | **Links** |
 |---|---|---|---|
-| [traefik](./docker-compose.yml#L14)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
-| [zabbix-agent](./docker-compose.yml#L90)  | Zabbix agent for monitoring. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-agent) |
+| [portainer-agent](./docker-compose.yml#L12)  | Portainer edge agent. |  | [GitHub](https://github.com/portainer/agent) |
+| [traefik](./docker-compose.yml#L28)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
+| [zabbix-agent](./docker-compose.yml#L99)  | Zabbix agent for monitoring. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-agent) |
 | [tunnel](./stacks/common/docker-compose.tunnel.yml#L5)  | A Docker container for using WireGuard with PIA. |  | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
 | [bazarr](./stacks/docker-compose.arr.yml#L7) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [prowlarr](./stacks/docker-compose.arr.yml#L32) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
@@ -62,16 +62,10 @@ This repository holds my docker compose files and configuration files for servic
 | [paperless-scanner](./stacks/docker-compose.paperless.yml#L95)  |  |  |  |
 | [paperless-tika](./stacks/docker-compose.paperless.yml#L110)  |  |  |  |
 | [pgadmin](./stacks/docker-compose.pgadmin.yml#L5)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
-| [portainer](./stacks/docker-compose.portainer.yml#L5)  | Universal management GUI for Docker. |  | [GitHub](https://github.com/portainer/portainer) |
 | [stirling-pdf](./stacks/docker-compose.stirling-pdf.yml#L5)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
-| [unifi-controller](./stacks/docker-compose.unifi-controller.yml#L5)  | Wireless network management. | `0.0.0.0:3478:3478/udp`, `0.0.0.0:8080:8080`, `0.0.0.0:10001:10001/udp` |  |
-| [uptime-kuma](./stacks/docker-compose.uptime-kuma.yml#L5)  | Self-hosted monitoring tool like "Uptime Robot". |  | [GitHub](https://github.com/louislam/uptime-kuma) |
 | [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L7)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 | [wallabag](./stacks/docker-compose.wallabag.yml#L5)  | A self hostable application for saving web pages, freely. |  | [GitHub](https://github.com/wallabag) |
 | [yaade](./stacks/docker-compose.yaade.yml#L5)  | Yet Another API Development Environment. |  | [GitHub](https://github.com/EsperoTech/yaade) |
-| [zabbix-postgres](./stacks/docker-compose.zabbix.yml#L5)  |  |  |  |
-| [zabbix-server](./stacks/docker-compose.zabbix.yml#L34)  |  | `0.0.0.0:10051:10051` |  |
-| [zabbix-web](./stacks/docker-compose.zabbix.yml#L48)  | Zabbix web frontend. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-web-nginx-pgsql) |
 
 <sup>1</sup>Assumes mass storage available, mounted at MEDIA_DIR on the host.
 
@@ -100,7 +94,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `LOG_DIR` | Location of logs directory on host. | `/var/log` |
 | `ADMIN_EMAIL` | Administrative email address. | `somebody@email.com` |
 | `LAN_SUBNET` | Local subnet . | `10.0.0.0/24` |
-| `PRINTER_HOST` | Printer host |  |
+| `PRINTER_HOST` | Printer host. | `printer.example.com` |
 | `ZBX_SERVER_HOST` | Zabbix monitoring server host. | `zabbix.example.com` |
 | `ZBX_REFRESHACTIVECHECKS` | Zabbix active check interval. | `60` |
 
