@@ -18,7 +18,7 @@ This repository holds my docker compose files and configuration files for servic
 |---|---|---|---|
 | [portainer-agent](./docker-compose.yml#L12)  | Portainer edge agent. |  | [GitHub](https://github.com/portainer/agent) |
 | [traefik](./docker-compose.yml#L28)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
-| [zabbix-agent](./docker-compose.yml#L99)  | Zabbix agent for monitoring. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-agent) |
+| [zabbix-agent](./docker-compose.yml#L98)  | Zabbix agent for monitoring. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-agent) |
 | [tunnel](./stacks/common/docker-compose.tunnel.yml#L5)  | A Docker container for using WireGuard with PIA. |  | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
 | [bazarr](./stacks/docker-compose.arr.yml#L7) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [prowlarr](./stacks/docker-compose.arr.yml#L32) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
@@ -65,7 +65,6 @@ This repository holds my docker compose files and configuration files for servic
 | [stirling-pdf](./stacks/docker-compose.stirling-pdf.yml#L5)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
 | [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L7)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 | [wallabag](./stacks/docker-compose.wallabag.yml#L5)  | A self hostable application for saving web pages, freely. |  | [GitHub](https://github.com/wallabag) |
-| [yaade](./stacks/docker-compose.yaade.yml#L5)  | Yet Another API Development Environment. |  | [GitHub](https://github.com/EsperoTech/yaade) |
 
 <sup>1</sup>Assumes mass storage available, mounted at MEDIA_DIR on the host.
 
