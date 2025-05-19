@@ -16,9 +16,9 @@ This repository holds my docker compose files and configuration files for servic
 
 | **Name** | **Description** | **Ports** | **Links** |
 |---|---|---|---|
-| [portainer-agent](./docker-compose.yml#L12)  | Portainer edge agent. |  | [GitHub](https://github.com/portainer/agent) |
-| [traefik](./docker-compose.yml#L28)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
-| [zabbix-agent](./docker-compose.yml#L98)  | Zabbix agent for monitoring. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-agent) |
+| [portainer-agent](./docker-compose.monitoring.yml#L5)  | Portainer edge agent. |  | [GitHub](https://github.com/portainer/agent) |
+| [zabbix-agent](./docker-compose.monitoring.yml#L21)  | Zabbix agent for monitoring. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-agent) |
+| [traefik](./docker-compose.yml#L13)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
 | [tunnel](./stacks/common/docker-compose.tunnel.yml#L5)  | A Docker container for using WireGuard with PIA. |  | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
 | [bazarr](./stacks/docker-compose.arr.yml#L7) <sup>1</sup> | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [prowlarr](./stacks/docker-compose.arr.yml#L32) <sup>2</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
@@ -94,6 +94,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `ADMIN_EMAIL` | Administrative email address. | `somebody@email.com` |
 | `LAN_SUBNET` | Local subnet . | `10.0.0.0/24` |
 | `PRINTER_HOST` | Printer host. | `printer.example.com` |
+| `ZBX_HOSTNAME` | Zabbix server hostname. | `zabbix-server` |
 | `ZBX_SERVER_HOST` | Zabbix monitoring server host. | `zabbix.example.com` |
 | `ZBX_REFRESHACTIVECHECKS` | Zabbix active check interval. | `60` |
 
