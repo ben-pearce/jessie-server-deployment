@@ -11,7 +11,7 @@ services:
       - '--chromium-allow-list=file:///tmp/.*'
     restart: unless-stopped
   paperless-ngx:
-    image: ghcr.io/paperless-ngx/paperless-ngx:2.15.2@sha256:80d1a7fe4f638cb00c1dcf5ff4ce2c15d92f13a6287db1e1b94f58c35a689e47
+    image: ghcr.io/paperless-ngx/paperless-ngx:2.16.1@sha256:8ee805cb2a4de2beea6594a94362341e026056ed0187ef0baed0ad9f0301459d
     container_name: paperless-ngx
     depends_on:
       - paperless-gotenberg
