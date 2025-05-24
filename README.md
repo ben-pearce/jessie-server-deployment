@@ -41,8 +41,8 @@ This repository holds my docker compose files and configuration files for servic
 | [homer](./stacks/docker-compose.homer.yml#L5)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
 | [immich-machine-learning](./stacks/docker-compose.immich.yml#L5)  |  |  |  |
 | [immich-postgres](./stacks/docker-compose.immich.yml#L26)  |  |  |  |
-| [immich-server](./stacks/docker-compose.immich.yml#L48)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
-| [immich-valkey](./stacks/docker-compose.immich.yml#L79)  |  |  |  |
+| [immich-server](./stacks/docker-compose.immich.yml#L49)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
+| [immich-valkey](./stacks/docker-compose.immich.yml#L80)  |  |  |  |
 | [jellyfin](./stacks/docker-compose.jellyfin.yml#L7) <sup>1</sup> | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
 | [tvheadend](./stacks/docker-compose.jellyfin.yml#L42) <sup>1</sup> | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
 | [lidarr](./stacks/docker-compose.lidarr.yml#L5)  | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
