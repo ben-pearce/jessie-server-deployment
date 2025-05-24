@@ -22,7 +22,7 @@ services:
       - immich
     restart: unless-stopped
   immich-postgres:
-    image: tensorchord/pgvecto-rs:pg14-v0.3.0@sha256:5674cef7e32c25466e7b32aed7d171271756b2df4cbc73f399ea3bbaa8bcff9b
+    image: ghcr.io/immich-app/postgres:14-vectorchord0.3.0-pgvectors0.3.0@sha256:c34656dc901dec813cf7a0d30e95192696e888f6e45535740fa96eac3bb22941
     container_name: immich-postgres
     volumes:
       - ${DATA_DIR}/postgres/immich:/var/lib/postgresql/data
@@ -33,6 +33,7 @@ services:
       POSTGRES_DB: immich
       POSTGRES_PASSWORD_FILE: /run/secrets/immich_postgres_password
       POSTGRES_USER: immich
+      POSTGRES_INITDB_ARGS: '--data-checksums'
     networks:
       - immich
     restart: unless-stopped
@@ -44,7 +45,7 @@ services:
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
   immich-server:
-    image: ghcr.io/immich-app/immich-server:v1.132.3@sha256:6680d88486251b0264a78a1934fe82eef875555aa6d84d703a0980328a5d5c31
+    image: ghcr.io/immich-app/immich-server:v1.133.1@sha256:1daaf09ba61066184aad6e4f524b13e20f8884cb2030c314438e34cce9358b2c
     container_name: immich-server
     depends_on:
       - immich-postgres
