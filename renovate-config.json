@@ -15,9 +15,8 @@
     },
     {
       "matchDatasources": "docker",
-      "matchPackageNames": ["tensorchord/pgvecto-rs"],
-      "versioning": "regex:^(?<compatibility>.*)-v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$",
-      "allowedVersions": "<0.4"
+      "matchPackageNames": ["ghcr.io/immich-app/postgres"],
+      "versioning": "regex:^(?<compatibility>[0-9\\-a-z]+)(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)$"
     },
     {
       "matchDatasources": "docker",
