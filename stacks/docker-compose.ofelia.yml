@@ -1,7 +1,7 @@
 name: ofelia
 services:
   ofelia:
-    image: mcuadros/ofelia:0.3.16@sha256:ef9b94b936146b3c8404c8b4ec6eaa5a2175386adda6126bbea474682681d4ed
+    image: mcuadros/ofelia:0.3.17@sha256:c009ee22434a92c239e351628b978d5dc32cd4571997159e058035f57719bdd3
     container_name: ofelia
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
