@@ -1,16 +1,15 @@
 name: jellyfin
 include:
   - common/docker-compose.tunnel.yml
+  - common/docker-compose.volumes.yml
 services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:10.10.7ubu2404-ls64@sha256:a5fb220ce06edb8ef056a8e2a88bc04a6608d1cb7d49b7002ff4c858945566ad
     container_name: jellyfin
     volumes:
       - ${DATA_DIR}/jellyfin:/config
-      - ${MEDIA_DIR}/shows:/tv
-      - ${MEDIA_DIR}/movies:/movies
-      - ${MUSIC_DIR}:/music
-      - ${MEDIA_DIR}/music-videos:/music-videos
+      - media:/media
+      - music:/music
       - ${LOG_DIR}/jellyfin:/config/log
     environment:
       - PUID
@@ -42,7 +41,7 @@ services:
     container_name: tvheadend
     volumes:
       - ${CONFIG_DIR}/tvheadend:/config
-      - ${MEDIA_DIR}/recordings:/recordings
+      - media:/media
       - ./scripts/tvheadend/tv_grab_url_gz:/usr/bin/tv_grab_url_gz
     environment:
       - PUID

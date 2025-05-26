@@ -1,0 +1,27 @@
+name: volumes
+volumes:
+  media:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
+      device: ':/mnt/pool/media'
+  music:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
+      device: ':/mnt/fast/music'
+  cloud:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
+      device: ':/mnt/fast/cloud'
+  photos:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
+      device: ':/mnt/fast/cloud/Photos'
+  paperless:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
+      device: ':/mnt/fast/cloud/Paperless'

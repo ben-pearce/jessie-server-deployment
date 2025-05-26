@@ -1,14 +1,14 @@
 name: arr
 include:
   - common/docker-compose.tunnel.yml
+  - common/docker-compose.volumes.yml
 services:
   bazarr:
     image: lscr.io/linuxserver/bazarr:v1.5.2-ls305@sha256:2458b13b6bdb9beee13acd2c70172140e9f9362488914d9f7cd95a473c3742b7
     container_name: bazarr
     volumes:
       - ${CONFIG_DIR}/bazarr:/config
-      - ${MEDIA_DIR}/shows:/tv
-      - ${MEDIA_DIR}/movies:/movies
+      - media:/media
       - ${LOG_DIR}/bazarr:/config/log
     environment:
       - PUID
@@ -55,8 +55,7 @@ services:
     volumes:
       - ${DATA_DIR}/radarr:/config
       - ${CONFIG_DIR}/radarr/config.xml:/config/config.xml
-      - ${MEDIA_DIR}/movies:/movies
-      - ${MEDIA_DIR}/downloads/complete:/downloads
+      - media:/media
       - ${LOG_DIR}/radarr:/config/logs
     environment:
       - PUID
@@ -79,8 +78,7 @@ services:
     container_name: sabnzbd
     volumes:
       - ${DATA_DIR}/sabnzbd:/config
-      - ${MEDIA_DIR}/downloads:/downloads
-      - ${MEDIA_DIR}/downloads/incomplete:/incomplete-downloads
+      - media:/media
       - ${LOG_DIR}/sabnzbd:/config/logs
     environment:
       - PUID
@@ -105,8 +103,7 @@ services:
     volumes:
       - ${DATA_DIR}/sonarr:/config
       - ${CONFIG_DIR}/sonarr/config.xml:/config/config.xml
-      - ${MEDIA_DIR}/shows:/tv
-      - ${MEDIA_DIR}/downloads/complete:/downloads
+      - media:/media
       - ${LOG_DIR}/sonarr:/config/logs
     environment:
       - PUID
@@ -129,8 +126,7 @@ services:
     container_name: transmission
     volumes:
       - ${DATA_DIR}/transmission:/config
-      - ${MEDIA_DIR}/downloads:/downloads
-      - ${MEDIA_DIR}/downloads/watch:/watch
+      - media:/media
     environment:
       - PUID
       - PGID

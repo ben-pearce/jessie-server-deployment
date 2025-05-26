@@ -1,4 +1,6 @@
 name: immich
+include:
+  - common/docker-compose.volumes.yml
 services:
   immich-machine-learning:
     image: ghcr.io/immich-app/immich-machine-learning:v1.133.1@sha256:c1e9b4997deaefac6c2e30208410b882390a36c72b897749974594f6a9450bdb
@@ -7,7 +9,7 @@ services:
       - immich-postgres
       - immich-valkey
     volumes:
-      - ${DATA_DIR}/immich/upload:/usr/src/app/upload
+      - photos:/usr/src/app/upload
       - ${DATA_DIR}/immich/model-cache:/cache
     secrets:
       - immich_postgres_password
@@ -51,7 +53,7 @@ services:
       - immich-postgres
       - immich-valkey
     volumes:
-      - ${DATA_DIR}/immich/upload:/usr/src/app/upload
+      - photos:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
     secrets:
       - immich_postgres_password

@@ -1,4 +1,6 @@
 name: paperless
+include:
+  - common/docker-compose.volumes.yml
 services:
   paperless-gotenberg:
     image: docker.io/gotenberg/gotenberg:8.21@sha256:8ccd9b57b537a92bba778a49a0c7a8367c61927170e632840fe8a056c4702d9f
@@ -24,6 +26,7 @@ services:
       - ${DATA_DIR}/paperless/export:/usr/src/paperless/export
       - ${DATA_DIR}/paperless/consume:/usr/src/paperless/consume
       - ${LOG_DIR}/paperless:/usr/src/paperless/data/log
+      - paperless:/usr/src/paperless/media/documents/originals
     secrets:
       - paperless_postgres_password
     environment:

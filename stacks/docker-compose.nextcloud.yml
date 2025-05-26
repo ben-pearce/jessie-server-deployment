@@ -1,6 +1,7 @@
 name: nextcloud
 include:
-  - ./common/docker-compose.secrets.yml
+  - common/docker-compose.secrets.yml
+  - common/docker-compose.volumes.yml
 services:
   nextcloud:
     image: nextcloud:31.0.5@sha256:3f71577339ef1db0d1900c8574853d11fa7100452bf24f0a06fae5d9ee019cb4
@@ -11,6 +12,7 @@ services:
       - ${DATA_DIR}/nextcloud/html:/var/www/html
       - ${DATA_DIR}/nextcloud/apps:/var/www/html/custom_apps
       - ${DATA_DIR}/nextcloud/data:/var/www/html/data
+      - cloud:/var/www/html/data/ben/files
       - ${CONFIG_DIR}/nextcloud:/var/www/html/config
     secrets:
       - nextcloud_postgres_password
