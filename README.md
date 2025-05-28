@@ -66,7 +66,7 @@ This repository holds my docker compose files and configuration files for servic
 | [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L7)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 | [wallabag](./stacks/docker-compose.wallabag.yml#L5)  | A self hostable application for saving web pages, freely. |  | [GitHub](https://github.com/wallabag) |
 
-<sup>2</sup>Assumes mass storage available, mounted at MEDIA_DIR on the host.
+<sup>1</sup>All traffic is routed via tunnel VPN client container.
 
 ## Prerequisites
 
@@ -77,17 +77,17 @@ The `.env` file stores environment variables to make starting the containers eas
 
 | **Variable** | **Description** | **Example** |
 |---|---|---|
-| `HOST` | The main host for web-based services. | `example.com` |
+| `HOST` | The main host for web-based services. | `jessie` |
 | `SMTP_HOST` | SMTP mail server host. | `mail.example.com` |
 | `SMTP_USER` | SMTP username. | `postmaster@example.com` |
 | `TZ` | Timezone for all containers. | `Europe/London` |
 | `PUID` | System user ID to run containers as. | `1000` |
-| `PGID` | System group ID to run containers as. | `1000` |
-| `CONFIG_DIR` | Location of config storage on host. | `.config` |
-| `DATA_DIR` | Location of data storage on host. | `.data` |
+| `PGID` | System group ID to run containers as. | `1004` |
+| `CONFIG_DIR` | Location of config storage on host. | `config` |
+| `DATA_DIR` | Location of data storage on host. | `data` |
 | `LOG_DIR` | Location of logs directory on host. | `/var/log` |
-| `ADMIN_EMAIL` | Administrative email address. | `somebody@email.com` |
-| `LAN_SUBNET` | Local subnet . | `10.0.0.0/24` |
+| `ADMIN_EMAIL` | Administrative email address. | `somebody@example.com` |
+| `LAN_SUBNET` | Local subnet. | `10.0.0.0/24` |
 | `PRINTER_HOST` | Printer host. | `printer.example.com` |
 | `NFS_HOST` | Host of NFS shares. | `nfs.example.com` |
 | `ZBX_HOSTNAME` | Zabbix server hostname. | `zabbix-server` |
