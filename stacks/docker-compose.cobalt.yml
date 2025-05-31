@@ -18,7 +18,7 @@ services:
       traefik.http.routers.cobalt-api.rule: Host(`cobalt-api.${HOST}`)
       traefik.http.services.cobalt-api.loadbalancer.server.port: 9000
   cobalt-web:
-    image: ghcr.io/ben-pearce/cobalt-web:10.9@sha256:c15d6b4dc6f5948ad0aae19a958f1b58876c9aed66c479e80028a9bb41199558
+    image: ghcr.io/ben-pearce/cobalt-web:11.0@sha256:44ab7e89b846ef01f7794432ee4371e1238d40496f9b58632c1c1bd7210d2383
     container_name: cobalt-web
     depends_on:
       - cobalt-api
