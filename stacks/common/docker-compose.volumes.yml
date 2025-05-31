@@ -4,24 +4,24 @@ volumes:
     driver_opts:
       type: 'nfs'
       o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
-      device: ':/mnt/pool/media'
+      device: ':/mnt/turbo/media'
   music:
     driver_opts:
       type: 'nfs'
       o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
-      device: ':/mnt/fast/music'
+      device: ':/mnt/turbo/music'
   cloud:
     driver_opts:
       type: 'nfs'
       o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
-      device: ':/mnt/fast/cloud'
+      device: ':/mnt/turbo/cloud'
   photos:
     driver_opts:
       type: 'nfs'
       o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
-      device: ':/mnt/fast/cloud/Photos'
+      device: ':/mnt/turbo/cloud/Photos'
   paperless:
     driver_opts:
       type: 'nfs'
       o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
-      device: ':/mnt/fast/cloud/Paperless'
+      device: ':/mnt/turbo/cloud/Paperless'
