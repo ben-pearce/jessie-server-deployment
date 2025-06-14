@@ -8,8 +8,7 @@ services:
     restart: unless-stopped
     labels:
       readme.description: >-
-        The Cyber Swiss Army Knife - a web app for encryption, encoding,
-        compression and data analysis.
+        The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis.
       readme.links.github: https://github.com/gchq/CyberChef
       traefik.docker.network: cyberchef-web
       traefik.enable: true
