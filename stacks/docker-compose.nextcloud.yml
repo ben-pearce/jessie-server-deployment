@@ -4,7 +4,7 @@ include:
   - common/docker-compose.volumes.yml
 services:
   nextcloud:
-    image: nextcloud:31.0.5@sha256:beeeb25cfed524772de2b63475408d188b081ea6d69724077ba636b5730104fe
+    image: nextcloud:31.0.5@sha256:3aed4aab986d03dab41c2befde9843b09a900380f0c8f734764daa38ebde674e
     container_name: nextcloud
     depends_on:
       - nextcloud-postgres
