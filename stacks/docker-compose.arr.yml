@@ -4,7 +4,7 @@ include:
   - common/docker-compose.volumes.yml
 services:
   bazarr:
-    image: lscr.io/linuxserver/bazarr:v1.5.2-ls308@sha256:b515d79a4f7aa4bbbdfe45376d996a9bae2794faa16aca5a2beab0dba0c0b074
+    image: lscr.io/linuxserver/bazarr:v1.5.2-ls309@sha256:7fa77912d9cc0573ca4efd9ac542aba4fd51eb6d331c3ad7aac7bc7fca48b929
     container_name: bazarr
     volumes:
       - ${CONFIG_DIR}/bazarr:/config
