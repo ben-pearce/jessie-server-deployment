@@ -1,7 +1,7 @@
 name: cobalt
 services:
   cobalt-api:
-    image: ghcr.io/imputnet/cobalt:11.3@sha256:893ec7b25f423c246b534cb5b6349b06df0255dd5562b3a97303a53421caf56a
+    image: ghcr.io/imputnet/cobalt:11.3.1@sha256:617bcd71f487a1c5b7e7dde17192040eee4621697d701b24b60fd4619b437fb8
     container_name: cobalt-api
     volumes:
       - ${CONFIG_DIR}/cobalt/cookies.json:/cookies.json
