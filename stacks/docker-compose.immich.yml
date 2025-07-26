@@ -24,7 +24,7 @@ services:
       - immich
     restart: unless-stopped
   immich-postgres:
-    image: ghcr.io/immich-app/postgres:17-vectorchord0.4.3@sha256:24839c5690608334e252ea9d6fe954be836ef4b981a5a51c273107ba2c9c951c
+    image: ghcr.io/immich-app/postgres:17-vectorchord0.4.3@sha256:a2a230601e133f8bb40f48197df0e83980f82b665e4caf88b5ad408f5962c423
     container_name: immich-postgres
     volumes:
       - ${DATA_DIR}/postgres/immich:/var/lib/postgresql/data
