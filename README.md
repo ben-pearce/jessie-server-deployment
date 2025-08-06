@@ -16,8 +16,6 @@ This repository holds my docker compose files and configuration files for servic
 
 | **Name** | **Description** | **Ports** | **Links** |
 |---|---|---|---|
-| [portainer-agent](./docker-compose.monitoring.yml#L5)  | Portainer edge agent. |  | [GitHub](https://github.com/portainer/agent) |
-| [zabbix-agent](./docker-compose.monitoring.yml#L21)  | Zabbix agent for monitoring. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-agent) |
 | [traefik](./docker-compose.yml#L13)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
 | [tunnel](./stacks/common/docker-compose.tunnel.yml#L5)  | A Docker container for using WireGuard with PIA. |  | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
 | [bazarr](./stacks/docker-compose.arr.yml#L8)  | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
@@ -46,6 +44,8 @@ This repository holds my docker compose files and configuration files for servic
 | [jellyfin](./stacks/docker-compose.jellyfin.yml#L8)  | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
 | [tvheadend](./stacks/docker-compose.jellyfin.yml#L41)  | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
 | [lidarr](./stacks/docker-compose.lidarr.yml#L7)  | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
+| [portainer-agent](./stacks/docker-compose.monitoring.yml#L5)  | Portainer edge agent. |  | [GitHub](https://github.com/portainer/agent) |
+| [zabbix-agent](./stacks/docker-compose.monitoring.yml#L21)  | Zabbix agent for monitoring. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-agent) |
 | [n8n](./stacks/docker-compose.n8n.yml#L5)  | Powerful workflow automation. |  |  |
 | [navidrome](./stacks/docker-compose.navidrome.yml#L7)  | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
 | [nextcloud](./stacks/docker-compose.nextcloud.yml#L8)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
