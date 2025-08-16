@@ -1,7 +1,7 @@
 name: obsidian
 services:
   obsidian-couchdb:
-    image: couchdb:3.5.0@sha256:c73ca589e109db3c9f7054c1c6499875d7ff3c8392f727eef456107650c4df04
+    image: couchdb:3.5.0@sha256:432e99b1dbb8bd996b2af964b4731633956e9635548e82b037bda94bb1835193
     container_name: obsidian-couchdb
     volumes:
       - ${DATA_DIR}/couchdb/obsidian:/opt/couchdb/data
