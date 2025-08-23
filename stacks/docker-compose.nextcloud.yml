@@ -49,7 +49,7 @@ services:
       traefik.http.routers.nextcloud.middlewares: nextcloud-hsts
       traefik.http.routers.nextcloud.rule: Host(`nextcloud.${HOST}`)
   nextcloud-postgres:
-    image: postgres:17.5@sha256:aadf2c0696f5ef357aa7a68da995137f0cf17bad0bf6e1f17de06ae5c769b302
+    image: postgres:17.6@sha256:29e0bb09c8e7e7fc265ea9f4367de9622e55bae6b0b97e7cce740c2d63c2ebc0
     container_name: nextcloud-postgres
     volumes:
       - ${DATA_DIR}/postgres/nextcloud:/var/lib/postgresql/data
