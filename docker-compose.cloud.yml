@@ -8,4 +8,4 @@ include:
   - stacks/docker-compose.obsidian.yml
   - stacks/docker-compose.owntracks.yml
   - stacks/docker-compose.vaultwarden.yml
-  - stacks/docker-compose.wallabag.yml
+  - stacks/docker-compose.karakeep.yml

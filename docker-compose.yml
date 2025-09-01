@@ -43,7 +43,7 @@ services:
       - vaultwarden-web
       - obsidian-web
       - cobalt-web
-      - wallabag-web
+      - karakeep-web
       - stirling-pdf-web
       - otr-web
       - fdroid-web
