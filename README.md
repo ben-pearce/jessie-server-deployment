@@ -43,9 +43,9 @@ This repository holds my docker compose files and configuration files for servic
 | [immich-valkey](./stacks/docker-compose.immich.yml#L82)  |  |  |  |
 | [jellyfin](./stacks/docker-compose.jellyfin.yml#L8)  | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
 | [tvheadend](./stacks/docker-compose.jellyfin.yml#L41)  | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
-| [karakeep-web](./stacks/docker-compose.karakeep.yml#L5)  | The Bookmark Everything App |  | [Website](https://karakeep.app/) |
-| [karakeep-chrome](./stacks/docker-compose.karakeep.yml#L27)  |  |  |  |
-| [karakeep-meilisearch](./stacks/docker-compose.karakeep.yml#L40)  |  |  |  |
+| [karakeep-chrome](./stacks/docker-compose.karakeep.yml#L5)  |  |  |  |
+| [karakeep-meilisearch](./stacks/docker-compose.karakeep.yml#L18)  |  |  |  |
+| [karakeep-web](./stacks/docker-compose.karakeep.yml#L29)  | The Bookmark Everything App |  | [Website](https://karakeep.app/) |
 | [lidarr](./stacks/docker-compose.lidarr.yml#L7)  | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
 | [portainer-agent](./stacks/docker-compose.monitoring.yml#L5)  | Portainer edge agent. |  | [GitHub](https://github.com/portainer/agent) |
 | [zabbix-agent](./stacks/docker-compose.monitoring.yml#L21)  | Zabbix agent for monitoring. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-agent) |
