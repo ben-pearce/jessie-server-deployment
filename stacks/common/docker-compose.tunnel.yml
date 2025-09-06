@@ -1,7 +1,7 @@
 name: tunnel
 services:
   tunnel:
-    image: thrnz/docker-wireguard-pia:20250801_master_795a580@sha256:a5e87896adfeede2272047640f468597d166237575e9672286064722babc063f
+    image: thrnz/docker-wireguard-pia:20250901_master_7877cf1@sha256:a5d9274d3a6ec675908629a876b2be9388584f8cb9050608916384a4adcd2fde
     container_name: tunnel
     volumes:
       - ${DATA_DIR}/pia:/pia
