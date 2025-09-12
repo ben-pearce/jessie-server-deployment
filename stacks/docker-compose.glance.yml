@@ -1,0 +1,23 @@
+name: glance
+services:
+  glance:
+    image: glanceapp/glance:v0.8.4@sha256:6df86a7e8868d1eda21f35205134b1962c422957e42a0c44d4717c8e8f741b1a
+    container_name: glance
+    volumes:
+      - ${CONFIG_DIR}/glance:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file: ${CONFIG_DIR}/glance/glance.env
+    networks:
+      - glance-web
+    restart: unless-stopped
+    labels:
+      readme.description: A self-hosted dashboard that puts all your feeds in one place.
+      readme.links.github: https://github.com/glanceapp/glance
+      traefik.docker.network: glance-web
+      traefik.enable: true
+      traefik.http.routers.glance.entrypoints: https
+      traefik.http.routers.glance.middlewares: authelia
+      traefik.http.routers.glance.rule: Host(`glance.${HOST}`)
+networks:
+  glance-web:
+    name: glance-web
