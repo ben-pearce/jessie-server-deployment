@@ -36,6 +36,7 @@ This repository holds my docker compose files and configuration files for servic
 | [firefly](./stacks/docker-compose.firefly.yml#L50)  | Personal Finance Manager. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/core), [Website](https://www.firefly-iii.org/) |
 | [firefly-postgres](./stacks/docker-compose.firefly.yml#L95)  |  |  |  |
 | [freshrss](./stacks/docker-compose.freshrss.yml#L5)  | Self-hosted RSS feed aggregator. |  | [GitHub](https://github.com/FreshRSS/FreshRSS) |
+| [glance](./stacks/docker-compose.glance.yml#L5)  | A self-hosted dashboard that puts all your feeds in one place. |  | [GitHub](https://github.com/glanceapp/glance) |
 | [homer](./stacks/docker-compose.homer.yml#L5)  | A very simple static homepage for your server. |  | [GitHub](https://github.com/bastienwirtz/homer) |
 | [immich-machine-learning](./stacks/docker-compose.immich.yml#L7)  |  |  |  |
 | [immich-postgres](./stacks/docker-compose.immich.yml#L28)  |  |  |  |
