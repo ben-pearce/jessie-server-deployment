@@ -42,7 +42,7 @@ services:
       traefik.http.routers.authelia.rule: Host(`login.${HOST}`)
       traefik.http.services.authelia.loadbalancer.server.port: 9091
   authelia-postgres:
-    image: postgres:17.6@sha256:d17be73073d6e73a005c239c67b8c9f0331925d05bd874964f445a9f698fbf72
+    image: postgres:17.6@sha256:feff5b24fedd610975a1f5e743c51a4b360437f4dc3a11acf740dcd708f413f6
     container_name: authelia-postgres
     volumes:
       - ${DATA_DIR}/postgres/authelia:/var/lib/postgresql/data
