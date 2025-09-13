@@ -20,6 +20,11 @@ services:
       traefik.http.routers.feishin.middlewares: authelia
       traefik.http.routers.feishin.rule: Host(`feishin.${HOST}`)
       traefik.http.services.feishin.loadbalancer.server.port: 9180
+      glance.name: Feishin
+      glance.icon: di:feishin.png
+      glance.url: https://feishin.${HOST}
+      glance.description: A Modern Music Player
+      glance.category: music
 networks:
   feishin-web:
     name: feishin-web

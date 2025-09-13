@@ -48,6 +48,12 @@ services:
       traefik.http.routers.nextcloud.entrypoints: https
       traefik.http.routers.nextcloud.middlewares: nextcloud-hsts
       traefik.http.routers.nextcloud.rule: Host(`nextcloud.${HOST}`)
+      glance.id: nextcloud
+      glance.name: Nextcloud
+      glance.icon: di:nextcloud
+      glance.url: https://nextcloud.${HOST}
+      glance.description: Personal Cloud
+      glance.category: cloud
   nextcloud-postgres:
     image: postgres:17.6@sha256:feff5b24fedd610975a1f5e743c51a4b360437f4dc3a11acf740dcd708f413f6
     container_name: nextcloud-postgres
@@ -68,6 +74,9 @@ services:
       ofelia.job-exec.nextcloud-postgres-backup.command: /bin/sh -c 'pg_dump -U nextcloud -d nextcloud > /backups/nextcloud.sql'
       ofelia.job-exec.nextcloud-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.nextcloud-postgres-backup.user: postgres
+      glance.parent: nextcloud
+      glance.name: DB
+      glance.category: cloud
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
   nextcloud-redis:
@@ -76,6 +85,10 @@ services:
     networks:
       - nextcloud
     restart: unless-stopped
+    labels:
+      glance.parent: nextcloud
+      glance.name: KV
+      glance.category: cloud
 networks:
   nextcloud:
     name: nextcloud

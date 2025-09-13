@@ -26,6 +26,11 @@ services:
       traefik.http.routers.lidarr.middlewares: authelia
       traefik.http.routers.lidarr.rule: Host(`lidarr.${HOST}`)
       traefik.http.services.lidarr.loadbalancer.server.port: 8686
+      glance.name: Lidarr
+      glance.icon: di:lidarr
+      glance.url: https://lidarr.${HOST}
+      glance.description: Music Collection Manager
+      glance.category: music
 networks:
   lidarr-web:
     name: lidarr-web

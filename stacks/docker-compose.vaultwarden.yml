@@ -26,6 +26,11 @@ services:
       traefik.enable: true
       traefik.http.routers.vaultwarden.entrypoints: https
       traefik.http.routers.vaultwarden.rule: Host(`fence.${HOST}`)
+      glance.name: Bitwarden
+      glance.icon: di:bitwarden
+      glance.url: https://fence.${HOST}
+      glance.description: Password Manager
+      glance.category: cloud
 networks:
   vaultwarden-web:
     name: vaultwarden-web

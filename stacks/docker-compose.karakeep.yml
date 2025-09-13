@@ -13,6 +13,10 @@ services:
       - --remote-debugging-port=9222
       - --hide-scrollbars
     restart: unless-stopped
+    labels:
+      glance.parent: karakeep
+      glance.name: Chrome
+      glance.category: cloud
   karakeep-meilisearch:
     image: getmeili/meilisearch:v1.20.0@sha256:90e5fe0d0bd83fea01120870bf6e01507097c706e1583fad1d56ef0cc6c41af8
     container_name: karakeep-meilisearch
@@ -24,6 +28,10 @@ services:
     networks:
       - karakeep
     restart: unless-stopped
+    labels:
+      glance.parent: karakeep
+      glance.name: Search
+      glance.category: cloud
   karakeep-web:
     image: ghcr.io/karakeep-app/karakeep:0.27.0@sha256:092a2d9c7e5b34655b0833dc22de7e271c7dd165cf17b3205013b3493bfaae4c
     container_name: karakeep-web
@@ -46,6 +54,12 @@ services:
       traefik.enable: true
       traefik.http.routers.karakeep.entrypoints: https
       traefik.http.routers.karakeep.rule: Host(`karakeep.${HOST}`)
+      glance.id: karakeep
+      glance.name: Karakeep
+      glance.icon: di:karakeep
+      glance.url: https://karakeep.${HOST}
+      glance.description: Bookmark Manager
+      glance.category: cloud
 networks:
   karakeep:
     name: karakeep

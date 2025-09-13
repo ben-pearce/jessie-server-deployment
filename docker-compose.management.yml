@@ -1,5 +1,4 @@
 name: management
 include:
   - stacks/docker-compose.glance.yml
-  - stacks/docker-compose.homer.yml
   - stacks/docker-compose.ofelia.yml

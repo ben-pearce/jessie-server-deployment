@@ -18,6 +18,11 @@ services:
       traefik.enable: true
       traefik.http.routers.n8n.entrypoints: https
       traefik.http.routers.n8n.rule: Host(`n8n.${HOST}`)
+      glance.name: n8n
+      glance.icon: di:n8n
+      glance.url: https://n8n.${HOST}
+      glance.description: Workflow Automation
+      glance.category: tools
 networks:
   n8n-web:
     name: n8n-web

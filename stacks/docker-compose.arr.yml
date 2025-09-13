@@ -27,6 +27,11 @@ services:
       traefik.http.routers.bazarr.entrypoints: https
       traefik.http.routers.bazarr.middlewares: authelia
       traefik.http.routers.bazarr.rule: Host(`bazarr.${HOST}`)
+      glance.name: Bazarr
+      glance.icon: di:bazarr
+      glance.url: https://bazarr.${HOST}
+      glance.description: Subtitle Manager
+      glance.category: media
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:2.0.5.5160-ls125@sha256:4f2a6d597845b2f3e19284b1d982b3e0b4bd7c22472c2979c956aa198b83f472
     container_name: prowlarr
@@ -49,6 +54,11 @@ services:
       traefik.http.routers.prowlarr.middlewares: authelia
       traefik.http.routers.prowlarr.rule: Host(`prowlarr.${HOST}`)
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
+      glance.name: Prowlarr
+      glance.icon: di:prowlarr
+      glance.url: https://prowlarr.${HOST}
+      glance.description: Indexer Manager
+      glance.category: media
   radarr:
     image: lscr.io/linuxserver/radarr:5.27.5.10198-ls282@sha256:3ebb31bce86870dbcc15a5db3fba8864e302310cb2adb70476b0b64c1b3dc6dc
     container_name: radarr
@@ -73,6 +83,11 @@ services:
       traefik.http.routers.radarr.entrypoints: https
       traefik.http.routers.radarr.middlewares: authelia
       traefik.http.routers.radarr.rule: Host(`radarr.${HOST}`)
+      glance.name: Radarr
+      glance.icon: di:radarr
+      glance.url: https://radarr.${HOST}
+      glance.description: Movie PVR System
+      glance.category: media
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:4.5.3-ls229@sha256:5a3196d71c12603bb0e7ceb83e4b38876510b7ba008d174d7081b69d6dbabd55
     container_name: sabnzbd
@@ -97,6 +112,11 @@ services:
       traefik.http.routers.sabnzbd.middlewares: authelia
       traefik.http.routers.sabnzbd.rule: Host(`sabnzbd.${HOST}`)
       traefik.http.services.sabnzbd.loadbalancer.server.port: 8080
+      glance.name: SABnzbd
+      glance.icon: di:sabnzbd
+      glance.url: https://sabnzbd.${HOST}
+      glance.description: Usenet Binary Newsreader
+      glance.category: media
   sonarr:
     image: lscr.io/linuxserver/sonarr:4.0.15.2941-ls291@sha256:e00e87e0e7c24fdc992093756f120a6ab292790b6a637ff3641bf813091cd726
     container_name: sonarr
@@ -121,6 +141,11 @@ services:
       traefik.http.routers.sonarr.entrypoints: https
       traefik.http.routers.sonarr.middlewares: authelia
       traefik.http.routers.sonarr.rule: Host(`sonarr.${HOST}`)
+      glance.name: Sonarr
+      glance.icon: di:sonarr
+      glance.url: https://sonarr.${HOST}
+      glance.description: TV Show PVR System
+      glance.category: media
   transmission:
     image: lscr.io/linuxserver/transmission:4.0.6-r4-ls291@sha256:2c277e09e5157905b798489c7161fdc08422635db091f8b55ef4f246384c3ce0
     container_name: transmission
@@ -142,6 +167,11 @@ services:
       traefik.http.routers.transmission.middlewares: authelia
       traefik.http.routers.transmission.rule: Host(`transmission.${HOST}`)
       traefik.http.services.transmission.loadbalancer.server.port: 9091
+      glance.name: Transmission
+      glance.icon: di:transmission
+      glance.url: https://transmission.${HOST}
+      glance.description: Torrent Client
+      glance.category: media
 networks:
   arr-web:
     name: arr-web

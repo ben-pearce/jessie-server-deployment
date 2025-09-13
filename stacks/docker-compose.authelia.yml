@@ -41,6 +41,12 @@ services:
       traefik.http.routers.authelia.entrypoints: https
       traefik.http.routers.authelia.rule: Host(`login.${HOST}`)
       traefik.http.services.authelia.loadbalancer.server.port: 9091
+      glance.id: authelia
+      glance.name: Authelia
+      glance.icon: di:authelia
+      glance.url: https://login.${HOST}
+      glance.description: Single Sign-On Multi-Factor Portal
+      glance.category: cloud
   authelia-postgres:
     image: postgres:17.6@sha256:feff5b24fedd610975a1f5e743c51a4b360437f4dc3a11acf740dcd708f413f6
     container_name: authelia-postgres
@@ -61,6 +67,9 @@ services:
       ofelia.job-exec.authelia-postgres-backup.command: /bin/sh -c 'pg_dump -U authelia -d authelia > /backups/authelia.sql'
       ofelia.job-exec.authelia-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.authelia-postgres-backup.user: postgres
+      glance.parent: authelia
+      glance.name: DB
+      glance.category: cloud
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
 networks:

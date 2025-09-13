@@ -16,6 +16,11 @@ services:
       traefik.http.routers.cyberchef.middlewares: authelia
       traefik.http.routers.cyberchef.rule: Host(`cyberchef.${HOST}`)
       traefik.http.services.cyberchef.loadbalancer.server.port: 8000
+      glance.name: Cyberchef
+      glance.icon: di:cyberchef
+      glance.url: https://cyberchef.${HOST}
+      glance.description: Cyber Swiss Army Knife
+      glance.category: tools
 networks:
   cyberchef-web:
     name: cyberchef-web

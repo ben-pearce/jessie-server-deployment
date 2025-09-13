@@ -17,6 +17,9 @@ services:
       traefik.http.routers.cobalt-api.entrypoints: https
       traefik.http.routers.cobalt-api.rule: Host(`cobalt-api.${HOST}`)
       traefik.http.services.cobalt-api.loadbalancer.server.port: 9000
+      glance.parent: cobalt
+      glance.name: API
+      glance.category: tools
   cobalt-web:
     image: ghcr.io/ben-pearce/cobalt-web:11.3@sha256:f10cef7319d36d5c306d0602a813cd0e3713b720f87da3887592a104c9f79fe7
     container_name: cobalt-web
@@ -33,6 +36,12 @@ services:
       traefik.http.routers.cobalt-web.middlewares: authelia
       traefik.http.routers.cobalt-web.rule: Host(`cobalt.${HOST}`)
       traefik.http.services.cobalt-web.loadbalancer.server.port: 8080
+      glance.id: cobalt
+      glance.name: Cobalt
+      glance.icon: di:cobalt
+      glance.url: https://cobalt.${HOST}
+      glance.description: Social Media Downloader
+      glance.category: tools
 networks:
   cobalt-web:
     name: cobalt-web

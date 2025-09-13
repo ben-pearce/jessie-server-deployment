@@ -23,6 +23,10 @@ services:
     networks:
       - immich
     restart: unless-stopped
+    labels:
+      glance.parent: immich
+      glance.name: Machine Learning
+      glance.category: cloud
   immich-postgres:
     image: ghcr.io/immich-app/postgres:17-vectorchord0.4.3@sha256:0d43ab585b6fc949451f0977903d7406c18ae0f71fdf7b8a220f547a424b6b2d
     container_name: immich-postgres
@@ -44,6 +48,9 @@ services:
       ofelia.job-exec.immich-postgres-backup.command: /bin/sh -c 'pg_dump -U immich -d immich > /backups/immich.sql'
       ofelia.job-exec.immich-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.immich-postgres-backup.user: postgres
+      glance.parent: immich
+      glance.name: DB
+      glance.category: cloud
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
   immich-server:
@@ -77,12 +84,22 @@ services:
       traefik.http.routers.immich-server.entrypoints: https
       traefik.http.routers.immich-server.rule: Host(`immich.${HOST}`)
       traefik.http.services.immich-server.loadbalancer.server.port: 2283
+      glance.id: immich
+      glance.name: Immich
+      glance.icon: di:immich
+      glance.url: https://immich.${HOST}
+      glance.description: Self-Hosted Photo And Video Backup
+      glance.category: cloud
   immich-valkey:
     image: valkey/valkey:8.1.3@sha256:fea8b3e67b15729d4bb70589eb03367bab9ad1ee89c876f54327fc7c6e618571
     container_name: immich-valkey
     networks:
       - immich
     restart: unless-stopped
+    labels:
+      glance.parent: immich
+      glance.name: KV
+      glance.category: cloud
 networks:
   immich:
     name: immich

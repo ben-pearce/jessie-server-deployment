@@ -31,7 +31,6 @@ services:
       - firefly-web
       - freshrss-web
       - feishin-web
-      - homer-web
       - glance-web
       - n8n-web
       - immich-web
@@ -78,6 +77,11 @@ services:
       traefik.http.routers.api.entrypoints: https
       traefik.http.routers.api.rule: Host(`traefik.${HOST}`)
       traefik.http.services.traefik.loadbalancer.server.port: 8080
+      glance.name: Traefik
+      glance.icon: di:traefik
+      glance.url: https://traefik.${HOST}
+      glance.description: Modern HTTP Reverse Proxy
+      glance.category: cloud
     hostname: traefik
 secrets:
   cloudflare_dns_api_token:

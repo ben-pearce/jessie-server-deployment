@@ -22,6 +22,11 @@ services:
       traefik.http.routers.stirling-pdf.entrypoints: https
       traefik.http.routers.stirling-pdf.middlewares: authelia
       traefik.http.routers.stirling-pdf.rule: Host(`stirling-pdf.${HOST}`)
+      glance.name: Stirling PDF
+      glance.icon: di:stirling-pdf
+      glance.url: https://stirling-pdf.${HOST}
+      glance.description: PDF Manipulation Platform
+      glance.category: tools
 networks:
   stirling-pdf-web:
     name: stirling-pdf-web

@@ -17,7 +17,7 @@ services:
       traefik.enable: true
       traefik.http.routers.glance.entrypoints: https
       traefik.http.routers.glance.middlewares: authelia
-      traefik.http.routers.glance.rule: Host(`glance.${HOST}`)
+      traefik.http.routers.glance.rule: Host(`${HOST}`)
 networks:
   glance-web:
     name: glance-web

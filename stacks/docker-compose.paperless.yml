@@ -12,6 +12,10 @@ services:
       - '--chromium-disable-javascript=true'
       - '--chromium-allow-list=file:///tmp/.*'
     restart: unless-stopped
+    labels:
+      glance.parent: paperless
+      glance.name: Gotenberg
+      glance.category: cloud
   paperless-ngx:
     image: ghcr.io/paperless-ngx/paperless-ngx:2.18.4@sha256:3421ebe06ed27662d014046cf5089e612de853aae0c676a2bc72f73b38080e57
     container_name: paperless-ngx
@@ -63,6 +67,12 @@ services:
       traefik.http.routers.paperless-ngx.entrypoints: https
       traefik.http.routers.paperless-ngx.rule: Host(`paperless.${HOST}`)
       traefik.http.services.paperless-ngx.loadbalancer.server.port: 8000
+      glance.id: paperless
+      glance.name: Paperless
+      glance.icon: di:paperless
+      glance.url: https://paperless.${HOST}
+      glance.description: Document Management System
+      glance.category: cloud
   paperless-postgres:
     image: postgres:17.6@sha256:feff5b24fedd610975a1f5e743c51a4b360437f4dc3a11acf740dcd708f413f6
     container_name: paperless-postgres
@@ -83,6 +93,8 @@ services:
       ofelia.job-exec.paperless-postgres-backup.command: /bin/sh -c 'pg_dump -U paperless -d paperless > /backups/paperless.sql'
       ofelia.job-exec.paperless-postgres-backup.schedule: 0 0 04 * * *
       ofelia.job-exec.paperless-postgres-backup.user: postgres
+      glance.parent: paperless
+      glance.name: DB
     tmpfs:
       - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
   paperless-redis:
@@ -93,6 +105,10 @@ services:
     networks:
       - paperless
     restart: unless-stopped
+    labels:
+      glance.parent: paperless
+      glance.name: KV
+      glance.category: cloud
   paperless-scanner:
     image: manuc66/node-hp-scan-to:1.8.0@sha256:758921034cd4ff49c270a791093c5a66bc524b0539b9712541a90f72acad3422
     container_name: paperless-scanner
@@ -108,12 +124,20 @@ services:
     networks:
       - paperless
     restart: unless-stopped
+    labels:
+      glance.parent: paperless
+      glance.name: Scanner
+      glance.category: cloud      
   paperless-tika:
     image: ghcr.io/paperless-ngx/tika:2.9.1-minimal@sha256:20db3df89eaeb1b271dd840888fe909b88b12f4b86ef641ec07a1d45d4c5168f
     container_name: paperless-tika
     networks:
       - paperless
     restart: unless-stopped
+    labels:
+      glance.parent: paperless
+      glance.name: Tika
+      glance.category: cloud
     tmpfs:
       - /tmp:rw,mode=1777
 networks:
