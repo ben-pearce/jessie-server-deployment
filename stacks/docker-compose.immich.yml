@@ -3,7 +3,7 @@ include:
   - common/docker-compose.volumes.yml
 services:
   immich-machine-learning:
-    image: ghcr.io/immich-app/immich-machine-learning:v1.140.1@sha256:6239f9852f2ccd8bef52b161629a8fc62bac7636750c06e5fe021e994bab4781
+    image: ghcr.io/immich-app/immich-machine-learning:v1.142.0@sha256:5e9cc6b9717e34f3cdc591aa860d6d29c990405ef87ad057ef95f73096ae6f29
     container_name: immich-machine-learning
     depends_on:
       - immich-postgres
