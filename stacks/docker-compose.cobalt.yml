@@ -37,7 +37,7 @@ services:
       traefik.http.routers.cobalt-web.rule: Host(`cobalt.${HOST}`)
       traefik.http.services.cobalt-web.loadbalancer.server.port: 8080
       glance.id: cobalt
-      glance.name: Cobalt
+      glance.name: cobalt
       glance.icon: di:cobalt
       glance.url: https://cobalt.${HOST}
       glance.description: Social Media Downloader
