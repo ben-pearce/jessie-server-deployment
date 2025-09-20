@@ -43,7 +43,7 @@ services:
       traefik.docker.network: firefly-web
       traefik.enable: true
       traefik.http.routers.fidi.entrypoints: https
-      traefik.http.routers.fidi.middlewares: authelia
+      traefik.http.routers.fidi.middlewares: authentik
       traefik.http.routers.fidi.rule: Host(`firefly-data.${HOST}`)
       glance.parent: firefly
       glance.name: Firefly Data Importer
@@ -79,7 +79,7 @@ services:
       - MAIL_PASSWORD_FILE=/run/secrets/smtp_password
       - MAIL_ENCRYPTION=ssl
       - AUTHENTICATION_GUARD=remote_user_guard
-      - AUTHENTICATION_GUARD_HEADER=HTTP_REMOTE_EMAIL
+      - AUTHENTICATION_GUARD_HEADER=HTTP_X_AUTHENTIK_EMAIL
     networks:
       - firefly
       - firefly-web
@@ -93,7 +93,7 @@ services:
       traefik.http.routers.firefly-api.entrypoints: https
       traefik.http.routers.firefly-api.rule: Host(`firefly.${HOST}`) && PathPrefix(`/api`)
       traefik.http.routers.firefly.entrypoints: https
-      traefik.http.routers.firefly.middlewares: authelia
+      traefik.http.routers.firefly.middlewares: authentik
       traefik.http.routers.firefly.rule: Host(`firefly.${HOST}`)
       glance.id: firefly
       glance.name: Firefly
