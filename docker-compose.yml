@@ -27,7 +27,6 @@ services:
     networks:
       - arr-web
       - authentik-proxy-web
-      - authelia-web
       - cyberchef-web
       - deemix-web
       - firefly-web
