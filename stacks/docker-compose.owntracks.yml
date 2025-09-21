@@ -37,6 +37,7 @@ services:
       traefik.docker.network: otr-web
       traefik.enable: true
       traefik.http.routers.owntracks.entrypoints: https
+      traefik.http.routers.owntracks.middlewares: authentik
       traefik.http.routers.owntracks.rule: Host(`owntracks.${HOST}`)
       traefik.http.services.owntracks.loadbalancer.server.port: 80
       glance.id: owntracks
