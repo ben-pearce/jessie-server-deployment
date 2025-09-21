@@ -22,7 +22,7 @@ services:
       traefik.docker.network: deemix-web
       traefik.enable: true
       traefik.http.routers.deemix.entrypoints: https
-      traefik.http.routers.deemix.middlewares: authelia
+      traefik.http.routers.deemix.middlewares: authentik
       traefik.http.routers.deemix.rule: Host(`deemix.${HOST}`)
       glance.name: Deemix
       glance.icon: di:deemix.png
