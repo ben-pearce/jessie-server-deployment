@@ -164,7 +164,7 @@ services:
       traefik.docker.network: tunnel-web
       traefik.enable: true
       traefik.http.routers.transmission.entrypoints: https
-      traefik.http.routers.transmission.middlewares: authelia
+      traefik.http.routers.transmission.middlewares: authentik
       traefik.http.routers.transmission.rule: Host(`transmission.${HOST}`)
       traefik.http.services.transmission.loadbalancer.server.port: 9091
       glance.name: Transmission
