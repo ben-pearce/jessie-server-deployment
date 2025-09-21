@@ -16,7 +16,7 @@ This repository holds my docker compose files and configuration files for servic
 
 | **Name** | **Description** | **Ports** | **Links** |
 |---|---|---|---|
-| [traefik](./docker-compose.yml#L13)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
+| [traefik](./docker-compose.yml#L14)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
 | [tunnel](./stacks/common/docker-compose.tunnel.yml#L5)  | A Docker container for using WireGuard with PIA. |  | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
 | [bazarr](./stacks/docker-compose.arr.yml#L8)  | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [prowlarr](./stacks/docker-compose.arr.yml#L37) <sup>1</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
@@ -24,8 +24,7 @@ This repository holds my docker compose files and configuration files for servic
 | [sabnzbd](./stacks/docker-compose.arr.yml#L93) <sup>1</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
 | [sonarr](./stacks/docker-compose.arr.yml#L122)  | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
 | [transmission](./stacks/docker-compose.arr.yml#L151) <sup>1</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
-| [authelia](./stacks/docker-compose.authelia.yml#L7)  | The Single Sign-On Multi-Factor portal for web apps. |  | [Docker Hub](https://hub.docker.com/r/authelia/authelia), [Website](https://www.authelia.com/) |
-| [authelia-postgres](./stacks/docker-compose.authelia.yml#L52)  |  |  |  |
+| [authentik-proxy](./stacks/docker-compose.authentik.yml#L5)  |  |  |  |
 | [cobalt-api](./stacks/docker-compose.cobalt.yml#L5)  |  |  |  |
 | [cobalt-web](./stacks/docker-compose.cobalt.yml#L25)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
 | [cyberchef](./stacks/docker-compose.cyberchef.yml#L5)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
@@ -60,10 +59,10 @@ This repository holds my docker compose files and configuration files for servic
 | [owntracks-frontend](./stacks/docker-compose.owntracks.yml#L27)  | Web interface for OwnTracks built with Vue.js |  | [GitHub](https://github.com/owntracks/frontend) |
 | [paperless-gotenberg](./stacks/docker-compose.paperless.yml#L7)  |  |  |  |
 | [paperless-ngx](./stacks/docker-compose.paperless.yml#L21)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
-| [paperless-postgres](./stacks/docker-compose.paperless.yml#L78)  |  |  |  |
-| [paperless-redis](./stacks/docker-compose.paperless.yml#L102)  |  |  |  |
-| [paperless-scanner](./stacks/docker-compose.paperless.yml#L114)  |  |  |  |
-| [paperless-tika](./stacks/docker-compose.paperless.yml#L133)  |  |  |  |
+| [paperless-postgres](./stacks/docker-compose.paperless.yml#L82)  |  |  |  |
+| [paperless-redis](./stacks/docker-compose.paperless.yml#L106)  |  |  |  |
+| [paperless-scanner](./stacks/docker-compose.paperless.yml#L118)  |  |  |  |
+| [paperless-tika](./stacks/docker-compose.paperless.yml#L137)  |  |  |  |
 | [pgadmin](./stacks/docker-compose.pgadmin.yml#L5)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
 | [stirling-pdf](./stacks/docker-compose.stirling-pdf.yml#L5)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
 | [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L7)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
@@ -89,6 +88,7 @@ The `.env` file stores environment variables to make starting the containers eas
 | `DATA_DIR` | Location of data storage on host. | `data` |
 | `LOG_DIR` | Location of logs directory on host. | `/var/log` |
 | `ADMIN_EMAIL` | Administrative email address. | `somebody@example.com` |
+| `AUTHENTIK_HOST` | Remote Authentik host. | `authentik.example.com` |
 | `LAN_SUBNET` | Local subnet. | `10.0.0.0/24` |
 | `PRINTER_HOST` | Printer host. | `printer.example.com` |
 | `NFS_HOST` | Host of NFS shares. | `nfs.example.com` |
