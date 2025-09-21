@@ -16,7 +16,7 @@ services:
       traefik.docker.network: glance-web
       traefik.enable: true
       traefik.http.routers.glance.entrypoints: https
-      traefik.http.routers.glance.middlewares: authelia
+      traefik.http.routers.glance.middlewares: authentik
       traefik.http.routers.glance.rule: Host(`${HOST}`)
 networks:
   glance-web:

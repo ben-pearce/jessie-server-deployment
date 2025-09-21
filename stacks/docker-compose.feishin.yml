@@ -17,7 +17,7 @@ services:
       traefik.docker.network: feishin-web
       traefik.enable: true
       traefik.http.routers.feishin.entrypoints: https
-      traefik.http.routers.feishin.middlewares: authelia
+      traefik.http.routers.feishin.middlewares: authentik
       traefik.http.routers.feishin.rule: Host(`feishin.${HOST}`)
       traefik.http.services.feishin.loadbalancer.server.port: 9180
       glance.name: Feishin

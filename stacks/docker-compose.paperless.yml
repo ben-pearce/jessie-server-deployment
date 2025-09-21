@@ -33,7 +33,11 @@ services:
       - paperless:/usr/src/paperless/media/documents/originals
     secrets:
       - paperless_postgres_password
+      - paperless_socialaccount_providers
     environment:
+      PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
+      PAPERLESS_SOCIALACCOUNT_PROVIDERS_FILE: /run/secrets/paperless_socialaccount_providers
+      PAPERLESS_REDIRECT_LOGIN_TO_SSO: true
       PAPERLESS_DBHOST: paperless-postgres
       PAPERLESS_DBPASS_FILE: /run/secrets/paperless_postgres_password
       PAPERLESS_REDIS: redis://paperless-redis:6379
@@ -148,3 +152,5 @@ networks:
 secrets:
   paperless_postgres_password:
     file: ../.secrets/paperless_postgres_password
+  paperless_socialaccount_providers:
+    file: ../.secrets/paperless_socialaccount_providers

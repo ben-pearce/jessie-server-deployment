@@ -1,6 +1,5 @@
 name: cloud
 include:
-  - stacks/docker-compose.authelia.yml
   - stacks/docker-compose.firefly.yml
   - stacks/docker-compose.immich.yml
   - stacks/docker-compose.nextcloud.yml

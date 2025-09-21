@@ -10,7 +10,6 @@ services:
       - PGADMIN_DEFAULT_EMAIL=${ADMIN_MAIL}
       - PGADMIN_DEFAULT_PASSWORD=admin
     networks:
-      - authelia
       - firefly
       - immich
       - nextcloud

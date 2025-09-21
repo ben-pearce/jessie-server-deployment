@@ -6,6 +6,7 @@ include:
   - docker-compose.media.yml
   - docker-compose.music.yml
   - docker-compose.tools.yml
+  - stacks/docker-compose.authentik.yml
   - stacks/docker-compose.monitoring.yml
 services:
   traefik:
@@ -25,7 +26,7 @@ services:
       - '0.0.0.0:443:443'
     networks:
       - arr-web
-      - authelia-web
+      - authentik-proxy-web
       - cyberchef-web
       - deemix-web
       - firefly-web

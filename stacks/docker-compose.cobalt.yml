@@ -33,7 +33,7 @@ services:
       readme.links.github: https://github.com/wukko/cobalt
       traefik.enable: true
       traefik.http.routers.cobalt-web.entrypoints: https
-      traefik.http.routers.cobalt-web.middlewares: authelia
+      traefik.http.routers.cobalt-web.middlewares: authentik
       traefik.http.routers.cobalt-web.rule: Host(`cobalt.${HOST}`)
       traefik.http.services.cobalt-web.loadbalancer.server.port: 8080
       glance.id: cobalt
