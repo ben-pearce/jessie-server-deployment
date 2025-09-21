@@ -51,7 +51,7 @@ services:
       traefik.docker.network: tunnel-web
       traefik.enable: true
       traefik.http.routers.prowlarr.entrypoints: https
-      traefik.http.routers.prowlarr.middlewares: authelia
+      traefik.http.routers.prowlarr.middlewares: authentik
       traefik.http.routers.prowlarr.rule: Host(`prowlarr.${HOST}`)
       traefik.http.services.prowlarr.loadbalancer.server.port: 9696
       glance.name: Prowlarr
