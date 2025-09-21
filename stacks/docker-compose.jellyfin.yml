@@ -61,7 +61,7 @@ services:
       traefik.docker.network: tunnel-web
       traefik.enable: true
       traefik.http.routers.tvheadend.entrypoints: https
-      traefik.http.routers.tvheadend.middlewares: authelia
+      traefik.http.routers.tvheadend.middlewares: authentik
       traefik.http.routers.tvheadend.rule: Host(`tvheadend.${HOST}`)
       traefik.http.services.tvheadend.loadbalancer.server.port: 9981
       glance.name: TVHeadend
