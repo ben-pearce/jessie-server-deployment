@@ -81,7 +81,7 @@ services:
       traefik.docker.network: arr-web
       traefik.enable: true
       traefik.http.routers.radarr.entrypoints: https
-      traefik.http.routers.radarr.middlewares: authelia
+      traefik.http.routers.radarr.middlewares: authentik
       traefik.http.routers.radarr.rule: Host(`radarr.${HOST}`)
       glance.name: Radarr
       glance.icon: di:radarr
