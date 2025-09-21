@@ -109,7 +109,7 @@ services:
       traefik.docker.network: tunnel-web
       traefik.enable: true
       traefik.http.routers.sabnzbd.entrypoints: https
-      traefik.http.routers.sabnzbd.middlewares: authelia
+      traefik.http.routers.sabnzbd.middlewares: authentik
       traefik.http.routers.sabnzbd.rule: Host(`sabnzbd.${HOST}`)
       traefik.http.services.sabnzbd.loadbalancer.server.port: 8080
       glance.name: SABnzbd
