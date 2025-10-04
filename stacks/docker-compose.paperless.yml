@@ -143,11 +143,11 @@ networks:
     name: paperless
   paperless-web:
     name: paperless-web
+volumes:
+  paperless-postgres:
+    name: paperless-postgres
 secrets:
   paperless_postgres_password:
     file: ../.secrets/paperless_postgres_password
   paperless_socialaccount_providers:
     file: ../.secrets/paperless_socialaccount_providers
-volumes:
-  paperless-postgres:
-    name: paperless-postgres

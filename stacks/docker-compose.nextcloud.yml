@@ -88,9 +88,9 @@ networks:
     name: nextcloud
   nextcloud-web:
     name: nextcloud-web
-secrets:
-  nextcloud_postgres_password:
-    file: ../.secrets/nextcloud_postgres_password
 volumes:
   nextcloud-postgres:
     name: nextcloud-postgres
+secrets:
+  nextcloud_postgres_password:
+    file: ../.secrets/nextcloud_postgres_password

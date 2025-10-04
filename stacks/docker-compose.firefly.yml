@@ -125,6 +125,9 @@ networks:
     name: firefly
   firefly-web:
     name: firefly-web
+volumes:
+  firefly-postgres:
+    name: firefly-postgres
 secrets:
   firefly_access_token:
     file: ../.secrets/firefly_access_token
@@ -136,6 +139,3 @@ secrets:
     file: ../.secrets/nordigen_id
   nordigen_key:
     file: ../.secrets/nordigen_key
-volumes:
-  firefly-postgres:
-    name: firefly-postgres

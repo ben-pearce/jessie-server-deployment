@@ -99,9 +99,9 @@ networks:
     name: immich
   immich-web:
     name: immich-web
-secrets:
-  immich_postgres_password:
-    file: ../.secrets/immich_postgres_password
 volumes:
   immich-postgres:
     name: immich-postgres
+secrets:
+  immich_postgres_password:
+    file: ../.secrets/immich_postgres_password
