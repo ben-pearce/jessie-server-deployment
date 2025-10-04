@@ -38,8 +38,8 @@ This repository holds my docker compose files and configuration files for servic
 | [glance](./stacks/docker-compose.glance.yml#L5)  | A self-hosted dashboard that puts all your feeds in one place. |  | [GitHub](https://github.com/glanceapp/glance) |
 | [immich-machine-learning](./stacks/docker-compose.immich.yml#L7)  |  |  |  |
 | [immich-postgres](./stacks/docker-compose.immich.yml#L32)  |  |  |  |
-| [immich-server](./stacks/docker-compose.immich.yml#L58)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
-| [immich-valkey](./stacks/docker-compose.immich.yml#L95)  |  |  |  |
+| [immich-server](./stacks/docker-compose.immich.yml#L52)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
+| [immich-valkey](./stacks/docker-compose.immich.yml#L89)  |  |  |  |
 | [jellyfin](./stacks/docker-compose.jellyfin.yml#L8)  | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
 | [tvheadend](./stacks/docker-compose.jellyfin.yml#L46)  | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
 | [karakeep-chrome](./stacks/docker-compose.karakeep.yml#L5)  |  |  |  |
@@ -52,7 +52,7 @@ This repository holds my docker compose files and configuration files for servic
 | [navidrome](./stacks/docker-compose.navidrome.yml#L7)  | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
 | [nextcloud](./stacks/docker-compose.nextcloud.yml#L8)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
 | [nextcloud-postgres](./stacks/docker-compose.nextcloud.yml#L59)  |  |  |  |
-| [nextcloud-redis](./stacks/docker-compose.nextcloud.yml#L84)  |  |  |  |
+| [nextcloud-redis](./stacks/docker-compose.nextcloud.yml#L78)  |  |  |  |
 | [obsidian-couchdb](./stacks/docker-compose.obsidian.yml#L5)  |  |  |  |
 | [ofelia](./stacks/docker-compose.ofelia.yml#L5)  | Docker job scheduler. |  | [GitHub](https://github.com/mcuadros/ofelia) |
 | [otrecorder](./stacks/docker-compose.owntracks.yml#L5)  | Store and access data published by OwnTracks apps. |  | [GitHub](https://github.com/owntracks/recorder) |
@@ -60,9 +60,9 @@ This repository holds my docker compose files and configuration files for servic
 | [paperless-gotenberg](./stacks/docker-compose.paperless.yml#L7)  |  |  |  |
 | [paperless-ngx](./stacks/docker-compose.paperless.yml#L21)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
 | [paperless-postgres](./stacks/docker-compose.paperless.yml#L82)  |  |  |  |
-| [paperless-redis](./stacks/docker-compose.paperless.yml#L106)  |  |  |  |
-| [paperless-scanner](./stacks/docker-compose.paperless.yml#L118)  |  |  |  |
-| [paperless-tika](./stacks/docker-compose.paperless.yml#L137)  |  |  |  |
+| [paperless-redis](./stacks/docker-compose.paperless.yml#L100)  |  |  |  |
+| [paperless-scanner](./stacks/docker-compose.paperless.yml#L112)  |  |  |  |
+| [paperless-tika](./stacks/docker-compose.paperless.yml#L131)  |  |  |  |
 | [pgadmin](./stacks/docker-compose.pgadmin.yml#L5)  | Web based administration tool for the PostgreSQL database. |  | [Docker Hub](https://hub.docker.com/r/dpage/pgadmin4) |
 | [stirling-pdf](./stacks/docker-compose.stirling-pdf.yml#L5)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
 | [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L7)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
