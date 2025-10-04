@@ -105,8 +105,8 @@ services:
     image: postgres:17.6@sha256:cecd364cc7ec03ab6148ab650efc5200548a89fd2e4f47a8ba6e6cf08c18805d
     container_name: firefly-postgres
     volumes:
-      - ${DATA_DIR}/postgres/firefly:/var/lib/postgresql/data
-      - ${DATA_DIR}/postgres/backups:/backups
+      - firefly-postgres:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/firefly:/docker-entrypoint-initdb.d
     secrets:
       - firefly_postgres_password
     environment:
@@ -117,15 +117,9 @@ services:
       - firefly
     restart: unless-stopped
     labels:
-      ofelia.enabled: 'true'
-      ofelia.job-exec.firefly-postgres-backup.command: /bin/sh -c 'pg_dump -U firefly -d firefly > /backups/firefly.sql'
-      ofelia.job-exec.firefly-postgres-backup.schedule: 0 0 04 * * *
-      ofelia.job-exec.firefly-postgres-backup.user: postgres
       glance.parent: firefly
       glance.name: DB
       glance.category: cloud
-    tmpfs:
-      - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
 networks:
   firefly:
     name: firefly
@@ -142,3 +136,6 @@ secrets:
     file: ../.secrets/nordigen_id
   nordigen_key:
     file: ../.secrets/nordigen_key
+volumes:
+  firefly-postgres:
+    name: firefly-postgres

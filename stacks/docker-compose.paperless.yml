@@ -81,8 +81,8 @@ services:
     image: postgres:17.6@sha256:cecd364cc7ec03ab6148ab650efc5200548a89fd2e4f47a8ba6e6cf08c18805d
     container_name: paperless-postgres
     volumes:
-      - ${DATA_DIR}/postgres/paperless:/var/lib/postgresql/data
-      - ${DATA_DIR}/postgres/backups:/backups
+      - paperless-postgres:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/paperless:/docker-entrypoint-initdb.d
     secrets:
       - paperless_postgres_password
     environment:
@@ -93,14 +93,8 @@ services:
       - paperless
     restart: unless-stopped
     labels:
-      ofelia.enabled: 'true'
-      ofelia.job-exec.paperless-postgres-backup.command: /bin/sh -c 'pg_dump -U paperless -d paperless > /backups/paperless.sql'
-      ofelia.job-exec.paperless-postgres-backup.schedule: 0 0 04 * * *
-      ofelia.job-exec.paperless-postgres-backup.user: postgres
       glance.parent: paperless
       glance.name: DB
-    tmpfs:
-      - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
   paperless-redis:
     image: redis:8.2.1@sha256:acb90ced0bd769b7c04cb4c32c4494ba7b3e0ee068bdbfff0eeb0d31c2a21078
     container_name: paperless-redis
@@ -154,3 +148,6 @@ secrets:
     file: ../.secrets/paperless_postgres_password
   paperless_socialaccount_providers:
     file: ../.secrets/paperless_socialaccount_providers
+volumes:
+  paperless-postgres:
+    name: paperless-postgres
