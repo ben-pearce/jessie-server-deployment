@@ -31,8 +31,8 @@ services:
     image: ghcr.io/immich-app/postgres:17-vectorchord0.4.3@sha256:51f6abbfc720dde5cad9a39133d1c5247da8f073a449004da781c07b2cd9ee9c
     container_name: immich-postgres
     volumes:
-      - ${DATA_DIR}/postgres/immich:/var/lib/postgresql/data
-      - ${DATA_DIR}/postgres/backups:/backups
+      - immich-postgres:/var/lib/postgresql/data
+      - ${DATA_DIR}/postgres/immich:/docker-entrypoint-initdb.d
     secrets:
       - immich_postgres_password
     environment:
@@ -44,15 +44,9 @@ services:
       - immich
     restart: unless-stopped
     labels:
-      ofelia.enabled: 'true'
-      ofelia.job-exec.immich-postgres-backup.command: /bin/sh -c 'pg_dump -U immich -d immich > /backups/immich.sql'
-      ofelia.job-exec.immich-postgres-backup.schedule: 0 0 04 * * *
-      ofelia.job-exec.immich-postgres-backup.user: postgres
       glance.parent: immich
       glance.name: DB
       glance.category: cloud
-    tmpfs:
-      - /var/lib/postgresql/data/pg_stat_tmp:rw,mode=1777
   immich-server:
     image: ghcr.io/immich-app/immich-server:v2.0.1@sha256:8286638680f0a38a7cb380be64ed77d1d1cfe6d0e0b843f64bff92b24289078d
     container_name: immich-server
@@ -108,3 +102,6 @@ networks:
 secrets:
   immich_postgres_password:
     file: ../.secrets/immich_postgres_password
+volumes:
+  immich-postgres:
+    name: immich-postgres
