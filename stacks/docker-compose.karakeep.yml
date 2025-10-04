@@ -18,7 +18,7 @@ services:
       glance.name: Chrome
       glance.category: cloud
   karakeep-meilisearch:
-    image: getmeili/meilisearch:v1.20.0@sha256:90e5fe0d0bd83fea01120870bf6e01507097c706e1583fad1d56ef0cc6c41af8
+    image: getmeili/meilisearch:v1.22.2@sha256:328dc1698cc6f54bb811b8030ff864c6345144cded5ac89b6ab23fe9f747d723
     container_name: karakeep-meilisearch
     volumes:
       - ${DATA_DIR}/meilisearch/karakeep:/meili_data
