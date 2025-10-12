@@ -1,6 +1,6 @@
 name: arr
 include:
-  - common/docker-compose.tunnel.yml
+  - common/docker-compose.gluetun.yml
   - common/docker-compose.volumes.yml
 services:
   bazarr:
@@ -42,13 +42,13 @@ services:
       - PUID
       - PGID
       - TZ
-    network_mode: service:tunnel
+    network_mode: service:gluetun
     restart: unless-stopped
     labels:
       readme.description: An indexer manager/proxy.
       readme.links.github: https://github.com/Prowlarr/Prowlarr
       readme.links.web: https://wiki.servarr.com/prowlarr
-      traefik.docker.network: tunnel-web
+      traefik.docker.network: gluetun-web
       traefik.enable: true
       traefik.http.routers.prowlarr.entrypoints: https
       traefik.http.routers.prowlarr.middlewares: authentik
@@ -73,7 +73,7 @@ services:
       - TZ
     networks:
       - arr-web
-      - tunnel
+      - gluetun
     restart: unless-stopped
     labels:
       readme.description: A fork of Sonarr to work with movies à la Couchpotato.
@@ -99,14 +99,14 @@ services:
       - PUID
       - PGID
       - TZ
-    network_mode: service:tunnel
+    network_mode: service:gluetun
     restart: unless-stopped
     labels:
       readme.description: The free and easy binary newsreader.
       readme.links.docker: https://hub.docker.com/r/linuxserver/sabnzbd
       readme.links.github: https://github.com/sabnzbd/sabnzbd
       readme.links.web: https://sabnzbd.org/
-      traefik.docker.network: tunnel-web
+      traefik.docker.network: gluetun-web
       traefik.enable: true
       traefik.http.routers.sabnzbd.entrypoints: https
       traefik.http.routers.sabnzbd.middlewares: authentik
@@ -131,7 +131,7 @@ services:
       - TZ
     networks:
       - arr-web
-      - tunnel
+      - gluetun
     restart: unless-stopped
     labels:
       readme.description: Smart PVR for newsgroup and bittorrent users.
@@ -156,12 +156,12 @@ services:
       - PUID
       - PGID
       - TZ
-    network_mode: service:tunnel
+    network_mode: service:gluetun
     restart: unless-stopped
     labels:
       readme.description: Fast, easy, and free BitTorrent client.
       readme.links.github: https://github.com/transmission/transmission
-      traefik.docker.network: tunnel-web
+      traefik.docker.network: gluetun-web
       traefik.enable: true
       traefik.http.routers.transmission.entrypoints: https
       traefik.http.routers.transmission.middlewares: authentik

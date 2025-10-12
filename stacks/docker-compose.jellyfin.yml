@@ -1,6 +1,6 @@
 name: jellyfin
 include:
-  - common/docker-compose.tunnel.yml
+  - common/docker-compose.gluetun.yml
   - common/docker-compose.volumes.yml
 services:
   jellyfin:
@@ -24,7 +24,7 @@ services:
       - FFMPEG_PATH=/usr/bin/remote-ffmpeg/ffmpeg
     networks:
       - jellyfin-web
-      - tunnel
+      - gluetun
     restart: unless-stopped
     labels:
       readme.description: The Free Software Media System.
@@ -58,7 +58,7 @@ services:
     labels:
       readme.description: TV Streaming Server.
       readme.links.web: https://tvheadend.org/
-      traefik.docker.network: tunnel-web
+      traefik.docker.network: gluetun-web
       traefik.enable: true
       traefik.http.routers.tvheadend.entrypoints: https
       traefik.http.routers.tvheadend.middlewares: authentik
