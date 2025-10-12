@@ -40,7 +40,7 @@ services:
       - nextcloud-web
       - paperless-web
       - pgadmin-web
-      - tunnel-web
+      - gluetun-web
       - vaultwarden-web
       - obsidian-web
       - cobalt-web
