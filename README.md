@@ -17,7 +17,7 @@ This repository holds my docker compose files and configuration files for servic
 | **Name** | **Description** | **Ports** | **Links** |
 |---|---|---|---|
 | [traefik](./docker-compose.yml#L14)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
-| [tunnel](./stacks/common/docker-compose.tunnel.yml#L5)  | A Docker container for using WireGuard with PIA. |  | [Docker Hub](https://hub.docker.com/r/thrnz/docker-wireguard-pia) |
+| [gluetun](./stacks/common/docker-compose.gluetun.yml#L4)  | Lightweight swiss-army-knife-like VPN client. |  | [Docker Hub](https://github.com/qdm12/gluetun) |
 | [bazarr](./stacks/docker-compose.arr.yml#L8)  | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [prowlarr](./stacks/docker-compose.arr.yml#L37) <sup>1</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
 | [radarr](./stacks/docker-compose.arr.yml#L64)  | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
@@ -67,7 +67,7 @@ This repository holds my docker compose files and configuration files for servic
 | [stirling-pdf](./stacks/docker-compose.stirling-pdf.yml#L5)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
 | [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L7)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 
-<sup>1</sup>All traffic is routed via tunnel VPN client container.
+<sup>1</sup>All traffic is routed via gluetun VPN client container.
 
 ## Prerequisites
 
