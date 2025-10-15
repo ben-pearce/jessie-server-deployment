@@ -5,7 +5,7 @@ services:
     container_name: obsidian-couchdb
     volumes:
       - ${DATA_DIR}/couchdb/obsidian:/opt/couchdb/data
-      - ${CONFIG_DIR}/couchdb/obsidian.ini:/opt/couchdb/etc/local.d/docker.ini
+      - ${DATA_DIR}/couchdb/obsidian.ini:/opt/couchdb/etc/local.d/docker.ini
     environment:
       COUCHDB_PASSWORD: couchdb
       COUCHDB_USER: ben

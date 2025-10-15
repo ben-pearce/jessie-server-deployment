@@ -12,8 +12,8 @@ services:
       - ${DATA_DIR}/nextcloud/html:/var/www/html
       - ${DATA_DIR}/nextcloud/apps:/var/www/html/custom_apps
       - ${DATA_DIR}/nextcloud/data:/var/www/html/data
+      - ${DATA_DIR}/nextcloud/config:/var/www/html/config
       - cloud:/var/www/html/data/ben/files
-      - ${CONFIG_DIR}/nextcloud:/var/www/html/config
     secrets:
       - nextcloud_postgres_password
       - smtp_password

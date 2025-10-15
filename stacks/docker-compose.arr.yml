@@ -7,7 +7,7 @@ services:
     image: lscr.io/linuxserver/bazarr:v1.5.3-ls321@sha256:005f97fcab0fd7402cd7ff3c09f5ff4da4c63ca51be487e90d5c4dc8a8f85a45
     container_name: bazarr
     volumes:
-      - ${CONFIG_DIR}/bazarr:/config
+      - ${DATA_DIR}/bazarr:/config
       - media:/media
       - ${LOG_DIR}/bazarr:/config/log
     environment:
@@ -64,7 +64,6 @@ services:
     container_name: radarr
     volumes:
       - ${DATA_DIR}/radarr:/config
-      - ${CONFIG_DIR}/radarr/config.xml:/config/config.xml
       - media:/media
       - ${LOG_DIR}/radarr:/config/logs
     environment:
@@ -122,7 +121,6 @@ services:
     container_name: sonarr
     volumes:
       - ${DATA_DIR}/sonarr:/config
-      - ${CONFIG_DIR}/sonarr/config.xml:/config/config.xml
       - media:/media
       - ${LOG_DIR}/sonarr:/config/logs
     environment:

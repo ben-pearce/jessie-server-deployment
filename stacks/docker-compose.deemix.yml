@@ -5,7 +5,7 @@ services:
     container_name: deemix
     volumes:
       - ${DATA_DIR}/lidarr/downloads:/downloads
-      - ${CONFIG_DIR}/deemix:/config
+      - ${DATA_DIR}/deemix:/config
       - ${LOG_DIR}/deemix:/config/log
     environment:
       - PUID

@@ -45,7 +45,7 @@ services:
     image: lscr.io/linuxserver/tvheadend:version-26ec161f@sha256:5da84d8b5e16943b2654fbd6b84a60135f2c68182b66a25bc4e4fe322b7f9b8d
     container_name: tvheadend
     volumes:
-      - ${CONFIG_DIR}/tvheadend:/config
+      - ${DATA_DIR}/tvheadend:/config
       - media:/media
       - ./scripts/tvheadend/tv_grab_url_gz:/usr/bin/tv_grab_url_gz
     environment:
