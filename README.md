@@ -17,13 +17,13 @@ This repository holds my docker compose files and configuration files for servic
 | **Name** | **Description** | **Ports** | **Links** |
 |---|---|---|---|
 | [traefik](./docker-compose.yml#L14)  | The Cloud Native Application Proxy. | `0.0.0.0:80:80`, `0.0.0.0:443:443` | [GitHub](https://github.com/traefik/traefik) |
-| [gluetun](./stacks/common/docker-compose.gluetun.yml#L4)  | Lightweight swiss-army-knife-like VPN client. |  | [Docker Hub](https://github.com/qdm12/gluetun) |
+| [gluetun](./stacks/common/docker-compose.gluetun.yml#L5)  | Lightweight swiss-army-knife-like VPN client. |  | [Docker Hub](https://github.com/qdm12/gluetun) |
 | [bazarr](./stacks/docker-compose.arr.yml#L8)  | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [prowlarr](./stacks/docker-compose.arr.yml#L37) <sup>1</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
 | [radarr](./stacks/docker-compose.arr.yml#L64)  | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
-| [sabnzbd](./stacks/docker-compose.arr.yml#L93) <sup>1</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
-| [sonarr](./stacks/docker-compose.arr.yml#L122)  | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
-| [transmission](./stacks/docker-compose.arr.yml#L151) <sup>1</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
+| [sabnzbd](./stacks/docker-compose.arr.yml#L92) <sup>1</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
+| [sonarr](./stacks/docker-compose.arr.yml#L121)  | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
+| [transmission](./stacks/docker-compose.arr.yml#L149) <sup>1</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
 | [authentik-proxy](./stacks/docker-compose.authentik.yml#L5)  |  |  |  |
 | [cobalt-api](./stacks/docker-compose.cobalt.yml#L5)  |  |  |  |
 | [cobalt-web](./stacks/docker-compose.cobalt.yml#L25)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
@@ -84,7 +84,6 @@ The `.env` file stores environment variables to make starting the containers eas
 | `TZ` | Timezone for all containers. | `Europe/London` |
 | `PUID` | System user ID to run containers as. | `1000` |
 | `PGID` | System group ID to run containers as. | `1004` |
-| `CONFIG_DIR` | Location of config storage on host. | `config` |
 | `DATA_DIR` | Location of data storage on host. | `data` |
 | `LOG_DIR` | Location of logs directory on host. | `/var/log` |
 | `ADMIN_EMAIL` | Administrative email address. | `somebody@example.com` |
