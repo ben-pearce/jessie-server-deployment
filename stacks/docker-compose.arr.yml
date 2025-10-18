@@ -60,7 +60,7 @@ services:
       glance.description: Indexer Manager
       glance.category: media
   radarr:
-    image: lscr.io/linuxserver/radarr:5.27.5.10198-ls284@sha256:f174546a0ad7eb9a9170e4142bef6f74ef3ebfe6209528fded40630369406dc0
+    image: lscr.io/linuxserver/radarr:5.28.0.10274-ls285@sha256:fae2aafa6ecace3524fc79d102f5bfd25fb151caed6a454cee46479236ac33bf
     container_name: radarr
     volumes:
       - ${DATA_DIR}/radarr:/config
