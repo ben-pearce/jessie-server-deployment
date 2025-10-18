@@ -17,7 +17,7 @@ services:
       - TZ
       - VERSION=latest
       - JELLYFIN_PublishedServerUrl=https://jellyfin.${HOST}
-      - DOCKER_MODS=ghcr.io/ben-pearce/remote-ffmpeg-docker-mod:v0.5.3
+      - DOCKER_MODS=ghcr.io/ben-pearce/remote-ffmpeg-docker-mod:v0.5.4
       - REMOTE_FFMPEG_USER=ffmpeg
       - REMOTE_FFMPEG_HOST=pve.benpearce.io
       - REMOTE_FFMPEG_BINARY=/usr/lib/jellyfin-ffmpeg/ffmpeg
