@@ -88,7 +88,7 @@ services:
       glance.description: Movie PVR System
       glance.category: media
   sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:4.5.5-ls235@sha256:37fc318dc632106eac00f096661f43ca513793bf51913bcbd989ba921b3409c8
+    image: lscr.io/linuxserver/sabnzbd:4.5.5-ls236@sha256:6e6e7abf7a87436ffccd7df41e64a28df9c530e2be5467339a3f5f0518922b49
     container_name: sabnzbd
     volumes:
       - ${DATA_DIR}/sabnzbd:/config
