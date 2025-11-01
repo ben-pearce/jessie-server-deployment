@@ -13,6 +13,8 @@ services:
       - ND_LOGLEVEL=info
       - ND_SESSIONTIMEOUT=72h
       - ND_BASEURL=/
+      - ND_REVERSEPROXYWHITELIST=0.0.0.0/0
+      - ND_REVERSEPROXYUSERHEADER=X-authentik-username
     networks:
       - navidrome-web
     restart: unless-stopped
@@ -22,6 +24,7 @@ services:
       traefik.docker.network: navidrome-web
       traefik.enable: true
       traefik.http.routers.navidrome.entrypoints: https
+      traefik.http.routers.navidrome.middlewares: authentik
       traefik.http.routers.navidrome.rule: Host(`navidrome.${HOST}`)
       glance.name: Navidrome
       glance.icon: di:navidrome
