@@ -108,7 +108,7 @@ services:
       glance.name: KV
       glance.category: cloud
   paperless-scanner:
-    image: manuc66/node-hp-scan-to:1.9.2@sha256:7199a8fe581265b8eaaec5176cf5a34844f3c8a16578535348a0373e94a36c3b
+    image: manuc66/node-hp-scan-to:1.9.3@sha256:6bf851ad5cbf24c02699e4004213590152ab10bfc9514d1279f145a10e6975a3
     container_name: paperless-scanner
     volumes:
       - ${DATA_DIR}/paperless/consume:/scan
