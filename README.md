@@ -26,7 +26,7 @@ This repository holds my docker compose files and configuration files for servic
 | [transmission](./stacks/docker-compose.arr.yml#L149) <sup>1</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
 | [authentik-proxy](./stacks/docker-compose.authentik.yml#L5)  |  |  |  |
 | [cobalt-api](./stacks/docker-compose.cobalt.yml#L5)  |  |  |  |
-| [cobalt-web](./stacks/docker-compose.cobalt.yml#L25)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
+| [cobalt-web](./stacks/docker-compose.cobalt.yml#L27)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
 | [cyberchef](./stacks/docker-compose.cyberchef.yml#L5)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
 | [deemix](./stacks/docker-compose.deemix.yml#L5)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
 | [fdroid-server](./stacks/docker-compose.fdroid.yml#L5)  |  |  |  |
