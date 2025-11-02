@@ -6,7 +6,7 @@ services:
     volumes:
       - ${DATA_DIR}/cobalt/cookies.json:/cookies.json
     environment:
-      - API_URL=https://cobalt-api.${HOST}
+      - API_URL=https://cobalt.${HOST}/api
       - API_NAME=jessie
       - COOKIE_PATH=/cookies.json
     networks:
@@ -14,14 +14,16 @@ services:
     restart: unless-stopped
     labels:
       traefik.enable: true
+      traefik.http.middlewares.cobalt-api-stripprefix.stripprefix.prefixes: /api
       traefik.http.routers.cobalt-api.entrypoints: https
-      traefik.http.routers.cobalt-api.rule: Host(`cobalt-api.${HOST}`)
+      traefik.http.routers.cobalt-api.middlewares: cobalt-api-stripprefix,authentik
+      traefik.http.routers.cobalt-api.rule: Host(`cobalt.${HOST}`) && PathPrefix(`/api`)
       traefik.http.services.cobalt-api.loadbalancer.server.port: 9000
       glance.parent: cobalt
       glance.name: API
       glance.category: tools
   cobalt-web:
-    image: ghcr.io/ben-pearce/cobalt-web:11.3@sha256:f10cef7319d36d5c306d0602a813cd0e3713b720f87da3887592a104c9f79fe7
+    image: ghcr.io/ben-pearce/cobalt-web:11.3@sha256:0b04e3ed20f58cbeb7a9cd8db288e1abda90adc6e2cd831bc21f7612d44cf334
     container_name: cobalt-web
     depends_on:
       - cobalt-api
