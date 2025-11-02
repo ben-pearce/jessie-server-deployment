@@ -1,7 +1,6 @@
 name: jessie-server-deployment
 include:
   - docker-compose.cloud.yml
-  - docker-compose.dev.yml
   - docker-compose.management.yml
   - docker-compose.media.yml
   - docker-compose.music.yml
@@ -39,7 +38,6 @@ services:
       - navidrome-web
       - nextcloud-web
       - paperless-web
-      - pgadmin-web
       - gluetun-web
       - vaultwarden-web
       - obsidian-web
