@@ -1,7 +1,7 @@
 name: stirling-pdf
 services:
   stirling-pdf:
-    image: frooodle/s-pdf:2.0.0@sha256:614cb0247090c94689c4b05df5dc8f10b9cea1ed893380ea61712de54b28a4c2
+    image: frooodle/s-pdf:2.0.2@sha256:af9942975d39b953a008aaa1bb2bbb23330d725d8aeda835eb53de3715e42e36
     container_name: stirling-pdf
     volumes:
       - ${DATA_DIR}/stirling-pdf/data:/usr/share/tessdata
