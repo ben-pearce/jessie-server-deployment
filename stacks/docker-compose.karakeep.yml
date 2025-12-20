@@ -1,7 +1,7 @@
 name: karakeep
 services:
   karakeep-chrome:
-    image: zenika/alpine-chrome:124@sha256:b3b68c0fa7d13e3801d372215d23df8692a4867fab37bf414022832a814ede82
+    image: zenika/alpine-chrome:124@sha256:5e9bbda446ce5d18c9b3e33f4f134a7c55574b25dc1ae857bacc8d045ce400c4
     container_name: karakeep-chrome
     networks:
       - karakeep
