@@ -35,11 +35,6 @@
     },
     {
       "matchDatasources": "docker",
-      "matchPackageNames": ["thrnz/docker-wireguard-pia"],
-      "versioning": "regex:^(?<major>\\d+)_master_(?<build>.+)$"
-    },
-    {
-      "matchDatasources": "docker",
       "matchPackageNames": ["getmeili/meilisearch"],
       "dependencyDashboardApproval": true
     }
