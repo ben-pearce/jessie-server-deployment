@@ -4,7 +4,7 @@ include:
   - common/docker-compose.volumes.yml
 services:
   jellyfin:
-    image: lscr.io/linuxserver/jellyfin:10.11.3ubu2404-ls9@sha256:5deb03969f0203a51a51cbc6a773df27014097db6314a61f606f8adcf784f4fb
+    image: lscr.io/linuxserver/jellyfin:10.11.6ubu2404-ls17@sha256:df1ccfdd214c39c9ae0595b5800591b52a6f87bbbab1bd4a53dc7be6852cf6b1
     container_name: jellyfin
     volumes:
       - ${DATA_DIR}/jellyfin:/config
