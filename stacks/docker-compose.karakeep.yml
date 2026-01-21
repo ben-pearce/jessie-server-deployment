@@ -33,7 +33,7 @@ services:
       glance.name: Search
       glance.category: cloud
   karakeep-web:
-    image: ghcr.io/karakeep-app/karakeep:0.28.0@sha256:cd2348520ba25bbee64199468cd41758ab325eecd6a3a5c40cd6443a1607f9e9
+    image: ghcr.io/karakeep-app/karakeep:0.30.0@sha256:2724d4a9a6d13a7fa3babf53b9245767aae56c34f06042a8463ee983c6b41caf
     container_name: karakeep-web
     volumes:
       - ${DATA_DIR}/karakeep:/data
