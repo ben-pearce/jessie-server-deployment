@@ -4,7 +4,7 @@ include:
   - common/docker-compose.volumes.yml
 services:
   bazarr:
-    image: lscr.io/linuxserver/bazarr:v1.5.4-ls333@sha256:5af962ae633e97c8e008e4b6e638798de1420e8a9e8e6189beb108a52c6e942a
+    image: lscr.io/linuxserver/bazarr:v1.5.4-ls334@sha256:d6492cc79ca5e12fe617c7285e7ebd60d4e7f0e93ec7faa78338dba91f07a91e
     container_name: bazarr
     volumes:
       - ${DATA_DIR}/bazarr:/config
@@ -88,7 +88,7 @@ services:
       glance.description: Movie PVR System
       glance.category: media
   sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:4.5.5-ls240@sha256:a46e75d861e6b26d7ee263b22743d6fdaaa4a5ccd42168b6ea563a2f047d9438
+    image: lscr.io/linuxserver/sabnzbd:4.5.5-ls242@sha256:a4f65481b436424d90c53f0975f3d5cc6cabb95f5c00624b78c370dddf9b83ad
     container_name: sabnzbd
     volumes:
       - ${DATA_DIR}/sabnzbd:/config
