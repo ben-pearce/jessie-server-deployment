@@ -35,6 +35,9 @@ services:
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:2.3.0.5236-ls135@sha256:d3e9307b320b6772749a2cf8fc2712e9e824c4930b034680ad4d08a9e2f25884
     container_name: prowlarr
+    depends_on:
+      gluetun:
+        condition: service_healthy
     volumes:
       - ${DATA_DIR}/prowlarr:/config
       - ${LOG_DIR}/prowlarr:/config/logs
@@ -90,6 +93,9 @@ services:
   sabnzbd:
     image: lscr.io/linuxserver/sabnzbd:4.5.5-ls242@sha256:a4f65481b436424d90c53f0975f3d5cc6cabb95f5c00624b78c370dddf9b83ad
     container_name: sabnzbd
+    depends_on:
+      gluetun:
+        condition: service_healthy
     volumes:
       - ${DATA_DIR}/sabnzbd:/config
       - media:/media
@@ -147,6 +153,9 @@ services:
   transmission:
     image: lscr.io/linuxserver/transmission:4.0.6-r4-ls291@sha256:2c277e09e5157905b798489c7161fdc08422635db091f8b55ef4f246384c3ce0
     container_name: transmission
+    depends_on:
+      gluetun:
+        condition: service_healthy
     volumes:
       - ${DATA_DIR}/transmission:/config
       - media:/media
