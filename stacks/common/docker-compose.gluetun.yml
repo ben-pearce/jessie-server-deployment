@@ -18,6 +18,7 @@ services:
     networks:
       - gluetun
       - gluetun-web
+    restart: unless-stopped
     labels:
       readme.description: Lightweight swiss-army-knife-like VPN client.
       readme.links.docker: https://github.com/qdm12/gluetun
