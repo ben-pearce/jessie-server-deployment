@@ -1,7 +1,7 @@
 name: cyberchef
 services:
   cyberchef:
-    image: mpepping/cyberchef:v10.21.0@sha256:09fddd80183499e0c487ee431c5819435fcffe2ad8377aba7524ba0efed4bdcf
+    image: mpepping/cyberchef:v10.22.1@sha256:547e6af4bd3037b8bbea1c4823631c49a4381d4fe813c45bb26f1c649a9558a0
     container_name: cyberchef
     networks:
       - cyberchef-web
