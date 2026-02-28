@@ -4,7 +4,7 @@ include:
   - common/docker-compose.volumes.yml
 services:
   bazarr:
-    image: lscr.io/linuxserver/bazarr:v1.5.5-ls337@sha256:18ff732dffcebd559d15a91845fc3360d49652ea01dccfbfd98b8248ceb86e38
+    image: lscr.io/linuxserver/bazarr:v1.5.6-ls339@sha256:b0bc617664dbca25845ac3b1bb6411b145b6a44a6d173071c9d2f426524fdd9f
     container_name: bazarr
     volumes:
       - ${DATA_DIR}/bazarr:/config
@@ -63,7 +63,7 @@ services:
       glance.description: Indexer Manager
       glance.category: media
   radarr:
-    image: lscr.io/linuxserver/radarr:6.0.4.10291-ls292@sha256:f08dda38e7d12e5a722d9a5cb6e54acaf63c8598fefeefec88effe0c0d0038dd
+    image: lscr.io/linuxserver/radarr:6.0.4.10291-ls293@sha256:6d3e68474ea146f995af98d3fb2cb1a14e2e4457ddaf035aa5426889e2f9249c
     container_name: radarr
     volumes:
       - ${DATA_DIR}/radarr:/config
