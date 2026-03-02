@@ -13,7 +13,7 @@ services:
       - WIREGUARD_PRIVATE_KEY_SECRETFILE=/run/secrets/gluetun_wireguard_private_key
       - WIREGUARD_PRESHARED_KEY_SECRETFILE=/run/secrets/gluetun_wireguard_preshared_key
       - WIREGUARD_ADDRESSES_SECRETFILE=/run/secrets/gluetun_wireguard_addresses
-      - SERVER_COUNTRIES=United Kingdom
+      - SERVER_COUNTRIES=Netherlands
       - TZ
     networks:
       - gluetun
