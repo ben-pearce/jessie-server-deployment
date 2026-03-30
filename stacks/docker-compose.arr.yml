@@ -163,6 +163,7 @@ services:
       - PUID
       - PGID
       - TZ
+      - UMASK=000
     network_mode: service:gluetun
     restart: unless-stopped
     labels:
