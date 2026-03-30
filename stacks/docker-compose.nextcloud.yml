@@ -14,6 +14,7 @@ services:
       - ${DATA_DIR}/nextcloud/data:/var/www/html/data
       - ${DATA_DIR}/nextcloud/config:/var/www/html/config
       - cloud:/var/www/html/data/ben/files
+      - media:/var/www/html/data/ben/files/Media
     secrets:
       - nextcloud_postgres_password
       - smtp_password
