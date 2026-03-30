@@ -51,8 +51,8 @@ This repository holds my docker compose files and configuration files for servic
 | [n8n](./stacks/docker-compose.n8n.yml#L5)  | Powerful workflow automation. |  |  |
 | [navidrome](./stacks/docker-compose.navidrome.yml#L7)  | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
 | [nextcloud](./stacks/docker-compose.nextcloud.yml#L8)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
-| [nextcloud-postgres](./stacks/docker-compose.nextcloud.yml#L59)  |  |  |  |
-| [nextcloud-redis](./stacks/docker-compose.nextcloud.yml#L78)  |  |  |  |
+| [nextcloud-postgres](./stacks/docker-compose.nextcloud.yml#L60)  |  |  |  |
+| [nextcloud-redis](./stacks/docker-compose.nextcloud.yml#L79)  |  |  |  |
 | [obsidian-couchdb](./stacks/docker-compose.obsidian.yml#L5)  |  |  |  |
 | [ofelia](./stacks/docker-compose.ofelia.yml#L5)  | Docker job scheduler. |  | [GitHub](https://github.com/mcuadros/ofelia) |
 | [otrecorder](./stacks/docker-compose.owntracks.yml#L5)  | Store and access data published by OwnTracks apps. |  | [GitHub](https://github.com/owntracks/recorder) |
