@@ -21,7 +21,7 @@ services:
       - TRUSTED_PROXIES=**
       - IMPORT_DIR_ALLOWLIST=/import
       - ENABLE_MAIL_REPORT=true
-      - MAIL_DESTINATION=${ADMIN_MAIL}
+      - MAIL_DESTINATION=${ADMIN_EMAIL}
       - MAIL_MAILER=smtp
       - MAIL_HOST=${SMTP_HOST}
       - MAIL_PORT=465
