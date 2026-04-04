@@ -1,7 +1,7 @@
 name: deemix
 services:
   deemix:
-    image: ghcr.io/bambanah/deemix:v4.5.0@sha256:52a74c384c9b771d7cd2d05b9f122c39c69aaa241d92dcc33b96e7d54c342f22
+    image: ghcr.io/bambanah/deemix:v4.5.1@sha256:367a03f070a163fb41129b7f7717a2dbaa611eca6c767194f77bd0575b1b7e79
     container_name: deemix
     volumes:
       - ${DATA_DIR}/lidarr/downloads:/downloads
