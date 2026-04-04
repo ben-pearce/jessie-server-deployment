@@ -1,7 +1,7 @@
 name: n8n
 services:
   n8n:
-    image: docker.n8n.io/n8nio/n8n:2.12.2@sha256:1e764de257f2b1eb6fc0e2477bd82cf8f5de9e68b82ac243b1a2db1551426723
+    image: docker.n8n.io/n8nio/n8n:2.15.0@sha256:5ff0ad333090d1901005cd764399b1be2c2a29b816704107f08c340d0d223043
     container_name: n8n
     volumes:
       - ${DATA_DIR}/n8n:/home/node/.n8n
