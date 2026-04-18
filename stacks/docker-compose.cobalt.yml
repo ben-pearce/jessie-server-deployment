@@ -23,7 +23,7 @@ services:
       glance.name: API
       glance.category: tools
   cobalt-web:
-    image: ghcr.io/ben-pearce/cobalt-web:11.3@sha256:0b04e3ed20f58cbeb7a9cd8db288e1abda90adc6e2cd831bc21f7612d44cf334
+    image: ghcr.io/ben-pearce/cobalt-web:11.7@sha256:4153e9b758469476990fef786b1e65322f9cc43146b1852297e53b033aa491b2
     container_name: cobalt-web
     depends_on:
       - cobalt-api
