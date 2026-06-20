@@ -4,7 +4,7 @@ include:
   - common/docker-compose.volumes.yml
 services:
   bazarr:
-    image: lscr.io/linuxserver/bazarr:v1.5.6-ls350@sha256:4b5e510042bf471c8bafab89cada9774fba2fb25f16ec64235151cacbe847c10
+    image: lscr.io/linuxserver/bazarr:v1.5.6-ls351@sha256:8e48a2950e3806a2a914fe031fa21b1c0a0f2824eede4ea747e26213e941fbf2
     container_name: bazarr
     volumes:
       - ${DATA_DIR}/bazarr:/config
@@ -91,7 +91,7 @@ services:
       glance.description: Movie PVR System
       glance.category: media
   sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:5.0.3-ls257@sha256:3de84922d3b4c5e7062b3cbd1e08f57d8dc113a8be4dc0447d33e2da293bab26
+    image: lscr.io/linuxserver/sabnzbd:5.0.4-ls259@sha256:cfdc4199329e1c6a0c1af3335cbb6ab224bd9adaaad1b75bffe5b6e2c77e57c3
     container_name: sabnzbd
     depends_on:
       gluetun:
@@ -123,7 +123,7 @@ services:
       glance.description: Usenet Binary Newsreader
       glance.category: media
   sonarr:
-    image: lscr.io/linuxserver/sonarr:4.0.17.2952-ls313@sha256:0b3f344388bd7bed4f2f770058de795e76447e4a481b83c8d5f8fed489371fde
+    image: lscr.io/linuxserver/sonarr:4.0.17.2952-ls314@sha256:02bc962946fef994e67a38152446df25c10a52f8583aefeeb6467f9dd44cab99
     container_name: sonarr
     volumes:
       - ${DATA_DIR}/sonarr:/config
