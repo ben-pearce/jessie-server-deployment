@@ -41,7 +41,7 @@ This repository holds my docker compose files and configuration files for servic
 | [immich-server](./stacks/docker-compose.immich.yml#L52)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
 | [immich-valkey](./stacks/docker-compose.immich.yml#L89)  |  |  |  |
 | [jellyfin](./stacks/docker-compose.jellyfin.yml#L8)  | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
-| [tvheadend](./stacks/docker-compose.jellyfin.yml#L46)  | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
+| [tvheadend](./stacks/docker-compose.jellyfin.yml#L49)  | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
 | [karakeep-chrome](./stacks/docker-compose.karakeep.yml#L5)  |  |  |  |
 | [karakeep-meilisearch](./stacks/docker-compose.karakeep.yml#L22)  |  |  |  |
 | [karakeep-web](./stacks/docker-compose.karakeep.yml#L37)  | The Bookmark Everything App |  | [Website](https://karakeep.app/) |
