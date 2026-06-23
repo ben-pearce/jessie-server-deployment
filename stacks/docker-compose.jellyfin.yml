@@ -4,8 +4,10 @@ include:
   - common/docker-compose.volumes.yml
 services:
   jellyfin:
-    image: lscr.io/linuxserver/jellyfin:10.11.11ubu2404-ls37@sha256:bb8ff21a879498dbdead9efe4d3de2070dbda2b9fb35b9a43501055f6e526384
+    image: lscr.io/linuxserver/jellyfin:10.11.10ubu2404-ls35@sha256:be2bd22d5e27451ebc14b326d8a6554e1f51c79f4431d6c71522565ed17f06ea
     container_name: jellyfin
+    secrets:
+      - ffmpeg_ssh_key
     volumes:
       - ${DATA_DIR}/jellyfin:/config
       - media:/media
@@ -17,11 +19,12 @@ services:
       - TZ
       - VERSION=latest
       - JELLYFIN_PublishedServerUrl=https://jellyfin.${HOST}
-      - DOCKER_MODS=ghcr.io/ben-pearce/remote-ffmpeg-docker-mod:v0.6.12
+      - DOCKER_MODS=ghcr.io/ben-pearce/remote-ffmpeg-docker-mod:v0.6.10
       - REMOTE_FFMPEG_USER=ffmpeg
       - REMOTE_FFMPEG_HOST=pve.benpearce.io
       - REMOTE_FFMPEG_BINARY=/usr/lib/jellyfin-ffmpeg/ffmpeg
       - FFMPEG_PATH=/usr/bin/remote-ffmpeg/ffmpeg
+      - REMOTE_FFMPEG_SSH_KEY_PATH=/run/secrets/ffmpeg_ssh_key
     networks:
       - jellyfin-web
       - gluetun
@@ -72,3 +75,6 @@ services:
 networks:
   jellyfin-web:
     name: jellyfin-web
+secrets:
+  ffmpeg_ssh_key:
+    file: ../.secrets/ffmpeg_ssh_key
