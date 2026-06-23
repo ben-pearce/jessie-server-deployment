@@ -6,13 +6,13 @@ services:
   jellyfin:
     image: lscr.io/linuxserver/jellyfin:10.11.10ubu2404-ls35@sha256:be2bd22d5e27451ebc14b326d8a6554e1f51c79f4431d6c71522565ed17f06ea
     container_name: jellyfin
-    secrets:
-      - ffmpeg_ssh_key
     volumes:
       - ${DATA_DIR}/jellyfin:/config
       - media:/media
       - music:/music
       - ${LOG_DIR}/jellyfin:/config/log
+    secrets:
+      - ffmpeg_ssh_key
     environment:
       - PUID
       - PGID
