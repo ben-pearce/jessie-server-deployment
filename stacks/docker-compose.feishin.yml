@@ -1,7 +1,7 @@
 name: feishin
 services:
   feishin:
-    image: ghcr.io/jeffvli/feishin:1.13.0@sha256:c805072c12e441edbf7863eccee5bd62b9026f59b7c094a3dd74ed1a9b08056e
+    image: ghcr.io/jeffvli/feishin:1.15.1@sha256:5c0b3a1f307f8d9508c9fd5dcef04349b6cda1740ae95d478498dc86e3e432bf
     container_name: feishin
     environment:
       - SERVER_NAME=jessie
