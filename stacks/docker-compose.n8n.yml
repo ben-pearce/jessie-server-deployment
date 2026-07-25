@@ -1,7 +1,7 @@
 name: n8n
 services:
   n8n:
-    image: n8nio/n8n:2.31.0@sha256:886d431a020c355a35b21e377edb14949e50afbce1e0c60e44a8cbb54ffeccbc
+    image: n8nio/n8n:2.32.0@sha256:8a6dde6ff9a511b39decc6145a0b4628f819e0385e99172a0ed26b7a436cf69f
     container_name: n8n
     volumes:
       - ${DATA_DIR}/n8n:/home/node/.n8n
