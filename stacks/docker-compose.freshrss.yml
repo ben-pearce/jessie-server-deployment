@@ -1,7 +1,7 @@
 name: freshrss
 services:
   freshrss:
-    image: lscr.io/linuxserver/freshrss:1.29.1-ls311@sha256:b67eb8dbe1e6944ce45f761645858b25b2a852d5dd3e5e49f001bd5cf2534350
+    image: lscr.io/linuxserver/freshrss:1.29.1-ls314@sha256:d97008a26ee3ed730bf5e85cdb92a4d369d12964e6439f3a5eaa3862092d3dcf
     container_name: freshrss
     volumes:
       - ${DATA_DIR}/freshrss:/config
