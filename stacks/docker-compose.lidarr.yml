@@ -3,7 +3,7 @@ include:
   - common/docker-compose.volumes.yml
 services:
   lidarr:
-    image: lscr.io/linuxserver/lidarr:3.1.0.4875-ls33@sha256:ba7d43fd5d7de790c38c2dc8f2b2b54c1ac00a452784891c37385a43a039907a
+    image: lscr.io/linuxserver/lidarr:3.1.0.4875-ls37@sha256:60be9a1faad3dfba5a711163fc18526845e2ce7b50b463dd9effae7f766c9beb
     container_name: lidarr
     volumes:
       - ${DATA_DIR}/lidarr:/config
