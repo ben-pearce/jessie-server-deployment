@@ -28,7 +28,7 @@ services:
       glance.name: Machine Learning
       glance.category: cloud
   immich-postgres:
-    image: ghcr.io/immich-app/postgres:17-vectorchord0.5.3@sha256:de30761f0081f2adcdcdb3fdcfa2d53aa73badb3712f943bf84eaffc8fc706af
+    image: ghcr.io/immich-app/postgres:17-vectorchord1.1.1@sha256:a70eb33da3e36cd6cb9768efd5c23c4192ecb0281db2b1031386fad338ff3514
     container_name: immich-postgres
     volumes:
       - immich-postgres:/var/lib/postgresql/data
