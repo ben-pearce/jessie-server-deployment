@@ -37,7 +37,9 @@ services:
     environment:
       PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
       PAPERLESS_SOCIALACCOUNT_PROVIDERS_FILE: /run/secrets/paperless_socialaccount_providers
+      PAPERLESS_SECRET_KEY_FILE: /run/secrets/paperless_secret_key
       PAPERLESS_REDIRECT_LOGIN_TO_SSO: true
+      PAPERLESS_DBENGINE: postgresql
       PAPERLESS_DBHOST: paperless-postgres
       PAPERLESS_DBPASS_FILE: /run/secrets/paperless_postgres_password
       PAPERLESS_REDIS: redis://paperless-redis:6379
