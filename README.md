@@ -59,10 +59,10 @@ This repository holds my docker compose files and configuration files for servic
 | [owntracks-frontend](./stacks/docker-compose.owntracks.yml#L27)  | Web interface for OwnTracks built with Vue.js |  | [GitHub](https://github.com/owntracks/frontend) |
 | [paperless-gotenberg](./stacks/docker-compose.paperless.yml#L7)  |  |  |  |
 | [paperless-ngx](./stacks/docker-compose.paperless.yml#L21)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
-| [paperless-postgres](./stacks/docker-compose.paperless.yml#L84)  |  |  |  |
-| [paperless-redis](./stacks/docker-compose.paperless.yml#L102)  |  |  |  |
-| [paperless-scanner](./stacks/docker-compose.paperless.yml#L114)  |  |  |  |
-| [paperless-tika](./stacks/docker-compose.paperless.yml#L133)  |  |  |  |
+| [paperless-postgres](./stacks/docker-compose.paperless.yml#L85)  |  |  |  |
+| [paperless-redis](./stacks/docker-compose.paperless.yml#L103)  |  |  |  |
+| [paperless-scanner](./stacks/docker-compose.paperless.yml#L115)  |  |  |  |
+| [paperless-tika](./stacks/docker-compose.paperless.yml#L134)  |  |  |  |
 | [stirling-pdf](./stacks/docker-compose.stirling-pdf.yml#L5)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
 | [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L7)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 
