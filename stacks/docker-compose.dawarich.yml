@@ -1,0 +1,172 @@
+name: dawarich
+services:
+  dawarich-app:
+    image: freikin/dawarich:1.12.2@sha256:41372c4084737133765b0a3067e648cff9fc4af23e2054717e4e01c4f0933609
+    container_name: dawarich-app
+    depends_on:
+      dawarich-postgres:
+        condition: service_healthy
+        restart: true
+      dawarich-redis:
+        condition: service_healthy
+        restart: true
+    volumes:
+      - ${DATA_DIR}/dawarich/public:/var/app/public
+      - ${DATA_DIR}/dawarich/watched:/var/app/tmp/imports/watched
+      - ${DATA_DIR}/dawarich/storage:/var/app/storage
+      - dawarich-postgres:/dawarich_db_data
+    environment:
+      - RAILS_ENV=production
+      - PUID
+      - PGID
+      - TIME_ZONE=${TZ}
+      - REDIS_URL=redis://dawarich-redis:6379
+      - DATABASE_HOST=dawarich-postgres
+      - DATABASE_USERNAME=dawarich
+      - DATABASE_NAME=dawarich
+      - APPLICATION_HOSTS=dawarich.${HOST}
+      - RAILS_LOG_TO_STDOUT=true
+      - STORE_GEODATA=true
+      - WEB_CONCURRENCY=-1
+    env_file: ../.secrets/dawarich
+    networks:
+      - dawarich
+      - dawarich-web
+    command: ['bin/rails', 'server', '-p', '3000', '-b', '::']
+    entrypoint: web-entrypoint.sh
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          "wget -qO - http://127.0.0.1:3000/api/v1/health | grep -q '\"status\"\\s*:\\s*\"ok\"'",
+        ]
+      interval: 10s
+      retries: 30
+      start_period: 30s
+      timeout: 10s
+    labels:
+      readme.description: Location History Tracker
+      readme.links.github: https://github.com/Freika/dawarich
+      readme.links.web: https://dawarich.app/
+      traefik.docker.network: dawarich-web
+      traefik.enable: true
+      traefik.http.routers.dawarich-app.entrypoints: https
+      traefik.http.routers.dawarich-app.rule: Host(`dawarich.${HOST}`)
+      traefik.http.services.dawarich-app.loadbalancer.server.port: 3000
+      glance.id: dawarich
+      glance.name: Dawarich
+      glance.icon: di:dawarich
+      glance.url: https://dawarich.${HOST}
+      glance.description: Self-Hosted Location History Tracker
+      glance.category: cloud
+    stdin_open: true
+    tty: true
+  dawarich-postgres:
+    image: postgis/postgis:18-3.6-alpine@sha256:1b29590680bd9178a3b8e649f4aba521fc0a5a9979417c1a5e639f53a4d87dc2
+    container_name: dawarich-postgres
+    volumes:
+      - dawarich-postgres:/var/lib/postgresql
+      - ${DATA_DIR}/postgres/dawarich:/docker-entrypoint-initdb.d
+      - ${DATA_DIR}/dawarich/shared:/var/shared
+    secrets:
+      - dawarich_postgres_password
+    environment:
+      - POSTGRES_USER=dawarich
+      - POSTGRES_PASSWORD_FILE=/run/secrets/dawarich_postgres_password
+      - POSTGRES_DB=dawarich
+    env_file: ../.secrets/dawarich
+    networks:
+      - dawarich
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U darawich -d dawarich']
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    labels:
+      glance.parent: dawarich
+      glance.name: DB
+      glance.category: cloud
+    shm_size: 1G
+  dawarich-redis:
+    image: redis:8.10.0@sha256:c29e49ab2f85760a3827b53882e6dd9f5c6c3f0bb7d724e07bb31cbf275a5236
+    container_name: dawarich-redis
+    volumes:
+      - ${DATA_DIR}/dawarich/shared:/data
+    networks:
+      - dawarich
+    command: >
+      redis-server --save 900 1 --save 300 10 --appendonly no
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
+    labels:
+      glance.parent: dawarich
+      glance.name: KV
+      glance.category: cloud
+  dawarich-sidekiq:
+    image: freikin/dawarich:1.12.2@sha256:41372c4084737133765b0a3067e648cff9fc4af23e2054717e4e01c4f0933609
+    container_name: dawarich-sidekiq
+    depends_on:
+      dawarich-app:
+        condition: service_healthy
+        restart: true
+      dawarich-postgres:
+        condition: service_healthy
+        restart: true
+      dawarich-redis:
+        condition: service_healthy
+        restart: true
+    volumes:
+      - ${DATA_DIR}/dawarich/public:/var/app/public
+      - ${DATA_DIR}/dawarich/watched:/var/app/tmp/imports/watched
+      - ${DATA_DIR}/dawarich/storage:/var/app/storage
+    environment:
+      - RAILS_ENV=production
+      - PUID
+      - PGID
+      - TIME_ZONE=${TZ}
+      - REDIS_URL=redis://dawarich-redis:6379
+      - DATABASE_HOST=dawarich-postgres
+      - DATABASE_USERNAME=dawarich
+      - DATABASE_NAME=dawarich
+      - APPLICATION_HOSTS=dawarich.${HOST}
+      - BACKGROUND_PROCESSING_CONCURRENCY=3
+      - RAILS_LOG_TO_STDOUT=true
+      - STORE_GEODATA=true
+      - WEB_CONCURRENCY=-1
+    env_file: ../.secrets/dawarich
+    networks:
+      - dawarich
+    command: ['sidekiq']
+    entrypoint: sidekiq-entrypoint.sh
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD-SHELL', 'pgrep -f sidekiq']
+      interval: 10s
+      retries: 30
+      start_period: 30s
+      timeout: 10s
+    labels:
+      glance.parent: dawarich
+      glance.name: Queue
+      glance.category: cloud
+    stdin_open: true
+    tty: true
+networks:
+  dawarich:
+    name: dawarich
+  dawarich-web:
+    name: dawarich-web
+volumes:
+  dawarich-postgres:
+    name: dawarich-postgres
+secrets:
+  dawarich_postgres_password:
+    file: ../.secrets/dawarich_postgres_password

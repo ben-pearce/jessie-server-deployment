@@ -5,6 +5,6 @@ include:
   - stacks/docker-compose.nextcloud.yml
   - stacks/docker-compose.paperless.yml
   - stacks/docker-compose.obsidian.yml
-  - stacks/docker-compose.owntracks.yml
+  - stacks/docker-compose.dawarich.yml
   - stacks/docker-compose.vaultwarden.yml
   - stacks/docker-compose.karakeep.yml

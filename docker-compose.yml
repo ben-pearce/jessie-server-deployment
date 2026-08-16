@@ -45,9 +45,9 @@ services:
       - cobalt-web
       - karakeep-web
       - stirling-pdf-web
-      - otr-web
       - fdroid-web
       - lidarr-web
+      - dawarich-web
     command:
       - '--global.sendAnonymousUsage=false'
       - '--api.insecure=true'
