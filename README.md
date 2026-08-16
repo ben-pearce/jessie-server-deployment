@@ -29,9 +29,9 @@ This repository holds my docker compose files and configuration files for servic
 | [cobalt-web](./stacks/docker-compose.cobalt.yml#L27)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
 | [cyberchef](./stacks/docker-compose.cyberchef.yml#L5)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
 | [dawarich-app](./stacks/docker-compose.dawarich.yml#L5)  | Location History Tracker |  | [GitHub](https://github.com/Freika/dawarich), [Website](https://dawarich.app/) |
-| [dawarich-postgres](./stacks/docker-compose.dawarich.yml#L68)  |  |  |  |
-| [dawarich-redis](./stacks/docker-compose.dawarich.yml#L96)  |  |  |  |
-| [dawarich-sidekiq](./stacks/docker-compose.dawarich.yml#L116)  |  |  |  |
+| [dawarich-postgres](./stacks/docker-compose.dawarich.yml#L67)  |  |  |  |
+| [dawarich-redis](./stacks/docker-compose.dawarich.yml#L95)  |  |  |  |
+| [dawarich-sidekiq](./stacks/docker-compose.dawarich.yml#L115)  |  |  |  |
 | [deemix](./stacks/docker-compose.deemix.yml#L5)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
 | [fdroid-server](./stacks/docker-compose.fdroid.yml#L5)  |  |  |  |
 | [feishin](./stacks/docker-compose.feishin.yml#L5)  | A modern self-hosted music player. |  | [GitHub](https://github.com/jeffvli/feishin) |
