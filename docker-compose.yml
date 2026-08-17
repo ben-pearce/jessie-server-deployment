@@ -44,7 +44,6 @@ services:
       - obsidian-web
       - cobalt-web
       - karakeep-web
-      - stirling-pdf-web
       - fdroid-web
       - lidarr-web
       - dawarich-web

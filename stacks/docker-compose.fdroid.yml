@@ -16,16 +16,12 @@ services:
       traefik.enable: true
       traefik.http.middlewares.cobalt-replacepath.replacepath.path: /repo/cobalt/assetlinks.json
       traefik.http.middlewares.dashboard-replacepath.replacepath.path: /repo/glance/assetlinks.json
-      traefik.http.middlewares.stirling-pdf-replacepath.replacepath.path: /repo/stirling-pdf/assetlinks.json
       traefik.http.routers.fdroid-web-cobalt.entrypoints: https
       traefik.http.routers.fdroid-web-cobalt.middlewares: cobalt-replacepath
       traefik.http.routers.fdroid-web-cobalt.rule: Host(`cobalt.${HOST}`) && Path(`/.well-known/assetlinks.json`)
       traefik.http.routers.fdroid-web-dashboard.entrypoints: https
       traefik.http.routers.fdroid-web-dashboard.middlewares: dashboard-replacepath
       traefik.http.routers.fdroid-web-dashboard.rule: Host(`${HOST}`) && Path(`/.well-known/assetlinks.json`)
-      traefik.http.routers.fdroid-web-stirling-pdf.entrypoints: https
-      traefik.http.routers.fdroid-web-stirling-pdf.middlewares: stirling-pdf-replacepath
-      traefik.http.routers.fdroid-web-stirling-pdf.rule: Host(`stirling-pdf.${HOST}`) && Path(`/.well-known/assetlinks.json`)
       traefik.http.routers.fdroid-web.entrypoints: https
       traefik.http.routers.fdroid-web.rule: Host(`fdroid.${HOST}`)
       traefik.http.services.fdroid-web.loadbalancer.server.port: 80
