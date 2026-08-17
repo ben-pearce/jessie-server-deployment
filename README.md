@@ -64,7 +64,6 @@ This repository holds my docker compose files and configuration files for servic
 | [paperless-redis](./stacks/docker-compose.paperless.yml#L103)  |  |  |  |
 | [paperless-scanner](./stacks/docker-compose.paperless.yml#L115)  |  |  |  |
 | [paperless-tika](./stacks/docker-compose.paperless.yml#L134)  |  |  |  |
-| [stirling-pdf](./stacks/docker-compose.stirling-pdf.yml#L5)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
 | [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L7)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 
 <sup>1</sup>All traffic is routed via gluetun VPN client container.
