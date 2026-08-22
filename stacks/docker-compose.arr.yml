@@ -91,7 +91,7 @@ services:
       glance.description: Movie PVR System
       glance.category: media
   sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:5.0.4-ls265@sha256:4307a4ef4a1687c6f7dfa36fc745c1fc10b78db9916b64970b9ff682539dd03b
+    image: lscr.io/linuxserver/sabnzbd:5.1.1-ls268@sha256:78253a5ed379d08c16deba4154a2468875aa25a729c54c59c1199f851f87c29e
     container_name: sabnzbd
     depends_on:
       gluetun:
