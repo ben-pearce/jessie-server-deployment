@@ -4,7 +4,7 @@ include:
   - common/docker-compose.volumes.yml
 services:
   nextcloud:
-    image: nextcloud:34.0.2@sha256:3323e178371b1b0d03f9b3fdbe1831ff78335f07f25116d0d598048ce459e329
+    image: nextcloud:34.0.3@sha256:368cd1c75bc4a32c2aee8a119cae31bcebff80c374782f404c440c3295726814
     container_name: nextcloud
     depends_on:
       - nextcloud-postgres
@@ -56,7 +56,7 @@ services:
       glance.description: Personal Cloud
       glance.category: cloud
   nextcloud-postgres:
-    image: postgres:18.4-alpine3.24@sha256:9a8afca54e7861fd90fab5fdf4c42477a6b1cb7d293595148e674e0a3181de15
+    image: postgres:18.6-alpine3.24@sha256:d3e1620b530c944afa6e887d22eb899824da68e19c52024bf98f5220c88a65b2
     container_name: nextcloud-postgres
     volumes:
       - nextcloud-postgres:/var/lib/postgresql
@@ -75,7 +75,7 @@ services:
       glance.name: DB
       glance.category: cloud
   nextcloud-redis:
-    image: redis:8.8.1@sha256:c88d347edef6249a6d2293f926f1eeb48bd40c57cbcd02c07f52e7f1fd2cb46b
+    image: redis:8.10.1@sha256:691577adaf11927f4bb8871d40a5dd69a5c300d4453b742e8f6383c3e6e8d2e1
     container_name: nextcloud-redis
     networks:
       - nextcloud

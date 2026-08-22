@@ -4,7 +4,7 @@ include:
   - common/docker-compose.volumes.yml
 services:
   jellyfin:
-    image: lscr.io/linuxserver/jellyfin:10.11.11ubu2404-ls39@sha256:96d21c396f46f10578931c2941e3f2789f7087b5ab0e166afedf29e7385c6aa7
+    image: lscr.io/linuxserver/jellyfin:10.11.11ubu2604-ls45@sha256:aef1046ab41bbd7b48e205e711aa31dfb1fa55a3fb8e22cbbb150a323c4a48c7
     container_name: jellyfin
     volumes:
       - ${DATA_DIR}/jellyfin:/config
@@ -44,34 +44,6 @@ services:
       glance.category: media
     tmpfs:
       - /config/data/transcodes:rw,size=10G,mode=1777
-  tvheadend:
-    image: lscr.io/linuxserver/tvheadend:version-26ec161f@sha256:5da84d8b5e16943b2654fbd6b84a60135f2c68182b66a25bc4e4fe322b7f9b8d
-    container_name: tvheadend
-    volumes:
-      - ${DATA_DIR}/tvheadend:/config
-      - media:/media
-      - ./scripts/tvheadend/tv_grab_url_gz:/usr/bin/tv_grab_url_gz
-    environment:
-      - PUID
-      - PGID
-      - TZ
-    networks:
-      - jellyfin-web
-    restart: unless-stopped
-    labels:
-      readme.description: TV Streaming Server.
-      readme.links.web: https://tvheadend.org/
-      traefik.docker.network: gluetun-web
-      traefik.enable: true
-      traefik.http.routers.tvheadend.entrypoints: https
-      traefik.http.routers.tvheadend.middlewares: authentik
-      traefik.http.routers.tvheadend.rule: Host(`tvheadend.${HOST}`)
-      traefik.http.services.tvheadend.loadbalancer.server.port: 9981
-      glance.name: TVHeadend
-      glance.icon: di:tvheadend
-      glance.url: https://tvheadend.${HOST}
-      glance.description: TV Streaming Server
-      glance.category: media
 networks:
   jellyfin-web:
     name: jellyfin-web

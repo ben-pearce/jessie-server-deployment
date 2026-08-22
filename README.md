@@ -28,6 +28,10 @@ This repository holds my docker compose files and configuration files for servic
 | [cobalt-api](./stacks/docker-compose.cobalt.yml#L5)  |  |  |  |
 | [cobalt-web](./stacks/docker-compose.cobalt.yml#L27)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
 | [cyberchef](./stacks/docker-compose.cyberchef.yml#L5)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
+| [dawarich-app](./stacks/docker-compose.dawarich.yml#L5)  | Location History Tracker |  | [GitHub](https://github.com/Freika/dawarich), [Website](https://dawarich.app/) |
+| [dawarich-postgres](./stacks/docker-compose.dawarich.yml#L67)  |  |  |  |
+| [dawarich-redis](./stacks/docker-compose.dawarich.yml#L95)  |  |  |  |
+| [dawarich-sidekiq](./stacks/docker-compose.dawarich.yml#L115)  |  |  |  |
 | [deemix](./stacks/docker-compose.deemix.yml#L5)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
 | [fdroid-server](./stacks/docker-compose.fdroid.yml#L5)  |  |  |  |
 | [feishin](./stacks/docker-compose.feishin.yml#L5)  | A modern self-hosted music player. |  | [GitHub](https://github.com/jeffvli/feishin) |
@@ -41,7 +45,6 @@ This repository holds my docker compose files and configuration files for servic
 | [immich-server](./stacks/docker-compose.immich.yml#L52)  | Photo & Video Backup Solution |  | [GitHub](https://github.com/immich-app/immich), [Website](https://immich.app/) |
 | [immich-valkey](./stacks/docker-compose.immich.yml#L89)  |  |  |  |
 | [jellyfin](./stacks/docker-compose.jellyfin.yml#L8)  | The Free Software Media System. |  | [GitHub](https://github.com/jellyfin/jellyfin) |
-| [tvheadend](./stacks/docker-compose.jellyfin.yml#L49)  | TV Streaming Server. |  | [Website](https://tvheadend.org/) |
 | [karakeep-chrome](./stacks/docker-compose.karakeep.yml#L5)  |  |  |  |
 | [karakeep-meilisearch](./stacks/docker-compose.karakeep.yml#L22)  |  |  |  |
 | [karakeep-web](./stacks/docker-compose.karakeep.yml#L37)  | The Bookmark Everything App |  | [Website](https://karakeep.app/) |
@@ -55,15 +58,12 @@ This repository holds my docker compose files and configuration files for servic
 | [nextcloud-redis](./stacks/docker-compose.nextcloud.yml#L79)  |  |  |  |
 | [obsidian-couchdb](./stacks/docker-compose.obsidian.yml#L5)  |  |  |  |
 | [ofelia](./stacks/docker-compose.ofelia.yml#L5)  | Docker job scheduler. |  | [GitHub](https://github.com/mcuadros/ofelia) |
-| [otrecorder](./stacks/docker-compose.owntracks.yml#L5)  | Store and access data published by OwnTracks apps. |  | [GitHub](https://github.com/owntracks/recorder) |
-| [owntracks-frontend](./stacks/docker-compose.owntracks.yml#L27)  | Web interface for OwnTracks built with Vue.js |  | [GitHub](https://github.com/owntracks/frontend) |
 | [paperless-gotenberg](./stacks/docker-compose.paperless.yml#L7)  |  |  |  |
 | [paperless-ngx](./stacks/docker-compose.paperless.yml#L21)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
-| [paperless-postgres](./stacks/docker-compose.paperless.yml#L82)  |  |  |  |
-| [paperless-redis](./stacks/docker-compose.paperless.yml#L100)  |  |  |  |
-| [paperless-scanner](./stacks/docker-compose.paperless.yml#L112)  |  |  |  |
-| [paperless-tika](./stacks/docker-compose.paperless.yml#L131)  |  |  |  |
-| [stirling-pdf](./stacks/docker-compose.stirling-pdf.yml#L5)  | PDF manipulation tool. |  | [GitHub](https://github.com/Stirling-Tools/Stirling-PDF) |
+| [paperless-postgres](./stacks/docker-compose.paperless.yml#L85)  |  |  |  |
+| [paperless-redis](./stacks/docker-compose.paperless.yml#L103)  |  |  |  |
+| [paperless-scanner](./stacks/docker-compose.paperless.yml#L115)  |  |  |  |
+| [paperless-tika](./stacks/docker-compose.paperless.yml#L134)  |  |  |  |
 | [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L7)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 
 <sup>1</sup>All traffic is routed via gluetun VPN client container.
