@@ -47,6 +47,7 @@ services:
       - fdroid-web
       - lidarr-web
       - dawarich-web
+      - romm-web
     command:
       - '--global.sendAnonymousUsage=false'
       - '--api.insecure=true'
