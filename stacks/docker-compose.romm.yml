@@ -5,6 +5,25 @@ services:
   romm:
     image: rommapp/romm:5.2.0@sha256:3512f2ca455782f90247271bed23116e6bc675bc74e379be2c41696e607ab11e
     container_name: romm
+    depends_on:
+      romm-postgres:
+        condition: service_healthy
+        restart: true
+    volumes:
+      - romm-resources:/romm/resources
+      - romm-redis-data:/redis-data
+      - games:/romm/library
+      - ${DATA_DIR}/romm/assets:/romm/assets
+      - ${DATA_DIR}/romm/config:/romm/config
+    secrets:
+      - romm_postgres_password
+      - romm_auth_secret_key
+      - romm_retroachievements_api_key
+      - romm_steamgriddb_api_key
+      - romm_igdb_client_id
+      - romm_igdb_client_secret
+      - romm_oidc_client_id
+      - romm_oidc_client_secret
     environment:
       - ROMM_DB_DRIVER=postgresql
       - DB_HOST=romm-postgres
@@ -25,25 +44,10 @@ services:
       - OIDC_CLIENT_SECRET_FILE=/run/secrets/romm_oidc_client_secret
       - OIDC_SERVER_APPLICATION_URL=${AUTHENTIK_HOST}/application/o/romm/
       - OIDC_REDIRECT_URI=https://romm.${HOST}/api/oauth/openid
-    volumes:
-      - romm-resources:/romm/resources
-      - romm-redis-data:/redis-data
-      - games:/romm/library
-      - ${DATA_DIR}/romm/assets:/romm/assets
-      - ${DATA_DIR}/romm/config:/romm/config
-    secrets:
-      - romm_postgres_password
-      - romm_auth_secret_key
-      - romm_retroachievements_api_key
-      - romm_steamgriddb_api_key
-      - romm_igdb_client_id
-      - romm_igdb_client_secret
-      - romm_oidc_client_id
-      - romm_oidc_client_secret
-    restart: unless-stopped
     networks:
       - romm
       - romm-web
+    restart: unless-stopped
     labels:
       readme.description: ROM Manager.
       readme.links.github: https://github.com/rommapp/romm
@@ -59,10 +63,6 @@ services:
       glance.url: https://romm.${HOST}
       glance.description: ROM Manager
       glance.category: cloud
-    depends_on:
-      romm-postgres:
-        condition: service_healthy
-        restart: true
   romm-postgres:
     image: postgres:18.6-alpine3.24@sha256:d3e1620b530c944afa6e887d22eb899824da68e19c52024bf98f5220c88a65b2
     container_name: romm-postgres
@@ -78,16 +78,16 @@ services:
     networks:
       - romm
     restart: unless-stopped
-    labels:
-      glance.parent: romm
-      glance.name: DB
-      glance.category: cloud
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready", "-d", "romm"]
+      test: [ "CMD-SHELL", "pg_isready", "-d", "romm" ]
       interval: 30s
       timeout: 60s
       retries: 5
       start_period: 80s
+    labels:
+      glance.parent: romm
+      glance.name: DB
+      glance.category: cloud
 networks:
   romm:
     name: romm
