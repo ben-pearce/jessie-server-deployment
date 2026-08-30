@@ -8,3 +8,4 @@ include:
   - stacks/docker-compose.dawarich.yml
   - stacks/docker-compose.vaultwarden.yml
   - stacks/docker-compose.karakeep.yml
+  - stacks/docker-compose.romm.yml

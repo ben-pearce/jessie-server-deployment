@@ -10,6 +10,11 @@ volumes:
       type: 'nfs'
       o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
       device: ':/mnt/turbo/music'
+  games:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
+      device: ':/mnt/turbo/games'
   cloud:
     driver_opts:
       type: 'nfs'
