@@ -4,3 +4,4 @@ include:
   - stacks/docker-compose.fdroid.yml
   - stacks/docker-compose.cyberchef.yml
   - stacks/docker-compose.n8n.yml
+  - stacks/docker-compose.bentopdf.yml

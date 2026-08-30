@@ -48,6 +48,7 @@ services:
       - lidarr-web
       - dawarich-web
       - romm-web
+      - bentopdf-web
     command:
       - '--global.sendAnonymousUsage=false'
       - '--api.insecure=true'

@@ -1,0 +1,26 @@
+name: bentopdf
+services:
+  bentopdf:
+    image: ghcr.io/alam00000/bentopdf-simple:2.8.8@sha256:3d62b8f8eece5fe947026ac3925ff08fda245b3d6ba2c3916b94da91e0010c74
+    container_name: bentopdf
+    networks:
+      - bentopdf-web
+    restart: unless-stopped
+    labels:
+      readme.description: PDF Toolkit built for privacy.
+      readme.links.gitlab: https://github.com/goodtab/bentopdf
+      readme.links.website: https://www.bentopdf.com/
+      traefik.docker.network: bentopdf-web
+      traefik.enable: true
+      traefik.http.routers.bentopdf.entrypoints: https
+      traefik.http.routers.bentopdf.middlewares: authentik
+      traefik.http.routers.bentopdf.rule: Host(`bentopdf.${HOST}`)
+      traefik.http.services.bentopdf.loadbalancer.server.port: 8080
+      glance.name: BentoPDF
+      glance.icon: di:bentopdf
+      glance.url: https://bentopdf.${HOST}
+      glance.description: PDF Toolkit.
+      glance.category: tools
+networks:
+  bentopdf-web:
+    name: bentopdf-web
