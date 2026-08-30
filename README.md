@@ -25,6 +25,7 @@ This repository holds my docker compose files and configuration files for servic
 | [sonarr](./stacks/docker-compose.arr.yml#L127)  | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
 | [transmission](./stacks/docker-compose.arr.yml#L155) <sup>1</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
 | [authentik-proxy](./stacks/docker-compose.authentik.yml#L5)  |  |  |  |
+| [bentopdf](./stacks/docker-compose.bentopdf.yml#L5)  | PDF Toolkit built for privacy. |  | [GitLab](https://github.com/goodtab/bentopdf) |
 | [cobalt-api](./stacks/docker-compose.cobalt.yml#L5)  |  |  |  |
 | [cobalt-web](./stacks/docker-compose.cobalt.yml#L27)  | Save what you love. |  | [GitHub](https://github.com/wukko/cobalt) |
 | [cyberchef](./stacks/docker-compose.cyberchef.yml#L5)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
@@ -64,6 +65,8 @@ This repository holds my docker compose files and configuration files for servic
 | [paperless-redis](./stacks/docker-compose.paperless.yml#L103)  |  |  |  |
 | [paperless-scanner](./stacks/docker-compose.paperless.yml#L115)  |  |  |  |
 | [paperless-tika](./stacks/docker-compose.paperless.yml#L134)  |  |  |  |
+| [romm](./stacks/docker-compose.romm.yml#L7)  | ROM Manager. |  | [GitHub](https://github.com/rommapp/romm), [Website](https://romm.app/) |
+| [romm-postgres](./stacks/docker-compose.romm.yml#L68)  |  |  |  |
 | [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L7)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
 
 <sup>1</sup>All traffic is routed via gluetun VPN client container.
