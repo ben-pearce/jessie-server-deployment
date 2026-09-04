@@ -79,7 +79,7 @@ services:
       - romm
     restart: unless-stopped
     healthcheck:
-      test: [ 'CMD-SHELL', 'pg_isready', '-d', 'romm' ]
+      test: ['CMD-SHELL', 'pg_isready', '-d', 'romm']
       interval: 30s
       timeout: 60s
       retries: 5
