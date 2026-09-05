@@ -116,12 +116,12 @@ services:
     volumes:
       - ${DATA_DIR}/paperless/consume:/scan
     environment:
-      - IP=${PRINTER_HOST}
-      - LABEL=Paperless
-      - PATTERN="scan"_dd.mm.yyyy_hh:MM:ss
-      - PGID
-      - PUID
-      - TZ
+      IP: ${PRINTER_HOST}
+      LABEL: Paperless
+      PATTERN: '"scan"_dd.mm.yyyy_hh:MM:ss'
+      PGID: ${PGID}
+      PUID: ${PUID}
+      TZ: ${TZ}
     networks:
       - paperless
     restart: unless-stopped

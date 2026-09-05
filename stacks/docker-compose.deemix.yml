@@ -8,10 +8,10 @@ services:
       - ${DATA_DIR}/deemix:/config
       - ${LOG_DIR}/deemix:/config/log
     environment:
-      - PUID
-      - PGID
-      - UMASK_SET=022
-      - DEEMIX_SINGLE_USER=true
+      PUID: ${PUID}
+      PGID: ${PGID}
+      UMASK_SET: 022
+      DEEMIX_SINGLE_USER: 'true'
     networks:
       - deemix-web
     restart: unless-stopped

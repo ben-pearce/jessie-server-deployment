@@ -18,8 +18,8 @@ services:
       - cloudflare_dns_api_token
       - cloudflare_zone_api_token
     environment:
-      - CF_ZONE_API_TOKEN_FILE=/run/secrets/cloudflare_zone_api_token
-      - CF_DNS_API_TOKEN_FILE=/run/secrets/cloudflare_dns_api_token
+      CF_ZONE_API_TOKEN_FILE: /run/secrets/cloudflare_zone_api_token
+      CF_DNS_API_TOKEN_FILE: /run/secrets/cloudflare_dns_api_token
     ports:
       - '0.0.0.0:80:80'
       - '0.0.0.0:443:443/tcp'

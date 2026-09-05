@@ -6,8 +6,8 @@ services:
     volumes:
       - ${DATA_DIR}/n8n:/home/node/.n8n
     environment:
-      - GENERIC_TIMEZONE=${TZ}
-      - TZ
+      GENERIC_TIMEZONE: ${TZ}
+      TZ: ${TZ}
     networks:
       - n8n-web
     restart: unless-stopped

@@ -9,12 +9,12 @@ services:
       - ${DATA_DIR}/navidrome:/data
       - music:/music:ro
     environment:
-      - ND_SCANSCHEDULE=1h
-      - ND_LOGLEVEL=info
-      - ND_SESSIONTIMEOUT=72h
-      - ND_BASEURL=/
-      - ND_REVERSEPROXYWHITELIST=0.0.0.0/0
-      - ND_REVERSEPROXYUSERHEADER=X-authentik-username
+      ND_SCANSCHEDULE: 1h
+      ND_LOGLEVEL: info
+      ND_SESSIONTIMEOUT: 72h
+      ND_BASEURL: /
+      ND_REVERSEPROXYWHITELIST: 0.0.0.0/0
+      ND_REVERSEPROXYUSERHEADER: X-authentik-username
     networks:
       - navidrome-web
     restart: unless-stopped

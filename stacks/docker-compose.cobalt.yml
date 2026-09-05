@@ -6,9 +6,9 @@ services:
     volumes:
       - ${DATA_DIR}/cobalt/cookies.json:/cookies.json
     environment:
-      - API_URL=https://cobalt.${HOST}/api
-      - API_NAME=jessie
-      - COOKIE_PATH=/cookies.json
+      API_URL: https://cobalt.${HOST}/api
+      API_NAME: jessie
+      COOKIE_PATH: /cookies.json
     networks:
       - cobalt-web
     restart: unless-stopped

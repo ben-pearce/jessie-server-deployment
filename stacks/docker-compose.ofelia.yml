@@ -6,7 +6,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
-      - TZ
+      TZ: ${TZ}
     network_mode: none
     command: daemon --docker
     restart: unless-stopped

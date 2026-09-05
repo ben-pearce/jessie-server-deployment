@@ -11,9 +11,9 @@ services:
       - ${DATA_DIR}/lidarr/downloads:/downloads
       - ${LOG_DIR}/lidarr:/config/logs
     environment:
-      - PUID
-      - PGID
-      - TZ
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
     networks:
       - lidarr-web
     restart: unless-stopped

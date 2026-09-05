@@ -23,7 +23,7 @@ services:
     volumes:
       - ${DATA_DIR}/meilisearch/karakeep:/meili_data
     environment:
-      - MEILI_NO_ANALYTICS=true
+      MEILI_NO_ANALYTICS: 'true'
     env_file: ../.secrets/karakeep_keys
     networks:
       - karakeep
@@ -38,10 +38,10 @@ services:
     volumes:
       - ${DATA_DIR}/karakeep:/data
     environment:
-      - MEILI_ADDR=http://karakeep-meilisearch:7700
-      - BROWSER_WEB_URL=http://karakeep-chrome:9222
-      - NEXTAUTH_URL=https://karakeep.${HOST}
-      - DATA_DIR=/data
+      MEILI_ADDR: http://karakeep-meilisearch:7700
+      BROWSER_WEB_URL: http://karakeep-chrome:9222
+      NEXTAUTH_URL: https://karakeep.${HOST}
+      DATA_DIR: /data
     env_file: ../.secrets/karakeep_keys
     networks:
       - karakeep

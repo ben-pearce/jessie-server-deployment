@@ -13,22 +13,22 @@ services:
       - nordigen_key
       - smtp_password
     environment:
-      - FIREFLY_III_ACCESS_TOKEN_FILE=/run/secrets/firefly_access_token
-      - FIREFLY_III_URL=http://firefly:8080
-      - VANITY_URL=https://firefly.${HOST}
-      - NORDIGEN_ID_FILE=/run/secrets/nordigen_id
-      - NORDIGEN_KEY_FILE=/run/secrets/nordigen_key
-      - TRUSTED_PROXIES=**
-      - IMPORT_DIR_ALLOWLIST=/import
-      - ENABLE_MAIL_REPORT=true
-      - MAIL_DESTINATION=${ADMIN_EMAIL}
-      - MAIL_MAILER=smtp
-      - MAIL_HOST=${SMTP_HOST}
-      - MAIL_PORT=465
-      - MAIL_USERNAME=${SMTP_USER}
-      - MAIL_PASSWORD_FILE=/run/secrets/smtp_password
-      - MAIL_ENCRYPTION=ssl
-      - MAIL_FROM_ADDRESS=${SMTP_USER}
+      FIREFLY_III_ACCESS_TOKEN_FILE: /run/secrets/firefly_access_token
+      FIREFLY_III_URL: http://firefly:8080
+      VANITY_URL: https://firefly.${HOST}
+      NORDIGEN_ID_FILE: /run/secrets/nordigen_id
+      NORDIGEN_KEY_FILE: /run/secrets/nordigen_key
+      TRUSTED_PROXIES: '**'
+      IMPORT_DIR_ALLOWLIST: /import
+      ENABLE_MAIL_REPORT: 'true'
+      MAIL_DESTINATION: ${ADMIN_EMAIL}
+      MAIL_MAILER: smtp
+      MAIL_HOST: ${SMTP_HOST}
+      MAIL_PORT: 465
+      MAIL_USERNAME: ${SMTP_USER}
+      MAIL_PASSWORD_FILE: /run/secrets/smtp_password
+      MAIL_ENCRYPTION: ssl
+      MAIL_FROM_ADDRESS: ${SMTP_USER}
     networks:
       - firefly
       - firefly-web
@@ -62,24 +62,24 @@ services:
       - firefly_app_key
       - smtp_password
     environment:
-      - APP_KEY_FILE=/run/secrets/firefly_app_key
-      - APP_URL=https://firefly.${HOST}/
-      - TRUSTED_PROXIES=**
-      - DB_HOST=firefly-postgres
-      - DB_PORT=5432
-      - DB_CONNECTION=pgsql
-      - DB_DATABASE=firefly
-      - DB_USERNAME=firefly
-      - DB_PASSWORD_FILE=/run/secrets/firefly_postgres_password
-      - MAIL_MAILER=smtp
-      - MAIL_HOST=${SMTP_HOST}
-      - MAIL_PORT=465
-      - MAIL_FROM=${SMTP_USER}
-      - MAIL_USERNAME=${SMTP_USER}
-      - MAIL_PASSWORD_FILE=/run/secrets/smtp_password
-      - MAIL_ENCRYPTION=ssl
-      - AUTHENTICATION_GUARD=remote_user_guard
-      - AUTHENTICATION_GUARD_HEADER=HTTP_X_AUTHENTIK_EMAIL
+      APP_KEY_FILE: /run/secrets/firefly_app_key
+      APP_URL: https://firefly.${HOST}/
+      TRUSTED_PROXIES: '**'
+      DB_HOST: firefly-postgres
+      DB_PORT: 5432
+      DB_CONNECTION: pgsql
+      DB_DATABASE: firefly
+      DB_USERNAME: firefly
+      DB_PASSWORD_FILE: /run/secrets/firefly_postgres_password
+      MAIL_MAILER: smtp
+      MAIL_HOST: ${SMTP_HOST}
+      MAIL_PORT: 465
+      MAIL_FROM: ${SMTP_USER}
+      MAIL_USERNAME: ${SMTP_USER}
+      MAIL_PASSWORD_FILE: /run/secrets/smtp_password
+      MAIL_ENCRYPTION: ssl
+      AUTHENTICATION_GUARD: remote_user_guard
+      AUTHENTICATION_GUARD_HEADER: HTTP_X_AUTHENTIK_EMAIL
     networks:
       - firefly
       - firefly-web

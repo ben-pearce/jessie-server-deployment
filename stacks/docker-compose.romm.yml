@@ -25,25 +25,25 @@ services:
       - romm_oidc_client_id
       - romm_oidc_client_secret
     environment:
-      - ROMM_DB_DRIVER=postgresql
-      - DB_HOST=romm-postgres
-      - DB_PORT=5432
-      - DB_NAME=romm
-      - DB_USER=romm
-      - DB_PASSWD_FILE=/run/secrets/romm_postgres_password
-      - ROMM_AUTH_SECRET_KEY=/run/secrets/romm_auth_secret_key
-      - RETROACHIEVEMENTS_API_KEY_FILE=/run/secrets/romm_retroachievements_api_key
-      - STEAMGRIDDB_API_KEY_FILE=/run/secrets/romm_steamgriddb_api_key
-      - IGDB_CLIENT_ID_FILE=/run/secrets/romm_igdb_client_id
-      - IGDB_CLIENT_SECRET_FILE=/run/secrets/romm_igdb_client_secret
-      - HASHEOUS_API_ENABLED=true
-      - OIDC_ENABLED=true
-      - OIDC_AUTOLOGIN=true
-      - OIDC_PROVIDER=Authentik
-      - OIDC_CLIENT_ID_FILE=/run/secrets/romm_oidc_client_id
-      - OIDC_CLIENT_SECRET_FILE=/run/secrets/romm_oidc_client_secret
-      - OIDC_SERVER_APPLICATION_URL=${AUTHENTIK_HOST}/application/o/romm/
-      - OIDC_REDIRECT_URI=https://romm.${HOST}/api/oauth/openid
+      ROMM_DB_DRIVER: postgresql
+      DB_HOST: romm-postgres
+      DB_PORT: 5432
+      DB_NAME: romm
+      DB_USER: romm
+      DB_PASSWD_FILE: /run/secrets/romm_postgres_password
+      ROMM_AUTH_SECRET_KEY: /run/secrets/romm_auth_secret_key
+      RETROACHIEVEMENTS_API_KEY_FILE: /run/secrets/romm_retroachievements_api_key
+      STEAMGRIDDB_API_KEY_FILE: /run/secrets/romm_steamgriddb_api_key
+      IGDB_CLIENT_ID_FILE: /run/secrets/romm_igdb_client_id
+      IGDB_CLIENT_SECRET_FILE: /run/secrets/romm_igdb_client_secret
+      HASHEOUS_API_ENABLED: 'true'
+      OIDC_ENABLED: 'true'
+      OIDC_AUTOLOGIN: 'true'
+      OIDC_PROVIDER: Authentik
+      OIDC_CLIENT_ID_FILE: /run/secrets/romm_oidc_client_id
+      OIDC_CLIENT_SECRET_FILE: /run/secrets/romm_oidc_client_secret
+      OIDC_SERVER_APPLICATION_URL: ${AUTHENTIK_HOST}/application/o/romm/
+      OIDC_REDIRECT_URI: https://romm.${HOST}/api/oauth/openid
     networks:
       - romm
       - romm-web

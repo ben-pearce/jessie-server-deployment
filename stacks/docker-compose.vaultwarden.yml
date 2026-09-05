@@ -10,13 +10,13 @@ services:
     secrets:
       - smtp_password
     environment:
-      - SMTP_HOST
-      - SMTP_FROM=${SMTP_USER}
-      - SMTP_PORT=587
-      - SMTP_SECURITY=starttls
-      - SMTP_USERNAME=${SMTP_USER}
-      - SMTP_PASSWORD_FILE=/run/secrets/smtp_password
-      - DOMAIN=https://fence.${HOST}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_FROM: ${SMTP_USER}
+      SMTP_PORT: 587
+      SMTP_SECURITY: starttls
+      SMTP_USERNAME: ${SMTP_USER}
+      SMTP_PASSWORD_FILE: /run/secrets/smtp_password
+      DOMAIN: https://fence.${HOST}
     networks:
       - vaultwarden-web
     restart: unless-stopped

@@ -4,10 +4,10 @@ services:
     image: ghcr.io/jeffvli/feishin:1.15.1@sha256:5c0b3a1f307f8d9508c9fd5dcef04349b6cda1740ae95d478498dc86e3e432bf
     container_name: feishin
     environment:
-      - SERVER_NAME=jessie
-      - SERVER_TYPE=navidrome
-      - SERVER_URL=https://navidrome.${HOST}
-      - SERVER_LOCK=true
+      SERVER_NAME: jessie
+      SERVER_TYPE: navidrome
+      SERVER_URL: https://navidrome.${HOST}
+      SERVER_LOCK: 'true'
     networks:
       - feishin-web
     restart: unless-stopped

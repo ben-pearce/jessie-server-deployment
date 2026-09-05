@@ -11,9 +11,9 @@ services:
       - media:/media
       - ${LOG_DIR}/bazarr:/config/log
     environment:
-      - PUID
-      - PGID
-      - TZ
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
     networks:
       - arr-web
     restart: unless-stopped
@@ -42,9 +42,9 @@ services:
       - ${DATA_DIR}/prowlarr:/config
       - ${LOG_DIR}/prowlarr:/config/logs
     environment:
-      - PUID
-      - PGID
-      - TZ
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
     network_mode: service:gluetun
     restart: unless-stopped
     labels:
@@ -70,9 +70,9 @@ services:
       - media:/media
       - ${LOG_DIR}/radarr:/config/logs
     environment:
-      - PUID
-      - PGID
-      - TZ
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
     networks:
       - arr-web
       - gluetun
@@ -101,9 +101,9 @@ services:
       - media:/media
       - ${LOG_DIR}/sabnzbd:/config/logs
     environment:
-      - PUID
-      - PGID
-      - TZ
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
     network_mode: service:gluetun
     restart: unless-stopped
     labels:
@@ -130,9 +130,9 @@ services:
       - media:/media
       - ${LOG_DIR}/sonarr:/config/logs
     environment:
-      - PUID
-      - PGID
-      - TZ
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
     networks:
       - arr-web
       - gluetun
@@ -160,10 +160,10 @@ services:
       - ${DATA_DIR}/transmission:/config
       - media:/media
     environment:
-      - PUID
-      - PGID
-      - TZ
-      - UMASK=000
+      PUID: ${PUID}
+      PGID: ${PGID}
+      TZ: ${TZ}
+      UMASK: 000
     network_mode: service:gluetun
     restart: unless-stopped
     labels:

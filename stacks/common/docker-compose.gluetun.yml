@@ -8,13 +8,13 @@ services:
       - gluetun_wireguard_preshared_key
       - gluetun_wireguard_private_key
     environment:
-      - VPN_SERVICE_PROVIDER=airvpn
-      - VPN_TYPE=wireguard
-      - WIREGUARD_PRIVATE_KEY_SECRETFILE=/run/secrets/gluetun_wireguard_private_key
-      - WIREGUARD_PRESHARED_KEY_SECRETFILE=/run/secrets/gluetun_wireguard_preshared_key
-      - WIREGUARD_ADDRESSES_SECRETFILE=/run/secrets/gluetun_wireguard_addresses
-      - SERVER_COUNTRIES=Netherlands
-      - TZ
+      VPN_SERVICE_PROVIDER: airvpn
+      VPN_TYPE: wireguard
+      WIREGUARD_PRIVATE_KEY_SECRETFILE: /run/secrets/gluetun_wireguard_private_key
+      WIREGUARD_PRESHARED_KEY_SECRETFILE: /run/secrets/gluetun_wireguard_preshared_key
+      WIREGUARD_ADDRESSES_SECRETFILE: /run/secrets/gluetun_wireguard_addresses
+      SERVER_COUNTRIES: Netherlands
+      TZ: ${TZ}
     networks:
       - gluetun
       - gluetun-web
