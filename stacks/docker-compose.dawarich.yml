@@ -32,11 +32,15 @@ services:
     networks:
       - dawarich
       - dawarich-web
-    command: [ 'bin/rails', 'server', '-p', '3000', '-b', '::' ]
+    command: ['bin/rails', 'server', '-p', '3000', '-b', '::']
     entrypoint: web-entrypoint.sh
     restart: unless-stopped
     healthcheck:
-      test: [ 'CMD-SHELL', "wget -qO - http://127.0.0.1:3000/api/v1/health | grep -q '\"status\"\\s*:\\s*\"ok\"'" ]
+      test:
+        [
+          'CMD-SHELL',
+          "wget -qO - http://127.0.0.1:3000/api/v1/health | grep -q '\"status\"\\s*:\\s*\"ok\"'",
+        ]
       interval: 10s
       retries: 30
       start_period: 30s
@@ -99,7 +103,7 @@ services:
       redis-server --save 900 1 --save 300 10 --appendonly no
     restart: unless-stopped
     healthcheck:
-      test: [ 'CMD', 'redis-cli', '--raw', 'incr', 'ping' ]
+      test: ['CMD', 'redis-cli', '--raw', 'incr', 'ping']
       interval: 10s
       retries: 5
       start_period: 30s
@@ -142,11 +146,11 @@ services:
     env_file: ../.secrets/dawarich
     networks:
       - dawarich
-    command: [ 'sidekiq' ]
+    command: ['sidekiq']
     entrypoint: sidekiq-entrypoint.sh
     restart: unless-stopped
     healthcheck:
-      test: [ 'CMD-SHELL', 'pgrep -f sidekiq' ]
+      test: ['CMD-SHELL', 'pgrep -f sidekiq']
       interval: 10s
       retries: 30
       start_period: 30s
