@@ -31,8 +31,8 @@ This repository holds my docker compose files and configuration files for servic
 | [cyberchef](./stacks/docker-compose.cyberchef.yml#L5)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
 | [dawarich-app](./stacks/docker-compose.dawarich.yml#L5)  | Location History Tracker |  | [GitHub](https://github.com/Freika/dawarich), [Website](https://dawarich.app/) |
 | [dawarich-postgres](./stacks/docker-compose.dawarich.yml#L67)  |  |  |  |
-| [dawarich-redis](./stacks/docker-compose.dawarich.yml#L95)  |  |  |  |
-| [dawarich-sidekiq](./stacks/docker-compose.dawarich.yml#L115)  |  |  |  |
+| [dawarich-redis](./stacks/docker-compose.dawarich.yml#L97)  |  |  |  |
+| [dawarich-sidekiq](./stacks/docker-compose.dawarich.yml#L117)  |  |  |  |
 | [deemix](./stacks/docker-compose.deemix.yml#L5)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
 | [fdroid-server](./stacks/docker-compose.fdroid.yml#L5)  |  |  |  |
 | [feishin](./stacks/docker-compose.feishin.yml#L5)  | A modern self-hosted music player. |  | [GitHub](https://github.com/jeffvli/feishin) |
