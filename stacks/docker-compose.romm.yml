@@ -79,11 +79,13 @@ services:
       - romm
     restart: unless-stopped
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready', '-d', 'romm']
       interval: 30s
-      timeout: 60s
       retries: 5
-      start_period: 80s
+      start_period: 20s
+      test:
+        - CMD-SHELL
+        - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      timeout: 5s
     labels:
       glance.parent: romm
       glance.name: DB
