@@ -32,7 +32,7 @@ This repository holds my docker compose files and configuration files for servic
 | [dawarich-app](./stacks/docker-compose.dawarich.yml#L5)  | Location History Tracker |  | [GitHub](https://github.com/Freika/dawarich), [Website](https://dawarich.app/) |
 | [dawarich-postgres](./stacks/docker-compose.dawarich.yml#L67)  |  |  |  |
 | [dawarich-redis](./stacks/docker-compose.dawarich.yml#L102)  |  |  |  |
-| [dawarich-sidekiq](./stacks/docker-compose.dawarich.yml#L124)  |  |  |  |
+| [dawarich-sidekiq](./stacks/docker-compose.dawarich.yml#L127)  |  |  |  |
 | [deemix](./stacks/docker-compose.deemix.yml#L5)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
 | [fdroid-server](./stacks/docker-compose.fdroid.yml#L5)  |  |  |  |
 | [feishin](./stacks/docker-compose.feishin.yml#L5)  | A modern self-hosted music player. |  | [GitHub](https://github.com/jeffvli/feishin) |
