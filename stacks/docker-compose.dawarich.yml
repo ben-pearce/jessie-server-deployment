@@ -34,13 +34,13 @@ services:
       - dawarich-web
     command:
       - bin/rails
-      - 'server -p 3000 -b ::'
+      - server
     entrypoint: web-entrypoint.sh
     restart: unless-stopped
     healthcheck:
       test:
         - CMD-SHELL
-        - wget -qO - http://127.0.0.1:3000/api/v1/health | grep -q '\"status\"\\s*:\\s*\"ok\"'"
+        - wget -qO - http://127.0.0.1:3000/api/v1/health | grep -q '"status"\s*:\s*"ok"'
       interval: 10s
       retries: 30
       start_period: 30s
@@ -110,7 +110,10 @@ services:
     healthcheck:
       test:
         - CMD
-        - redis-cli --raw incr ping
+        - redis-cli
+        - --raw
+        - incr
+        - ping
       interval: 10s
       retries: 5
       start_period: 30s
