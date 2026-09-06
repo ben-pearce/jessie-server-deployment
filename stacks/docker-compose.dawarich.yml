@@ -32,7 +32,7 @@ services:
     networks:
       - dawarich
       - dawarich-web
-    command: 
+    command:
       - bin/rails
       - 'server -p 3000 -b ::'
     entrypoint: web-entrypoint.sh
@@ -103,7 +103,7 @@ services:
       redis-server --save 900 1 --save 300 10 --appendonly no
     restart: unless-stopped
     healthcheck:
-      test: 
+      test:
         - CMD
         - redis-cli --raw incr ping
       interval: 10s
@@ -148,7 +148,7 @@ services:
     env_file: ../.secrets/dawarich
     networks:
       - dawarich
-    command: 
+    command:
       - sidekiq
     entrypoint: sidekiq-entrypoint.sh
     restart: unless-stopped
