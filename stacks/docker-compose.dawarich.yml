@@ -65,11 +65,6 @@ services:
   dawarich-postgres:
     image: postgis/postgis:18-3.6-alpine@sha256:eb2e8b8afd9b0ecee83bc20fd01aca62a5071bada2c0f38763174b653f8eed42
     container_name: dawarich-postgres
-    command: |
-      -c wal_compression=zstd
-      -c checkpoint_completion_target=0.9
-      -c checkpoint_timeout=30min
-      -c max_wal_size=4GB
     volumes:
       - dawarich-postgres:/var/lib/postgresql
       - ${DATA_DIR}/postgres/dawarich:/docker-entrypoint-initdb.d
@@ -83,6 +78,11 @@ services:
     env_file: ../.secrets/dawarich
     networks:
       - dawarich
+    command: |
+      -c wal_compression=zstd
+      -c checkpoint_completion_target=0.9
+      -c checkpoint_timeout=30min
+      -c max_wal_size=4GB
     restart: unless-stopped
     healthcheck:
       interval: 30s

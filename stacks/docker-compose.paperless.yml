@@ -83,11 +83,6 @@ services:
   paperless-postgres:
     image: postgres:18.6-alpine3.24@sha256:d3e1620b530c944afa6e887d22eb899824da68e19c52024bf98f5220c88a65b2
     container_name: paperless-postgres
-    command: |
-      -c wal_compression=zstd
-      -c checkpoint_completion_target=0.9
-      -c checkpoint_timeout=30min
-      -c max_wal_size=4GB
     volumes:
       - paperless-postgres:/var/lib/postgresql
       - ${DATA_DIR}/postgres/paperless:/docker-entrypoint-initdb.d
@@ -99,6 +94,11 @@ services:
       POSTGRES_USER: paperless
     networks:
       - paperless
+    command: |
+      -c wal_compression=zstd
+      -c checkpoint_completion_target=0.9
+      -c checkpoint_timeout=30min
+      -c max_wal_size=4GB
     restart: unless-stopped
     labels:
       glance.parent: paperless
