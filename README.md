@@ -31,8 +31,8 @@ This repository holds my docker compose files and configuration files for servic
 | [cyberchef](./stacks/docker-compose.cyberchef.yml#L5)  | The Cyber Swiss Army Knife - a web app for encryption, encoding, compression and data analysis. |  | [GitHub](https://github.com/gchq/CyberChef) |
 | [dawarich-app](./stacks/docker-compose.dawarich.yml#L5)  | Location History Tracker |  | [GitHub](https://github.com/Freika/dawarich), [Website](https://dawarich.app/) |
 | [dawarich-postgres](./stacks/docker-compose.dawarich.yml#L67)  |  |  |  |
-| [dawarich-redis](./stacks/docker-compose.dawarich.yml#L97)  |  |  |  |
-| [dawarich-sidekiq](./stacks/docker-compose.dawarich.yml#L119)  |  |  |  |
+| [dawarich-redis](./stacks/docker-compose.dawarich.yml#L102)  |  |  |  |
+| [dawarich-sidekiq](./stacks/docker-compose.dawarich.yml#L124)  |  |  |  |
 | [deemix](./stacks/docker-compose.deemix.yml#L5)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
 | [fdroid-server](./stacks/docker-compose.fdroid.yml#L5)  |  |  |  |
 | [feishin](./stacks/docker-compose.feishin.yml#L5)  | A modern self-hosted music player. |  | [GitHub](https://github.com/jeffvli/feishin) |
@@ -62,9 +62,9 @@ This repository holds my docker compose files and configuration files for servic
 | [paperless-gotenberg](./stacks/docker-compose.paperless.yml#L7)  |  |  |  |
 | [paperless-ngx](./stacks/docker-compose.paperless.yml#L21)  | Document Management System. |  | [GitHub](https://github.com/paperless-ngx/paperless-ngx) |
 | [paperless-postgres](./stacks/docker-compose.paperless.yml#L85)  |  |  |  |
-| [paperless-redis](./stacks/docker-compose.paperless.yml#L103)  |  |  |  |
-| [paperless-scanner](./stacks/docker-compose.paperless.yml#L115)  |  |  |  |
-| [paperless-tika](./stacks/docker-compose.paperless.yml#L134)  |  |  |  |
+| [paperless-redis](./stacks/docker-compose.paperless.yml#L108)  |  |  |  |
+| [paperless-scanner](./stacks/docker-compose.paperless.yml#L120)  |  |  |  |
+| [paperless-tika](./stacks/docker-compose.paperless.yml#L139)  |  |  |  |
 | [romm](./stacks/docker-compose.romm.yml#L7)  | ROM Manager. |  | [GitHub](https://github.com/rommapp/romm), [Website](https://romm.app/) |
 | [romm-postgres](./stacks/docker-compose.romm.yml#L68)  |  |  |  |
 | [vaultwarden](./stacks/docker-compose.vaultwarden.yml#L7)  | Unofficial Bitwarden compatible server written in Rust. |  | [GitHub](https://github.com/dani-garcia/vaultwarden) |
