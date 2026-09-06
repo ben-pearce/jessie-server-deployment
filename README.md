@@ -21,9 +21,9 @@ This repository holds my docker compose files and configuration files for servic
 | [bazarr](./stacks/docker-compose.arr.yml#L8)  | Manage and download subtitles based on your requirements. |  | [GitHub](https://github.com/morpheus65535/bazarr), [Docker Hub](https://hub.docker.com/r/linuxserver/bazarr), [Website](https://www.bazarr.media/) |
 | [prowlarr](./stacks/docker-compose.arr.yml#L37) <sup>1</sup> | An indexer manager/proxy. |  | [GitHub](https://github.com/Prowlarr/Prowlarr), [Website](https://wiki.servarr.com/prowlarr) |
 | [radarr](./stacks/docker-compose.arr.yml#L67)  | A fork of Sonarr to work with movies à la Couchpotato. |  | [GitHub](https://github.com/Radarr/Radarr) |
-| [sabnzbd](./stacks/docker-compose.arr.yml#L95) <sup>1</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
-| [sonarr](./stacks/docker-compose.arr.yml#L127)  | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
-| [transmission](./stacks/docker-compose.arr.yml#L155) <sup>1</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
+| [sabnzbd](./stacks/docker-compose.arr.yml#L96) <sup>1</sup> | The free and easy binary newsreader. |  | [GitHub](https://github.com/sabnzbd/sabnzbd), [Docker Hub](https://hub.docker.com/r/linuxserver/sabnzbd), [Website](https://sabnzbd.org/) |
+| [sonarr](./stacks/docker-compose.arr.yml#L128)  | Smart PVR for newsgroup and bittorrent users. |  | [GitHub](https://github.com/Sonarr/Sonarr) |
+| [transmission](./stacks/docker-compose.arr.yml#L157) <sup>1</sup> | Fast, easy, and free BitTorrent client. |  | [GitHub](https://github.com/transmission/transmission) |
 | [authentik-proxy](./stacks/docker-compose.authentik.yml#L5)  |  |  |  |
 | [bentopdf](./stacks/docker-compose.bentopdf.yml#L5)  | PDF Toolkit built for privacy. |  | [GitLab](https://github.com/goodtab/bentopdf) |
 | [cobalt-api](./stacks/docker-compose.cobalt.yml#L5)  |  |  |  |
@@ -32,7 +32,7 @@ This repository holds my docker compose files and configuration files for servic
 | [dawarich-app](./stacks/docker-compose.dawarich.yml#L5)  | Location History Tracker |  | [GitHub](https://github.com/Freika/dawarich), [Website](https://dawarich.app/) |
 | [dawarich-postgres](./stacks/docker-compose.dawarich.yml#L67)  |  |  |  |
 | [dawarich-redis](./stacks/docker-compose.dawarich.yml#L97)  |  |  |  |
-| [dawarich-sidekiq](./stacks/docker-compose.dawarich.yml#L117)  |  |  |  |
+| [dawarich-sidekiq](./stacks/docker-compose.dawarich.yml#L119)  |  |  |  |
 | [deemix](./stacks/docker-compose.deemix.yml#L5)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
 | [fdroid-server](./stacks/docker-compose.fdroid.yml#L5)  |  |  |  |
 | [feishin](./stacks/docker-compose.feishin.yml#L5)  | A modern self-hosted music player. |  | [GitHub](https://github.com/jeffvli/feishin) |
