@@ -5,6 +5,11 @@ volumes:
       type: 'nfs'
       o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
       device: ':/mnt/turbo/media'
+  artwork:
+    driver_opts:
+      type: 'nfs'
+      o: 'addr=${NFS_HOST},nolock,soft,nfsvers=4'
+      device: ':/mnt/turbo/media/artwork'
   subtitles:
     driver_opts:
       type: 'nfs'

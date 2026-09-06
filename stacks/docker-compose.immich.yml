@@ -10,7 +10,7 @@ services:
       - immich-valkey
     volumes:
       - photos:/usr/src/app/upload
-      - ${DATA_DIR}/immich/model-cache:/cache
+      - immich-model-cache:/cache
     secrets:
       - immich_postgres_password
     environment:
@@ -102,6 +102,8 @@ networks:
 volumes:
   immich-postgres:
     name: immich-postgres
+  immich-model-cache:
+    name: immich-model-cache
 secrets:
   immich_postgres_password:
     file: ../.secrets/immich_postgres_password

@@ -8,6 +8,7 @@ services:
     volumes:
       - ${DATA_DIR}/lidarr:/config
       - music:/music
+      - artwork:/artwork
       - ${DATA_DIR}/lidarr/downloads:/downloads
       - ${LOG_DIR}/lidarr:/config/logs
     environment:

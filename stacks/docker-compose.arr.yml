@@ -68,6 +68,7 @@ services:
     volumes:
       - ${DATA_DIR}/radarr:/config
       - media:/media
+      - artwork:/artwork
       - ${LOG_DIR}/radarr:/config/logs
     environment:
       PUID: ${PUID}
@@ -128,6 +129,7 @@ services:
     volumes:
       - ${DATA_DIR}/sonarr:/config
       - media:/media
+      - artwork:/artwork
       - ${LOG_DIR}/sonarr:/config/logs
     environment:
       PUID: ${PUID}
