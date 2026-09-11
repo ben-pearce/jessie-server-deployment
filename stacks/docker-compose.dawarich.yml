@@ -1,7 +1,7 @@
 name: dawarich
 services:
   dawarich-app:
-    image: freikin/dawarich:1.13.1@sha256:2930b68df386f8210e68f0e1be658221acebf869bed061c5fbf56e1c32447350
+    image: freikin/dawarich:1.14.2@sha256:5de477cfc6f8d9d19d7660c262acb196ea8a15cebbcbb7db173e04a2860f3bb5
     container_name: dawarich-app
     depends_on:
       dawarich-postgres:
@@ -123,7 +123,7 @@ services:
       glance.name: KV
       glance.category: cloud
   dawarich-sidekiq:
-    image: freikin/dawarich:1.13.1@sha256:2930b68df386f8210e68f0e1be658221acebf869bed061c5fbf56e1c32447350
+    image: freikin/dawarich:1.14.2@sha256:5de477cfc6f8d9d19d7660c262acb196ea8a15cebbcbb7db173e04a2860f3bb5
     container_name: dawarich-sidekiq
     depends_on:
       dawarich-app:
