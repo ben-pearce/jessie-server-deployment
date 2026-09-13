@@ -31,6 +31,37 @@ services:
       glance.url: https://navidrome.${HOST}
       glance.description: Music Streaming
       glance.category: music
+  octo-fiesta:
+    image: ghcr.io/v1ck3s/octo-fiesta:v0.11@sha256:0e417d69652c72787bacf38dba152bd6ae729b8496ba08a6e3a77c7ac4d45602
+    container_name: octo-fiesta
+    volumes:
+      - music:/music
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      Library__DownloadPath: /music/octo-fiesta
+      Subsonic__Url: http://navidrome:4533
+      Subsonic__StorageMode: Permanent
+      Subsonic__CacheDurationHours: 1
+      Subsonic__EnableExternalPlaylists: 'true'
+      Subsonic__PlaylistsDirectory: playlists
+      Subsonic__ExplicitFilter: All
+      Subsonic__DownloadMode: Track
+      Subsonic__AutoUpgradeQuality: 'false'
+      Subsonic__DisableLibraryScan: 'false'
+      Subsonic__FolderTemplate: '{artist}/{album}/{track} - {title}'
+    env_file: ../.secrets/octo_fiesta
+    networks:
+      - navidrome-web
+    restart: unless-stopped
+    labels:
+      traefik.docker.network: navidrome-web
+      traefik.enable: true
+      traefik.http.middlewares.octo-fiesta-stripprefix.stripprefix.prefixes: /fiesta
+      traefik.http.routers.octo-fiesta.entrypoints: https
+      traefik.http.routers.octo-fiesta.middlewares: octo-fiesta-stripprefix
+      traefik.http.routers.octo-fiesta.rule: Host(`navidrome.${HOST}`) && PathPrefix(`/fiesta`)
+      traefik.http.services.octo-fiesta.loadbalancer.server.port: 8080
 networks:
   navidrome-web:
     name: navidrome-web

@@ -5,8 +5,8 @@ services:
     container_name: feishin
     environment:
       SERVER_NAME: jessie
-      SERVER_TYPE: navidrome
-      SERVER_URL: https://navidrome.${HOST}
+      SERVER_TYPE: subsonic
+      SERVER_URL: https://navidrome.${HOST}/fiesta
       SERVER_LOCK: 'true'
     networks:
       - feishin-web
