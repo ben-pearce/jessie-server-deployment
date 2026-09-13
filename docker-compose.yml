@@ -28,7 +28,6 @@ services:
       - arr-web
       - authentik-proxy-web
       - cyberchef-web
-      - deemix-web
       - firefly-web
       - freshrss-web
       - feishin-web
@@ -45,7 +44,6 @@ services:
       - cobalt-web
       - karakeep-web
       - fdroid-web
-      - lidarr-web
       - dawarich-web
       - romm-web
       - bentopdf-web
