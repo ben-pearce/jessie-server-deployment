@@ -33,7 +33,6 @@ This repository holds my docker compose files and configuration files for servic
 | [dawarich-postgres](./stacks/docker-compose.dawarich.yml#L67)  |  |  |  |
 | [dawarich-redis](./stacks/docker-compose.dawarich.yml#L102)  |  |  |  |
 | [dawarich-sidekiq](./stacks/docker-compose.dawarich.yml#L127)  |  |  |  |
-| [deemix](./stacks/docker-compose.deemix.yml#L5)  | Barebone deezer downloader. |  | [GitLab](https://gitlab.com/Bockiii/deemix-docker) |
 | [fdroid-server](./stacks/docker-compose.fdroid.yml#L5)  |  |  |  |
 | [feishin](./stacks/docker-compose.feishin.yml#L5)  | A modern self-hosted music player. |  | [GitHub](https://github.com/jeffvli/feishin) |
 | [fidi](./stacks/docker-compose.firefly.yml#L7)  | Firefly III Data Importer. |  | [Docker Hub](https://hub.docker.com/r/fireflyiii/data-importer) |
@@ -49,11 +48,11 @@ This repository holds my docker compose files and configuration files for servic
 | [karakeep-chrome](./stacks/docker-compose.karakeep.yml#L5)  |  |  |  |
 | [karakeep-meilisearch](./stacks/docker-compose.karakeep.yml#L22)  |  |  |  |
 | [karakeep-web](./stacks/docker-compose.karakeep.yml#L37)  | The Bookmark Everything App |  | [Website](https://karakeep.app/) |
-| [lidarr](./stacks/docker-compose.lidarr.yml#L7)  | Music Collection Manager. |  | [GitHub](https://github.com/Lidarr/Lidarr) |
 | [portainer-agent](./stacks/docker-compose.monitoring.yml#L5)  | Portainer edge agent. |  | [GitHub](https://github.com/portainer/agent) |
 | [zabbix-agent](./stacks/docker-compose.monitoring.yml#L21)  | Zabbix agent for monitoring. |  | [Docker Hub](https://hub.docker.com/r/zabbix/zabbix-agent) |
 | [n8n](./stacks/docker-compose.n8n.yml#L5)  | Powerful workflow automation. |  |  |
 | [navidrome](./stacks/docker-compose.navidrome.yml#L7)  | Modern Music Server and Streamer compatible with Subsonic/Airsonic. |  | [GitHub](https://github.com/navidrome/navidrome) |
+| [octo-fiesta](./stacks/docker-compose.navidrome.yml#L36)  |  |  |  |
 | [nextcloud](./stacks/docker-compose.nextcloud.yml#L8)  | Personal Cloud Storage |  | [Docker Hub](https://hub.docker.com/_/nextcloud), [Website](https://nextcloud.com/) |
 | [nextcloud-postgres](./stacks/docker-compose.nextcloud.yml#L60)  |  |  |  |
 | [nextcloud-redis](./stacks/docker-compose.nextcloud.yml#L79)  |  |  |  |
