@@ -10,7 +10,6 @@ services:
       - ${DATA_DIR}/jellyfin:/config
       - subtitles:/config/data/data/subtitles
       - media:/media
-      - music:/music
       - ${LOG_DIR}/jellyfin:/config/log
     secrets:
       - ffmpeg_ssh_key
