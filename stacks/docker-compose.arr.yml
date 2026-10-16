@@ -4,7 +4,7 @@ include:
   - common/docker-compose.volumes.yml
 services:
   bazarr:
-    image: lscr.io/linuxserver/bazarr:v1.6.2-ls366@sha256:8b30e81c4aec2991f469e78fae8afaa89ecc9b21a80e3897f50427216b55470c
+    image: lscr.io/linuxserver/bazarr:v1.6.2-ls367@sha256:c1673816321156b904af9b7e6415ea547ae9622e4acc375358f1e1eb9ed1e904
     container_name: bazarr
     volumes:
       - ${DATA_DIR}/bazarr:/config
@@ -33,7 +33,7 @@ services:
       glance.description: Subtitle Manager
       glance.category: media
   prowlarr:
-    image: lscr.io/linuxserver/prowlarr:2.6.5.5623-ls162@sha256:f2b26429893d4c4cb71941b7ee50b1bdecd9d5f9f9e02d5410615e9f4f7c8d95
+    image: lscr.io/linuxserver/prowlarr:2.6.5.5623-ls163@sha256:f9151e5bc1025c6d0a630d503210cdcb6bb55a7cc098562609d96a408d838902
     container_name: prowlarr
     depends_on:
       gluetun:
@@ -63,7 +63,7 @@ services:
       glance.description: Indexer Manager
       glance.category: media
   radarr:
-    image: lscr.io/linuxserver/radarr:6.4.4.10685-ls319@sha256:7dfd049e79c00b16fbc29c3f5d96a9e7b9e73a23930b4c5b3c4541d60b366814
+    image: lscr.io/linuxserver/radarr:6.4.4.10685-ls320@sha256:cfbc4fa09dc9d78f7cedc898f4ec48c6277cacedc523c4e159db6ff1c741959c
     container_name: radarr
     volumes:
       - ${DATA_DIR}/radarr:/config
@@ -92,7 +92,7 @@ services:
       glance.description: Movie PVR System
       glance.category: media
   sabnzbd:
-    image: lscr.io/linuxserver/sabnzbd:5.1.3-ls275@sha256:793828eab1722556131d37187115a9d3e3b9703e03a55731a07f2e0fe4edc2c7
+    image: lscr.io/linuxserver/sabnzbd:5.1.3-ls276@sha256:382f9bd4e3f6df2abf7bcc92edada0c5bd4d4ff26eb5416f257ac54989464fa1
     container_name: sabnzbd
     depends_on:
       gluetun:
@@ -124,7 +124,7 @@ services:
       glance.description: Usenet Binary Newsreader
       glance.category: media
   sonarr:
-    image: lscr.io/linuxserver/sonarr:4.0.20.3014-ls326@sha256:f247545d23ba8b233d6604575347e48a623fe6ad75dda02348bf81917f3b5c06
+    image: lscr.io/linuxserver/sonarr:4.0.20.3014-ls327@sha256:dffc730adcb8b4f4342792fbb27fcad9c62fb8660523f2aeb082416980d7fe0c
     container_name: sonarr
     volumes:
       - ${DATA_DIR}/sonarr:/config
