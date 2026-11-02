@@ -63,7 +63,7 @@ services:
     stdin_open: true
     tty: true
   dawarich-postgres:
-    image: postgis/postgis:18-3.6-alpine@sha256:fd143c649af607c6872a1e59ccb3e43c299f207ab975a4c286fbb204b6e6f7b7
+    image: postgis/postgis:18-3.6-alpine@sha256:c53a483fc274072dfa02cd491efa79f3c8ae0a10774a0ece6c9c53b6a632cdef
     container_name: dawarich-postgres
     volumes:
       - dawarich-postgres:/var/lib/postgresql
