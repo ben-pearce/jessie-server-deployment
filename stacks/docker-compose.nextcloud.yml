@@ -4,7 +4,7 @@ include:
   - common/docker-compose.volumes.yml
 services:
   nextcloud:
-    image: nextcloud:35.0.2@sha256:d88929dc8386420b8963f86cabb667fdaf733eef9dcf8fc98e226801a32c023c
+    image: nextcloud:35.0.3@sha256:8a7a65b8bae82a79568fec2ed9cf3e374a1944eda2a22ebe130d79463336fee3
     container_name: nextcloud
     depends_on:
       - nextcloud-postgres
@@ -56,7 +56,7 @@ services:
       glance.description: Personal Cloud
       glance.category: cloud
   nextcloud-postgres:
-    image: postgres:18.6-alpine3.24@sha256:123b17998ccaf47e53b502e8c6a1e79afd8f579c6f3eec83c563da026f957395
+    image: postgres:18.7-alpine3.24@sha256:b6972e1115a4ff8eba5d7f7d19184926d1e16d7d1136ae1e1a7ebf286da0f015
     container_name: nextcloud-postgres
     volumes:
       - nextcloud-postgres:/var/lib/postgresql
