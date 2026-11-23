@@ -1,7 +1,7 @@
 name: bentopdf
 services:
   bentopdf:
-    image: ghcr.io/alam00000/bentopdf-simple:2.8.11@sha256:3bbab98791694b77bc70ab03bf1b2ea89e568a75ef172c27d95cbdbdf810038f
+    image: ghcr.io/alam00000/bentopdf-simple:2.8.11@sha256:4a501ea221007bc938f231d12b63261a2a9cdd8d6747b236fd709ef30e5fe7bc
     container_name: bentopdf
     networks:
       - bentopdf-web
